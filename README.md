@@ -23,7 +23,7 @@ A Firefox extension that translates web pages using any OpenAI-compatible API â€
 
 ### From Firefox Add-ons (AMO)
 
-Install directly from [addons.mozilla.org](https://addons.mozilla.org) *(link coming soon)*.
+Install directly from [addons.mozilla.org](https://addons.mozilla.org/en-US/firefox/addon/muxtranslator/).
 
 ### Manual / Development
 

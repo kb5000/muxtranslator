@@ -184,17 +184,38 @@
     body.appendChild(textField(i18n('labelName'), 'text', p.name || '',
       function (v) { p.name = v; renderProviders(); }));
 
+    // DeepL plan selector (free / paid)
+    if (p.type === 'deepl') {
+      var epWrap = document.createElement('label');
+      epWrap.textContent = i18n('labelDeepLPlan');
+      var epSel = document.createElement('select');
+      var optFree = document.createElement('option');
+      optFree.value = 'free'; optFree.textContent = i18n('deepLPlanFree');
+      var optPaid = document.createElement('option');
+      optPaid.value = 'paid'; optPaid.textContent = i18n('deepLPlanPaid');
+      epSel.appendChild(optFree);
+      epSel.appendChild(optPaid);
+      epSel.value = p.endpoint || 'free';
+      epSel.addEventListener('change', function () { p.endpoint = epSel.value; autoSave(); });
+      epWrap.appendChild(epSel);
+      body.appendChild(epWrap);
+    }
+
     // Base URL
-    var baseURLLabel = p.type === 'google-translate' ? i18n('labelBaseURLProxy') : i18n('labelBaseURL');
+    var baseURLLabel = (p.type === 'google-translate' || p.type === 'deepl')
+      ? i18n('labelBaseURLProxy') : i18n('labelBaseURL');
     body.appendChild(textField(baseURLLabel, 'text', p.baseURL || '', function (v) { p.baseURL = v.trim(); }));
 
     // API key
-    body.appendChild(textField(
-      p.type === 'google-translate' ? i18n('labelApiKeyGoogle') : i18n('labelApiKey'),
-      'password', p.apiKey || '', function (v) { p.apiKey = v; }
-    ));
+    var apiKeyLabel = p.type === 'google-translate' ? i18n('labelApiKeyGoogle')
+                    : p.type === 'libretranslate' ? i18n('labelApiKeyOptional')
+                    : i18n('labelApiKey');
+    body.appendChild(textField(apiKeyLabel, 'password', p.apiKey || '', function (v) { p.apiKey = v; }));
 
-    // Model picker with Fetch button
+    // Model picker with Fetch button (not shown for non-LLM providers)
+    if (p.type === 'deepl' || p.type === 'libretranslate') {
+      return body;
+    }
     var modelWrap = document.createElement('div');
     modelWrap.appendChild(labelFor(i18n('labelModel')));
     var row = document.createElement('div');
@@ -355,7 +376,8 @@
       baseURL: p.baseURL, apiKey: p.apiKey, model: p.model,
       systemPrompt: p.systemPrompt, userPromptTemplate: p.userPromptTemplate,
       streamingEnabled: p.streamingEnabled,
-      outputMode: p.outputMode
+      outputMode: p.outputMode,
+      endpoint: p.endpoint
     };
   }
 
@@ -396,6 +418,8 @@
     if (type === 'openai-compatible') return i18n('typeOpenAI');
     if (type === 'ollama') return i18n('typeOllama');
     if (type === 'google-translate') return i18n('typeGoogle');
+    if (type === 'deepl') return i18n('typeDeepL');
+    if (type === 'libretranslate') return i18n('typeLibreTranslate');
     return type;
   }
 
@@ -529,14 +553,18 @@
 
     var byP = stats.byProvider || {};
     var pids = Object.keys(byP);
+    var charTypes = { 'google-translate': true, 'deepl': true, 'libretranslate': true };
     if (pids.length) {
       pids.forEach(function (pid) {
         var p = (state.settings.providers || []).find(function (x) { return x.id === pid; });
         var name = p ? p.name : pid;
         var s = byP[pid];
+        var isCharBased = p && charTypes[p.type];
+        var inLabel = isCharBased ? i18n('labelCharsIn') : i18n('labelPrompt');
+        var outLabel = isCharBased ? i18n('labelCharsOut') : i18n('labelCompletion');
         html += '<div class="provider-stat"><div class="row"><span>' + escapeHtml(name) +
           '</span><span>' + escapeHtml(i18n('statsCalls', [String(s.calls)])) + '</span></div>' +
-          '<div class="row"><span>&nbsp;&nbsp;' + escapeHtml(i18n('labelPrompt')) + ' / ' + escapeHtml(i18n('labelCompletion')) + '</span><span>' +
+          '<div class="row"><span>&nbsp;&nbsp;' + escapeHtml(inLabel) + ' / ' + escapeHtml(outLabel) + '</span><span>' +
           fmt(s.prompt_tokens) + ' / ' + fmt(s.completion_tokens) + '</span></div></div>';
       });
     }

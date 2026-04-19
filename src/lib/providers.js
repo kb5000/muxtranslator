@@ -16,7 +16,9 @@ var ProvidersModule = ProvidersModule || {};
 
   ns.supportsStreaming = function (provider) {
     if (!provider) return false;
-    if (provider.type === 'google-translate') return false;
+    if (provider.type === 'google-translate' ||
+        provider.type === 'deepl' ||
+        provider.type === 'libretranslate') return false;
     return provider.streamingEnabled !== false;
   };
 
@@ -652,12 +654,108 @@ var ProvidersModule = ProvidersModule || {};
     var json = await res.json();
     var arr = json && json.data && json.data.translations;
     if (!Array.isArray(arr)) throw new Error('Unexpected Google response shape');
-    var totalChars = 0;
-    texts.forEach(function (t) { totalChars += (t || '').length; });
+    var translated = arr.map(function (t) { return t.translatedText || ''; });
+    var inChars = 0; texts.forEach(function (t) { inChars += (t || '').length; });
+    var outChars = 0; translated.forEach(function (t) { outChars += (t || '').length; });
     return {
-      translations: arr.map(function (t) { return t.translatedText || ''; }),
-      // Report char count as prompt_tokens so the stats UI has something to show
-      usage: { prompt_tokens: totalChars, completion_tokens: 0 }
+      translations: translated,
+      usage: { prompt_tokens: inChars, completion_tokens: outChars }
+    };
+  };
+
+  // ------------------------------------------------------------------
+  // DeepL (v2 REST)
+  // ------------------------------------------------------------------
+
+  var DeepL = {};
+
+  DeepL.base = function (p) {
+    if (p.baseURL && p.baseURL.trim()) return normalizeBaseURL(p.baseURL);
+    return p.endpoint === 'paid'
+      ? 'https://api.deepl.com'
+      : 'https://api-free.deepl.com';
+  };
+
+  DeepL.targetLang = function (lang) {
+    if (!lang) return 'EN-US';
+    var u = lang.toUpperCase();
+    if (u === 'ZH-CN' || u === 'ZH-HANS') return 'ZH';
+    if (u === 'ZH-TW' || u === 'ZH-HANT') return 'ZH';
+    if (u === 'EN') return 'EN-US';
+    return u;
+  };
+
+  DeepL.translateBatch = async function (provider, texts, targetLang, signal) {
+    if (!provider.apiKey) throw new Error('DeepL requires an API key');
+    var url = DeepL.base(provider) + '/v2/translate';
+    var body = { text: texts, target_lang: DeepL.targetLang(targetLang) };
+    var res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'DeepL-Auth-Key ' + provider.apiKey
+      },
+      body: JSON.stringify(body),
+      signal: signal
+    });
+    if (!res.ok) {
+      var errText = await res.text().catch(function () { return ''; });
+      throw new Error('HTTP ' + res.status + ' ' + res.statusText + (errText ? ': ' + errText.slice(0, 300) : ''));
+    }
+    var json = await res.json();
+    if (!json || !Array.isArray(json.translations)) throw new Error('Unexpected DeepL response shape');
+    var translated = json.translations.map(function (t) { return t.text || ''; });
+    var inChars = 0; texts.forEach(function (t) { inChars += (t || '').length; });
+    var outChars = 0; translated.forEach(function (t) { outChars += (t || '').length; });
+    return {
+      translations: translated,
+      usage: { prompt_tokens: inChars, completion_tokens: outChars }
+    };
+  };
+
+  // ------------------------------------------------------------------
+  // LibreTranslate (REST, one request per text in parallel)
+  // ------------------------------------------------------------------
+
+  var LibreTranslate = {};
+
+  LibreTranslate.base = function (p) {
+    return normalizeBaseURL(p.baseURL || 'https://libretranslate.com');
+  };
+
+  LibreTranslate.normLang = function (lang) {
+    if (!lang) return 'en';
+    return lang.toLowerCase().split('-')[0].split('_')[0];
+  };
+
+  LibreTranslate.translateBatch = async function (provider, texts, targetLang, signal) {
+    var base = LibreTranslate.base(provider);
+    var target = LibreTranslate.normLang(targetLang);
+    var requests = texts.map(function (text) {
+      var body = { q: text, source: 'auto', target: target, format: 'text' };
+      if (provider.apiKey) body.api_key = provider.apiKey;
+      return fetch(base + '/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: signal
+      }).then(function (res) {
+        if (!res.ok) {
+          return res.text().then(function (t) {
+            throw new Error('HTTP ' + res.status + ': ' + t.slice(0, 200));
+          });
+        }
+        return res.json();
+      }).then(function (json) {
+        return (json && json.translatedText) || '';
+      });
+    });
+    var translated = await Promise.all(requests);
+    var inChars = 0; texts.forEach(function (t) { inChars += (t || '').length; });
+    var outChars = 0; translated.forEach(function (t) { outChars += (t || '').length; });
+    return {
+      translations: translated,
+      usage: { prompt_tokens: inChars, completion_tokens: outChars }
     };
   };
 
@@ -666,6 +764,8 @@ var ProvidersModule = ProvidersModule || {};
   var IMPLS = {
     'openai-compatible': OpenAI,
     'ollama': Ollama,
-    'google-translate': Google
+    'google-translate': Google,
+    'deepl': DeepL,
+    'libretranslate': LibreTranslate
   };
 })(ProvidersModule);

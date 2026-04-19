@@ -13,7 +13,7 @@ var SettingsModule = SettingsModule || {};
   ns.DEFAULT_USER_TEMPLATE =
     'Translate the following text to {target_lang}. Preserve any <<<SEP>>> tokens exactly as-is.\n\n{text}';
 
-  ns.PROVIDER_TYPES = ['openai-compatible', 'ollama', 'google-translate'];
+  ns.PROVIDER_TYPES = ['openai-compatible', 'ollama', 'google-translate', 'deepl', 'libretranslate'];
 
   ns.DEFAULT_PROVIDER = function () {
     return {
@@ -34,23 +34,27 @@ var SettingsModule = SettingsModule || {};
 
   ns.NEW_PROVIDER = function (type) {
     var t = type || 'openai-compatible';
+    var isLLM = t === 'openai-compatible' || t === 'ollama';
     var base = {
       id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
       name: t === 'ollama' ? 'Ollama'
           : t === 'google-translate' ? 'Google Translate'
+          : t === 'deepl' ? 'DeepL'
+          : t === 'libretranslate' ? 'LibreTranslate'
           : 'New Provider',
       type: t,
       baseURL: t === 'ollama' ? 'http://localhost:11434'
              : t === 'google-translate' ? 'https://translation.googleapis.com'
+             : t === 'libretranslate' ? 'https://libretranslate.com'
+             : t === 'deepl' ? ''
              : 'https://api.openai.com',
       apiKey: '',
-      model: t === 'ollama' ? 'llama3'
-           : t === 'google-translate' ? 'base'
-           : 'gpt-4o-mini',
-      streamingEnabled: t !== 'google-translate',
-      systemPrompt: t === 'google-translate' ? '' : ns.DEFAULT_SYSTEM_PROMPT,
-      userPromptTemplate: t === 'google-translate' ? '' : ns.DEFAULT_USER_TEMPLATE,
-      outputMode: 'text'
+      model: isLLM ? (t === 'ollama' ? 'llama3' : 'gpt-4o-mini') : '',
+      streamingEnabled: isLLM,
+      systemPrompt: isLLM ? ns.DEFAULT_SYSTEM_PROMPT : '',
+      userPromptTemplate: isLLM ? ns.DEFAULT_USER_TEMPLATE : '',
+      outputMode: 'text',
+      endpoint: t === 'deepl' ? 'free' : undefined
     };
     return base;
   };
