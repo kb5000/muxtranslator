@@ -90,7 +90,10 @@ var SettingsModule = SettingsModule || {};
     // 'ask' = show bar each time, 'auto' = auto-translate, 'never' = no bar/auto
     defaultTranslationMode: 'ask',
     // 'off' = translation only, 'embed' = show original below, 'tooltip' = hover tooltip
-    bilingualMode: 'off'
+    bilingualMode: 'off',
+
+    // Array of { id, source, target, lang } — lang='' means all target languages
+    glossary: []
   };
 
   function getStorage() {

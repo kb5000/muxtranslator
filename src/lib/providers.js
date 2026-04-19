@@ -75,6 +75,15 @@ var ProvidersModule = ProvidersModule || {};
     });
   }
 
+  // Build glossary block to append to system prompts (LLM providers only).
+  // provider._glossary is pre-filtered for the target language by background.js.
+  function buildGlossaryBlock(provider) {
+    var g = provider._glossary;
+    if (!g || !g.length) return '';
+    var lines = g.map(function (e) { return '- ' + e.source + ' → ' + e.target; });
+    return '\n\nGlossary (translate these terms exactly as listed):\n' + lines.join('\n');
+  }
+
   // Build user prompt from template + {text} + {target_lang}
   function buildUserPrompt(provider, texts, targetLang) {
     var combined = joinWithSep(texts);
@@ -96,9 +105,9 @@ var ProvidersModule = ProvidersModule || {};
     "strings — exactly one translation per input, in the same order and with the same length. " +
     "Do not merge, split, reorder, or add commentary.";
 
-  function buildToolMessages(texts, targetLang) {
+  function buildToolMessages(provider, texts, targetLang) {
     return [
-      { role: 'system', content: TOOL_SYSTEM_PROMPT },
+      { role: 'system', content: TOOL_SYSTEM_PROMPT + buildGlossaryBlock(provider) },
       { role: 'user', content:
           'Target language: ' + targetLang + '\n\n' +
           'Input (JSON array of ' + texts.length + ' strings):\n' +
@@ -224,9 +233,9 @@ var ProvidersModule = ProvidersModule || {};
     if (!provider.model) throw new Error('model is required');
     var isTool = provider.outputMode === 'tool-call';
     var messages = isTool
-      ? buildToolMessages(texts, targetLang)
+      ? buildToolMessages(provider, texts, targetLang)
       : [
-          { role: 'system', content: provider.systemPrompt || '' },
+          { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
           { role: 'user', content: buildUserPrompt(provider, texts, targetLang) }
         ];
     var body = {
@@ -277,9 +286,9 @@ var ProvidersModule = ProvidersModule || {};
     if (!provider.model) throw new Error('model is required');
     var isTool = provider.outputMode === 'tool-call';
     var messages = isTool
-      ? buildToolMessages(texts, targetLang)
+      ? buildToolMessages(provider, texts, targetLang)
       : [
-          { role: 'system', content: provider.systemPrompt || '' },
+          { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
           { role: 'user', content: buildUserPrompt(provider, texts, targetLang) }
         ];
     var body = {
@@ -494,7 +503,7 @@ var ProvidersModule = ProvidersModule || {};
     var body = {
       model: provider.model,
       messages: [
-        { role: 'system', content: provider.systemPrompt || '' },
+        { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
         { role: 'user', content: userPrompt }
       ],
       stream: false,
@@ -525,7 +534,7 @@ var ProvidersModule = ProvidersModule || {};
     var body = {
       model: provider.model,
       messages: [
-        { role: 'system', content: provider.systemPrompt || '' },
+        { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
         { role: 'user', content: userPrompt }
       ],
       stream: true,

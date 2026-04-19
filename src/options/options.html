@@ -55,6 +55,16 @@
       </label>
     </section>
 
+    <!-- Glossary -->
+    <section class="card">
+      <div class="card-header">
+        <h2 data-i18n="headingGlossary">Glossary</h2>
+        <button type="button" id="editGlossaryBtn" data-i18n="btnEditGlossary">Edit Glossary</button>
+      </div>
+      <span id="glossarySummary" class="hint"></span>
+      <span class="hint" data-i18n="hintGlossary">Terms listed here are injected into the LLM system prompt as a translation reference. Non-LLM providers (Google, DeepL, LibreTranslate) ignore this.</span>
+    </section>
+
     <!-- Site rules -->
     <section class="card">
       <div class="card-header">
@@ -152,6 +162,22 @@
       <span id="status" class="status"></span>
     </footer>
   </main>
+
+  <!-- Glossary dialog -->
+  <dialog id="glossaryDialog">
+    <div class="dialog-header">
+      <h3 data-i18n="dialogHeadingGlossary">Glossary</h3>
+      <button type="button" id="glossaryClose" class="dialog-close" data-i18n="btnClose">Close</button>
+    </div>
+    <div id="glossaryEntryList" class="glossary-list"></div>
+    <div class="glossary-add-row">
+      <input type="text" id="glossarySource" spellcheck="false">
+      <span class="glossary-arrow">→</span>
+      <input type="text" id="glossaryTarget" spellcheck="false">
+      <input type="text" id="glossaryLang" spellcheck="false" class="glossary-lang-input">
+      <button type="button" id="addGlossaryEntryBtn" class="primary" data-i18n="btnAdd">+ Add</button>
+    </div>
+  </dialog>
 
   <!-- Site rule add dialog -->
   <dialog id="siteRuleDialog">

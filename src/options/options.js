@@ -31,6 +31,9 @@
     [
       'addProviderBtn', 'newProviderType', 'providerList',
       'defaultProviderId', 'selectionProviderId', 'manualProviderId', 'selectionEnabled',
+      'editGlossaryBtn', 'glossaryDialog', 'glossaryEntryList',
+      'glossarySource', 'glossaryTarget', 'glossaryLang', 'addGlossaryEntryBtn', 'glossaryClose',
+      'glossarySummary',
       'addSiteRuleBtn', 'siteRulesList',
       'uiLanguage', 'targetLanguage', 'skipLanguages', 'autoDetect',
       'defaultTranslationMode', 'bilingualMode',
@@ -43,6 +46,9 @@
 
     if (els.saveBtn) els.saveBtn.addEventListener('click', function () { autoSave(true); });
     els.addProviderBtn.addEventListener('click', onAddProvider);
+    els.editGlossaryBtn.addEventListener('click', openGlossaryDialog);
+    els.glossaryClose.addEventListener('click', function () { els.glossaryDialog.close(); });
+    els.addGlossaryEntryBtn.addEventListener('click', addGlossaryEntry);
     els.clearCacheBtn.addEventListener('click', clearCache);
     els.resetTokensBtn.addEventListener('click', resetTokens);
     els.addSiteRuleBtn.addEventListener('click', openSiteRuleDialog);
@@ -121,6 +127,7 @@
   function render() {
     renderProviders();
     renderBindings();
+    renderGlossarySummary();
     renderSiteRules();
     renderScalars();
     renderCacheStats();
@@ -447,6 +454,100 @@
     fill(els.selectionProviderId, state.settings.selectionProviderId || '', true);
     fill(els.manualProviderId, state.settings.manualProviderId || '', true);
     els.selectionEnabled.checked = state.settings.selectionEnabled !== false;
+  }
+
+  // ----- Glossary --------------------------------------------------------
+
+  function renderGlossarySummary() {
+    var entries = state.settings.glossary || [];
+    els.glossarySummary.textContent = entries.length
+      ? i18n('glossaryCount', [String(entries.length)])
+      : i18n('glossaryNone');
+  }
+
+  function openGlossaryDialog() {
+    els.glossaryDialog.classList.add('glossary-dialog');
+    els.glossarySource.placeholder = i18n('placeholderGlossarySource');
+    els.glossaryTarget.placeholder = i18n('placeholderGlossaryTarget');
+    els.glossaryLang.placeholder = i18n('placeholderGlossaryLang');
+    renderGlossaryDialog();
+    if (typeof els.glossaryDialog.showModal === 'function') {
+      els.glossaryDialog.showModal();
+    } else {
+      els.glossaryDialog.setAttribute('open', '');
+    }
+  }
+
+  function renderGlossaryDialog() {
+    var list = els.glossaryEntryList;
+    list.innerHTML = '';
+    var entries = state.settings.glossary || [];
+    if (!entries.length) {
+      list.innerHTML = '<div class="hint">' + escapeHtml(i18n('glossaryEmpty')) + '</div>';
+      return;
+    }
+    entries.forEach(function (entry) {
+      var row = document.createElement('div');
+      row.className = 'glossary-row';
+
+      var src = document.createElement('span');
+      src.className = 'g-source';
+      src.textContent = entry.source;
+
+      var arrow = document.createElement('span');
+      arrow.className = 'g-arrow';
+      arrow.textContent = '→';
+
+      var tgt = document.createElement('span');
+      tgt.className = 'g-target';
+      tgt.textContent = entry.target;
+
+      var delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'danger';
+      delBtn.textContent = i18n('btnDelete');
+      delBtn.addEventListener('click', function () {
+        state.settings.glossary = (state.settings.glossary || []).filter(function (e) {
+          return e.id !== entry.id;
+        });
+        renderGlossaryDialog();
+        renderGlossarySummary();
+        autoSave(true);
+      });
+
+      row.appendChild(src);
+      row.appendChild(arrow);
+      row.appendChild(tgt);
+      if (entry.lang) {
+        var langBadge = document.createElement('span');
+        langBadge.className = 'g-lang';
+        langBadge.textContent = entry.lang;
+        row.appendChild(langBadge);
+      }
+      row.appendChild(delBtn);
+      list.appendChild(row);
+    });
+  }
+
+  function addGlossaryEntry() {
+    var source = els.glossarySource.value.trim();
+    var target = els.glossaryTarget.value.trim();
+    if (!source || !target) return;
+    var lang = els.glossaryLang.value.trim();
+    var entry = {
+      id: 'g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
+      source: source,
+      target: target,
+      lang: lang
+    };
+    state.settings.glossary = (state.settings.glossary || []).concat([entry]);
+    els.glossarySource.value = '';
+    els.glossaryTarget.value = '';
+    els.glossaryLang.value = '';
+    els.glossarySource.focus();
+    renderGlossaryDialog();
+    renderGlossarySummary();
+    autoSave(true);
   }
 
   // ----- Site rules ------------------------------------------------------

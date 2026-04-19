@@ -17,6 +17,23 @@ async function resolveProviderForRequest(providerId) {
   return { settings: s, provider: provider };
 }
 
+// Attach filtered glossary entries to provider (only for LLM types that support it).
+function withGlossary(provider, settings, targetLang) {
+  var isLLM = provider.type === 'openai-compatible' || provider.type === 'ollama';
+  if (!isLLM) return provider;
+  var glossary = settings.glossary || [];
+  if (!glossary.length) return provider;
+  var lang = (targetLang || '').toLowerCase();
+  var relevant = glossary.filter(function (e) {
+    if (!e.source || !e.target) return false;
+    return !e.lang || e.lang.toLowerCase() === lang;
+  });
+  if (!relevant.length) return provider;
+  var p = Object.assign({}, provider);
+  p._glossary = relevant;
+  return p;
+}
+
 // Cache keys combine providerId + model so switching providers never reuses a
 // stale translation from a different model/provider.
 function cacheModelKey(provider) {
@@ -90,8 +107,8 @@ async function translateBatch(provider, texts, targetLang, cacheEnabled) {
 
 async function handleTranslateChunks(payload) {
   var resolved = await resolveProviderForRequest(payload.providerId);
-  var provider = resolved.provider;
   var targetLang = payload.targetLang || resolved.settings.targetLanguage;
+  var provider = withGlossary(resolved.provider, resolved.settings, targetLang);
   var cacheEnabled = payload.cacheEnabled !== false && resolved.settings.cacheEnabled !== false;
   var result = await translateBatch(provider, payload.texts || [], targetLang, cacheEnabled);
   return { success: true, data: result };
@@ -106,8 +123,8 @@ async function handleTranslateStream(payload, sender) {
   var itemIds = payload.itemIds || [];
 
   var resolved = await resolveProviderForRequest(payload.providerId);
-  var provider = resolved.provider;
   var targetLang = payload.targetLang || resolved.settings.targetLanguage;
+  var provider = withGlossary(resolved.provider, resolved.settings, targetLang);
   var cacheEnabled = payload.cacheEnabled !== false && resolved.settings.cacheEnabled !== false;
   var modelKey = cacheModelKey(provider);
 
@@ -216,9 +233,10 @@ async function handleTranslateText(payload) {
     || (payload.purpose === 'selection' ? s.selectionProviderId : null)
     || (payload.purpose === 'manual' ? s.manualProviderId : null)
     || s.defaultProviderId;
-  var provider = SettingsModule.resolveProvider(s, providerId);
-  if (!provider) throw new Error('No provider available');
+  var baseProvider = SettingsModule.resolveProvider(s, providerId);
+  if (!baseProvider) throw new Error('No provider available');
   var targetLang = payload.targetLang || s.targetLanguage;
+  var provider = withGlossary(baseProvider, s, targetLang);
   var cacheEnabled = s.cacheEnabled !== false;
   var out = await translateOne(provider, payload.text || '', targetLang, cacheEnabled);
   return {

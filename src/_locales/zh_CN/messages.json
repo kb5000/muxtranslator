@@ -190,6 +190,20 @@
     "placeholders": { "name": { "content": "$1" } }
   },
 
+  "headingGlossary":    { "message": "术语表" },
+  "btnEditGlossary":    { "message": "编辑术语表" },
+  "hintGlossary":       { "message": "此处的术语将注入 LLM 系统提示词中作为翻译参考。非 LLM 提供商（Google、DeepL、LibreTranslate）不支持此功能。" },
+  "dialogHeadingGlossary": { "message": "术语表" },
+  "glossaryEmpty":      { "message": "暂无条目，请在下方添加术语。" },
+  "glossaryNone":      { "message": "暂无条目。" },
+  "placeholderGlossarySource": { "message": "原文术语" },
+  "placeholderGlossaryTarget": { "message": "对应译文" },
+  "placeholderGlossaryLang":   { "message": "语言（如 zh-CN，留空匹配所有语言）" },
+  "glossaryCount": {
+    "message": "已定义 $COUNT$ 条术语",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+
   "selBadgeTitle":      { "message": "翻译所选文本" },
   "btnClose":           { "message": "关闭" },
   "labelError":         { "message": "错误" },

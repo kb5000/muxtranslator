@@ -190,6 +190,20 @@
     "placeholders": { "name": { "content": "$1" } }
   },
 
+  "headingGlossary":    { "message": "Glossary" },
+  "btnEditGlossary":    { "message": "Edit Glossary" },
+  "hintGlossary":       { "message": "Terms listed here are injected into the LLM system prompt as a translation reference. Non-LLM providers (Google, DeepL, LibreTranslate) ignore this." },
+  "dialogHeadingGlossary": { "message": "Glossary" },
+  "glossaryEmpty":      { "message": "No entries yet. Add terms below." },
+  "glossaryNone":      { "message": "No entries yet." },
+  "placeholderGlossarySource": { "message": "Source term" },
+  "placeholderGlossaryTarget": { "message": "Translation" },
+  "placeholderGlossaryLang":   { "message": "Lang (e.g. zh-CN, or blank = all)" },
+  "glossaryCount": {
+    "message": "$COUNT$ term(s) defined",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+
   "selBadgeTitle":      { "message": "Translate selection" },
   "btnClose":           { "message": "Close" },
   "labelError":         { "message": "Error" },
