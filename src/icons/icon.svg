@@ -1,0 +1,17 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gr" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"></stop>
+      <stop offset="100%" stop-color="#1d4ed8"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#gr)"></rect>
+  <text x="14" y="90" font-family="Georgia, serif" font-weight="700" font-size="80" fill="white" opacity="0.15">μ</text>
+  <rect x="20" y="40" width="40" height="6" rx="3" fill="white" opacity="0.9"></rect>
+  <rect x="20" y="52" width="28" height="6" rx="3" fill="white" opacity="0.6"></rect>
+  <path d="M68 54 L88 54" stroke="white" stroke-width="3" stroke-linecap="round"></path>
+  <polyline points="82,48 89,54 82,60" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"></polyline>
+  <rect x="20" y="70" width="40" height="6" rx="3" fill="white" opacity="0.9"></rect>
+  <rect x="20" y="82" width="55" height="6" rx="3" fill="white" opacity="0.6"></rect>
+  <text x="86" y="50" font-family="Georgia, serif" font-size="32" fill="white" font-weight="700" opacity="0.6">字</text>
+</svg>

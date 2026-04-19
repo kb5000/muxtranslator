@@ -1,0 +1,6 @@
+/* Base resets for MuxTranslator injected hosts. Actual component styles live
+   inside each host's Shadow DOM to avoid bleed from/into the host page. */
+#muxtranslator-bar,
+#muxtranslator-progress {
+  all: initial;
+}

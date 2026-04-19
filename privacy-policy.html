@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MuxTranslator — Privacy Policy</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 48px auto; padding: 0 24px; line-height: 1.7; color: #222; }
+    h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    h2 { font-size: 1.1rem; margin-top: 2em; }
+    p, li { font-size: 0.97rem; }
+    time { color: #555; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<h1>MuxTranslator — Privacy Policy</h1>
+<p><time datetime="2026-04-19">Last updated: April 19, 2026</time></p>
+
+<h2>Overview</h2>
+<p>
+  MuxTranslator is a browser extension that translates web pages by sending text to a
+  translation API of your choice. This policy explains what data leaves your browser, where
+  it goes, and what is stored locally.
+</p>
+
+<h2>Data sent to external services</h2>
+<p>
+  When you initiate a translation, MuxTranslator extracts text from the current page and
+  sends it to the API endpoint you have configured in the extension settings (for example,
+  an OpenAI-compatible endpoint, a local Ollama instance, or Google Translate). This is the
+  only outbound network request the extension makes.
+</p>
+<ul>
+  <li><strong>What is sent:</strong> the text content of the page (or selected text), your
+      chosen target language, and your configured API key as a request header.</li>
+  <li><strong>Where it goes:</strong> exclusively to the URL you enter in the settings.
+      MuxTranslator does not route data through any intermediary server operated by this
+      extension's developer.</li>
+  <li><strong>Third-party privacy policies:</strong> the handling of that data is governed
+      by the privacy policy of the API provider you choose (e.g., OpenAI, Google, or your
+      own self-hosted service).</li>
+</ul>
+
+<h2>Data stored locally</h2>
+<p>
+  MuxTranslator stores the following data locally in your browser using Firefox's
+  <code>storage.local</code> API and IndexedDB:
+</p>
+<ul>
+  <li><strong>Extension settings</strong> — provider names, base URLs, API keys, selected
+      models, site rules, and language preferences. This data never leaves your device
+      except as part of the API requests described above.</li>
+  <li><strong>Translation cache</strong> — previously translated text segments are cached
+      in IndexedDB to avoid redundant API calls. Cached data stays on your device and can
+      be cleared at any time from the settings page.</li>
+  <li><strong>Token usage statistics</strong> — cumulative prompt and completion token
+      counts per provider, stored locally for your reference. These are never transmitted
+      anywhere.</li>
+</ul>
+
+<h2>Data we do not collect</h2>
+<ul>
+  <li>We operate no analytics, telemetry, or crash-reporting service.</li>
+  <li>We do not collect browsing history, page URLs, or any personal information.</li>
+  <li>We have no backend server and receive no data from users of this extension.</li>
+</ul>
+
+<h2>API keys</h2>
+<p>
+  Your API keys are stored only in <code>storage.local</code> — a sandboxed storage area
+  accessible only to this extension. Keys are transmitted solely in the Authorization
+  header of requests to the provider URL you specify. They are never logged, shared, or
+  sent to any other destination.
+</p>
+
+<h2>Children's privacy</h2>
+<p>
+  This extension is not directed at children under the age of 13 and does not knowingly
+  collect any information from them.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  If this policy changes materially, the "Last updated" date above will be revised. We
+  encourage you to review this page periodically.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Questions or concerns can be directed to the extension's repository issue tracker or to
+  the developer email listed on the Firefox Add-ons store page.
+</p>
+
+</body>
+</html>

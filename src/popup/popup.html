@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MuxTranslator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>MuxTranslator</h1>
+    <button id="openOptions" class="icon-btn"
+            data-i18n-title="settingsTitle"
+            data-i18n-aria="settingsTitle"
+            title="Settings" aria-label="Settings">⚙</button>
+  </header>
+
+  <section class="page-info">
+    <div class="row">
+      <span class="label" data-i18n="labelPage">Page:</span>
+      <span id="pageLang" class="value">—</span>
+    </div>
+    <div class="row">
+      <span class="label" data-i18n="labelTarget">Target:</span>
+      <select id="targetLang" class="target-select"></select>
+    </div>
+    <div class="row">
+      <span class="label" data-i18n="labelSite">Site:</span>
+      <span id="siteHost" class="value">—</span>
+    </div>
+  </section>
+
+  <section class="actions">
+    <div class="row-actions">
+      <select id="providerSelect"></select>
+      <button id="translateBtn" class="primary" data-i18n="btnTranslate">Translate</button>
+    </div>
+    <div class="row-actions secondary-actions">
+      <button id="pauseBtn" data-i18n="btnPause">Pause</button>
+      <button id="restoreBtn" data-i18n="btnRestoreOriginal">Restore original</button>
+    </div>
+    <div id="translateStatus" class="status"></div>
+  </section>
+
+  <section class="site-rules">
+    <h2 data-i18n="headingSiteRules">This site</h2>
+    <div class="rule-buttons">
+      <button id="ruleAsk"    data-mode="ask"    data-i18n="ruleAsk">Ask (default)</button>
+      <button id="ruleSkip"   data-mode="skip"   data-i18n="ruleSkip">Always skip</button>
+      <button id="ruleAlways" data-mode="always" data-i18n="ruleAlways">Always translate with ↑</button>
+    </div>
+    <div id="ruleStatus" class="status"></div>
+  </section>
+
+  <section class="manual">
+    <h2 data-i18n="headingQuickTranslate">Quick translate</h2>
+    <textarea id="manualInput"
+              data-i18n-placeholder="manualPlaceholder"
+              placeholder="Paste or type text to translate…" rows="3"></textarea>
+    <div class="row-actions">
+      <button id="manualBtn" data-i18n="btnTranslate">Translate</button>
+      <span id="manualStatus" class="status"></span>
+    </div>
+    <div id="manualResult" class="result" hidden></div>
+  </section>
+
+  <section class="stats">
+    <h2 data-i18n="headingTokens">Tokens (this page)</h2>
+    <div class="row">
+      <span class="label" data-i18n="labelPrompt">Prompt:</span>
+      <span id="tokPrompt" class="value">0</span>
+    </div>
+    <div class="row">
+      <span class="label" data-i18n="labelCompletion">Completion:</span>
+      <span id="tokCompletion" class="value">0</span>
+    </div>
+  </section>
+
+  <script src="../lib/utils.js"></script>
+  <script src="../lib/settings.js"></script>
+  <script src="../lib/i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

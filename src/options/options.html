@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title data-i18n="optionsPageTitle">MuxTranslator Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1 data-i18n="optionsPageTitle">MuxTranslator Settings</h1>
+      <p class="subtitle" data-i18n="optionsSubtitle">Bring-your-own API page translator. Configure providers, site rules, and defaults below.</p>
+    </header>
+
+    <!-- Providers -->
+    <section class="card">
+      <div class="card-header">
+        <h2 data-i18n="headingProviders">Providers</h2>
+        <div class="header-actions">
+          <select id="newProviderType">
+            <option value="openai-compatible" data-i18n="typeOpenAI">OpenAI-compatible</option>
+            <option value="ollama" data-i18n="typeOllama">Ollama</option>
+            <option value="google-translate" data-i18n="typeGoogle">Google Translate</option>
+          </select>
+          <button type="button" id="addProviderBtn" data-i18n="btnAdd">+ Add</button>
+        </div>
+      </div>
+      <div id="providerList" class="provider-list"></div>
+    </section>
+
+    <!-- Bindings -->
+    <section class="card">
+      <h2 data-i18n="headingBindings">Feature bindings</h2>
+      <label>
+        <span data-i18n="labelDefaultProvider">Default provider (for page translation)</span>
+        <select id="defaultProviderId"></select>
+      </label>
+      <label>
+        <span data-i18n="labelSelectionProvider">Selection translation provider</span>
+        <select id="selectionProviderId">
+          <option value="" data-i18n="labelUseDefault">(use default)</option>
+        </select>
+      </label>
+      <label>
+        <span data-i18n="labelManualProvider">Manual input translation provider</span>
+        <select id="manualProviderId">
+          <option value="" data-i18n="labelUseDefault">(use default)</option>
+        </select>
+      </label>
+      <label class="inline">
+        <input type="checkbox" id="selectionEnabled">
+        <span data-i18n="labelSelectionEnabled">Show "译" badge when text is selected (click to translate)</span>
+      </label>
+    </section>
+
+    <!-- Site rules -->
+    <section class="card">
+      <div class="card-header">
+        <h2 data-i18n="headingSiteRulesOptions">Site rules</h2>
+        <button type="button" id="addSiteRuleBtn" data-i18n="btnAddRule">+ Add rule</button>
+      </div>
+      <div id="siteRulesList" class="rules-list"></div>
+      <span class="hint" data-i18n="siteRulesHint">Rules match the exact hostname or any subdomain. Sites not listed fall back to the default "ask each time" behavior.</span>
+    </section>
+
+    <!-- Languages -->
+    <section class="card">
+      <h2 data-i18n="headingLanguages">Languages</h2>
+      <label>
+        <span data-i18n="labelUiLanguage">UI language</span>
+        <select id="uiLanguage">
+          <option value="" data-i18n="uiLangAuto">Auto (follow browser)</option>
+          <option value="en">English</option>
+          <option value="zh_CN">简体中文</option>
+        </select>
+      </label>
+      <label>
+        <span data-i18n="labelTargetLanguage">Target language</span>
+        <input type="text" id="targetLanguage" placeholder="zh-CN" spellcheck="false">
+      </label>
+      <label>
+        <span data-i18n="labelSkipLanguages">Skip languages (comma-separated, for auto-detect bar)</span>
+        <input type="text" id="skipLanguages" placeholder="zh, zh-CN, zh-TW" spellcheck="false">
+      </label>
+      <label class="inline">
+        <input type="checkbox" id="autoDetect">
+        <span data-i18n="labelAutoDetect">Show translation prompt on foreign-language pages</span>
+      </label>
+    </section>
+
+    <!-- Performance -->
+    <section class="card">
+      <h2 data-i18n="headingPerformance">Performance</h2>
+      <label class="inline">
+        <input type="checkbox" id="observeMutations">
+        <span data-i18n="labelObserveMutations">Auto-translate new content added by the page (SPAs, infinite scroll)</span>
+      </label>
+      <label class="inline">
+        <input type="checkbox" id="viewportPriority">
+        <span data-i18n="labelViewportPriority">Prioritize on-screen elements, preload off-screen</span>
+      </label>
+      <label class="inline">
+        <input type="checkbox" id="showProgressBar">
+        <span data-i18n="labelShowProgressBar">Show translation progress widget (bottom-right)</span>
+      </label>
+      <label>
+        <span data-i18n="labelMaxCharsPerBatch">Max chars per batch</span>
+        <input type="number" id="maxCharsPerBatch" min="200" max="16000" step="100">
+        <span class="hint" data-i18n="hintMaxChars">Larger batch = fewer API calls but slower per call. 3000 is a good balance.</span>
+      </label>
+      <label>
+        <span data-i18n="labelConcurrentBatches">Concurrent batches</span>
+        <input type="number" id="concurrentBatches" min="1" max="8" step="1">
+      </label>
+    </section>
+
+    <!-- Cache & stats -->
+    <section class="card">
+      <h2 data-i18n="headingCacheStats">Cache &amp; stats</h2>
+      <label class="inline">
+        <input type="checkbox" id="cacheEnabled">
+        <span data-i18n="labelCacheEnabled">Enable IndexedDB translation cache</span>
+      </label>
+      <div class="row">
+        <button type="button" id="clearCacheBtn" data-i18n="btnClearCache">Clear cache</button>
+        <span id="cacheStats" class="hint"></span>
+      </div>
+      <div id="tokenStats" class="stats-box"></div>
+      <div class="row">
+        <button type="button" id="resetTokensBtn" data-i18n="btnResetTokenStats">Reset token stats</button>
+      </div>
+    </section>
+
+    <footer class="actions">
+      <span class="hint" data-i18n="autoSaveHint">Changes save automatically.</span>
+      <span id="status" class="status"></span>
+    </footer>
+  </main>
+
+  <!-- Site rule add dialog -->
+  <dialog id="siteRuleDialog">
+    <h3 data-i18n="dialogHeadingAddSiteRule">Add site rule</h3>
+    <label>
+      <span data-i18n="labelHostname">Hostname</span>
+      <input type="text" id="srHostname" placeholder="example.com" spellcheck="false">
+    </label>
+    <label>
+      <span data-i18n="labelMode">Mode</span>
+      <select id="srMode">
+        <option value="skip" data-i18n="modeAlwaysSkip">Always skip</option>
+        <option value="always" data-i18n="modeAlwaysTranslate">Always translate with ↓</option>
+      </select>
+    </label>
+    <label id="srProviderRow">
+      <span data-i18n="labelProviderField">Provider</span>
+      <select id="srProviderId"></select>
+    </label>
+    <div class="dialog-actions">
+      <button type="button" id="srCancel" data-i18n="btnCancel">Cancel</button>
+      <button type="button" id="srOK" class="primary" data-i18n="btnDialogAdd">Add</button>
+    </div>
+  </dialog>
+
+  <script src="../lib/utils.js"></script>
+  <script src="../lib/settings.js"></script>
+  <script src="../lib/i18n.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

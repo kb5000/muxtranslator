@@ -1,0 +1,297 @@
+(function () {
+  'use strict';
+
+  if (typeof browser === 'undefined' && typeof chrome !== 'undefined') {
+    window.browser = chrome;
+  }
+
+  // Common translation targets. If the saved target isn't in this list it
+  // still gets added on the fly so the user never loses their current value.
+  var COMMON_TARGETS = [
+    ['zh-CN', '中文 (简体)'],
+    ['zh-TW', '中文 (繁體)'],
+    ['en',    'English'],
+    ['ja',    '日本語'],
+    ['ko',    '한국어'],
+    ['es',    'Español'],
+    ['fr',    'Français'],
+    ['de',    'Deutsch'],
+    ['pt',    'Português'],
+    ['ru',    'Русский'],
+    ['it',    'Italiano'],
+    ['ar',    'العربية'],
+    ['hi',    'हिन्दी'],
+    ['vi',    'Tiếng Việt'],
+    ['th',    'ไทย']
+  ];
+
+  var els = {};
+  var state = {
+    currentTabId: null,
+    host: '',
+    settings: null,
+    translationPaused: false
+  };
+
+  function $(id) { return document.getElementById(id); }
+
+  function setStatus(el, msg, kind) {
+    el.textContent = msg || '';
+    el.className = 'status' + (kind ? ' ' + kind : '');
+  }
+
+  async function init() {
+    await i18nInit();
+
+    [
+      'pageLang', 'targetLang', 'siteHost',
+      'providerSelect', 'translateBtn', 'pauseBtn', 'restoreBtn', 'translateStatus',
+      'ruleAsk', 'ruleSkip', 'ruleAlways', 'ruleStatus',
+      'manualInput', 'manualBtn', 'manualStatus', 'manualResult',
+      'tokPrompt', 'tokCompletion',
+      'openOptions'
+    ].forEach(function (id) { els[id] = $(id); });
+
+    els.openOptions.addEventListener('click', function () {
+      browser.runtime.openOptionsPage();
+      window.close();
+    });
+    els.translateBtn.addEventListener('click', onTranslatePage);
+    els.pauseBtn.addEventListener('click', onTogglePause);
+    els.restoreBtn.addEventListener('click', onRestore);
+    els.targetLang.addEventListener('change', onTargetLangChange);
+    els.manualBtn.addEventListener('click', onManualTranslate);
+    els.manualInput.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        onManualTranslate();
+      }
+    });
+
+    els.ruleAsk.addEventListener('click', function () { setRule('ask'); });
+    els.ruleSkip.addEventListener('click', function () { setRule('skip'); });
+    els.ruleAlways.addEventListener('click', function () { setRule('always'); });
+
+    // Load settings & populate providers
+    state.settings = await SettingsModule.getSettings();
+    populateProviders(state.settings);
+    populateTargetLang(state.settings.targetLanguage);
+    renderTokenStats({ prompt: 0, completion: 0 });
+
+    // Query active tab
+    try {
+      var tabs = await browser.tabs.query({ active: true, currentWindow: true });
+      if (tabs && tabs[0]) {
+        state.currentTabId = tabs[0].id;
+        var url = tabs[0].url || '';
+        try { state.host = new URL(url).hostname; } catch (e) { state.host = ''; }
+        els.siteHost.textContent = state.host || i18n('statusNotAPage');
+
+        // Reflect existing site rule
+        reflectCurrentRule();
+
+        try {
+          var info = await browser.tabs.sendMessage(state.currentTabId, { type: 'GET_PAGE_INFO' });
+          if (info && info.success) {
+            els.pageLang.textContent = info.data.lang || i18n('statusUnknown');
+            state.translationPaused = !!info.data.paused;
+            els.pauseBtn.textContent = state.translationPaused ? i18n('btnResume') : i18n('btnPause');
+            if (info.data.sessionTokens) renderTokenStats(info.data.sessionTokens);
+            if (info.data.isTranslating) {
+              setStatus(els.translateStatus, state.translationPaused ? i18n('statusPaused') : i18n('statusTranslatingInProgress'));
+              els.translateBtn.disabled = true;
+            }
+          }
+        } catch (e) {
+          els.pageLang.textContent = i18n('statusUnavailable');
+          els.translateBtn.disabled = true;
+          els.pauseBtn.disabled = true;
+          els.restoreBtn.disabled = true;
+          setStatus(els.translateStatus, i18n('statusCannotTranslate'), 'error');
+        }
+      }
+    } catch (e) {
+      console.warn('[MuxTranslator popup] tab query failed:', e);
+    }
+  }
+
+  function populateProviders(settings) {
+    var select = els.providerSelect;
+    select.innerHTML = '';
+    (settings.providers || []).forEach(function (p) {
+      var opt = document.createElement('option');
+      opt.value = p.id;
+      opt.textContent = p.name + ' (' + shortType(p.type) + ')';
+      if (p.id === settings.defaultProviderId) opt.selected = true;
+      select.appendChild(opt);
+    });
+    // If a site rule is bound to a specific provider, default-select that
+    var rule = SettingsModule.resolveSiteRule(settings, state.host);
+    if (rule && rule.mode === 'always' && rule.providerId) {
+      select.value = rule.providerId;
+    }
+  }
+
+  function populateTargetLang(current) {
+    els.targetLang.innerHTML = '';
+    var seen = false;
+    COMMON_TARGETS.forEach(function (pair) {
+      var opt = document.createElement('option');
+      opt.value = pair[0];
+      opt.textContent = pair[1] + ' (' + pair[0] + ')';
+      if (pair[0] === current) { opt.selected = true; seen = true; }
+      els.targetLang.appendChild(opt);
+    });
+    if (current && !seen) {
+      var opt = document.createElement('option');
+      opt.value = current;
+      opt.textContent = current;
+      opt.selected = true;
+      els.targetLang.insertBefore(opt, els.targetLang.firstChild);
+    }
+  }
+
+  async function onTargetLangChange() {
+    var newLang = els.targetLang.value;
+    if (!newLang) return;
+    try {
+      state.settings = await SettingsModule.saveSettings({ targetLanguage: newLang });
+      setStatus(els.translateStatus, i18n('statusTargetSet', [newLang]), 'success');
+    } catch (e) {
+      setStatus(els.translateStatus, i18n('statusSaveFailed', [e.message || String(e)]), 'error');
+    }
+  }
+
+  function shortType(type) {
+    if (type === 'openai-compatible') return 'OpenAI';
+    if (type === 'ollama') return 'Ollama';
+    if (type === 'google-translate') return 'Google';
+    return type;
+  }
+
+  function renderTokenStats(st) {
+    st = st || { prompt: 0, completion: 0 };
+    els.tokPrompt.textContent = fmt(st.prompt || 0);
+    els.tokCompletion.textContent = fmt(st.completion || 0);
+  }
+
+  function fmt(n) { return (n || 0).toLocaleString(); }
+
+  function reflectCurrentRule() {
+    var rule = SettingsModule.resolveSiteRule(state.settings, state.host);
+    els.ruleAsk.classList.toggle('active', !rule);
+    els.ruleSkip.classList.toggle('active', rule && rule.mode === 'skip');
+    els.ruleAlways.classList.toggle('active', rule && rule.mode === 'always');
+    if (rule) {
+      if (rule.mode === 'skip') {
+        setStatus(els.ruleStatus, i18n('statusCurrentlySkipped'), '');
+      } else if (rule.mode === 'always') {
+        var prov = (state.settings.providers || []).find(function (p) { return p.id === rule.providerId; });
+        setStatus(els.ruleStatus, i18n('statusCurrentlyAutoTranslate', [prov ? prov.name : rule.providerId]), '');
+      }
+    } else {
+      setStatus(els.ruleStatus, i18n('statusCurrentlyAsk'), '');
+    }
+  }
+
+  async function setRule(mode) {
+    if (!state.host) {
+      setStatus(els.ruleStatus, i18n('statusNoHostname'), 'error');
+      return;
+    }
+    var rules = Object.assign({}, state.settings.siteRules || {});
+    if (mode === 'ask') {
+      delete rules[state.host];
+    } else if (mode === 'skip') {
+      rules[state.host] = { mode: 'skip' };
+    } else if (mode === 'always') {
+      rules[state.host] = { mode: 'always', providerId: els.providerSelect.value };
+    }
+    state.settings = await SettingsModule.saveSettings({ siteRules: rules });
+    reflectCurrentRule();
+    setStatus(els.ruleStatus, i18n('statusSaved'), 'success');
+  }
+
+  async function onTogglePause() {
+    if (!state.currentTabId) return;
+    var willPause = !state.translationPaused;
+    try {
+      await browser.tabs.sendMessage(state.currentTabId, {
+        type: willPause ? 'PAUSE_TRANSLATION' : 'RESUME_TRANSLATION'
+      });
+      state.translationPaused = willPause;
+      els.pauseBtn.textContent = willPause ? i18n('btnResume') : i18n('btnPause');
+      setStatus(els.translateStatus, willPause ? i18n('statusPaused') : i18n('statusResumed'), 'success');
+    } catch (e) {
+      setStatus(els.translateStatus, i18n('statusFailed', [e.message || String(e)]), 'error');
+    }
+  }
+
+  async function onRestore() {
+    if (!state.currentTabId) return;
+    try {
+      var res = await browser.tabs.sendMessage(state.currentTabId, { type: 'RESTORE_PAGE' });
+      if (res && res.success) {
+        var n = (res.data && res.data.restored) || 0;
+        setStatus(els.translateStatus, i18n('statusRestoredNodes', [String(n)]), 'success');
+        els.translateBtn.disabled = false;
+        state.translationPaused = false;
+        els.pauseBtn.textContent = i18n('btnPause');
+      } else {
+        setStatus(els.translateStatus, (res && res.error) || i18n('statusRestoreFailed'), 'error');
+      }
+    } catch (e) {
+      setStatus(els.translateStatus, i18n('statusFailed', [e.message || String(e)]), 'error');
+    }
+  }
+
+  async function onTranslatePage() {
+    if (!state.currentTabId) return;
+    try {
+      await browser.tabs.sendMessage(state.currentTabId, {
+        type: 'TRANSLATE_PAGE',
+        payload: { providerId: els.providerSelect.value }
+      });
+      setStatus(els.translateStatus, i18n('statusStarted'), 'success');
+      setTimeout(function () { window.close(); }, 400);
+    } catch (e) {
+      setStatus(els.translateStatus, i18n('statusFailed', [e.message || String(e)]), 'error');
+    }
+  }
+
+  async function onManualTranslate() {
+    var text = els.manualInput.value.trim();
+    if (!text) return;
+    els.manualBtn.disabled = true;
+    setStatus(els.manualStatus, i18n('statusTranslating'));
+    els.manualResult.hidden = true;
+    try {
+      var res = await browser.runtime.sendMessage({
+        type: 'TRANSLATE_TEXT',
+        payload: {
+          text: text,
+          purpose: 'manual'
+        }
+      });
+      if (res && res.success) {
+        els.manualResult.textContent = res.data.translated || i18n('statusEmpty');
+        els.manualResult.hidden = false;
+        setStatus(els.manualStatus,
+          res.data.fromCache ? i18n('statusCached') : i18n('statusDone', [res.data.providerName || '']),
+          'success');
+      } else {
+        setStatus(els.manualStatus, (res && res.error) || i18n('statusFailed', ['']), 'error');
+      }
+    } catch (e) {
+      setStatus(els.manualStatus, e.message || String(e), 'error');
+    } finally {
+      els.manualBtn.disabled = false;
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
