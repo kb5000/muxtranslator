@@ -72,7 +72,6 @@ var SettingsModule = SettingsModule || {};
 
     targetLanguage: 'zh-CN',
     skipLanguages: ['zh', 'zh-CN', 'zh-TW'],
-    autoDetect: true,
     cacheEnabled: true,
     maxCharsPerBatch: 3000,       // raised from 1500 per user request
     concurrentBatches: 2,
@@ -82,7 +81,12 @@ var SettingsModule = SettingsModule || {};
 
     selectionEnabled: true,       // show selection badge on text select
     showProgressBar: true,        // show bottom-right progress widget during translation
-    uiLanguage: ''                // '' = auto (browser locale); 'en', 'zh_CN', etc.
+    uiLanguage: '',               // '' = auto (browser locale); 'en', 'zh_CN', etc.
+
+    // 'ask' = show bar each time, 'auto' = auto-translate, 'never' = no bar/auto
+    defaultTranslationMode: 'ask',
+    // 'off' = translation only, 'embed' = show original below, 'tooltip' = hover tooltip
+    bilingualMode: 'off'
   };
 
   function getStorage() {
@@ -143,7 +147,6 @@ var SettingsModule = SettingsModule || {};
       tokenStats: { prompt_tokens: 0, completion_tokens: 0, byProvider: {} },
       targetLanguage: saved.targetLanguage || 'zh-CN',
       skipLanguages: saved.skipLanguages || ['zh', 'zh-CN', 'zh-TW'],
-      autoDetect: saved.autoDetect !== false,
       cacheEnabled: saved.cacheEnabled !== false,
       maxCharsPerBatch: saved.maxCharsPerBatch || 3000,
       concurrentBatches: saved.concurrentBatches || 2,

@@ -195,6 +195,12 @@ async function handleTranslateStream(payload, sender) {
     for (var n = 0; n < pending.length; n++) {
       emit(pendingIds[n], '', false);
     }
+    try {
+      browser.tabs.sendMessage(tabId, {
+        type: 'TRANSLATION_ERROR',
+        payload: { message: err && err.message || 'Translation failed' }
+      }).catch(function () {});
+    } catch (e) {}
   }
 
   await Promise.all(emitPromises);

@@ -4,3 +4,46 @@
 #muxtranslator-progress {
   all: initial;
 }
+
+/* Bilingual display — embed mode */
+.muxt-bilingual.muxt-embed {
+  display: inline;
+}
+.muxt-bilingual.muxt-embed .muxt-translated {
+  display: inline;
+}
+.muxt-bilingual.muxt-embed .muxt-original {
+  display: block;
+  font-size: 0.82em;
+  color: #888;
+  font-style: italic;
+  margin: 1px 0 3px;
+  border-left: 2px solid #ddd;
+  padding-left: 5px;
+  line-height: 1.4;
+}
+
+/* Bilingual display — tooltip mode */
+.muxt-bilingual.muxt-tooltip {
+  border-bottom: 1px dotted #888;
+  cursor: help;
+}
+
+/* The floating tooltip is injected into document.body by content.js */
+#muxt-tooltip {
+  all: initial;
+  position: fixed;
+  background: rgba(30, 30, 30, 0.92);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  padding: 5px 9px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  max-width: 320px;
+  z-index: 2147483647;
+  pointer-events: none;
+  line-height: 1.5;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}

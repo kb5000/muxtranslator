@@ -91,6 +91,8 @@
   // Iterable companion to the WeakMaps — needed so Restore can walk every
   // node we've touched. Pruned of disconnected nodes during mutation flushes.
   var translatedNodes   = new Set();
+  // Bilingual span elements we created (replacing the original text nodes).
+  var bilingualElements = new Set();
 
   // -------- Settings helper --------
 
@@ -532,18 +534,104 @@
     cleanupItem(item);
   }
 
+  function createBilingualSpan(original, translated, leading, trailing, mode) {
+    var span = document.createElement('span');
+    span.className = 'muxt-bilingual muxt-' + mode;
+    span.dataset.muxtranslatorSkip = '1';
+    span.dataset.muxtOriginal = original;
+    span.dataset.muxtTranslated = translated;
+    span.dataset.muxtLeading = leading;
+    span.dataset.muxtTrailing = trailing;
+    if (mode === 'embed') {
+      var tSpan = document.createElement('span');
+      tSpan.className = 'muxt-translated';
+      tSpan.textContent = leading + translated + trailing;
+      var oSpan = document.createElement('span');
+      oSpan.className = 'muxt-original';
+      oSpan.textContent = original;
+      span.appendChild(tSpan);
+      span.appendChild(oSpan);
+    } else {
+      span.textContent = leading + translated + trailing;
+    }
+    return span;
+  }
+
+  function applyBilingualMode(newMode) {
+    var oldMode = (engine.settings && engine.settings.bilingualMode) || 'off';
+    if (engine.settings) engine.settings.bilingualMode = newMode;
+
+    if (newMode === 'off' && oldMode !== 'off') {
+      // Convert bilingual spans → plain translated text nodes
+      bilingualElements.forEach(function (span) {
+        if (!span || !span.isConnected || !span.parentNode) return;
+        var translated = span.dataset.muxtTranslated || '';
+        var original = span.dataset.muxtOriginal || '';
+        var leading = span.dataset.muxtLeading || '';
+        var trailing = span.dataset.muxtTrailing || '';
+        try {
+          var textNode = document.createTextNode(leading + translated + trailing);
+          translatedValueOf.set(textNode, translated);
+          originalValueOf.set(textNode, original);
+          translatedNodes.add(textNode);
+          span.parentNode.replaceChild(textNode, span);
+        } catch (e) {}
+      });
+      bilingualElements.clear();
+    } else if (newMode !== 'off') {
+      // Convert existing bilingual spans to the new display mode
+      var spansToConvert = Array.from(bilingualElements);
+      spansToConvert.forEach(function (span) {
+        if (!span || !span.isConnected || !span.parentNode) { bilingualElements.delete(span); return; }
+        var original = span.dataset.muxtOriginal || '';
+        var translated = span.dataset.muxtTranslated || '';
+        var leading = span.dataset.muxtLeading || '';
+        var trailing = span.dataset.muxtTrailing || '';
+        try {
+          var newSpan = createBilingualSpan(original, translated, leading, trailing, newMode);
+          span.parentNode.replaceChild(newSpan, span);
+          bilingualElements.delete(span);
+          bilingualElements.add(newSpan);
+        } catch (e) {}
+      });
+      // Also convert any plain translated text nodes to bilingual spans
+      var nodesToConvert = [];
+      translatedNodes.forEach(function (node) { if (node && node.isConnected) nodesToConvert.push(node); });
+      nodesToConvert.forEach(function (node) {
+        var translated = translatedValueOf.get(node) || '';
+        var original = originalValueOf.get(node) || '';
+        var current = node.nodeValue || '';
+        var leading = (current.match(/^\s*/) || [''])[0];
+        var trailing = (current.match(/\s*$/) || [''])[0];
+        try {
+          var span = createBilingualSpan(original, translated, leading, trailing, newMode);
+          node.parentNode.replaceChild(span, node);
+          translatedNodes.delete(node);
+          bilingualElements.add(span);
+        } catch (e) {}
+      });
+    }
+  }
+
   function finalizeItem(item, translated) {
     if (!translated || item.status === 'done') return;
     try {
       var original = item.original;
       var leading = (original.match(/^\s*/) || [''])[0];
       var trailing = (original.match(/\s*$/) || [''])[0];
-      // Record what we wrote so future MO/scan passes can detect SPA reverts.
-      translatedValueOf.set(item.node, translated);
-      originalValueOf.set(item.node, item.text);
-      translatedNodes.add(item.node);
-      if (item.node && item.node.isConnected) {
-        item.node.nodeValue = leading + translated + trailing;
+      var bilingualMode = (engine.settings && engine.settings.bilingualMode) || 'off';
+      if (bilingualMode !== 'off' && item.node && item.node.isConnected && item.node.parentNode) {
+        var span = createBilingualSpan(item.text, translated, leading, trailing, bilingualMode);
+        item.node.parentNode.replaceChild(span, item.node);
+        bilingualElements.add(span);
+      } else {
+        // Record what we wrote so future MO/scan passes can detect SPA reverts.
+        translatedValueOf.set(item.node, translated);
+        originalValueOf.set(item.node, item.text);
+        translatedNodes.add(item.node);
+        if (item.node && item.node.isConnected) {
+          item.node.nodeValue = leading + translated + trailing;
+        }
       }
     } catch (e) {
       // node may have been detached
@@ -565,6 +653,61 @@
         }
       }
     }
+  }
+
+  // -------- UI: error toast --------
+
+  var _errorToastHost = null;
+  var _errorToastTimer = null;
+
+  function showErrorToast(msg) {
+    // Remove any existing toast first (no stacking)
+    if (_errorToastHost && _errorToastHost.parentNode) {
+      _errorToastHost.parentNode.removeChild(_errorToastHost);
+    }
+    clearTimeout(_errorToastTimer);
+
+    var host = document.createElement('div');
+    host.dataset.muxtranslatorSkip = '1';
+    host.style.cssText =
+      'all:initial;position:fixed;bottom:20px;right:20px;z-index:2147483647;' +
+      'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;' +
+      'max-width:340px;';
+    var shadow = host.attachShadow({ mode: 'closed' });
+    shadow.innerHTML =
+      '<style>' +
+      '.toast{display:flex;align-items:flex-start;gap:8px;padding:10px 14px;' +
+      'background:#1e1e1e;color:#fff;border-radius:8px;font-size:13px;line-height:1.4;' +
+      'box-shadow:0 4px 16px rgba(0,0,0,.3);}' +
+      '.icon{flex-shrink:0;font-size:15px;margin-top:1px;}' +
+      '.body{flex:1;word-break:break-word;}' +
+      '.title{font-weight:600;color:#f87171;margin-bottom:2px;}' +
+      '.msg{color:#d1d5db;font-size:12px;}' +
+      'button{all:unset;cursor:pointer;flex-shrink:0;color:#9ca3af;font-size:16px;line-height:1;padding:0 2px;}' +
+      'button:hover{color:#fff;}' +
+      '</style>' +
+      '<div class="toast">' +
+      '  <span class="icon">⚠</span>' +
+      '  <div class="body">' +
+      '    <div class="title">' + escapeHtml(t('toastErrorTitle')) + '</div>' +
+      '    <div class="msg"></div>' +
+      '  </div>' +
+      '  <button>✕</button>' +
+      '</div>';
+
+    shadow.querySelector('.msg').textContent = msg || 'Unknown error';
+    shadow.querySelector('button').addEventListener('click', function () {
+      if (host.parentNode) host.parentNode.removeChild(host);
+      _errorToastHost = null;
+    });
+
+    (document.body || document.documentElement).appendChild(host);
+    _errorToastHost = host;
+
+    _errorToastTimer = setTimeout(function () {
+      if (host.parentNode) host.parentNode.removeChild(host);
+      if (_errorToastHost === host) _errorToastHost = null;
+    }, 8000);
   }
 
   // -------- UI: notification bar --------
@@ -623,6 +766,52 @@
     shadow.querySelector('.skip').addEventListener('click', removeBar);
 
     (document.body || document.documentElement).appendChild(host);
+  }
+
+  // -------- Tooltip overlay (fixed-position, escapes overflow:hidden) --------
+
+  var _tooltipEl = null;
+
+  function getTooltipEl() {
+    if (!_tooltipEl) {
+      _tooltipEl = document.createElement('div');
+      _tooltipEl.id = 'muxt-tooltip';
+      _tooltipEl.dataset.muxtranslatorSkip = '1';
+      (document.body || document.documentElement).appendChild(_tooltipEl);
+    }
+    return _tooltipEl;
+  }
+
+  document.addEventListener('mouseover', function (e) {
+    var target = e.target;
+    if (!target || !target.classList || !target.classList.contains('muxt-tooltip')) return;
+    var original = target.dataset.muxtOriginal;
+    if (!original) return;
+    var tip = getTooltipEl();
+    tip.textContent = original;
+    tip.style.display = 'block';
+    positionTooltip(tip, target);
+  }, true);
+
+  document.addEventListener('mouseout', function (e) {
+    if (!_tooltipEl) return;
+    var target = e.target;
+    if (target && target.classList && target.classList.contains('muxt-tooltip')) {
+      _tooltipEl.style.display = 'none';
+    }
+  }, true);
+
+  function positionTooltip(tip, anchor) {
+    var rect = anchor.getBoundingClientRect();
+    var tipH = tip.offsetHeight || 30;
+    var top = rect.top - tipH - 6;
+    if (top < 4) top = rect.bottom + 6;
+    var left = rect.left;
+    var maxLeft = window.innerWidth - 330;
+    if (left > maxLeft) left = maxLeft;
+    if (left < 4) left = 4;
+    tip.style.top = top + 'px';
+    tip.style.left = left + 'px';
   }
 
   function escapeHtml(s) {
@@ -755,6 +944,19 @@
         count++;
       } catch (e) {}
     });
+    bilingualElements.forEach(function (span) {
+      if (!span || !span.isConnected || !span.parentNode) return;
+      var original = span.dataset.muxtOriginal;
+      if (original == null) return;
+      var leading = span.dataset.muxtLeading || '';
+      var trailing = span.dataset.muxtTrailing || '';
+      try {
+        var textNode = document.createTextNode(leading + original + trailing);
+        span.parentNode.replaceChild(textNode, span);
+        count++;
+      } catch (e) {}
+    });
+    bilingualElements.clear();
 
     // Cancel any scheduled pump — restore clears the queue, so a deferred
     // pump would otherwise briefly repaint the progress widget at 0/0.
@@ -782,6 +984,7 @@
     translatedNodes.clear();
     translatedValueOf = new WeakMap();
     originalValueOf = new WeakMap();
+    bilingualElements.clear();
 
     // Tear down progress UI and unlock re-translation.
     if (progressState.host && progressState.host.parentNode) {
@@ -828,10 +1031,15 @@
               prompt: engine.sessionTokens.prompt || 0,
               completion: engine.sessionTokens.completion || 0
             },
+            bilingualMode: (engine.settings && engine.settings.bilingualMode) || 'off',
             url: window.location.href,
             title: document.title
           }
         });
+        return false;
+      case 'SET_BILINGUAL_MODE':
+        applyBilingualMode((message.payload && message.payload.mode) || 'off');
+        sendResponse({ success: true });
         return false;
       case 'PAUSE_TRANSLATION':
         engine.paused = true;
@@ -847,6 +1055,10 @@
         return false;
       case 'TRANSLATION_PARTIAL':
         onPartial(message.payload);
+        sendResponse({ success: true });
+        return false;
+      case 'TRANSLATION_ERROR':
+        showErrorToast(message.payload && message.payload.message);
         sendResponse({ success: true });
         return false;
       case 'TRANSLATION_USAGE':
@@ -1061,13 +1273,22 @@
       return;
     }
 
-    // Default behavior: show the "ask" bar if page language looks foreign
-    if (s.autoDetect && engine.pageLanguage) {
-      if (!UtilsModule.shouldSkipLanguage(engine.pageLanguage, s.skipLanguages)) {
-        setTimeout(function () {
-          showNotificationBar(engine.pageLanguage, s.targetLanguage, s);
-        }, 600);
-      }
+    // Apply global default translation mode (site rules above take priority)
+    var translationMode = s.defaultTranslationMode || 'ask';
+    var isForeignPage = translationMode !== 'never' && engine.pageLanguage &&
+      !UtilsModule.shouldSkipLanguage(engine.pageLanguage, s.skipLanguages);
+
+    if (translationMode === 'auto') {
+      if (isForeignPage) startEngine();
+      return;
+    }
+    if (translationMode === 'never') return;
+
+    // 'ask' (default): show the notification bar on foreign pages
+    if (isForeignPage) {
+      setTimeout(function () {
+        showNotificationBar(engine.pageLanguage, s.targetLanguage, s);
+      }, 600);
     }
   }
 

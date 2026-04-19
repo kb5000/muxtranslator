@@ -79,12 +79,26 @@
         <input type="text" id="targetLanguage" placeholder="zh-CN" spellcheck="false">
       </label>
       <label>
-        <span data-i18n="labelSkipLanguages">Skip languages (comma-separated, for auto-detect bar)</span>
+        <span data-i18n="labelSkipLanguages">Skip languages (comma-separated)</span>
         <input type="text" id="skipLanguages" placeholder="zh, zh-CN, zh-TW" spellcheck="false">
       </label>
-      <label class="inline">
-        <input type="checkbox" id="autoDetect">
-        <span data-i18n="labelAutoDetect">Show translation prompt on foreign-language pages</span>
+      <label>
+        <span data-i18n="labelDefaultTranslationMode">Default translation mode</span>
+        <select id="defaultTranslationMode">
+          <option value="ask" data-i18n="modeAsk">Ask each time (default)</option>
+          <option value="auto" data-i18n="modeAutoTranslate">Auto-translate foreign pages</option>
+          <option value="never" data-i18n="modeNeverAuto">Never auto-translate</option>
+        </select>
+        <span class="hint" data-i18n="hintDefaultTranslationMode">Controls what happens when a foreign-language page is detected. "Ask" shows a bar at the top; "Auto" silently starts translation; "Never" disables all automatic behavior (you can still translate manually via the popup).</span>
+      </label>
+      <label>
+        <span data-i18n="labelBilingualMode">Bilingual display</span>
+        <select id="bilingualMode">
+          <option value="off" data-i18n="bilingualOff">Off (translation only)</option>
+          <option value="embed" data-i18n="bilingualEmbed">Embed original below translation</option>
+          <option value="tooltip" data-i18n="bilingualTooltip">Tooltip on hover (show original)</option>
+        </select>
+        <span class="hint" data-i18n="hintBilingualMode">Bilingual mode can also be toggled quickly from the extension popup.</span>
       </label>
     </section>
 

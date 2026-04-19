@@ -27,7 +27,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 14px;
+  padding: 6px 14px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -45,7 +45,7 @@ header h1 { margin: 0; font-size: 14px; font-weight: 600; }
 .icon-btn:hover { background: #f1f5f9; color: var(--text); }
 
 section {
-  padding: 8px 14px;
+  padding: 6px 14px;
   border-bottom: 1px solid var(--border);
 }
 section:last-of-type { border-bottom: none; }
@@ -69,7 +69,7 @@ section:last-of-type { border-bottom: none; }
 }
 
 h2 {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   font-size: 11px;
   font-weight: 600;
   color: var(--muted);
@@ -93,6 +93,7 @@ button.primary { background: var(--primary); color: #fff; border-color: var(--pr
 button.primary:hover:not(:disabled) { background: var(--primary-hover); border-color: var(--primary-hover); }
 button:disabled { opacity: .6; cursor: not-allowed; }
 button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+button.active:hover:not(:disabled) { background: var(--primary-hover); border-color: var(--primary-hover); }
 
 select, textarea {
   width: 100%;
@@ -105,7 +106,7 @@ select, textarea {
   color: var(--text);
 }
 
-textarea { resize: vertical; margin-bottom: 4px; max-height: 160px; }
+textarea { resize: vertical; margin-bottom: 4px; max-height: 260px; }
 
 .actions .row-actions {
   display: flex;
@@ -155,7 +156,7 @@ textarea { resize: vertical; margin-bottom: 4px; max-height: 160px; }
   font-size: 13px;
   white-space: pre-wrap;
   word-break: break-word;
-  max-height: 140px;
+  max-height: 220px;
   overflow-y: auto;
 }
 

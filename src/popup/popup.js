@@ -47,6 +47,7 @@
       'pageLang', 'targetLang', 'siteHost',
       'providerSelect', 'translateBtn', 'pauseBtn', 'restoreBtn', 'translateStatus',
       'ruleAsk', 'ruleSkip', 'ruleAlways', 'ruleStatus',
+      'bilingualOff', 'bilingualEmbed', 'bilingualTooltip',
       'manualInput', 'manualBtn', 'manualStatus', 'manualResult',
       'tokPrompt', 'tokCompletion',
       'openOptions'
@@ -71,6 +72,10 @@
     els.ruleAsk.addEventListener('click', function () { setRule('ask'); });
     els.ruleSkip.addEventListener('click', function () { setRule('skip'); });
     els.ruleAlways.addEventListener('click', function () { setRule('always'); });
+
+    els.bilingualOff.addEventListener('click', function () { setBilingual('off'); });
+    els.bilingualEmbed.addEventListener('click', function () { setBilingual('embed'); });
+    els.bilingualTooltip.addEventListener('click', function () { setBilingual('tooltip'); });
 
     // Load settings & populate providers
     state.settings = await SettingsModule.getSettings();
@@ -97,6 +102,7 @@
             state.translationPaused = !!info.data.paused;
             els.pauseBtn.textContent = state.translationPaused ? i18n('btnResume') : i18n('btnPause');
             if (info.data.sessionTokens) renderTokenStats(info.data.sessionTokens);
+            reflectCurrentBilingual(info.data.bilingualMode || 'off');
             if (info.data.isTranslating) {
               setStatus(els.translateStatus, state.translationPaused ? i18n('statusPaused') : i18n('statusTranslatingInProgress'));
               els.translateBtn.disabled = true;
@@ -107,6 +113,9 @@
           els.translateBtn.disabled = true;
           els.pauseBtn.disabled = true;
           els.restoreBtn.disabled = true;
+          els.bilingualOff.disabled = true;
+          els.bilingualEmbed.disabled = true;
+          els.bilingualTooltip.disabled = true;
           setStatus(els.translateStatus, i18n('statusCannotTranslate'), 'error');
         }
       }
@@ -191,6 +200,26 @@
       }
     } else {
       setStatus(els.ruleStatus, i18n('statusCurrentlyAsk'), '');
+    }
+  }
+
+  function reflectCurrentBilingual(mode) {
+    mode = mode || 'off';
+    els.bilingualOff.classList.toggle('active', mode === 'off');
+    els.bilingualEmbed.classList.toggle('active', mode === 'embed');
+    els.bilingualTooltip.classList.toggle('active', mode === 'tooltip');
+  }
+
+  async function setBilingual(mode) {
+    if (!state.currentTabId) return;
+    try {
+      await browser.tabs.sendMessage(state.currentTabId, {
+        type: 'SET_BILINGUAL_MODE',
+        payload: { mode: mode }
+      });
+      reflectCurrentBilingual(mode);
+    } catch (e) {
+      setStatus(els.translateStatus, i18n('statusFailed', [e.message || String(e)]), 'error');
     }
   }
 

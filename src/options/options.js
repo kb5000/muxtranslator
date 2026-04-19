@@ -33,6 +33,7 @@
       'defaultProviderId', 'selectionProviderId', 'manualProviderId', 'selectionEnabled',
       'addSiteRuleBtn', 'siteRulesList',
       'uiLanguage', 'targetLanguage', 'skipLanguages', 'autoDetect',
+      'defaultTranslationMode', 'bilingualMode',
       'observeMutations', 'viewportPriority', 'showProgressBar', 'maxCharsPerBatch', 'concurrentBatches',
       'cacheEnabled', 'clearCacheBtn', 'cacheStats',
       'tokenStats', 'resetTokensBtn',
@@ -62,7 +63,8 @@
 
     // Auto-save: any change to a scalar input triggers a debounced save.
     [
-      'targetLanguage', 'skipLanguages', 'autoDetect',
+      'targetLanguage', 'skipLanguages',
+      'defaultTranslationMode', 'bilingualMode',
       'observeMutations', 'viewportPriority', 'showProgressBar',
       'maxCharsPerBatch', 'concurrentBatches', 'cacheEnabled',
       'defaultProviderId', 'selectionProviderId', 'manualProviderId',
@@ -92,7 +94,8 @@
     state.settings.targetLanguage = els.targetLanguage.value.trim();
     state.settings.skipLanguages = els.skipLanguages.value
       .split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-    state.settings.autoDetect = els.autoDetect.checked;
+    state.settings.defaultTranslationMode = els.defaultTranslationMode.value;
+    state.settings.bilingualMode = els.bilingualMode.value;
     state.settings.observeMutations = els.observeMutations.checked;
     state.settings.viewportPriority = els.viewportPriority.checked;
     state.settings.showProgressBar = els.showProgressBar.checked;
@@ -498,7 +501,8 @@
     els.uiLanguage.value = s.uiLanguage || '';
     els.targetLanguage.value = s.targetLanguage || '';
     els.skipLanguages.value = (s.skipLanguages || []).join(', ');
-    els.autoDetect.checked = !!s.autoDetect;
+    els.defaultTranslationMode.value = s.defaultTranslationMode || 'ask';
+    els.bilingualMode.value = s.bilingualMode || 'off';
     els.observeMutations.checked = s.observeMutations !== false;
     els.viewportPriority.checked = s.viewportPriority !== false;
     els.showProgressBar.checked = s.showProgressBar !== false;
