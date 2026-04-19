@@ -1,24 +1,25 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extName__",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
-
   "permissions": [
     "storage",
     "activeTab",
     "tabs",
     "<all_urls>"
   ],
-
   "browser_specific_settings": {
     "gecko": {
       "id": "muxtranslator@hsuni.club",
-      "strict_min_version": "78.0"
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
     }
   },
-
   "background": {
     "scripts": [
       "lib/utils.js",
@@ -29,21 +30,23 @@
     ],
     "persistent": false
   },
-
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "<all_urls>"
+      ],
       "js": [
         "lib/utils.js",
         "lib/settings.js",
         "content/content.js"
       ],
-      "css": ["content/content.css"],
+      "css": [
+        "content/content.css"
+      ],
       "run_at": "document_idle",
       "all_frames": false
     }
   ],
-
   "browser_action": {
     "default_popup": "popup/popup.html",
     "default_title": "MuxTranslator",
@@ -54,12 +57,10 @@
       "128": "icons/icon-128.png"
     }
   },
-
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
   },
-
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
