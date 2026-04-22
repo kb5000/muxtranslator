@@ -26,3 +26,6 @@ npm-debug.log*
 # Package lock (keep only one)
 yarn.lock
 package-lock.json
+
+# Vendored pdfjs-dist (regenerate with `just vendor-pdfjs`)
+src/viewer/pdfjs/

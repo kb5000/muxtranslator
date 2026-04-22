@@ -3,6 +3,9 @@
   "extDescription":     { "message": "使用自己的 API 密钥翻译网页，支持 OpenAI 兼容接口。" },
 
   "settingsTitle":      { "message": "设置" },
+  "viewerOpen":         { "message": "打开 PDF" },
+  "viewerEmptyTitle":   { "message": "打开一个 PDF 开始翻译" },
+  "viewerEmptyHint":    { "message": "点击上方「打开 PDF」按钮，或将文件拖拽到此页面。" },
   "labelPage":          { "message": "页面语言：" },
   "labelTarget":        { "message": "目标语言：" },
   "labelSite":          { "message": "当前站点：" },

@@ -38,6 +38,7 @@
       "js": [
         "lib/utils.js",
         "lib/settings.js",
+        "content/pdf.js",
         "content/content.js"
       ],
       "css": [

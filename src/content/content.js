@@ -78,7 +78,8 @@
     sessionTokens: { prompt: 0, completion: 0 },
 
     paused: false,         // true = stop dispatching new batches
-    progressHidden: false  // true = user dismissed the progress widget
+    progressHidden: false, // true = user dismissed the progress widget
+    pdfMode: false         // true = we're translating Firefox's PDF viewer
   };
 
   // Per-Text-node translation tracking. We store the *translated* value we
@@ -93,6 +94,9 @@
   var translatedNodes   = new Set();
   // Bilingual span elements we created (replacing the original text nodes).
   var bilingualElements = new Set();
+  // Overlay elements produced by the PDF pipeline (either opaque replacements
+  // or invisible hover zones). Iterated only on restore.
+  var pdfOverlays = new Set();
 
   // -------- Settings helper --------
 
@@ -266,11 +270,14 @@
       });
     }
     if (!engine.mutationObserver && engine.settings.observeMutations !== false) {
-      engine.mutationObserver = new MutationObserver(onMutation);
+      // PDF mode watches for new .textLayer content appearing as the user
+      // scrolls — PDF.js renders pages lazily. Regular pages watch text
+      // node mutations for SPA-style re-renders.
+      engine.mutationObserver = new MutationObserver(engine.pdfMode ? onPdfMutation : onMutation);
       engine.mutationObserver.observe(document.body, {
         childList: true,
         subtree: true,
-        characterData: true
+        characterData: !engine.pdfMode
       });
     }
   }
@@ -383,6 +390,112 @@
       updateProgressTotal();
       // Defer pumping so that bursts of mutations during SPA rendering
       // accumulate into one batch instead of firing many small API calls.
+      schedulePump();
+    }
+  }
+
+  // -------- PDF pipeline --------
+
+  function scanPdfPages() {
+    var layers = document.querySelectorAll('.textLayer');
+    for (var i = 0; i < layers.length; i++) scanPdfLayer(layers[i]);
+  }
+
+  // Convert one .textLayer's spans into paragraph items and queue them.
+  // Marked with data-muxt-pdf-processed so the mutation handler doesn't
+  // re-enqueue the same paragraphs when PDF.js appends its trailing markers.
+  // The flag is cleared when PDF.js wipes the layer (zoom/rotate).
+  function scanPdfLayer(layer) {
+    if (!layer || !layer.isConnected) return;
+    if (layer.dataset && layer.dataset.muxtPdfProcessed === '1') return;
+    var spans = PdfModule.collectLayerSpans(layer);
+    if (!spans.length) return;
+    var paragraphs = PdfModule.groupIntoParagraphs(spans);
+    if (!paragraphs.length) return;
+    layer.dataset.muxtPdfProcessed = '1';
+    for (var i = 0; i < paragraphs.length; i++) {
+      registerPdfParagraph(paragraphs[i], layer);
+    }
+  }
+
+  function registerPdfParagraph(para, layer) {
+    var text = UtilsModule.normalizeText(para.text);
+    if (!text) return;
+    if (!UtilsModule.hasTranslatableContent(text)) return;
+
+    var id = 'ot' + (engine.nextId++);
+    var item = {
+      id: id,
+      kind: 'pdf',
+      layer: layer,
+      paragraph: para,
+      element: layer,       // shared per page — IntersectionObserver target
+      original: para.text,
+      text: text,
+      priority: computePriority(layer),
+      status: 'pending'
+    };
+    engine.items.set(id, item);
+
+    var set = engine.itemsByElement.get(layer);
+    if (!set) {
+      set = new Set();
+      engine.itemsByElement.set(layer, set);
+      if (engine.intersectionObserver) {
+        try { engine.intersectionObserver.observe(layer); } catch (e) {}
+      }
+    }
+    set.add(id);
+
+    engine.queues[item.priority].add(id);
+  }
+
+  function onPdfMutation(mutations) {
+    if (!engine.pendingMutationRoots) engine.pendingMutationRoots = new Set();
+    for (var i = 0; i < mutations.length; i++) {
+      var m = mutations[i];
+      if (m.type !== 'childList') continue;
+      for (var j = 0; j < m.addedNodes.length; j++) {
+        var n = m.addedNodes[j];
+        if (n.nodeType !== 1) continue;
+        if (n.dataset && n.dataset.muxtranslatorSkip === '1') continue;
+        if (n.classList && n.classList.contains('textLayer')) {
+          engine.pendingMutationRoots.add(n);
+        } else if (n.closest) {
+          var layer = n.closest('.textLayer');
+          if (layer) engine.pendingMutationRoots.add(layer);
+        }
+        if (n.querySelectorAll) {
+          var nested = n.querySelectorAll('.textLayer');
+          for (var k = 0; k < nested.length; k++) engine.pendingMutationRoots.add(nested[k]);
+        }
+      }
+      for (var r = 0; r < m.removedNodes.length; r++) {
+        var rn = m.removedNodes[r];
+        if (rn.nodeType !== 1) continue;
+        // PDF.js wipes the text layer on zoom/rotate and repopulates. Allow
+        // the fresh content to be re-scanned by dropping our processed flag.
+        if (rn.classList && rn.classList.contains('textLayer') && rn.dataset) {
+          delete rn.dataset.muxtPdfProcessed;
+        }
+      }
+    }
+    clearTimeout(engine.mutationTimer);
+    engine.mutationTimer = setTimeout(flushPdfMutations, 500);
+  }
+
+  function flushPdfMutations() {
+    if (!engine.pendingMutationRoots) return;
+    if (!engine.started) { engine.pendingMutationRoots.clear(); return; }
+    var layers = Array.from(engine.pendingMutationRoots);
+    engine.pendingMutationRoots.clear();
+    var before = engine.items.size;
+    for (var i = 0; i < layers.length; i++) {
+      if (layers[i] && layers[i].isConnected) scanPdfLayer(layers[i]);
+    }
+    if (engine.items.size - before > 0) {
+      showProgress();
+      updateProgressTotal();
       schedulePump();
     }
   }
@@ -616,21 +729,25 @@
   function finalizeItem(item, translated) {
     if (!translated || item.status === 'done') return;
     try {
-      var original = item.original;
-      var leading = (original.match(/^\s*/) || [''])[0];
-      var trailing = (original.match(/\s*$/) || [''])[0];
-      var bilingualMode = (engine.settings && engine.settings.bilingualMode) || 'off';
-      if (bilingualMode !== 'off' && item.node && item.node.isConnected && item.node.parentNode) {
-        var span = createBilingualSpan(item.text, translated, leading, trailing, bilingualMode);
-        item.node.parentNode.replaceChild(span, item.node);
-        bilingualElements.add(span);
+      if (item.kind === 'pdf') {
+        finalizePdfItem(item, translated);
       } else {
-        // Record what we wrote so future MO/scan passes can detect SPA reverts.
-        translatedValueOf.set(item.node, translated);
-        originalValueOf.set(item.node, item.text);
-        translatedNodes.add(item.node);
-        if (item.node && item.node.isConnected) {
-          item.node.nodeValue = leading + translated + trailing;
+        var original = item.original;
+        var leading = (original.match(/^\s*/) || [''])[0];
+        var trailing = (original.match(/\s*$/) || [''])[0];
+        var bilingualMode = (engine.settings && engine.settings.bilingualMode) || 'off';
+        if (bilingualMode !== 'off' && item.node && item.node.isConnected && item.node.parentNode) {
+          var span = createBilingualSpan(item.text, translated, leading, trailing, bilingualMode);
+          item.node.parentNode.replaceChild(span, item.node);
+          bilingualElements.add(span);
+        } else {
+          // Record what we wrote so future MO/scan passes can detect SPA reverts.
+          translatedValueOf.set(item.node, translated);
+          originalValueOf.set(item.node, item.text);
+          translatedNodes.add(item.node);
+          if (item.node && item.node.isConnected) {
+            item.node.nodeValue = leading + translated + trailing;
+          }
         }
       }
     } catch (e) {
@@ -638,6 +755,15 @@
     }
     item.status = 'done';
     cleanupItem(item);
+  }
+
+  function finalizePdfItem(item, translated) {
+    if (!item.layer || !item.layer.isConnected) return;
+    var mode = (engine.settings && engine.settings.pdfMode) || 'replace';
+    var overlay = mode === 'tooltip'
+      ? PdfModule.applyTooltip(item.paragraph, translated, item.layer)
+      : PdfModule.applyReplace(item.paragraph, translated, item.layer);
+    if (overlay) pdfOverlays.add(overlay);
   }
 
   function cleanupItem(item) {
@@ -910,6 +1036,7 @@
     opts = opts || {};
     engine.settings = await loadSettings();
     engine.providerId = opts.providerId || resolveProviderIdFromRules(engine.settings);
+    engine.pdfMode = PdfModule.isPdfViewerPage();
 
     // Guard: verify a provider actually exists
     if (!Array.isArray(engine.settings.providers) || engine.settings.providers.length === 0) {
@@ -921,7 +1048,14 @@
     removeBar();
     showProgress();
     setupObservers();
-    scanSubtree(document.body);
+    if (engine.pdfMode) {
+      if ((engine.settings.pdfMode || 'replace') === 'tooltip') {
+        PdfModule.installTooltipDelegation();
+      }
+      scanPdfPages();
+    } else {
+      scanSubtree(document.body);
+    }
     updateProgressTotal();
     pump();
   }
@@ -957,6 +1091,16 @@
       } catch (e) {}
     });
     bilingualElements.clear();
+
+    // PDF overlays (opaque replacement divs and tooltip hover zones). Removing
+    // them exposes the original canvas rendering underneath. Also clear the
+    // "processed" flag so a subsequent translate run can re-enqueue pages.
+    pdfOverlays.forEach(function (el) { PdfModule.removeOverlay(el); });
+    pdfOverlays.clear();
+    var processedLayers = document.querySelectorAll('.textLayer[data-muxt-pdf-processed]');
+    for (var li = 0; li < processedLayers.length; li++) {
+      if (processedLayers[li].dataset) delete processedLayers[li].dataset.muxtPdfProcessed;
+    }
 
     // Cancel any scheduled pump — restore clears the queue, so a deferred
     // pump would otherwise briefly repaint the progress widget at 0/0.
@@ -998,6 +1142,7 @@
     engine.progressHidden = false;
     engine.started = false;
     engine.paused = false;
+    engine.pdfMode = false;
     engine.sessionTokens = { prompt: 0, completion: 0 };
     return count;
   }
@@ -1253,7 +1398,15 @@
   // -------- Init (auto-detect bar + site rules) --------
 
   async function init() {
+    // The bundled PDF viewer (viewer/viewer.html) loads this script directly.
+    // Until the user actually picks a PDF there's nothing to translate and
+    // showing the "translate this page" bar would be premature, so skip auto
+    // init; the muxt-pdf-loaded listener below drives (re-)init once a PDF
+    // has rendered. This also re-fires for each new document the user opens.
+    if (window.__muxtViewerManaged && !window.__muxtViewerReady) return;
+
     engine.pageLanguage = UtilsModule.detectPageLanguage();
+    var isPdf = PdfModule.isPdfViewerPage();
     var s = await loadSettings();
     var host = '';
     try { host = window.location && window.location.hostname; } catch (e) {}
@@ -1276,6 +1429,9 @@
     var translationMode = s.defaultTranslationMode || 'ask';
     var isForeignPage = translationMode !== 'never' && engine.pageLanguage &&
       !UtilsModule.shouldSkipLanguage(engine.pageLanguage, s.skipLanguages);
+    // PDF viewers rarely expose a language attribute; treat them as translatable
+    // candidates in auto/ask modes so the user still gets a prompt.
+    if (isPdf && translationMode !== 'never') isForeignPage = true;
 
     if (translationMode === 'auto') {
       if (isForeignPage) startEngine();
@@ -1286,9 +1442,28 @@
     // 'ask' (default): show the notification bar on foreign pages
     if (isForeignPage) {
       setTimeout(function () {
-        showNotificationBar(engine.pageLanguage, s.targetLanguage, s);
+        var detected = engine.pageLanguage || (isPdf ? 'PDF' : '?');
+        showNotificationBar(detected, s.targetLanguage, s);
       }, 600);
     }
+  }
+
+  // Expose a minimal control API so extension pages that embed this script
+  // (the bundled PDF viewer) can drive translation without reaching back
+  // through message passing. Keep the surface area tiny on purpose.
+  window.__muxTranslator = {
+    startEngine: startEngine,
+    restorePage: restorePage
+  };
+
+  // Viewer handshake: each newly-loaded PDF fires this event, and we (re-)run
+  // init so the user's auto/ask preference is applied per document — the
+  // previous document's engine state was already cleared via restorePage().
+  if (window.__muxtViewerManaged) {
+    window.addEventListener('muxt-pdf-loaded', function () {
+      window.__muxtViewerReady = true;
+      init();
+    });
   }
 
   if (document.readyState === 'loading') {

@@ -50,13 +50,19 @@
       'bilingualOff', 'bilingualEmbed', 'bilingualTooltip',
       'manualInput', 'manualBtn', 'manualStatus', 'manualResult',
       'tokPrompt', 'tokCompletion',
-      'openOptions'
+      'openOptions', 'openPdf'
     ].forEach(function (id) { els[id] = $(id); });
 
     els.openOptions.addEventListener('click', function () {
       browser.runtime.openOptionsPage();
       window.close();
     });
+    if (els.openPdf) {
+      els.openPdf.addEventListener('click', function () {
+        browser.tabs.create({ url: browser.runtime.getURL('viewer/viewer.html') });
+        window.close();
+      });
+    }
     els.translateBtn.addEventListener('click', onTranslatePage);
     els.pauseBtn.addEventListener('click', onTogglePause);
     els.restoreBtn.addEventListener('click', onRestore);

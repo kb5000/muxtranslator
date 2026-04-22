@@ -19,3 +19,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+## Third-party components
+
+This software includes components from the following projects:
+
+### pdfjs-dist
+
+- **License**: Apache License 2.0
+- **Author**: Mozilla Foundation
+- **Repository**: <https://github.com/mozilla/pdf.js>
+- **Usage**: In-extension PDF viewer rendering

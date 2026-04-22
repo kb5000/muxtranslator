@@ -3,6 +3,9 @@
   "extDescription":     { "message": "OpenAI-compatible page translator — bring your own API key & model." },
 
   "settingsTitle":      { "message": "Settings" },
+  "viewerOpen":         { "message": "Open PDF" },
+  "viewerEmptyTitle":   { "message": "Open a PDF to translate" },
+  "viewerEmptyHint":    { "message": "Click \"Open PDF\" above or drop a file anywhere on this page." },
   "labelPage":          { "message": "Page:" },
   "labelTarget":        { "message": "Target:" },
   "labelSite":          { "message": "Site:" },
