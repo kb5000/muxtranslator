@@ -1102,7 +1102,6 @@
     document.addEventListener('mouseup', onSelectionMouseUp, true);
     document.addEventListener('mousedown', onSelectionMouseDown, true);
     document.addEventListener('selectionchange', onSelectionChange, true);
-    window.addEventListener('scroll', hideSelectionUI, true);
     window.addEventListener('resize', hideSelectionUI, true);
   }
 
@@ -1236,7 +1235,7 @@
       '<style>' +
       '.body{background:#1e293b;color:#fff;padding:10px 12px;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.35);' +
       'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:13px;line-height:1.5;' +
-      'white-space:pre-wrap;word-break:break-word;position:relative;}' +
+      'white-space:pre-wrap;word-break:break-word;position:relative;max-height:300px;overflow-y:auto;}' +
       '.loading{opacity:.8;}' +
       '.err{background:#7f1d1d;}' +
       '.tag{display:inline-block;margin-top:6px;padding:1px 6px;background:rgba(255,255,255,.15);' +
