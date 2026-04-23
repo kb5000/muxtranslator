@@ -93,7 +93,9 @@ var SettingsModule = SettingsModule || {};
     bilingualMode: 'off',
 
     // Array of { id, source, target, lang } — lang='' means all target languages
-    glossary: []
+    glossary: [],
+
+    pdfDevMode: false   // show Regions/Chars debug tools in the PDF viewer toolbar
   };
 
   function getStorage() {

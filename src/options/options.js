@@ -39,6 +39,7 @@
       'defaultTranslationMode', 'bilingualMode',
       'observeMutations', 'viewportPriority', 'showProgressBar', 'maxCharsPerBatch', 'concurrentBatches',
       'cacheEnabled', 'clearCacheBtn', 'cacheStats',
+      'pdfDevMode',
       'tokenStats', 'resetTokensBtn',
       'saveBtn', 'status',
       'siteRuleDialog', 'srHostname', 'srMode', 'srProviderId', 'srProviderRow', 'srCancel', 'srOK'
@@ -109,7 +110,8 @@
       parseInt(els.maxCharsPerBatch.value, 10) || 3000));
     state.settings.concurrentBatches = Math.max(1, Math.min(8,
       parseInt(els.concurrentBatches.value, 10) || 2));
-    state.settings.cacheEnabled = els.cacheEnabled.checked;
+    state.settings.cacheEnabled  = els.cacheEnabled.checked;
+    state.settings.pdfDevMode    = !!(els.pdfDevMode && els.pdfDevMode.checked);
 
     state.settings.defaultProviderId = els.defaultProviderId.value;
     state.settings.selectionProviderId = els.selectionProviderId.value || null;
@@ -634,6 +636,7 @@
     els.maxCharsPerBatch.value = s.maxCharsPerBatch || 3000;
     els.concurrentBatches.value = s.concurrentBatches || 2;
     els.cacheEnabled.checked = s.cacheEnabled !== false;
+    if (els.pdfDevMode) els.pdfDevMode.checked = !!s.pdfDevMode;
   }
 
   // ----- Cache & token stats --------------------------------------------

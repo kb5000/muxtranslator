@@ -31,18 +31,30 @@ header {
   border-bottom: 1px solid var(--border);
 }
 
-header h1 { margin: 0; font-size: 14px; font-weight: 600; }
+header h1 { margin: 0; font-size: 14px; font-weight: 600; margin-right: auto; }
 
-.icon-btn {
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 4px 6px;
-  border-radius: 4px;
-  color: var(--muted);
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.icon-btn:hover { background: #f1f5f9; color: var(--text); }
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 9px;
+  border-radius: 5px;
+  color: var(--muted);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.header-btn:hover { background: #f1f5f9; color: var(--text); border-color: #cbd5e1; }
 
 section {
   padding: 6px 14px;

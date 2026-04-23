@@ -19,6 +19,33 @@ const fileInput  = document.getElementById('muxt-file-input');
 const docTitleEl = document.getElementById('muxt-doc-title');
 const statusEl   = document.getElementById('muxt-status');
 const emptyState = document.getElementById('muxt-empty-state');
+const debugBtn   = document.getElementById('muxt-debug-btn');
+const charsBtn   = document.getElementById('muxt-chars-btn');
+const devControls = document.getElementById('muxt-dev-controls');
+const translateBtn = document.getElementById('muxt-translate-btn');
+
+// ---------- Developer mode ----------
+// Controlled from Settings (options page) via the pdfDevMode setting.
+// When enabled, the Regions / Chars debug buttons appear in the toolbar.
+function setDevMode(on) {
+  devControls.hidden = !on;
+  if (!on) {
+    window.__muxtPdfDebug = false;
+    window.__muxtPdfChars = false;
+    debugBtn.classList.remove('active');
+    charsBtn.classList.remove('active');
+    const Pdf = window.PdfModule;
+    if (Pdf) { Pdf.clearDebugAll(); Pdf.clearCharBoxesAll(); }
+  }
+}
+
+// Read pdfDevMode from persisted settings on startup.
+(async () => {
+  try {
+    const res = await window.browser.runtime.sendMessage({ type: 'GET_SETTINGS', payload: {} });
+    if (res && res.success) setDevMode(!!res.data.settings.pdfDevMode);
+  } catch (e) {}
+})();
 
 // Render scale. PDF.js scales the canvas up by devicePixelRatio for crispness.
 const RENDER_SCALE = 1.4;
@@ -37,6 +64,83 @@ document.addEventListener('drop', async (e) => {
 fileInput.addEventListener('change', async (e) => {
   const file = e.target.files && e.target.files[0];
   if (file) await openFile(file);
+});
+
+// Research mode: toggle region-visualization overlays on all rendered pages.
+// When active, translations are torn down and the PDF aggregator's detected
+// paragraphs/lines/columns are painted as coloured rectangles by
+// PdfModule.drawDebug (see ../content/pdf.js).
+debugBtn.addEventListener('click', () => {
+  const on = !window.__muxtPdfDebug;
+  window.__muxtPdfDebug = on;
+  debugBtn.classList.toggle('active', on);
+  const Pdf = window.PdfModule;
+  if (on) {
+    // Strip any live translation overlays so the debug view is clean.
+    try {
+      if (window.__muxTranslator && window.__muxTranslator.restorePage) {
+        window.__muxTranslator.restorePage();
+      }
+    } catch (_) {}
+    if (Pdf && Pdf.drawDebugAll) Pdf.drawDebugAll();
+  } else {
+    if (Pdf && Pdf.clearDebugAll) Pdf.clearDebugAll();
+  }
+});
+
+// Quick-translate button: toggle between translating the current PDF and
+// restoring the original. Enabled once a document is loaded; state is driven
+// by whether the translation engine has any overlays injected.
+translateBtn.addEventListener('click', () => {
+  const api = window.__muxTranslator;
+  if (!api) return;
+  // If we already have overlays, treat as restore; otherwise start translating.
+  const hasOverlays = !!document.querySelector('.muxt-pdf-overlay');
+  if (hasOverlays) {
+    try { api.restorePage(); } catch (_) {}
+    setTranslateBtnState('idle');
+  } else {
+    try { api.startEngine(); } catch (_) {}
+    setTranslateBtnState('active');
+  }
+});
+
+function setTranslateBtnState(state) {
+  // state: 'disabled' | 'idle' | 'active'
+  if (!translateBtn) return;
+  if (state === 'disabled') {
+    translateBtn.disabled = true;
+    translateBtn.classList.remove('active');
+    translateBtn.querySelector('span').textContent = '翻译';
+  } else if (state === 'active') {
+    translateBtn.disabled = false;
+    translateBtn.classList.add('active');
+    translateBtn.querySelector('span').textContent = '还原原文';
+  } else {
+    translateBtn.disabled = false;
+    translateBtn.classList.remove('active');
+    translateBtn.querySelector('span').textContent = '翻译';
+  }
+}
+
+// Orthogonal toggle: per-character bounding boxes. Independent of regions
+// so you can stack them (regions + chars together) or view chars alone to
+// see the raw PDF content stream without aggregator coloring.
+charsBtn.addEventListener('click', () => {
+  const on = !window.__muxtPdfChars;
+  window.__muxtPdfChars = on;
+  charsBtn.classList.toggle('active', on);
+  const Pdf = window.PdfModule;
+  if (on) {
+    try {
+      if (window.__muxTranslator && window.__muxTranslator.restorePage) {
+        window.__muxTranslator.restorePage();
+      }
+    } catch (_) {}
+    if (Pdf && Pdf.drawCharBoxesAll) Pdf.drawCharBoxesAll();
+  } else {
+    if (Pdf && Pdf.clearCharBoxesAll) Pdf.clearCharBoxesAll();
+  }
 });
 
 async function openFile(file) {
@@ -60,6 +164,7 @@ async function openFile(file) {
     // Tell content.js the PDF is live so it can run its init logic
     // (auto-translate / show bar based on user settings).
     window.dispatchEvent(new CustomEvent('muxt-pdf-loaded'));
+    setTranslateBtnState('idle');
   } catch (err) {
     console.error('[MuxTranslator PDF] load failed:', err);
     statusEl.textContent = 'Error: ' + (err && err.message ? err.message : String(err));
@@ -120,6 +225,14 @@ async function renderPage(pdf, pageNum) {
 
   const textContent = await page.getTextContent();
 
+  // Attach the raw TextContent items + viewport to the layer BEFORE rendering
+  // spans. content.js's PDF pipeline reads this data directly (no DOM
+  // scraping), so the paragraph aggregator has authoritative geometry the
+  // moment the MutationObserver notices new spans appear.
+  if (window.PdfModule && window.PdfModule.attachLayerData) {
+    window.PdfModule.attachLayerData(textLayerDiv, textContent, viewport);
+  }
+
   // pdfjs v4 API: `new TextLayer({...}).render()`. Fall back to the v3
   // `renderTextLayer` helper for older vendored builds.
   if (typeof pdfjs.TextLayer === 'function') {
@@ -136,5 +249,14 @@ async function renderPage(pdf, pageNum) {
       viewport,
       textDivs: []
     }).promise;
+  }
+
+  // If research mode is on, paint the aggregator's detected regions onto
+  // this freshly-rendered layer. drawDebug is a no-op on empty layers.
+  if (window.__muxtPdfDebug && window.PdfModule && window.PdfModule.drawDebug) {
+    try { window.PdfModule.drawDebug(textLayerDiv); } catch (_) {}
+  }
+  if (window.__muxtPdfChars && window.PdfModule && window.PdfModule.drawCharBoxes) {
+    try { window.PdfModule.drawCharBoxes(textLayerDiv); } catch (_) {}
   }
 }

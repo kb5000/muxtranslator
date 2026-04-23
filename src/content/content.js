@@ -408,9 +408,14 @@
   function scanPdfLayer(layer) {
     if (!layer || !layer.isConnected) return;
     if (layer.dataset && layer.dataset.muxtPdfProcessed === '1') return;
-    var spans = PdfModule.collectLayerSpans(layer);
-    if (!spans.length) return;
-    var paragraphs = PdfModule.groupIntoParagraphs(spans);
+    // Research mode: visualize detected regions instead of translating. We
+    // deliberately don't set muxtPdfProcessed so flipping the toggle off
+    // later allows the layer to be re-scanned normally.
+    if (window.__muxtPdfDebug) {
+      try { PdfModule.drawDebug(layer); } catch (e) {}
+      return;
+    }
+    var paragraphs = PdfModule.groupIntoParagraphs(layer);
     if (!paragraphs.length) return;
     layer.dataset.muxtPdfProcessed = '1';
     for (var i = 0; i < paragraphs.length; i++) {

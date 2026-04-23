@@ -8,14 +8,22 @@
 <body>
   <header>
     <h1>MuxTranslator</h1>
-    <button id="openPdf" class="icon-btn"
-            data-i18n-title="viewerOpen"
-            data-i18n-aria="viewerOpen"
-            title="Open PDF" aria-label="Open PDF">📄</button>
-    <button id="openOptions" class="icon-btn"
-            data-i18n-title="settingsTitle"
-            data-i18n-aria="settingsTitle"
-            title="Settings" aria-label="Settings">⚙</button>
+    <div class="header-actions">
+      <button id="openPdf" class="header-btn"
+              data-i18n-title="viewerOpen"
+              data-i18n-aria="viewerOpen"
+              title="Open PDF" aria-label="Open PDF">
+        <span aria-hidden="true">📄</span>
+        <span data-i18n="viewerOpen">打开 PDF</span>
+      </button>
+      <button id="openOptions" class="header-btn"
+              data-i18n-title="settingsTitle"
+              data-i18n-aria="settingsTitle"
+              title="Settings" aria-label="Settings">
+        <span aria-hidden="true">⚙</span>
+        <span data-i18n="settingsTitle">设置</span>
+      </button>
+    </div>
   </header>
 
   <section class="page-info">

@@ -9,25 +9,42 @@
 </head>
 <body>
   <header id="muxt-viewer-toolbar">
+    <!-- Left: app name + loaded document title -->
+    <span id="muxt-app-name">MuxTranslator PDF</span>
+    <span id="muxt-doc-title"></span>
+
+    <span class="spacer"></span>
+
+    <!-- Right group: status · dev controls (hidden) · dev toggle · open PDF -->
+    <span id="muxt-status"></span>
+
+    <div id="muxt-dev-controls" hidden>
+      <button id="muxt-debug-btn" class="toolbar-btn toolbar-btn-ghost" type="button">
+        🔍 段落区域
+      </button>
+      <button id="muxt-chars-btn" class="toolbar-btn toolbar-btn-ghost" type="button">
+        📏 文本块
+      </button>
+    </div>
+
+    <button id="muxt-translate-btn" class="toolbar-btn toolbar-btn-ghost" type="button" disabled>
+      🌐 <span data-i18n="btnTranslate">翻译</span>
+    </button>
     <label for="muxt-file-input" class="toolbar-btn" id="muxt-open-btn">
-      <span data-i18n="viewerOpen">Open PDF</span>
+      📂 <span data-i18n="viewerOpen">打开 PDF</span>
     </label>
     <input id="muxt-file-input" type="file" accept="application/pdf,.pdf" hidden>
-    <span id="muxt-doc-title"></span>
-    <span class="spacer"></span>
-    <span id="muxt-status"></span>
   </header>
 
   <main id="muxt-viewer-main">
     <div id="muxt-empty-state">
-      <p class="big" data-i18n="viewerEmptyTitle">Open a PDF to translate</p>
-      <p class="muted" data-i18n="viewerEmptyHint">Click "Open PDF" above or drop a file anywhere on this page.</p>
+      <p class="big" data-i18n="viewerEmptyTitle">打开一个 PDF 来翻译</p>
+      <p class="muted" data-i18n="viewerEmptyHint">点击右上角"打开 PDF"或将文件拖放到此处。</p>
     </div>
     <div id="viewer" class="pdfViewer"></div>
   </main>
 
-  <!-- Signal to content.js that auto-init should wait for the PDF to load
-       (viewer.js dispatches 'muxt-pdf-loaded' on window once ready). -->
+  <!-- Signal to content.js that auto-init should wait for the PDF to load. -->
   <script>window.__muxtViewerManaged = true;</script>
 
   <!-- Shared libs used by content.js -->
