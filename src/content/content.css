@@ -78,6 +78,24 @@
   border-color: rgba(37, 99, 235, 0.8);
 }
 
+/* Original-text placeholder — transparent so the PDF canvas shows through.
+   Participates in priority cycling alongside translation overlays. */
+.muxt-pdf-overlay.muxt-pdf-original {
+  background: transparent;
+  border: 1px dashed rgba(37, 99, 235, 0.45);
+  cursor: pointer;
+  pointer-events: auto;
+}
+.muxt-pdf-overlay.muxt-pdf-original:hover {
+  background: rgba(37, 99, 235, 0.04);
+  border-color: rgba(37, 99, 235, 0.75);
+}
+/* When covered by a translation, hide completely so it doesn't overlay the text */
+.muxt-pdf-overlay.muxt-pdf-original.muxt-pdf-ghost {
+  border: none;
+  pointer-events: none;
+}
+
 /* Hover zone for tooltip mode — invisible but picks up mouseenter */
 .muxt-pdf-overlay.muxt-pdf-tooltip-zone {
   background: transparent;

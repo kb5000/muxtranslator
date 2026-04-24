@@ -9,6 +9,11 @@ var PdfModule = PdfModule || {};
 (function (ns) {
   'use strict';
 
+  var _browser = (typeof browser !== 'undefined') ? browser : (typeof chrome !== 'undefined' ? chrome : null);
+  function _t(key, subs) {
+    try { return (_browser && (subs ? _browser.i18n.getMessage(key, subs) : _browser.i18n.getMessage(key))) || key; } catch (e) { return key; }
+  }
+
   // ---------- Detection ----------
 
   ns.isPdfViewerPage = function () {
@@ -235,21 +240,29 @@ var PdfModule = PdfModule || {};
     return { fontSize: fontSize, lineHeight: lineHeight };
   }
 
-  // ---------- Overlay layer / group cycling ----------
+  // ---------- Overlay layer / priority-based cycling ----------
   //
-  // When two or more translated overlays occupy the same visual region, they
-  // form a "cycle group". Left-clicking the topmost overlay advances to the
-  // next; right-clicking opens a picker menu so any layer can be selected
-  // directly. A small "N/M" badge confirms the current position.
+  // Each overlay carries a numeric priority. After every change, overlays are
+  // sorted by priority (desc) and admitted greedily: an overlay is visible iff
+  // no already-admitted higher-priority overlay overlaps it.
+  //
+  // Click semantics (point-based, same as box-cycle-demo.html):
+  //   Build stack = all overlays whose rect contains the click point, sorted
+  //   by priority desc.
+  //   • stack[0] hidden OR only one box at point → PROMOTE stack[0]
+  //   • stack[0] visible AND stack.length > 1    → CYCLE: demote stack[0],
+  //                                                 promote stack[1]
 
-  var groupsByLayer = new WeakMap(); // WeakMap<layer, Map<gid, Group>>
-  var overlayMeta   = new WeakMap(); // WeakMap<overlay, {gid, gmap}>
-  var _gSeq = 0;
+  var layerData = new WeakMap(); // WeakMap<layer, {entries, prioSeq, activeTop, handlerInstalled}>
+  var translationToOriginal = new WeakMap(); // WeakMap<translationOverlay, originalDiv>
 
-  function getGmap(layer) {
-    var m = groupsByLayer.get(layer);
-    if (!m) { m = new Map(); groupsByLayer.set(layer, m); }
-    return m;
+  function getLayerData(layer) {
+    var d = layerData.get(layer);
+    if (!d) {
+      d = { entries: [], prioSeq: 0, activeTop: null, handlerInstalled: false };
+      layerData.set(layer, d);
+    }
+    return d;
   }
 
   function rectsOverlap(a, b) {
@@ -257,121 +270,88 @@ var PdfModule = PdfModule || {};
              a.bottom <= b.top || a.top >= b.bottom);
   }
 
-  function liveEntries(group) {
-    return group.entries.filter(function (e) { return e.overlay.isConnected; });
+  function containsPoint(rect, px, py) {
+    return px >= rect.left && px <= rect.right && py >= rect.top && py <= rect.bottom;
   }
 
-  // Assign a newly placed overlay to a cycle group, merging any groups whose
-  // overlays it overlaps with. Sets up click/right-click handlers the first
-  // time each overlay joins a multi-member group.
-  function joinGroup(layer, overlay, rect) {
-    var gmap = getGmap(layer);
-    var hitGids = [];
-    gmap.forEach(function (group, gid) {
-      var live = liveEntries(group);
-      for (var i = 0; i < live.length; i++) {
-        if (rectsOverlap(rect, live[i].rect)) { hitGids.push(gid); break; }
+  function computeLayerVisibility(layer) {
+    var d = getLayerData(layer);
+    var live = d.entries.filter(function (e) { return e.overlay.isConnected; });
+    live.sort(function (a, b) { return b.priority - a.priority; });
+    var shown = [];
+    for (var i = 0; i < live.length; i++) {
+      var e = live[i];
+      var ok = true;
+      for (var j = 0; j < shown.length; j++) {
+        if (rectsOverlap(e.rect, shown[j].rect)) { ok = false; break; }
       }
-    });
-
-    var entry = { overlay: overlay, rect: rect, _h: false };
-    var newGid = 'g' + (++_gSeq);
-
-    if (!hitGids.length) {
-      var solo = { entries: [entry], cyclePos: 0 };
-      gmap.set(newGid, solo);
-      overlayMeta.set(overlay, { gid: newGid, gmap: gmap });
-      // Even single-member groups are clickable, because the cycle now
-      // always includes a "show original" state as its last position.
-      addGroupHandlers(solo, newGid, gmap);
-      applyCycleState(solo);
-      return;
+      e.visible = ok;
+      if (ok) shown.push(e);
     }
-
-    // Merge all hit groups
-    var merged = [];
-    hitGids.forEach(function (gid) {
-      gmap.get(gid).entries.forEach(function (e) { merged.push(e); });
-      gmap.delete(gid);
-    });
-    merged.push(entry);
-
-    var group = { entries: merged, cyclePos: 0 };
-    gmap.set(newGid, group);
-    merged.forEach(function (e) {
-      overlayMeta.set(e.overlay, { gid: newGid, gmap: gmap });
-    });
-
-    addGroupHandlers(group, newGid, gmap);
-    applyCycleState(group);
   }
 
-  function addGroupHandlers(group, gid, gmap) {
-    group.entries.forEach(function (entry) {
-      if (entry._h) return;
-      entry._h = true;
-
-      entry.overlay.addEventListener('click', function (ev) {
-        ev.stopPropagation();
-        var meta = overlayMeta.get(entry.overlay);
-        if (!meta) return;
-        var g = meta.gmap.get(meta.gid);
-        if (!g) return;
-        var live = liveEntries(g);
-        if (!live.length) return;
-        var total = live.length + 1; // +1 = "show original"
-        g.cyclePos = (g.cyclePos + 1) % total;
-        applyCycleState(g);
-        showCycleBadgeForState(g, live);
-      });
-
-      entry.overlay.addEventListener('contextmenu', function (ev) {
-        ev.preventDefault();
-        ev.stopPropagation();
-        var meta = overlayMeta.get(entry.overlay);
-        if (!meta) return;
-        var g = meta.gmap.get(meta.gid);
-        if (!g) return;
-        var live = liveEntries(g);
-        if (!live.length) return;
-        showCycleMenu(ev.clientX, ev.clientY, g, live);
-      });
-    });
-  }
-
-  // Cycle positions: 0..live.length-1 show that layer as active (full fill);
-  // position live.length is the "show original" state. In every state the
-  // non-active members stay visible as dashed outlines so the user can see
-  // there are additional boxes to click.
-  function applyCycleState(group) {
-    var live = liveEntries(group);
-    if (!live.length) return;
-    var total = live.length + 1;
-    var pos = ((group.cyclePos % total) + total) % total;
-    var showingOriginal = (pos === live.length);
-
-    live.forEach(function (e, i) {
-      var isActive = !showingOriginal && i === pos;
-      e.overlay.classList.toggle('muxt-pdf-ghost', !isActive);
-      e.overlay.style.opacity       = '';
-      e.overlay.style.pointerEvents = 'auto';
-      // Keep stacking deterministic — active overlay on top; among ghosts the
-      // first member receives clicks when several are stacked at one point.
-      if (isActive)          e.overlay.style.zIndex = '15';
-      else if (i === 0)      e.overlay.style.zIndex = '13';
-      else                   e.overlay.style.zIndex = '12';
-    });
-  }
-
-  function showCycleBadgeForState(group, live) {
-    var total = live.length + 1;
-    var pos = ((group.cyclePos % total) + total) % total;
-    if (pos === live.length) {
-      showCycleBadge(live[0].overlay, '原文');
-    } else {
-      // Denominator counts layers only — "原文" is a separate state.
-      showCycleBadge(live[pos].overlay, (pos + 1) + ' / ' + live.length);
+  function applyLayerState(layer) {
+    var d = getLayerData(layer);
+    for (var i = 0; i < d.entries.length; i++) {
+      var e = d.entries[i];
+      if (!e.overlay.isConnected) continue;
+      var isActive = (e === d.activeTop && e.visible);
+      e.overlay.classList.toggle('muxt-pdf-ghost', !e.visible);
+      e.overlay.style.zIndex = e.visible ? (isActive ? '15' : '14') : '12';
     }
+  }
+
+  function installLayerClickHandler(layer) {
+    var d = getLayerData(layer);
+    if (d.handlerInstalled) return;
+    d.handlerInstalled = true;
+
+    layer.addEventListener('click', function (ev) {
+      var layerRect = layer.getBoundingClientRect();
+      var px = ev.clientX - layerRect.left;
+      var py = ev.clientY - layerRect.top;
+
+      var ld = getLayerData(layer);
+      var live = ld.entries.filter(function (e) { return e.overlay.isConnected; });
+      var stack = live.filter(function (e) { return containsPoint(e.rect, px, py); });
+      stack.sort(function (a, b) { return b.priority - a.priority; });
+
+      if (!stack.length) return;
+      ev.stopPropagation();
+
+      var prios = live.map(function (e) { return e.priority; });
+      var minP = Math.min.apply(null, prios);
+      var maxP = Math.max.apply(null, prios);
+
+      var top = stack[0];
+      if (!top.visible || stack.length === 1) {
+        top.priority = maxP + 1;
+        ld.activeTop = top;
+        showCycleBadge(top.overlay, top.isOriginal
+          ? _t('pdfCycleOriginal')
+          : _t('pdfCycleReveal'));
+      } else {
+        var newTop = stack[1];
+        top.priority = minP - 1;
+        newTop.priority = maxP + 1;
+        ld.activeTop = newTop;
+        showCycleBadge(newTop.overlay, newTop.isOriginal
+          ? _t('pdfCycleOriginal')
+          : _t('pdfCycleLayers', [String(stack.length)]));
+      }
+
+      computeLayerVisibility(layer);
+      applyLayerState(layer);
+    });
+  }
+
+  function registerOverlay(layer, overlay, rect, isOriginal) {
+    var d = getLayerData(layer);
+    var entry = { overlay: overlay, rect: rect, priority: d.prioSeq++, visible: true, isOriginal: !!isOriginal };
+    d.entries.push(entry);
+    installLayerClickHandler(layer);
+    computeLayerVisibility(layer);
+    applyLayerState(layer);
   }
 
   // ---------- Cycle badge ----------
@@ -397,71 +377,6 @@ var PdfModule = PdfModule || {};
     b.style.display = 'block';
     clearTimeout(_badgeTimer);
     _badgeTimer = setTimeout(function () { b.style.display = 'none'; }, 2500);
-  }
-
-  // ---------- Cycle context menu ----------
-
-  var _menu = null;
-
-  function getCycleMenu() {
-    if (_menu && _menu.isConnected) return _menu;
-    _menu = document.createElement('div');
-    _menu.id = 'muxt-cycle-menu';
-    _menu.dataset.muxtranslatorSkip = '1';
-    _menu.style.display = 'none';
-    (document.body || document.documentElement).appendChild(_menu);
-    document.addEventListener('mousedown', function (e) {
-      if (_menu && _menu.style.display !== 'none' && !_menu.contains(e.target)) {
-        _menu.style.display = 'none';
-      }
-    }, true);
-    return _menu;
-  }
-
-  function showCycleMenu(cx, cy, group, live) {
-    var menu = getCycleMenu();
-    menu.innerHTML = '';
-    var total = live.length + 1;
-    var active = ((group.cyclePos % total) + total) % total;
-    live.forEach(function (e, i) {
-      var item = document.createElement('div');
-      item.className = 'muxt-cycle-menu-item' + (i === active ? ' active' : '');
-      var snippet = (e.overlay.textContent || '').replace(/\s+/g, ' ').trim();
-      if (snippet.length > 48) snippet = snippet.slice(0, 48) + '\u2026';
-      item.textContent = '\u5c42 ' + (i + 1) + '\uff1a ' + snippet;
-      item.addEventListener('click', function (ev) {
-        ev.stopPropagation();
-        group.cyclePos = i;
-        applyCycleState(group);
-        showCycleBadgeForState(group, live);
-        menu.style.display = 'none';
-      });
-      menu.appendChild(item);
-    });
-    // "Show original" entry — last cycle position, hides all translations.
-    var origIdx = live.length;
-    var origItem = document.createElement('div');
-    origItem.className = 'muxt-cycle-menu-item muxt-cycle-menu-original'
-                      + (active === origIdx ? ' active' : '');
-    origItem.textContent = '\u663e\u793a\u539f\u6587';
-    origItem.addEventListener('click', function (ev) {
-      ev.stopPropagation();
-      group.cyclePos = origIdx;
-      applyCycleState(group);
-      showCycleBadgeForState(group, live);
-      menu.style.display = 'none';
-    });
-    menu.appendChild(origItem);
-
-    menu.style.display = 'block';
-    menu.style.left = cx + 'px';
-    menu.style.top  = cy + 'px';
-    // Clamp within viewport after paint
-    requestAnimationFrame(function () {
-      var mw = menu.offsetWidth, mh = menu.offsetHeight;
-      if (cx + mw > window.innerWidth  - 8) menu.style.left = Math.max(4, cx - mw) + 'px';
-      if (cy + mh > window.innerHeight - 8) menu.style.top  = Math.max(4, cy - mh) + 'px';
-    });
   }
 
   // ---------- Overlay application ----------
@@ -504,6 +419,20 @@ var PdfModule = PdfModule || {};
       if (isFinite(fm.lineHeight))         overlay.style.lineHeight = fm.lineHeight.toFixed(2);
     } catch (e) {}
 
+    // Register the "original" placeholder first (lower priority) so translation
+    // starts on top. The placeholder is transparent — when it wins priority,
+    // translation overlays become ghost and the PDF canvas text shows through.
+    var origRect = { left: left, top: top, right: left + width, bottom: top + height };
+    var origDiv = document.createElement('div');
+    origDiv.className = 'muxt-pdf-overlay muxt-pdf-original';
+    origDiv.dataset.muxtranslatorSkip = '1';
+    origDiv.style.left   = left   + 'px';
+    origDiv.style.top    = top    + 'px';
+    origDiv.style.width  = width  + 'px';
+    origDiv.style.height = height + 'px';
+    layer.appendChild(origDiv);
+    registerOverlay(layer, origDiv, origRect, true);
+
     layer.appendChild(overlay);
 
     // Measure the actual rendered height (may exceed the original bbox if the
@@ -512,14 +441,17 @@ var PdfModule = PdfModule || {};
     var actualH = Math.max(height, overlay.offsetHeight || height);
     if (top + actualH > layerH) actualH = Math.max(height, layerH - top);
 
-    // Register with the cycle system using the *actual* extent so overlays
-    // that grew taller merge with anything they now visually overlap.
-    joinGroup(layer, overlay, {
+    // Register translation with higher priority (registered after) so it wins
+    // the initial visibility race against its paired original placeholder.
+    registerOverlay(layer, overlay, {
       left:   left,
       top:    top,
       right:  left + width,
       bottom: top + actualH
-    });
+    }, false);
+
+    // Track pairing so removeOverlay can also pull the original placeholder.
+    translationToOriginal.set(overlay, origDiv);
 
     return overlay;
   };
@@ -540,6 +472,11 @@ var PdfModule = PdfModule || {};
   };
 
   ns.removeOverlay = function (overlay) {
+    var origDiv = translationToOriginal.get(overlay);
+    if (origDiv) {
+      if (origDiv.parentNode) try { origDiv.parentNode.removeChild(origDiv); } catch (e) {}
+      translationToOriginal.delete(overlay);
+    }
     if (overlay && overlay.parentNode) {
       try { overlay.parentNode.removeChild(overlay); } catch (e) {}
     }

@@ -225,5 +225,12 @@
       "in":  { "content": "$1" },
       "out": { "content": "$2" }
     }
+  },
+
+  "pdfCycleOriginal":   { "message": "Original" },
+  "pdfCycleReveal":     { "message": "Revealed" },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ layers",
+    "placeholders": { "count": { "content": "$1" } }
   }
 }

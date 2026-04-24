@@ -29,3 +29,5 @@ package-lock.json
 
 # Vendored pdfjs-dist (regenerate with `just vendor-pdfjs`)
 src/viewer/pdfjs/
+
+/tmp
