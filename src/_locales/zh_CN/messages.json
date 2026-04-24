@@ -79,6 +79,7 @@
   "labelSelectionProvider":  { "message": "划词翻译提供商" },
   "labelUseDefault":         { "message": "（使用默认）" },
   "labelManualProvider":     { "message": "手动输入翻译提供商" },
+  "labelPdfProvider":        { "message": "PDF 翻译提供商" },
   "labelSelectionEnabled":   { "message": "划词时显示「译」标记（点击翻译）" },
   "headingSiteRulesOptions": { "message": "站点规则" },
   "btnAddRule":         { "message": "+ 添加规则" },

@@ -89,20 +89,24 @@ debugBtn.addEventListener('click', () => {
 });
 
 // Quick-translate button: toggle between translating the current PDF and
-// restoring the original. Enabled once a document is loaded; state is driven
-// by whether the translation engine has any overlays injected.
+// restoring the original. The actual state label is driven by the
+// `muxt-engine-changed` event below so popup/auto-translate/site-rule flows
+// also keep this button in sync.
 translateBtn.addEventListener('click', () => {
   const api = window.__muxTranslator;
   if (!api) return;
-  // If we already have overlays, treat as restore; otherwise start translating.
-  const hasOverlays = !!document.querySelector('.muxt-pdf-overlay');
-  if (hasOverlays) {
+  if (translateBtn.classList.contains('active')) {
     try { api.restorePage(); } catch (_) {}
-    setTranslateBtnState('idle');
   } else {
     try { api.startEngine(); } catch (_) {}
-    setTranslateBtnState('active');
   }
+});
+
+// Listen for engine on/off transitions from content.js regardless of which
+// pathway triggered them (this button, popup, auto-translate, site rule…).
+window.addEventListener('muxt-engine-changed', (ev) => {
+  const active = ev && ev.detail && ev.detail.active;
+  setTranslateBtnState(active ? 'active' : 'idle');
 });
 
 function setTranslateBtnState(state) {

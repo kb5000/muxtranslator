@@ -79,6 +79,7 @@
   "labelSelectionProvider":  { "message": "Selection translation provider" },
   "labelUseDefault":         { "message": "(use default)" },
   "labelManualProvider":     { "message": "Manual input translation provider" },
+  "labelPdfProvider":        { "message": "PDF translation provider" },
   "labelSelectionEnabled":   { "message": "Show \"译\" badge when text is selected (click to translate)" },
   "headingSiteRulesOptions": { "message": "Site rules" },
   "btnAddRule":         { "message": "+ Add rule" },

@@ -114,6 +114,33 @@ async function handleTranslateChunks(payload) {
   return { success: true, data: result };
 }
 
+// Tracks AbortControllers for in-flight translation batches, keyed by
+// `tabId:batchId`. TRANSLATE_ABORT looks up and aborts by tab so the user's
+// pause action instantly cancels any pending network requests.
+var inFlightBatches = new Map();
+
+function _bkey(tabId, batchId) { return tabId + ':' + batchId; }
+
+function abortTabBatches(tabId, batchIds) {
+  if (!tabId) return 0;
+  var cancelled = 0;
+  var wantAll = !Array.isArray(batchIds) || batchIds.length === 0;
+  var wantSet = wantAll ? null : new Set(batchIds);
+  inFlightBatches.forEach(function (rec, key) {
+    if (rec.tabId !== tabId) return;
+    if (wantSet && !wantSet.has(rec.batchId)) return;
+    try { rec.controller.abort(); cancelled++; } catch (e) {}
+    inFlightBatches.delete(key);
+  });
+  return cancelled;
+}
+
+async function handleTranslateAbort(payload, sender) {
+  var tabId = sender && sender.tab && sender.tab.id;
+  var cancelled = abortTabBatches(tabId, payload && payload.batchIds);
+  return { success: true, data: { cancelled: cancelled } };
+}
+
 async function handleTranslateStream(payload, sender) {
   var tabId = sender && sender.tab && sender.tab.id;
   if (!tabId) throw new Error('TRANSLATE_STREAM requires a tab sender');
@@ -121,6 +148,10 @@ async function handleTranslateStream(payload, sender) {
   var batchId = payload.batchId;
   var texts = payload.texts || [];
   var itemIds = payload.itemIds || [];
+
+  var controller = new AbortController();
+  var key = _bkey(tabId, batchId);
+  inFlightBatches.set(key, { tabId: tabId, batchId: batchId, controller: controller });
 
   var resolved = await resolveProviderForRequest(payload.providerId);
   var targetLang = payload.targetLang || resolved.settings.targetLanguage;
@@ -160,6 +191,7 @@ async function handleTranslateStream(payload, sender) {
   }
 
   var streamed = ProvidersModule.supportsStreaming(provider);
+  var aborted = false;
   try {
     if (streamed) {
       await ProvidersModule.translateStream(provider, pending, targetLang, {
@@ -182,9 +214,9 @@ async function handleTranslateStream(payload, sender) {
             } catch (e) {}
           }
         }
-      });
+      }, controller.signal);
     } else {
-      var out = await ProvidersModule.translateBatch(provider, pending, targetLang);
+      var out = await ProvidersModule.translateBatch(provider, pending, targetLang, controller.signal);
       var trs = out.translations || [];
       for (var m = 0; m < pending.length; m++) {
         emit(pendingIds[m], trs[m] || '', false);
@@ -204,26 +236,36 @@ async function handleTranslateStream(payload, sender) {
       }
     }
   } catch (err) {
-    // Batch failed. Emit empty translations so content.js cleans up the
-    // items and stops waiting. Do NOT fan out to per-item translateOne —
-    // that ignores the user's pause state, fires one API call per item,
-    // and rarely succeeds when the whole-batch call just failed.
-    console.warn('[MuxTranslator] batch failed:', err && err.message);
-    for (var n = 0; n < pending.length; n++) {
-      emit(pendingIds[n], '', false);
+    // AbortError: the user paused — drop the batch quietly. Content.js has
+    // already re-queued its items so they'll be picked up on resume.
+    if (controller.signal.aborted || (err && err.name === 'AbortError')) {
+      aborted = true;
+    } else {
+      console.warn('[MuxTranslator] batch failed:', err && err.message);
+      for (var n = 0; n < pending.length; n++) {
+        emit(pendingIds[n], '', false);
+      }
+      try {
+        browser.tabs.sendMessage(tabId, {
+          type: 'TRANSLATION_ERROR',
+          payload: { message: err && err.message || 'Translation failed' }
+        }).catch(function () {});
+      } catch (e) {}
     }
-    try {
-      browser.tabs.sendMessage(tabId, {
-        type: 'TRANSLATION_ERROR',
-        payload: { message: err && err.message || 'Translation failed' }
-      }).catch(function () {});
-    } catch (e) {}
+  } finally {
+    inFlightBatches.delete(key);
   }
 
   await Promise.all(emitPromises);
   return {
     success: true,
-    data: { batchId: batchId, cacheHits: texts.length - pending.length, apiCalls: 1, streamed: streamed }
+    data: {
+      batchId: batchId,
+      cacheHits: texts.length - pending.length,
+      apiCalls: aborted ? 0 : 1,
+      streamed: streamed,
+      aborted: aborted
+    }
   };
 }
 
@@ -300,6 +342,7 @@ async function routeMessage(message, sender) {
   switch (message.type) {
     case 'TRANSLATE_CHUNKS':      return handleTranslateChunks(message.payload || {});
     case 'TRANSLATE_STREAM':      return handleTranslateStream(message.payload || {}, sender);
+    case 'TRANSLATE_ABORT':       return handleTranslateAbort(message.payload || {}, sender);
     case 'TRANSLATE_TEXT':        return handleTranslateText(message.payload || {});
     case 'GET_MODELS':            return handleGetModels(message.payload || {});
     case 'GET_SETTINGS':          return handleGetSettings(sender);

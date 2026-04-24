@@ -339,10 +339,10 @@ var PdfModule = PdfModule || {};
     });
   }
 
-  // Make the overlay at cyclePos the sole visible member. The final cycle
-  // position (live.length) is the "show original" state: every overlay drops
-  // its fill and becomes a dashed outline so the canvas text underneath is
-  // visible and the clickable regions remain discoverable.
+  // Cycle positions: 0..live.length-1 show that layer as active (full fill);
+  // position live.length is the "show original" state. In every state the
+  // non-active members stay visible as dashed outlines so the user can see
+  // there are additional boxes to click.
   function applyCycleState(group) {
     var live = liveEntries(group);
     if (!live.length) return;
@@ -351,22 +351,15 @@ var PdfModule = PdfModule || {};
     var showingOriginal = (pos === live.length);
 
     live.forEach(function (e, i) {
-      e.overlay.classList.toggle('muxt-pdf-ghost', showingOriginal);
-      if (showingOriginal) {
-        // Every overlay outlined + interactive; the first one wins click hits
-        // when multiple are stacked at the same spot.
-        e.overlay.style.opacity       = '';
-        e.overlay.style.pointerEvents = 'auto';
-        e.overlay.style.zIndex        = (i === 0 ? '15' : '13');
-      } else if (i === pos) {
-        e.overlay.style.zIndex        = '15';
-        e.overlay.style.opacity       = '';
-        e.overlay.style.pointerEvents = 'auto';
-      } else {
-        e.overlay.style.zIndex        = '9';
-        e.overlay.style.opacity       = '0';
-        e.overlay.style.pointerEvents = 'none';
-      }
+      var isActive = !showingOriginal && i === pos;
+      e.overlay.classList.toggle('muxt-pdf-ghost', !isActive);
+      e.overlay.style.opacity       = '';
+      e.overlay.style.pointerEvents = 'auto';
+      // Keep stacking deterministic — active overlay on top; among ghosts the
+      // first member receives clicks when several are stacked at one point.
+      if (isActive)          e.overlay.style.zIndex = '15';
+      else if (i === 0)      e.overlay.style.zIndex = '13';
+      else                   e.overlay.style.zIndex = '12';
     });
   }
 
@@ -376,7 +369,8 @@ var PdfModule = PdfModule || {};
     if (pos === live.length) {
       showCycleBadge(live[0].overlay, '原文');
     } else {
-      showCycleBadge(live[pos].overlay, (pos + 1) + ' / ' + total);
+      // Denominator counts layers only — "原文" is a separate state.
+      showCycleBadge(live[pos].overlay, (pos + 1) + ' / ' + live.length);
     }
   }
 

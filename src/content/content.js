@@ -577,6 +577,41 @@
     return batch;
   }
 
+  // Pause: put every in-flight item back into its priority queue and tell
+  // background to abort the underlying network requests. Partial callbacks
+  // that arrive after this point will find the batch already deleted and
+  // are silently dropped by onPartial.
+  function cancelInFlightBatches() {
+    if (engine.batchItems.size === 0) return;
+    var batchIds = [];
+    engine.batchItems.forEach(function (itemsMap, batchId) {
+      batchIds.push(batchId);
+      itemsMap.forEach(function (item) {
+        if (!item || item.status === 'done') return;
+        item.status = 'queued';
+        var q = engine.queues[item.priority || 0];
+        if (q) q.add(item.id);
+      });
+    });
+    engine.batchItems.clear();
+    try {
+      browser.runtime.sendMessage({
+        type: 'TRANSLATE_ABORT',
+        payload: { batchIds: batchIds }
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  // Resume: rescan the page so anything the user added while paused (SPA
+  // content, new PDF pages, etc.) is enqueued alongside the re-queued items.
+  function rescanForResume() {
+    try {
+      if (engine.pdfMode) scanPdfPages();
+      else if (document.body) scanSubtree(document.body);
+    } catch (e) {}
+    updateProgressTotal();
+  }
+
   function pump() {
     if (!engine.started) return;
     if (engine.paused) return;
@@ -1034,6 +1069,18 @@
     }, 1200);
   }
 
+  // Immediate teardown of the progress widget without the settle delay.
+  // Used on pause so the "translating…" pill disappears the moment the user
+  // hits pause. Counters are preserved so resume picks up where it left off.
+  function hideProgressNow() {
+    if (progressState.host && progressState.host.parentNode) {
+      progressState.host.parentNode.removeChild(progressState.host);
+    }
+    progressState.host = null;
+    progressState.shadow = null;
+    progressState.visible = false;
+  }
+
   // -------- Engine lifecycle --------
 
   async function startEngine(opts) {
@@ -1063,6 +1110,18 @@
     }
     updateProgressTotal();
     pump();
+    markPageTranslated();
+    emitEngineChanged(true);
+  }
+
+  // Broadcast engine on/off transitions so embedded UIs (like the PDF viewer
+  // toolbar) can update their own controls without polling.
+  function emitEngineChanged(active) {
+    try {
+      window.dispatchEvent(new CustomEvent('muxt-engine-changed', {
+        detail: { active: !!active }
+      }));
+    } catch (e) {}
   }
 
   // Walks every node we've ever translated and writes the original text back.
@@ -1149,16 +1208,64 @@
     engine.paused = false;
     engine.pdfMode = false;
     engine.sessionTokens = { prompt: 0, completion: 0 };
+    clearPageTranslatedFlag();
+    emitEngineChanged(false);
     return count;
   }
 
   function resolveProviderIdFromRules(settings) {
+    // Per-site rules take highest priority; next, PDF pages may have their
+    // own dedicated provider; finally we fall back to the global default.
     var host = '';
     try { host = window.location && window.location.hostname; } catch (e) {}
-    if (!host) return settings.defaultProviderId;
-    var rule = SettingsModule.resolveSiteRule(settings, host);
-    if (rule && rule.mode === 'always' && rule.providerId) return rule.providerId;
+    if (host) {
+      var rule = SettingsModule.resolveSiteRule(settings, host);
+      if (rule && rule.mode === 'always' && rule.providerId) return rule.providerId;
+    }
+    if (PdfModule.isPdfViewerPage() && settings.pdfProviderId) {
+      return settings.pdfProviderId;
+    }
     return settings.defaultProviderId;
+  }
+
+  // Per-page provider memory. Stored in sessionStorage so the choice survives
+  // page reloads and back/forward within the same tab, but doesn't leak across
+  // unrelated pages. Read on popup open to pre-select the same provider.
+  var MUXT_PROVIDER_KEY = 'muxt.lastProviderId';
+
+  function rememberProviderChoice(providerId) {
+    if (!providerId) return;
+    try { sessionStorage.setItem(MUXT_PROVIDER_KEY, providerId); } catch (e) {}
+  }
+
+  function readRememberedProvider() {
+    try { return sessionStorage.getItem(MUXT_PROVIDER_KEY) || null; } catch (e) { return null; }
+  }
+
+  // Per-URL translation-state flag. Lets us re-trigger translation when the
+  // user navigates back/forward (or reloads) to a page they had already
+  // translated. Keyed by full URL so unrelated same-origin pages don't
+  // auto-translate just because a sibling was translated earlier.
+  function muxtTranslatedKey() {
+    try { return 'muxt.translated.' + window.location.href; } catch (e) { return null; }
+  }
+
+  function markPageTranslated() {
+    var k = muxtTranslatedKey();
+    if (!k) return;
+    try { sessionStorage.setItem(k, '1'); } catch (e) {}
+  }
+
+  function clearPageTranslatedFlag() {
+    var k = muxtTranslatedKey();
+    if (!k) return;
+    try { sessionStorage.removeItem(k); } catch (e) {}
+  }
+
+  function wasPageTranslated() {
+    var k = muxtTranslatedKey();
+    if (!k) return false;
+    try { return sessionStorage.getItem(k) === '1'; } catch (e) { return false; }
   }
 
   // -------- Incoming messages --------
@@ -1167,7 +1274,19 @@
     if (!message || !message.type) return;
     switch (message.type) {
       case 'TRANSLATE_PAGE':
+        rememberProviderChoice(message.payload && message.payload.providerId);
         startEngine(message.payload || {});
+        sendResponse({ success: true });
+        return false;
+      case 'SET_PROVIDER':
+        // Remember the user's provider pick even before they hit Translate.
+        // If the engine is already running, switching would require stopping
+        // and re-running; for simplicity we just update the remembered value
+        // so the next translate / resume uses it.
+        rememberProviderChoice(message.payload && message.payload.providerId);
+        if (engine.started && message.payload && message.payload.providerId) {
+          engine.providerId = message.payload.providerId;
+        }
         sendResponse({ success: true });
         return false;
       case 'GET_PAGE_INFO':
@@ -1182,6 +1301,8 @@
               completion: engine.sessionTokens.completion || 0
             },
             bilingualMode: (engine.settings && engine.settings.bilingualMode) || 'off',
+            isPdf: PdfModule.isPdfViewerPage(),
+            lastProviderId: readRememberedProvider(),
             url: window.location.href,
             title: document.title
           }
@@ -1193,10 +1314,14 @@
         return false;
       case 'PAUSE_TRANSLATION':
         engine.paused = true;
+        cancelInFlightBatches();
+        hideProgressNow();
         sendResponse({ success: true });
         return false;
       case 'RESUME_TRANSLATION':
         engine.paused = false;
+        rescanForResume();
+        if (hasWork() || engine.inFlight > 0) showProgress();
         pump();
         sendResponse({ success: true });
         return false;
@@ -1427,6 +1552,17 @@
     if (rule && rule.mode === 'always' && rule.providerId) {
       // Auto-start with the bound provider, no bar
       startEngine({ providerId: rule.providerId });
+      return;
+    }
+
+    // If the user had already translated this URL earlier in the session
+    // (typical back/forward or reload case), resume automatically and skip
+    // the notification bar. Prefer the remembered provider if still valid.
+    if (wasPageTranslated()) {
+      var remembered = readRememberedProvider();
+      var providerExists = remembered && Array.isArray(s.providers) &&
+        s.providers.some(function (p) { return p.id === remembered; });
+      startEngine(providerExists ? { providerId: remembered } : {});
       return;
     }
 

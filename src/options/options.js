@@ -30,7 +30,7 @@
 
     [
       'addProviderBtn', 'newProviderType', 'providerList',
-      'defaultProviderId', 'selectionProviderId', 'manualProviderId', 'selectionEnabled',
+      'defaultProviderId', 'selectionProviderId', 'manualProviderId', 'pdfProviderId', 'selectionEnabled',
       'editGlossaryBtn', 'glossaryDialog', 'glossaryEntryList',
       'glossarySource', 'glossaryTarget', 'glossaryLang', 'addGlossaryEntryBtn', 'glossaryClose',
       'glossarySummary',
@@ -74,7 +74,7 @@
       'defaultTranslationMode', 'bilingualMode',
       'observeMutations', 'viewportPriority', 'showProgressBar',
       'maxCharsPerBatch', 'concurrentBatches', 'cacheEnabled',
-      'defaultProviderId', 'selectionProviderId', 'manualProviderId',
+      'defaultProviderId', 'selectionProviderId', 'manualProviderId', 'pdfProviderId',
       'selectionEnabled'
     ].forEach(function (id) {
       var el = els[id];
@@ -116,6 +116,7 @@
     state.settings.defaultProviderId = els.defaultProviderId.value;
     state.settings.selectionProviderId = els.selectionProviderId.value || null;
     state.settings.manualProviderId = els.manualProviderId.value || null;
+    state.settings.pdfProviderId = els.pdfProviderId.value || null;
     state.settings.selectionEnabled = els.selectionEnabled.checked;
 
     try {
@@ -413,6 +414,7 @@
     }
     if (state.settings.selectionProviderId === id) state.settings.selectionProviderId = null;
     if (state.settings.manualProviderId === id) state.settings.manualProviderId = null;
+    if (state.settings.pdfProviderId === id) state.settings.pdfProviderId = null;
     var rules = state.settings.siteRules || {};
     Object.keys(rules).forEach(function (host) {
       if (rules[host].providerId === id) delete rules[host];
@@ -455,6 +457,7 @@
     fill(els.defaultProviderId, state.settings.defaultProviderId, false);
     fill(els.selectionProviderId, state.settings.selectionProviderId || '', true);
     fill(els.manualProviderId, state.settings.manualProviderId || '', true);
+    fill(els.pdfProviderId, state.settings.pdfProviderId || '', true);
     els.selectionEnabled.checked = state.settings.selectionEnabled !== false;
   }
 

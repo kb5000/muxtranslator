@@ -65,6 +65,7 @@ var SettingsModule = SettingsModule || {};
     defaultProviderId: 'default',
     selectionProviderId: null,   // null => use default
     manualProviderId: null,       // null => use default
+    pdfProviderId: null,          // null => use default — page provider for PDFs
 
     siteRules: {},                // hostname -> { mode: 'skip'|'always', providerId?: string }
 
@@ -152,6 +153,7 @@ var SettingsModule = SettingsModule || {};
       defaultProviderId: 'default',
       selectionProviderId: null,
       manualProviderId: null,
+      pdfProviderId: null,
       siteRules: {},
       tokenStats: { prompt_tokens: 0, completion_tokens: 0, byProvider: {} },
       targetLanguage: saved.targetLanguage || 'zh-CN',

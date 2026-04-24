@@ -64,6 +64,18 @@
       });
     }
     els.translateBtn.addEventListener('click', onTranslatePage);
+    // Changing the provider dropdown alone (without clicking Translate) is
+    // enough to remember the choice on this page — the popup pre-selects
+    // this value on its next open, even if the user never started translating.
+    els.providerSelect.addEventListener('change', function () {
+      if (!state.currentTabId) return;
+      try {
+        browser.tabs.sendMessage(state.currentTabId, {
+          type: 'SET_PROVIDER',
+          payload: { providerId: els.providerSelect.value }
+        }).catch(function () {});
+      } catch (e) {}
+    });
     els.pauseBtn.addEventListener('click', onTogglePause);
     els.restoreBtn.addEventListener('click', onRestore);
     els.targetLang.addEventListener('change', onTargetLangChange);
@@ -109,6 +121,21 @@
             els.pauseBtn.textContent = state.translationPaused ? i18n('btnResume') : i18n('btnPause');
             if (info.data.sessionTokens) renderTokenStats(info.data.sessionTokens);
             reflectCurrentBilingual(info.data.bilingualMode || 'off');
+            // Bilingual toggles are meaningless on PDF pages (overlays replace
+            // the canvas, not the DOM) — hide the whole section there.
+            if (info.data.isPdf) {
+              var bi = document.querySelector('.bilingual-section');
+              if (bi) bi.style.display = 'none';
+            }
+            // Restore the per-page provider pick, if the user selected one
+            // earlier on this URL. Falls back silently if the provider has
+            // since been renamed/deleted.
+            if (info.data.lastProviderId) {
+              var hasOpt = Array.from(els.providerSelect.options).some(function (o) {
+                return o.value === info.data.lastProviderId;
+              });
+              if (hasOpt) els.providerSelect.value = info.data.lastProviderId;
+            }
             if (info.data.isTranslating) {
               setStatus(els.translateStatus, state.translationPaused ? i18n('statusPaused') : i18n('statusTranslatingInProgress'));
               els.translateBtn.disabled = true;
