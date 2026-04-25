@@ -1,3 +1,5 @@
+set shell := ["wsl", "bash", "-c"]
+
 version := `node -p "require('./src/manifest.json').version"`
 zip_name := "dist/muxtranslator-v" + version + ".zip"
 

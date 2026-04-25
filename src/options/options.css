@@ -97,6 +97,7 @@ button {
   border-radius: 6px;
   background: #fff;
   color: var(--text);
+  touch-action: manipulation;
 }
 button:hover:not(:disabled) { background: #f1f5f9; }
 button.primary {
@@ -246,4 +247,35 @@ dialog h3 { margin: 0 0 14px; font-size: 16px; }
   justify-content: flex-end;
   gap: 8px;
   margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 16px 12px 80px; }
+  .card { padding: 14px 14px 8px; }
+
+  /* Card header: stack select + button on very narrow screens */
+  .card-header { flex-wrap: wrap; gap: 8px; }
+  .header-actions { flex-wrap: wrap; }
+
+  /* Rule rows: allow host to wrap */
+  .rule-row { flex-wrap: wrap; }
+  .rule-row .host { min-width: 0; word-break: break-all; }
+
+  /* Glossary add row: stack inputs */
+  .glossary-add-row { flex-wrap: wrap; }
+  .glossary-add-row input { flex: 1 1 40%; }
+  .glossary-add-row .glossary-lang-input { flex: 0 0 100%; }
+  .glossary-add-row button { flex: 1 1 100%; }
+  .glossary-add-row .glossary-arrow { display: none; }
+
+  /* Dialogs: full-width on mobile */
+  dialog { min-width: min(90vw, 400px); max-width: 95vw; padding: 16px; }
+  dialog.glossary-dialog { min-width: min(95vw, 620px); }
+}
+
+@media (pointer: coarse) {
+  button { min-height: 44px; }
+  input[type="text"], input[type="password"], input[type="number"], select { min-height: 44px; }
+  label.inline { gap: 12px; }
+  label.inline input[type="checkbox"] { width: 20px; height: 20px; }
 }

@@ -46,7 +46,7 @@
     [
       'pageLang', 'targetLang', 'siteHost',
       'providerSelect', 'translateBtn', 'pauseBtn', 'restoreBtn', 'translateStatus',
-      'ruleAsk', 'ruleSkip', 'ruleAlways', 'ruleStatus',
+      'ruleAsk', 'ruleSkip', 'ruleAlways',
       'bilingualOff', 'bilingualEmbed', 'bilingualTooltip',
       'manualInput', 'manualBtn', 'manualStatus', 'manualResult',
       'tokPrompt', 'tokCompletion',
@@ -224,16 +224,6 @@
     els.ruleAsk.classList.toggle('active', !rule);
     els.ruleSkip.classList.toggle('active', rule && rule.mode === 'skip');
     els.ruleAlways.classList.toggle('active', rule && rule.mode === 'always');
-    if (rule) {
-      if (rule.mode === 'skip') {
-        setStatus(els.ruleStatus, i18n('statusCurrentlySkipped'), '');
-      } else if (rule.mode === 'always') {
-        var prov = (state.settings.providers || []).find(function (p) { return p.id === rule.providerId; });
-        setStatus(els.ruleStatus, i18n('statusCurrentlyAutoTranslate', [prov ? prov.name : rule.providerId]), '');
-      }
-    } else {
-      setStatus(els.ruleStatus, i18n('statusCurrentlyAsk'), '');
-    }
   }
 
   function reflectCurrentBilingual(mode) {
@@ -257,10 +247,7 @@
   }
 
   async function setRule(mode) {
-    if (!state.host) {
-      setStatus(els.ruleStatus, i18n('statusNoHostname'), 'error');
-      return;
-    }
+    if (!state.host) return;
     var rules = Object.assign({}, state.settings.siteRules || {});
     if (mode === 'ask') {
       delete rules[state.host];
@@ -271,7 +258,6 @@
     }
     state.settings = await SettingsModule.saveSettings({ siteRules: rules });
     reflectCurrentRule();
-    setStatus(els.ruleStatus, i18n('statusSaved'), 'success');
   }
 
   async function onTogglePause() {

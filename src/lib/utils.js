@@ -69,10 +69,16 @@ var UtilsModule = UtilsModule || {};
     return '';
   };
 
-  ns.shouldSkipLanguage = function (langCode, skipList) {
-    if (!langCode || !skipList || !skipList.length) return false;
+  ns.shouldSkipLanguage = function (langCode, skipList, targetLang) {
+    if (!langCode) return false;
     var lower = String(langCode).toLowerCase();
     var prefix = lower.split('-')[0];
+
+    // If the page is already in the target language, nothing to translate.
+    // Compare case-insensitively so "zh-cn" (detected) matches "zh-CN" (target).
+    if (targetLang && String(targetLang).toLowerCase() === lower) return true;
+
+    if (!skipList || !skipList.length) return false;
     for (var i = 0; i < skipList.length; i++) {
       var s = String(skipList[i]).toLowerCase().trim();
       if (!s) continue;

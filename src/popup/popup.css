@@ -16,6 +16,7 @@
 body {
   margin: 0;
   width: 380px;
+  max-width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 13px;
   line-height: 1.4;
@@ -27,7 +28,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -57,7 +58,7 @@ header h1 { margin: 0; font-size: 14px; font-weight: 600; margin-right: auto; }
 .header-btn:hover { background: #f1f5f9; color: var(--text); border-color: #cbd5e1; }
 
 section {
-  padding: 6px 14px;
+  padding: 4px 14px;
   border-bottom: 1px solid var(--border);
 }
 section:last-of-type { border-bottom: none; }
@@ -66,7 +67,7 @@ section:last-of-type { border-bottom: none; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 0;
+  padding: 1px 0;
 }
 
 .label { color: var(--muted); font-size: 12px; }
@@ -81,7 +82,7 @@ section:last-of-type { border-bottom: none; }
 }
 
 h2 {
-  margin: 0 0 3px;
+  margin: 0 0 2px;
   font-size: 11px;
   font-weight: 600;
   color: var(--muted);
@@ -91,7 +92,11 @@ h2 {
 
 button {
   cursor: pointer;
-  padding: 7px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 10px;
   font-size: 13px;
   font-weight: 500;
   font-family: inherit;
@@ -99,6 +104,8 @@ button {
   border-radius: 6px;
   background: #fff;
   color: var(--text);
+  touch-action: manipulation;
+  box-sizing: border-box;
 }
 button:hover:not(:disabled) { background: #f1f5f9; }
 button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
@@ -109,7 +116,7 @@ button.active:hover:not(:disabled) { background: var(--primary-hover); border-co
 
 select, textarea {
   width: 100%;
-  padding: 6px 8px;
+  padding: 3px 8px;
   font-family: inherit;
   font-size: 13px;
   border: 1px solid var(--border);
@@ -118,7 +125,7 @@ select, textarea {
   color: var(--text);
 }
 
-textarea { resize: vertical; margin-bottom: 4px; max-height: 260px; }
+textarea { resize: vertical; padding: 5px 8px; margin-bottom: 4px; max-height: 260px; }
 
 .actions .row-actions {
   display: flex;
@@ -129,8 +136,8 @@ textarea { resize: vertical; margin-bottom: 4px; max-height: 260px; }
 .actions .row-actions button { flex-shrink: 0; }
 
 .row-actions { display: flex; align-items: center; gap: 8px; }
-.secondary-actions { margin-top: 6px; }
-.secondary-actions button { flex: 1; padding: 6px 8px; font-size: 12px; }
+.secondary-actions { margin-top: 4px; }
+.secondary-actions button { flex: 1; padding: 0 8px; font-size: 12px; }
 
 .target-select {
   width: 60%;
@@ -146,16 +153,16 @@ textarea { resize: vertical; margin-bottom: 4px; max-height: 260px; }
 .rule-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 .rule-buttons button {
   flex: 1;
   min-width: 0;
-  padding: 6px 8px;
+  padding: 0 8px;
   font-size: 12px;
 }
 
-.status { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.status { font-size: 11px; color: var(--muted); margin-top: 4px; }
 .status.success { color: var(--success); }
 .status.error { color: var(--danger); }
 
@@ -185,4 +192,34 @@ footer {
   color: var(--warn-text);
   border-radius: 4px;
   font-size: 12px;
+}
+
+@media (max-width: 400px) {
+  body { font-size: 14px; }
+  section { padding: 8px 12px; }
+  header { padding: 8px 12px; }
+
+  /* Larger tap targets — switch from padding to height so all buttons stay equal */
+  button { height: 28px; font-size: 13px; }
+
+  /* Stack provider select + translate button vertically */
+  .actions .row-actions { flex-wrap: wrap; }
+  .actions .row-actions select { flex: 1 1 100%; }
+  .actions .row-actions button { flex: 1; }
+
+  /* Give textarea more room */
+  textarea { font-size: 14px; }
+}
+
+@media (pointer: coarse) {
+  /* On touch screens, fill the full panel width (Firefox Android bottom sheet) */
+  body { width: 100%; }
+}
+
+/* Only enlarge tap targets on genuinely narrow touch screens (mobile).
+   Use height (not min-height/padding) so all buttons stay equal. */
+@media (pointer: coarse) and (max-width: 500px) {
+  button { height: 40px; }
+  .header-btn { height: 32px; padding: 0 10px; }
+  select { min-height: 44px; }
 }

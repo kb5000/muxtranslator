@@ -885,6 +885,11 @@
 
   function showNotificationBar(detectedLang, targetLang, settings) {
     if (document.getElementById('muxtranslator-bar')) return;
+    // Never show on the extension's own pages (e.g. viewer.html has its own toolbar).
+    try {
+      var proto = window.location.protocol;
+      if (proto === 'moz-extension:' || proto === 'chrome-extension:') return;
+    } catch (e) {}
     var host = document.createElement('div');
     host.id = 'muxtranslator-bar';
     host.dataset.muxtranslatorSkip = '1';
@@ -897,13 +902,18 @@
       '.bar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#2563eb;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15);font-size:14px;}' +
       '.msg{flex:1;line-height:1.4;}' +
       '.msg strong{font-weight:600;}' +
-      'button{all:unset;cursor:pointer;padding:6px 14px;border-radius:4px;font-size:13px;font-weight:500;white-space:nowrap;}' +
+      'button{all:unset;cursor:pointer;padding:6px 14px;border-radius:4px;font-size:13px;font-weight:500;white-space:nowrap;touch-action:manipulation;}' +
       '.yes{background:#fff;color:#2563eb;}' +
       '.yes:hover{background:#f1f5f9;}' +
       '.never{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);}' +
       '.never:hover{background:rgba(255,255,255,.1);}' +
       '.skip{background:transparent;color:rgba(255,255,255,.75);font-size:12px;}' +
       '.skip:hover{color:#fff;}' +
+      '@media(max-width:480px){' +
+      '.bar{padding:7px 10px;font-size:12px;gap:5px;}' +
+      'button{padding:5px 9px;font-size:12px;}' +
+      '.skip{font-size:11px;padding:5px 6px;}' +
+      '}' +
       '</style>' +
       '<div class="bar">' +
       '  <span class="msg"><strong>' + escapeHtml(detectedLang) +
@@ -1008,8 +1018,9 @@
       '.bar-outer{height:4px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden;}' +
       '.bar-inner{height:100%;background:#22c55e;width:0%;transition:width .25s ease;}' +
       '.count{font-variant-numeric:tabular-nums;opacity:.85;flex:1;text-align:right;}' +
-      '.close-btn{all:unset;cursor:pointer;opacity:.5;font-size:14px;line-height:1;padding:0 2px;flex-shrink:0;}' +
+      '.close-btn{all:unset;cursor:pointer;opacity:.5;font-size:14px;line-height:1;padding:0 2px;flex-shrink:0;touch-action:manipulation;}' +
       '.close-btn:hover{opacity:1;}' +
+      '@media(pointer:coarse){.close-btn{font-size:18px;padding:4px 6px;}}' +
       '</style>' +
       '<div class="box">' +
       '  <div class="label"><span>' + escapeHtml(t('progressTranslating')) + '</span><span class="count">0/0</span><span class="close-btn" title="' + escapeHtml(t('progressHide')) + '">×</span></div>' +
@@ -1098,7 +1109,6 @@
 
     engine.started = true;
     removeBar();
-    showProgress();
     setupObservers();
     if (engine.pdfMode) {
       if ((engine.settings.pdfMode || 'replace') === 'tooltip') {
@@ -1109,6 +1119,9 @@
       scanSubtree(document.body);
     }
     updateProgressTotal();
+    // Only show the progress widget if there's actual work — avoids a 0/0
+    // flash when the page has nothing to translate or all entries are cached.
+    if (hasWork() || engine.inFlight > 0) showProgress();
     pump();
     markPageTranslated();
     emitEngineChanged(true);
@@ -1368,7 +1381,8 @@
     installed: false,
     badge: null,
     tooltip: null,
-    lastSelection: null   // { text, rect }
+    lastSelection: null,   // { text, rect }
+    lastTouchEnd: 0        // timestamp — used to suppress redundant mouse events after touch
   };
 
   function installSelectionHandler() {
@@ -1376,6 +1390,8 @@
     selectionState.installed = true;
     document.addEventListener('mouseup', onSelectionMouseUp, true);
     document.addEventListener('mousedown', onSelectionMouseDown, true);
+    document.addEventListener('touchend', onSelectionTouchEnd, true);
+    document.addEventListener('touchstart', onSelectionTouchStart, true);
     document.addEventListener('selectionchange', onSelectionChange, true);
     window.addEventListener('resize', hideSelectionUI, true);
   }
@@ -1395,9 +1411,34 @@
     }
   }
 
+  function onSelectionTouchStart(e) {
+    if (e.target && e.target.closest && e.target.closest('#muxtranslator-sel-badge, #muxtranslator-sel-tooltip')) return;
+    hideSelectionUI();
+  }
+
+  function onSelectionTouchEnd(e) {
+    if (e.target && e.target.closest && e.target.closest('#muxtranslator-sel-badge, #muxtranslator-sel-tooltip')) return;
+    selectionState.lastTouchEnd = Date.now();
+    // Defer so the browser has time to update the selection after touch
+    setTimeout(function () {
+      var sel = window.getSelection && window.getSelection();
+      if (!sel || sel.isCollapsed) return;
+      var text = String(sel.toString() || '').trim();
+      if (!text || text.length < 2 || text.length > 5000) return;
+      var range;
+      try { range = sel.getRangeAt(0); } catch (err) { return; }
+      var rect = range.getBoundingClientRect();
+      if (!rect || (rect.width === 0 && rect.height === 0)) return;
+      selectionState.lastSelection = { text: text, rect: rect };
+      showSelectionBadge(rect);
+    }, 200);
+  }
+
   function onSelectionMouseUp(e) {
     // If user clicked inside badge/tooltip, ignore — the element handlers take over
     if (e.target && e.target.closest && e.target.closest('#muxtranslator-sel-badge, #muxtranslator-sel-tooltip')) return;
+    // Suppress the synthetic mouse event that mobile browsers fire after touchend
+    if (Date.now() - selectionState.lastTouchEnd < 600) return;
     // Defer to let selection finalize
     setTimeout(function () {
       var sel = window.getSelection && window.getSelection();
@@ -1431,8 +1472,10 @@
     var host = document.createElement('div');
     host.id = 'muxtranslator-sel-badge';
     host.dataset.muxtranslatorSkip = '1';
-    var top = rect.bottom + window.scrollY + 4;
-    var left = rect.right + window.scrollX - 26;
+    var isTouch = window.matchMedia && window.matchMedia('(pointer:coarse)').matches;
+    var badgeSize = isTouch ? 44 : 24;
+    var top = rect.bottom + window.scrollY + (isTouch ? 8 : 4);
+    var left = Math.max(4 + window.scrollX, rect.right + window.scrollX - badgeSize);
     host.style.cssText =
       'all:initial;position:absolute;z-index:2147483647;top:' + top + 'px;left:' + left + 'px;';
     var shadow = host.attachShadow({ mode: 'closed' });
@@ -1440,14 +1483,24 @@
       '<style>' +
       '.b{width:24px;height:24px;border-radius:4px;background:#2563eb;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;' +
       'font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;' +
-      'box-shadow:0 2px 6px rgba(0,0,0,.3);user-select:none;-webkit-user-select:none;}' +
+      'box-shadow:0 2px 6px rgba(0,0,0,.3);user-select:none;-webkit-user-select:none;touch-action:manipulation;}' +
       '.b:hover{background:#1d4ed8;}' +
+      '@media(pointer:coarse){.b{width:44px;height:44px;border-radius:8px;font-size:18px;}}' +
       '</style>' +
       '<div class="b" title="' + escapeHtml(t('selBadgeTitle')) + '">译</div>';
     shadow.querySelector('.b').addEventListener('mousedown', function (ev) {
       // Prevent losing the selection before we capture its text
       ev.preventDefault();
       ev.stopPropagation();
+    });
+    shadow.querySelector('.b').addEventListener('touchstart', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+    });
+    shadow.querySelector('.b').addEventListener('touchend', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      translateSelection();
     });
     shadow.querySelector('.b').addEventListener('click', function (ev) {
       ev.preventDefault();
@@ -1515,8 +1568,9 @@
       '.err{background:#7f1d1d;}' +
       '.tag{display:inline-block;margin-top:6px;padding:1px 6px;background:rgba(255,255,255,.15);' +
       'border-radius:3px;font-size:10px;opacity:.75;}' +
-      '.close{position:absolute;top:4px;right:6px;cursor:pointer;opacity:.6;font-size:14px;line-height:1;}' +
+      '.close{position:absolute;top:4px;right:6px;cursor:pointer;opacity:.6;font-size:14px;line-height:1;touch-action:manipulation;}' +
       '.close:hover{opacity:1;}' +
+      '@media(pointer:coarse){.close{font-size:20px;top:6px;right:8px;padding:4px;}}' +
       '</style>' +
       '<div>' + content + '<span class="close" title="' + escapeHtml(t('btnClose')) + '">×</span></div>';
 
@@ -1533,7 +1587,9 @@
     // showing the "translate this page" bar would be premature, so skip auto
     // init; the muxt-pdf-loaded listener below drives (re-)init once a PDF
     // has rendered. This also re-fires for each new document the user opens.
-    if (window.__muxtViewerManaged && !window.__muxtViewerReady) return;
+    var _isExtPage = false;
+    try { var _p = window.location.protocol; _isExtPage = _p === 'moz-extension:' || _p === 'chrome-extension:'; } catch (e) {}
+    if ((_isExtPage || window.__muxtViewerManaged) && !window.__muxtViewerReady) return;
 
     engine.pageLanguage = UtilsModule.detectPageLanguage();
     var isPdf = PdfModule.isPdfViewerPage();
@@ -1569,10 +1625,23 @@
     // Apply global default translation mode (site rules above take priority)
     var translationMode = s.defaultTranslationMode || 'ask';
     var isForeignPage = translationMode !== 'never' && engine.pageLanguage &&
-      !UtilsModule.shouldSkipLanguage(engine.pageLanguage, s.skipLanguages);
+      !UtilsModule.shouldSkipLanguage(engine.pageLanguage, s.skipLanguages, s.targetLanguage);
     // PDF viewers rarely expose a language attribute; treat them as translatable
     // candidates in auto/ask modes so the user still gets a prompt.
     if (isPdf && translationMode !== 'never') isForeignPage = true;
+
+    // On the extension's own pages (viewer.html, etc.) the toolbar has its own
+    // Translate button — never show the notification bar there.
+    // Check the URL protocol rather than a window flag for robustness.
+    var onExtensionPage = false;
+    try {
+      var _proto = window.location.protocol;
+      onExtensionPage = _proto === 'moz-extension:' || _proto === 'chrome-extension:';
+    } catch (e) {}
+    if (onExtensionPage) {
+      if (translationMode === 'auto' && isForeignPage) startEngine();
+      return;
+    }
 
     if (translationMode === 'auto') {
       if (isForeignPage) startEngine();
@@ -1580,7 +1649,7 @@
     }
     if (translationMode === 'never') return;
 
-    // 'ask' (default): show the notification bar on foreign pages
+    // 'ask' (default): show the notification bar on foreign pages.
     if (isForeignPage) {
       setTimeout(function () {
         var detected = engine.pageLanguage || (isPdf ? 'PDF' : '?');
