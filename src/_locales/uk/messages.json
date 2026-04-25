@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Перекладач сторінок, сумісний з OpenAI — вкажіть свій ключ API та модель."
+  },
+  "settingsTitle": {
+    "message": "Налаштування"
+  },
+  "viewerOpen": {
+    "message": "Відкрити PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Відкрийте PDF для перекладу"
+  },
+  "viewerEmptyHint": {
+    "message": "Натисніть «Відкрити PDF» вище або перетягніть файл сюди."
+  },
+  "labelPage": {
+    "message": "Сторінка:"
+  },
+  "labelTarget": {
+    "message": "Мова:"
+  },
+  "labelSite": {
+    "message": "Сайт:"
+  },
+  "btnTranslate": {
+    "message": "Перекласти"
+  },
+  "btnPause": {
+    "message": "Пауза"
+  },
+  "btnResume": {
+    "message": "Продовжити"
+  },
+  "btnRestoreOriginal": {
+    "message": "Відновити оригінал"
+  },
+  "headingSiteRules": {
+    "message": "Цей сайт"
+  },
+  "ruleAsk": {
+    "message": "Запитати"
+  },
+  "ruleSkip": {
+    "message": "Завжди пропускати"
+  },
+  "ruleAlways": {
+    "message": "Завжди перекладати з ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Швидкий переклад"
+  },
+  "manualPlaceholder": {
+    "message": "Вставте або введіть текст для перекладу…"
+  },
+  "headingTokens": {
+    "message": "Токени (цієї сторінки)"
+  },
+  "labelPrompt": {
+    "message": "Запит:"
+  },
+  "labelCompletion": {
+    "message": "Результат:"
+  },
+  "statusNotAPage": {
+    "message": "(не сторінка)"
+  },
+  "statusUnknown": {
+    "message": "(невідомо)"
+  },
+  "statusUnavailable": {
+    "message": "(недоступно)"
+  },
+  "statusPaused": {
+    "message": "Призупинено."
+  },
+  "statusResumed": {
+    "message": "Відновлено."
+  },
+  "statusStarted": {
+    "message": "Розпочато."
+  },
+  "statusSaved": {
+    "message": "Збережено."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Йде переклад…"
+  },
+  "statusCannotTranslate": {
+    "message": "Не вдалося перекласти цю сторінку"
+  },
+  "statusRestoreFailed": {
+    "message": "Не вдалося відновити"
+  },
+  "statusEmpty": {
+    "message": "(порожньо)"
+  },
+  "statusCached": {
+    "message": "Кешовано"
+  },
+  "statusTranslating": {
+    "message": "Переклад…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Зараз: пропущено"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Зараз: запит кожного разу"
+  },
+  "statusNoHostname": {
+    "message": "Немає доменного імені — не можна встановити правило"
+  },
+  "statusTargetSet": {
+    "message": "Ціль встановлено на $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Не вдалося зберегти: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Помилка: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Відновлено $COUNT$ вузлів.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Зараз: автопереклад через $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Готово ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "Налаштування MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "Перекладач сторінок з власним API. Налаштуйте провайдерів, правила сайтів та типові значення нижче."
+  },
+  "headingProviders": {
+    "message": "Провайдери"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "Вбудувати"
+  },
+  "bilingualTooltip": {
+    "message": "Підказка"
+  },
+  "headingBilingual": {
+    "message": "Двомовний показ"
+  },
+  "hintBilingualMode": {
+    "message": "Двомовний режим також можна швидко перемкнути з вікна розширення."
+  },
+  "headingPerformance": {
+    "message": "Продуктивність"
+  },
+  "labelObserveMutations": {
+    "message": "Автопереклад нового вмісту від сторінки (SPA, нескінченна прокрутка)"
+  },
+  "labelViewportPriority": {
+    "message": "Пріоритет елементам на екрані, попереднє завантаження поза ним"
+  },
+  "labelShowProgressBar": {
+    "message": "Показати віджет прогресу перекладу (правий низ)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Макс. символів за пакет"
+  },
+  "hintMaxChars": {
+    "message": "Більший пакет = менше викликів API, але повільніше за виклик. 3000 — гарний баланс."
+  },
+  "labelConcurrentBatches": {
+    "message": "Паралельні пакети"
+  },
+  "headingCacheStats": {
+    "message": "Кеш і статистика"
+  },
+  "labelCacheEnabled": {
+    "message": "Увімкнути кеш перекладів у IndexedDB"
+  },
+  "btnClearCache": {
+    "message": "Очистити кеш"
+  },
+  "btnResetTokenStats": {
+    "message": "Скинути статистику токенів"
+  },
+  "autoSaveHint": {
+    "message": "Зміни зберігаються автоматично."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Додати правило сайту"
+  },
+  "labelHostname": {
+    "message": "Ім’я хоста"
+  },
+  "labelMode": {
+    "message": "Режим"
+  },
+  "modeAlwaysSkip": {
+    "message": "Завжди пропускати"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Завжди перекладати з ↓"
+  },
+  "labelProviderField": {
+    "message": "Провайдер"
+  },
+  "btnCancel": {
+    "message": "Скасувати"
+  },
+  "btnDialogAdd": {
+    "message": "Додати"
+  },
+  "labelName": {
+    "message": "Назва"
+  },
+  "btnDelete": {
+    "message": "Видалити"
+  },
+  "btnEdit": {
+    "message": "Редагувати"
+  },
+  "btnCollapse": {
+    "message": "Згорнути"
+  },
+  "btnFetch": {
+    "message": "Отримати"
+  },
+  "badgeDefault": {
+    "message": "типово"
+  },
+  "labelUnnamed": {
+    "message": "(без назви)"
+  },
+  "labelNotSet": {
+    "message": "(не встановлено)"
+  },
+  "placeholderModelId": {
+    "message": "Або введіть id моделі"
+  },
+  "labelOutputMode": {
+    "message": "Режим виводу"
+  },
+  "outputModeText": {
+    "message": "Текст з роздільником <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "Виклик інструмента (структурований масив JSON)"
+  },
+  "hintToolMode": {
+    "message": "Режим інструмента змушує модель повертати масив JSON — без парсингу роздільників, надійніше. Потрібна модель із підтримкою виклику інструментів."
+  },
+  "labelStreamingEnabled": {
+    "message": "Увімкнути потік для цього провайдера"
+  },
+  "labelSystemPrompt": {
+    "message": "Системний запит"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Шаблон користувацького запиту ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Базова адреса"
+  },
+  "labelBaseURLProxy": {
+    "message": "Базова адреса (залиште типову, якщо не проксі)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "Ключ API (ключ Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "Ключ API"
+  },
+  "labelApiKeyOptional": {
+    "message": "Ключ API (необов’язково)"
+  },
+  "labelDeepLPlan": {
+    "message": "План"
+  },
+  "deepLPlanFree": {
+    "message": "Безкоштовний (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Платний (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Символів у:"
+  },
+  "labelCharsOut": {
+    "message": "Символів з:"
+  },
+  "labelModel": {
+    "message": "Модель"
+  },
+  "siteRuleNone": {
+    "message": "Правил сайту ще немає."
+  },
+  "statsTotalPrompt": {
+    "message": "Загальний запит:"
+  },
+  "statsTotalCompletion": {
+    "message": "Загальна відповідь:"
+  },
+  "statusCacheCleared": {
+    "message": "Кеш очищено."
+  },
+  "errorClearFailed": {
+    "message": "Не вдалося очистити."
+  },
+  "statusTokensReset": {
+    "message": "Статистика токенів скинуто."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Не можна видалити останнього провайдера."
+  },
+  "confirmDeleteProvider": {
+    "message": "Видалити цього провайдера?"
+  },
+  "confirmClearCache": {
+    "message": "Очистити весь кеш перекладів?"
+  },
+  "confirmResetTokens": {
+    "message": "Скинути всю статистику токенів?"
+  },
+  "suffixSaved": {
+    "message": " (збережено)"
+  },
+  "statusFetchingModels": {
+    "message": "Отримання моделей для $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Моделі не повернуто."
+  },
+  "statusLoadedModels": {
+    "message": "Завантажено $COUNT$ моделей.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Помилка отримання: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Не вдалося очистити: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Не вдалося скинути: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ кешованих записів",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ викликів",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Завжди з $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Глосарій"
+  },
+  "btnEditGlossary": {
+    "message": "Редагувати глосарій"
+  },
+  "hintGlossary": {
+    "message": "Терміни звідси додаються до системного запиту LLM як довідка для перекладу. Провайдери без LLM (Google, DeepL, LibreTranslate) ігнорують це."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Глосарій"
+  },
+  "glossaryEmpty": {
+    "message": "Поки що немає записів. Додайте терміни нижче."
+  },
+  "glossaryNone": {
+    "message": "Поки що немає записів."
+  },
+  "placeholderGlossarySource": {
+    "message": "Термін джерела"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Переклад"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Мова (напр. zh-CN або порожньо = усі)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ термін(ів) визначено",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Перекласти виділене"
+  },
+  "btnClose": {
+    "message": "Закрити"
+  },
+  "labelError": {
+    "message": "Помилка"
+  },
+  "tagCached": {
+    "message": "кешовано"
+  },
+  "notifBtnTranslate": {
+    "message": "Перекласти"
+  },
+  "notifBtnNever": {
+    "message": "Ніколи не перекладати"
+  },
+  "notifBtnIgnore": {
+    "message": "Ігнорувати"
+  },
+  "toastErrorTitle": {
+    "message": "Помилка перекладу"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Провайдерів не налаштовано. Відкрийте сторінку налаштувань, щоб додати один."
+  },
+  "progressTranslating": {
+    "message": "Переклад…"
+  },
+  "progressHide": {
+    "message": "Сховати"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ вхідних · $OUT$ вихідних токенів",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Оригінал"
+  },
+  "pdfCycleReveal": {
+    "message": "Показано"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ шарів",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

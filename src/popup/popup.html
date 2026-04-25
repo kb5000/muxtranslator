@@ -34,7 +34,11 @@
     </div>
     <div class="row">
       <span class="label" data-i18n="labelTarget">Target:</span>
-      <select id="targetLang" class="target-select"></select>
+      <div class="combo">
+        <input id="targetLang" class="combo-input" spellcheck="false" placeholder="e.g. zh-CN">
+        <button type="button" class="combo-btn" tabindex="-1">▾</button>
+        <ul class="combo-list" id="targetLangList" hidden></ul>
+      </div>
     </div>
     <div class="row">
       <span class="label" data-i18n="labelSite">Site:</span>

@@ -1,25 +1,47 @@
 # MuxTranslator
 
-A Firefox extension that translates web pages / PDF using any OpenAI-compatible API — bring your own key and model.
+A Firefox extension that translates web pages and PDFs using any OpenAI-compatible API — bring your own key and model.
 
 ![Logo](img/wordmark-light.png)
 
 ## Features
 
-- **Page translation** — translates the entire visible page in-place, preserving layout
-- **PDF translation** — built-in PDF viewer with full translation support; no external tools needed
-- **Bilingual display** — toggle between showing translations only, or original + translation side-by-side
+### Translation Modes
+
+- **Page translation** — translates the entire visible page in-place, preserving layout and structure
+- **PDF translation** — built-in PDF viewer with overlay-based translation; no external tools needed
+- **Selection translation** — highlight text on any page and click the "译" badge to translate inline
+- **Manual translation** — paste any text into the popup for a quick ad-hoc translation
+
+### Display Options
+
+- **Bilingual display** — choose between translation-only, original + translation side-by-side, or hover tooltip
 - **Streaming output** — translations appear word-by-word as the model generates them
-- **Multiple providers** — supports any OpenAI-compatible endpoint, Ollama (local models), and Google Translate
-- **Selection translation** — highlight text and click the "译" badge to translate a snippet inline
-- **Manual translation** — paste any text into the popup for a quick translation
-- **Site rules** — configure per-hostname behavior: always translate, always skip, or ask each time
-- **Smart batching** — groups text nodes into batches to minimize API calls; configurable batch size and concurrency
+- **Auto-detect** — shows a prompt when a foreign-language page is detected
+
+### Provider Support
+
+- **OpenAI-compatible** — works with OpenAI, OpenRouter, Groq, or any endpoint that follows the OpenAI API
+- **Ollama** — local model support via Ollama's API; no API key required
+- **Google Translate** — Google Cloud Translation API v2
+- **DeepL** — DeepL API (free or paid tier)
+- **LibreTranslate** — self-hosted or public LibreTranslate instances
+- **Feature bindings** — assign different providers to page, selection, manual, and PDF translation independently
+
+### Performance
+
 - **Viewport priority** — translates visible elements first, pre-loads off-screen content in the background
+- **Smart batching** — groups text nodes into configurable batches to minimize API calls
+- **IndexedDB cache** — caches translations locally so repeated visits reuse results without extra API calls
 - **SPA support** — observes DOM mutations to auto-translate content added by React, Vue, infinite scroll, etc.
-- **IndexedDB cache** — caches translations locally so repeated visits don't cost extra API calls
 - **Token usage stats** — tracks prompt and completion tokens per provider and per page session
-- **Mobile support** — responsive design works on phones and tablets, with touch-friendly controls
+
+### Advanced
+
+- **Glossary** — define per-provider term → translation mappings that are injected into every LLM prompt
+- **Tool-call mode** — optionally use function calling instead of separator-based parsing for more reliable JSON output from LLM providers
+- **Site rules** — configure per-hostname behavior: always translate, always skip, or ask each time
+- **Mobile support** — responsive design works on phones and tablets with touch-friendly controls
 - **Multilingual UI** — interface available in English and Chinese (Simplified)
 
 ## Installation
@@ -31,9 +53,10 @@ Install directly from [addons.mozilla.org](https://addons.mozilla.org/en-US/fire
 ### Manual / Development
 
 1. Clone or download this repository
-2. Open Firefox and navigate to `about:debugging`
-3. Click **This Firefox** → **Load Temporary Add-on**
-4. Select the `manifest.json` file from the project folder
+2. Run `just vendor-pdfjs` once to download the bundled PDF.js library
+3. Open Firefox and navigate to `about:debugging`
+4. Click **This Firefox** → **Load Temporary Add-on**
+5. Select the `src/manifest.json` file from the project folder
 
 ## Setup
 
@@ -43,37 +66,40 @@ Install directly from [addons.mozilla.org](https://addons.mozilla.org/en-US/fire
    - **OpenAI-compatible** — enter a Base URL and API key (works with OpenAI, OpenRouter, Groq, etc.)
    - **Ollama** — point at your local Ollama instance (no API key needed)
    - **Google Translate** — enter a Google Cloud API key
+   - **DeepL** — enter your DeepL API key and select free or paid tier
+   - **LibreTranslate** — enter the instance URL and optional API key
 4. Select a model, then set it as the default provider
 5. Choose a **Target language** and save
 
 ## Usage
 
-| Action                    | How                                                                   |
-| ------------------------- | --------------------------------------------------------------------- |
-| Translate current page    | Click the toolbar icon →**Translate**                          |
-| Pause / resume            | Click**Pause** or **Resume** in the popup                 |
-| Restore original text     | Click**Restore original** in the popup                          |
-| Translate a PDF           | Click the**📄 Open PDF** button in the popup to open the viewer |
-| Toggle bilingual display  | In popup →**Bilingual display** section → choose display mode |
-| Translate selected text   | Select text on any page → click the**译** badge                |
-| Quick translate a snippet | Open popup → paste text into the**Quick translate** box        |
-| Set a site rule           | Open popup →**This site** section → choose behavior           |
+| Action | How |
+| --- | --- |
+| Translate current page | Click the toolbar icon → **Translate** |
+| Pause / resume | Click **Pause** or **Resume** in the popup |
+| Restore original text | Click **Restore original** in the popup |
+| Translate a PDF | Click **📄 Open PDF** in the popup to open the built-in viewer |
+| Toggle bilingual display | Popup → **Bilingual display** section → choose display mode |
+| Translate selected text | Select text on any page → click the **译** badge |
+| Quick translate a snippet | Open popup → paste text into the **Quick translate** box |
+| Set a site rule | Open popup → **This site** section → choose behavior |
 
 ## Configuration
 
-All settings are in the **Options** page (right-click the toolbar icon → Manage Extension → Preferences, or open the popup and click the settings link).
+All settings are on the **Options** page (right-click the toolbar icon → Manage Extension → Preferences, or click the settings link in the popup).
 
-| Setting             | Description                                                          |
-| ------------------- | -------------------------------------------------------------------- |
-| Providers           | Add, edit, or delete translation providers                           |
-| Feature bindings    | Choose which provider handles page / selection / manual translation  |
-| Target language     | The language all translations are rendered in                        |
-| Skip languages      | Comma-separated language codes to suppress the auto-translate prompt |
-| Auto-detect         | Show a prompt when a foreign-language page is detected               |
-| Observe mutations   | Re-translate new content added dynamically by the page               |
-| Max chars per batch | Controls batch granularity (larger = fewer calls, slower per call)   |
-| Concurrent batches  | How many batches run in parallel                                     |
-| Cache               | Enable/disable IndexedDB caching; view entry count; clear cache      |
+| Setting | Description |
+| --- | --- |
+| Providers | Add, edit, or delete translation providers |
+| Feature bindings | Choose which provider handles page / selection / manual / PDF translation |
+| Target language | The language all translations are rendered in |
+| Skip languages | Comma-separated language codes to suppress the auto-translate prompt |
+| Auto-detect | Show a prompt when a foreign-language page is detected |
+| Observe mutations | Re-translate new content added dynamically by the page |
+| Max chars per batch | Controls batch granularity (larger = fewer calls, slower per call) |
+| Concurrent batches | How many batches run in parallel |
+| Glossary | Per-provider term → translation mappings injected into LLM prompts |
+| Cache | Enable/disable IndexedDB caching; view entry count; clear cache |
 
 ## Privacy
 

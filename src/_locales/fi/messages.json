@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "OpenAI-yhteensopiva sivunkääntäjä — tuo oma API-avain ja malli."
+  },
+  "settingsTitle": {
+    "message": "Asetukset"
+  },
+  "viewerOpen": {
+    "message": "Avaa PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Avaa PDF kääntämistä varten"
+  },
+  "viewerEmptyHint": {
+    "message": "Napsauta yllä \"Avaa PDF\" tai pudota tiedosto tähän sivulle."
+  },
+  "labelPage": {
+    "message": "Sivu:"
+  },
+  "labelTarget": {
+    "message": "Kohde:"
+  },
+  "labelSite": {
+    "message": "Sivusto:"
+  },
+  "btnTranslate": {
+    "message": "Käännä"
+  },
+  "btnPause": {
+    "message": "Tauko"
+  },
+  "btnResume": {
+    "message": "Jatka"
+  },
+  "btnRestoreOriginal": {
+    "message": "Palauta alkuperäinen"
+  },
+  "headingSiteRules": {
+    "message": "Tämä sivusto"
+  },
+  "ruleAsk": {
+    "message": "Kysy"
+  },
+  "ruleSkip": {
+    "message": "Ohita aina"
+  },
+  "ruleAlways": {
+    "message": "Käännä aina ↑ kanssa"
+  },
+  "headingQuickTranslate": {
+    "message": "Pikakääntö"
+  },
+  "manualPlaceholder": {
+    "message": "Liitä tai kirjoita käännettävä teksti…"
+  },
+  "headingTokens": {
+    "message": "Tokenit (tällä sivulla)"
+  },
+  "labelPrompt": {
+    "message": "Kehote:"
+  },
+  "labelCompletion": {
+    "message": "Täydennys:"
+  },
+  "statusNotAPage": {
+    "message": "(ei ole sivu)"
+  },
+  "statusUnknown": {
+    "message": "(tuntematon)"
+  },
+  "statusUnavailable": {
+    "message": "(ei saatavilla)"
+  },
+  "statusPaused": {
+    "message": "Keskeytetty."
+  },
+  "statusResumed": {
+    "message": "Jatkettu."
+  },
+  "statusStarted": {
+    "message": "Aloitettu."
+  },
+  "statusSaved": {
+    "message": "Tallennettu."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Kääntyy…"
+  },
+  "statusCannotTranslate": {
+    "message": "Ei voi kääntää tätä sivua"
+  },
+  "statusRestoreFailed": {
+    "message": "Palautus epäonnistui"
+  },
+  "statusEmpty": {
+    "message": "(tyhjä)"
+  },
+  "statusCached": {
+    "message": "Välimuistiin tallennettu"
+  },
+  "statusTranslating": {
+    "message": "Käännetään…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Nyt: ohitettu"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Nyt: kysy joka kerta"
+  },
+  "statusNoHostname": {
+    "message": "Isäntänimi puuttuu – sääntöä ei voi asettaa"
+  },
+  "statusTargetSet": {
+    "message": "Kohde asetettu $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Tallennus epäonnistui: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Epäonnistui: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Palautettiin $COUNT$ solmua.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Nyt: automaattikäännös $NAME$:llä",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Valmis ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator -asetukset"
+  },
+  "optionsSubtitle": {
+    "message": "Tuo oma API-sivukääntäjä. Määritä alla tarjoajat, sivustosäännöt ja oletusarvot."
+  },
+  "headingProviders": {
+    "message": "Tarjoajat"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-yhteensopiva"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Lisää"
+  },
+  "headingBindings": {
+    "message": "Ominaisuuslinkitykset"
+  },
+  "labelDefaultProvider": {
+    "message": "Oletustarjoaja (sivun käännöstä varten)"
+  },
+  "labelSelectionProvider": {
+    "message": "Valinnan kääntötarjoaja"
+  },
+  "labelUseDefault": {
+    "message": "(käytä oletusta)"
+  },
+  "labelManualProvider": {
+    "message": "Manuaalinen syöttötarjoaja"
+  },
+  "labelPdfProvider": {
+    "message": "PDF-kääntötarjoaja"
+  },
+  "labelSelectionEnabled": {
+    "message": "Näytä \"译\"-tunniste valitun tekstin yhteydessä (napsauta kääntääksesi)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Säännöt sivustoille"
+  },
+  "btnAddRule": {
+    "message": "+ Lisää sääntö"
+  },
+  "siteRulesHint": {
+    "message": "Säännöt täsmäävät tarkkaan isäntänimeen tai mihin tahansa alidomeeniin. Listaamattomat sivustot käyttävät oletusta \"kysy aina\" -toimintoa."
+  },
+  "headingLanguages": {
+    "message": "Kielet"
+  },
+  "labelUiLanguage": {
+    "message": "Käyttöliittymän kieli"
+  },
+  "uiLangAuto": {
+    "message": "Automaattinen (seuraa selainta)"
+  },
+  "labelTargetLanguage": {
+    "message": "Kohdekieli"
+  },
+  "labelSkipLanguages": {
+    "message": "Ohitettavat kielet (pilkulla erotettuna)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Oletuskääntötila"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Määrittää, mitä tapahtuu, kun ulkomainen kielinen sivu havaitaan. \"Kysy\" näyttää palkin yläosassa; \"Auto\" aloittaa käännöksen huomaamatta; \"Ei koskaan\" estää kaiken automatiikan (voit silti kääntää manuaalisesti ponnahdusikkunan kautta)."
+  },
+  "modeAsk": {
+    "message": "Kysy aina (oletus)"
+  },
+  "modeAutoTranslate": {
+    "message": "Käännä ulkomaiset sivut automaattisesti"
+  },
+  "modeNeverAuto": {
+    "message": "Älä koskaan käännä automaattisesti"
+  },
+  "labelBilingualMode": {
+    "message": "Kaksoiskielinen näyttö"
+  },
+  "bilingualOff": {
+    "message": "Pois"
+  },
+  "bilingualEmbed": {
+    "message": "Upota"
+  },
+  "bilingualTooltip": {
+    "message": "Vihje"
+  },
+  "headingBilingual": {
+    "message": "Kaksikielinen näyttö"
+  },
+  "hintBilingualMode": {
+    "message": "Kaksikielistä tilaa voi vaihtaa nopeasti myös laajennuksen ponnahdusikkunasta."
+  },
+  "headingPerformance": {
+    "message": "Suorituskyky"
+  },
+  "labelObserveMutations": {
+    "message": "Käännä automaattisesti sivun lisäämä uusi sisältö (SPA:t, ääretön vieritys)"
+  },
+  "labelViewportPriority": {
+    "message": "Suosi ruudulla olevia elementtejä, lataa muut ennakkoon"
+  },
+  "labelShowProgressBar": {
+    "message": "Näytä käännöksen etenemispalkki (oikeassa alakulmassa)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Enimmäismerkit erässä"
+  },
+  "hintMaxChars": {
+    "message": "Suurempi erä = vähemmän API-kutsuja mutta hitaampi per kutsu. 3000 on hyvä tasapaino."
+  },
+  "labelConcurrentBatches": {
+    "message": "Samanaikaiset erät"
+  },
+  "headingCacheStats": {
+    "message": "Välimuisti ja tilastot"
+  },
+  "labelCacheEnabled": {
+    "message": "Ota käyttöön IndexedDB-käännösvälimuisti"
+  },
+  "btnClearCache": {
+    "message": "Tyhjennä välimuisti"
+  },
+  "btnResetTokenStats": {
+    "message": "Nollaa token-tilastot"
+  },
+  "autoSaveHint": {
+    "message": "Muutokset tallentuvat automaattisesti."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Lisää sivustosääntö"
+  },
+  "labelHostname": {
+    "message": "Isäntänimi"
+  },
+  "labelMode": {
+    "message": "Tila"
+  },
+  "modeAlwaysSkip": {
+    "message": "Ohita aina"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Käännä aina kohteella ↓"
+  },
+  "labelProviderField": {
+    "message": "Palveluntarjoaja"
+  },
+  "btnCancel": {
+    "message": "Peruuta"
+  },
+  "btnDialogAdd": {
+    "message": "Lisää"
+  },
+  "labelName": {
+    "message": "Nimi"
+  },
+  "btnDelete": {
+    "message": "Poista"
+  },
+  "btnEdit": {
+    "message": "Muokkaa"
+  },
+  "btnCollapse": {
+    "message": "Tiivistä"
+  },
+  "btnFetch": {
+    "message": "Hae"
+  },
+  "badgeDefault": {
+    "message": "oletus"
+  },
+  "labelUnnamed": {
+    "message": "(nimetön)"
+  },
+  "labelNotSet": {
+    "message": "(ei asetettu)"
+  },
+  "placeholderModelId": {
+    "message": "Tai kirjoita mallin tunnus"
+  },
+  "labelOutputMode": {
+    "message": "Tulostustila"
+  },
+  "outputModeText": {
+    "message": "Teksti erotettuna <<<SEP>>> -merkillä"
+  },
+  "outputModeTool": {
+    "message": "Työkalukutsu (rakenteinen JSON-taulukko)"
+  },
+  "hintToolMode": {
+    "message": "Työkalutila pakottaa mallin palauttamaan JSON-taulukon – ei erotinjäsennystä, vakaampaa. Vaatii työkalukutsua tukevan mallin."
+  },
+  "labelStreamingEnabled": {
+    "message": "Käytä suoratoistoa tälle tarjoajalle"
+  },
+  "labelSystemPrompt": {
+    "message": "Järjestelmäkehotus"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Käyttäjän kehotemalli ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Perus-URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Perus-URL (jätä oletukseksi ellei käytössä välityspalvelinta)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API-avain (Google Cloud -avain)"
+  },
+  "labelApiKey": {
+    "message": "API-avain"
+  },
+  "labelApiKeyOptional": {
+    "message": "API-avain (valinnainen)"
+  },
+  "labelDeepLPlan": {
+    "message": "Palvelutaso"
+  },
+  "deepLPlanFree": {
+    "message": "Ilmainen (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Maksullinen (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Merkit sisään:"
+  },
+  "labelCharsOut": {
+    "message": "Merkit ulos:"
+  },
+  "labelModel": {
+    "message": "Malli"
+  },
+  "siteRuleNone": {
+    "message": "Ei vielä sivustosääntöjä."
+  },
+  "statsTotalPrompt": {
+    "message": "Yhteensä kehote:"
+  },
+  "statsTotalCompletion": {
+    "message": "Yhteensä täydennys:"
+  },
+  "statusCacheCleared": {
+    "message": "Välimuisti tyhjennetty."
+  },
+  "errorClearFailed": {
+    "message": "Tyhjennys epäonnistui."
+  },
+  "statusTokensReset": {
+    "message": "Tokentilastot nollattu."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Viimeistä tarjoajaa ei voi poistaa."
+  },
+  "confirmDeleteProvider": {
+    "message": "Poistetaanko tämä tarjoaja?"
+  },
+  "confirmClearCache": {
+    "message": "Tyhjennetäänkö kaikki välimuistoidut käännökset?"
+  },
+  "confirmResetTokens": {
+    "message": "Nollataanko kaikki tokentilastot?"
+  },
+  "suffixSaved": {
+    "message": " (tallennettu)"
+  },
+  "statusFetchingModels": {
+    "message": "Haetaan malleja kohteelle $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Malleja ei palautettu."
+  },
+  "statusLoadedModels": {
+    "message": "Ladattiin $COUNT$ mallia.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Haku epäonnistui: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Tyhjennys epäonnistui: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Nollaus epäonnistui: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ välimuistitettua merkintää",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ kutsua",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Aina käytössä $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Sanasto"
+  },
+  "btnEditGlossary": {
+    "message": "Muokkaa sanastoa"
+  },
+  "hintGlossary": {
+    "message": "Tässä luetellut termit injektoidaan LLM-järjestelmäkehotteeseen käännösviitteenä. Muut kuin LLM-tarjoajat (Google, DeepL, LibreTranslate) eivät huomioi tätä."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Sanasto"
+  },
+  "glossaryEmpty": {
+    "message": "Ei vielä merkintöjä. Lisää termejä alle."
+  },
+  "glossaryNone": {
+    "message": "Ei vielä merkintöjä."
+  },
+  "placeholderGlossarySource": {
+    "message": "Lähistermi"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Käännös"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Kieli (esim. zh-CN, tai tyhjä = kaikki)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ termi(ä) määritelty",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Käännä valinta"
+  },
+  "btnClose": {
+    "message": "Sulje"
+  },
+  "labelError": {
+    "message": "Virhe"
+  },
+  "tagCached": {
+    "message": "välimuistissa"
+  },
+  "notifBtnTranslate": {
+    "message": "Käännä"
+  },
+  "notifBtnNever": {
+    "message": "Älä koskaan käännä"
+  },
+  "notifBtnIgnore": {
+    "message": "Ohita"
+  },
+  "toastErrorTitle": {
+    "message": "Käännösvirhe"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Ei määritettyjä palveluntarjoajia. Avaa asetus-sivu lisätäksesi yhden."
+  },
+  "progressTranslating": {
+    "message": "Käännetään…"
+  },
+  "progressHide": {
+    "message": "Piilota"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ sisään · $OUT$ ulos tokenia",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Alkuperäinen"
+  },
+  "pdfCycleReveal": {
+    "message": "Paljastettu"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ kerrosta",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

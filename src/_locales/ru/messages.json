@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Переводчик страниц, совместимый с OpenAI — подключите свой ключ и модель API."
+  },
+  "settingsTitle": {
+    "message": "Настройки"
+  },
+  "viewerOpen": {
+    "message": "Открыть PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Откройте PDF для перевода"
+  },
+  "viewerEmptyHint": {
+    "message": "Нажмите «Открыть PDF» выше или перетащите файл сюда."
+  },
+  "labelPage": {
+    "message": "Страница:"
+  },
+  "labelTarget": {
+    "message": "Цель:"
+  },
+  "labelSite": {
+    "message": "Сайт:"
+  },
+  "btnTranslate": {
+    "message": "Перевести"
+  },
+  "btnPause": {
+    "message": "Пауза"
+  },
+  "btnResume": {
+    "message": "Продолжить"
+  },
+  "btnRestoreOriginal": {
+    "message": "Вернуть оригинал"
+  },
+  "headingSiteRules": {
+    "message": "Этот сайт"
+  },
+  "ruleAsk": {
+    "message": "Спросить"
+  },
+  "ruleSkip": {
+    "message": "Всегда пропускать"
+  },
+  "ruleAlways": {
+    "message": "Всегда переводить с ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Быстрый перевод"
+  },
+  "manualPlaceholder": {
+    "message": "Вставьте или введите текст для перевода…"
+  },
+  "headingTokens": {
+    "message": "Токены (на этой странице)"
+  },
+  "labelPrompt": {
+    "message": "Запрос:"
+  },
+  "labelCompletion": {
+    "message": "Результат:"
+  },
+  "statusNotAPage": {
+    "message": "(не страница)"
+  },
+  "statusUnknown": {
+    "message": "(неизвестно)"
+  },
+  "statusUnavailable": {
+    "message": "(недоступно)"
+  },
+  "statusPaused": {
+    "message": "Приостановлено."
+  },
+  "statusResumed": {
+    "message": "Возобновлено."
+  },
+  "statusStarted": {
+    "message": "Запущено."
+  },
+  "statusSaved": {
+    "message": "Сохранено."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Идёт перевод…"
+  },
+  "statusCannotTranslate": {
+    "message": "Не удалось перевести эту страницу"
+  },
+  "statusRestoreFailed": {
+    "message": "Ошибка восстановления"
+  },
+  "statusEmpty": {
+    "message": "(пусто)"
+  },
+  "statusCached": {
+    "message": "В кэше"
+  },
+  "statusTranslating": {
+    "message": "Перевод…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Сейчас: пропускается"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Сейчас: спрашивать каждый раз"
+  },
+  "statusNoHostname": {
+    "message": "Нет имени хоста — нельзя задать правило"
+  },
+  "statusTargetSet": {
+    "message": "Цель установлена на $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Ошибка сохранения: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Ошибка: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Восстановлено $COUNT$ узлов.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Сейчас: автоперевод с $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Готово ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "Настройки MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "Переводчик страниц с собственным API. Настройте провайдеров, правила сайтов и значения по умолчанию ниже."
+  },
+  "headingProviders": {
+    "message": "Провайдеры"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Добавить"
+  },
+  "headingBindings": {
+    "message": "Связи функций"
+  },
+  "labelDefaultProvider": {
+    "message": "Провайдер по умолчанию (для перевода страниц)"
+  },
+  "labelSelectionProvider": {
+    "message": "Провайдер перевода выделенного текста"
+  },
+  "labelUseDefault": {
+    "message": "(использовать по умолчанию)"
+  },
+  "labelManualProvider": {
+    "message": "Провайдер ручного ввода для перевода"
+  },
+  "labelPdfProvider": {
+    "message": "Провайдер перевода PDF"
+  },
+  "labelSelectionEnabled": {
+    "message": "Показывать значок \"译\" при выделении текста (клик для перевода)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Правила сайтов"
+  },
+  "btnAddRule": {
+    "message": "+ Добавить правило"
+  },
+  "siteRulesHint": {
+    "message": "Правила совпадают с точным именем хоста или любым поддоменом. Сайты не из списка используют поведение по умолчанию «спрашивать каждый раз»."
+  },
+  "headingLanguages": {
+    "message": "Языки"
+  },
+  "labelUiLanguage": {
+    "message": "Язык интерфейса"
+  },
+  "uiLangAuto": {
+    "message": "Авто (как в браузере)"
+  },
+  "labelTargetLanguage": {
+    "message": "Целевой язык"
+  },
+  "labelSkipLanguages": {
+    "message": "Пропускать языки (через запятую)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Режим перевода по умолчанию"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Определяет поведение при обнаружении страницы на иностранном языке. «Спрашивать» показывает панель сверху; «Авто» начинает перевод без подтверждения; «Никогда» отключает автоматические действия (ручной перевод через всплывающее окно доступен)."
+  },
+  "modeAsk": {
+    "message": "Спрашивать каждый раз (по умолчанию)"
+  },
+  "modeAutoTranslate": {
+    "message": "Автоматически переводить иностранные страницы"
+  },
+  "modeNeverAuto": {
+    "message": "Никогда не переводить автоматически"
+  },
+  "labelBilingualMode": {
+    "message": "Двуязычный режим"
+  },
+  "bilingualOff": {
+    "message": "Выкл"
+  },
+  "bilingualEmbed": {
+    "message": "Встроить"
+  },
+  "bilingualTooltip": {
+    "message": "Подсказка"
+  },
+  "headingBilingual": {
+    "message": "Двуязычный показ"
+  },
+  "hintBilingualMode": {
+    "message": "Режим двуязычия можно быстро переключать через всплывающее окно расширения."
+  },
+  "headingPerformance": {
+    "message": "Производительность"
+  },
+  "labelObserveMutations": {
+    "message": "Автоперевод нового контента на странице (SPA, бесконечная прокрутка)"
+  },
+  "labelViewportPriority": {
+    "message": "Приоритет элементам на экране, предзагрузка вне экрана"
+  },
+  "labelShowProgressBar": {
+    "message": "Показывать виджет хода перевода (в правом нижнем углу)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Макс символов в пачке"
+  },
+  "hintMaxChars": {
+    "message": "Больше пачка = меньше вызовов API, но медленнее каждый вызов. 3000 — хороший баланс."
+  },
+  "labelConcurrentBatches": {
+    "message": "Одновременные пачки"
+  },
+  "headingCacheStats": {
+    "message": "Кэш и статистика"
+  },
+  "labelCacheEnabled": {
+    "message": "Включить кэш переводов IndexedDB"
+  },
+  "btnClearCache": {
+    "message": "Очистить кэш"
+  },
+  "btnResetTokenStats": {
+    "message": "Сбросить статистику токенов"
+  },
+  "autoSaveHint": {
+    "message": "Изменения сохраняются автоматически."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Добавить правило сайта"
+  },
+  "labelHostname": {
+    "message": "Хостнейм"
+  },
+  "labelMode": {
+    "message": "Режим"
+  },
+  "modeAlwaysSkip": {
+    "message": "Всегда пропускать"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Всегда переводить с ↓"
+  },
+  "labelProviderField": {
+    "message": "Провайдер"
+  },
+  "btnCancel": {
+    "message": "Отмена"
+  },
+  "btnDialogAdd": {
+    "message": "Добавить"
+  },
+  "labelName": {
+    "message": "Имя"
+  },
+  "btnDelete": {
+    "message": "Удалить"
+  },
+  "btnEdit": {
+    "message": "Изменить"
+  },
+  "btnCollapse": {
+    "message": "Свернуть"
+  },
+  "btnFetch": {
+    "message": "Получить"
+  },
+  "badgeDefault": {
+    "message": "по умолчанию"
+  },
+  "labelUnnamed": {
+    "message": "(без имени)"
+  },
+  "labelNotSet": {
+    "message": "(не задано)"
+  },
+  "placeholderModelId": {
+    "message": "Или введите ID модели"
+  },
+  "labelOutputMode": {
+    "message": "Режим вывода"
+  },
+  "outputModeText": {
+    "message": "Текст с разделителем <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "Вызов инструмента (структурированный массив JSON)"
+  },
+  "hintToolMode": {
+    "message": "Режим инструмента заставляет модель возвращать массив JSON — без парсинга разделителей, надёжнее. Требуется модель с поддержкой вызова инструментов."
+  },
+  "labelStreamingEnabled": {
+    "message": "Использовать потоковую передачу для этого провайдера"
+  },
+  "labelSystemPrompt": {
+    "message": "Системный запрос"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Шаблон пользовательского запроса ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Базовый URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Базовый URL (оставьте по умолчанию, если нет прокси)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "Ключ API (ключ Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "Ключ API"
+  },
+  "labelApiKeyOptional": {
+    "message": "Ключ API (необязателен)"
+  },
+  "labelDeepLPlan": {
+    "message": "План"
+  },
+  "deepLPlanFree": {
+    "message": "Бесплатный (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Платный (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Символов вход:"
+  },
+  "labelCharsOut": {
+    "message": "Символов выход:"
+  },
+  "labelModel": {
+    "message": "Модель"
+  },
+  "siteRuleNone": {
+    "message": "Правила сайтов пока нет."
+  },
+  "statsTotalPrompt": {
+    "message": "Всего запросов:"
+  },
+  "statsTotalCompletion": {
+    "message": "Всего ответов:"
+  },
+  "statusCacheCleared": {
+    "message": "Кэш очищен."
+  },
+  "errorClearFailed": {
+    "message": "Не удалось очистить."
+  },
+  "statusTokensReset": {
+    "message": "Статистика токенов сброшена."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Нельзя удалить последнего провайдера."
+  },
+  "confirmDeleteProvider": {
+    "message": "Удалить этого провайдера?"
+  },
+  "confirmClearCache": {
+    "message": "Очистить весь кэш переводов?"
+  },
+  "confirmResetTokens": {
+    "message": "Сбросить всю статистику токенов?"
+  },
+  "suffixSaved": {
+    "message": " (сохранено)"
+  },
+  "statusFetchingModels": {
+    "message": "Загрузка моделей для $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Модели не возвращены."
+  },
+  "statusLoadedModels": {
+    "message": "Загружено $COUNT$ моделей.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Ошибка загрузки: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Не удалось очистить: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Не удалось сбросить: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ закэшированных записей",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ вызовов",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Всегда с $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Глоссарий"
+  },
+  "btnEditGlossary": {
+    "message": "Редактировать глоссарий"
+  },
+  "hintGlossary": {
+    "message": "Термины из списка добавляются в системный промпт LLM как справка по переводу. Провайдеры без LLM (Google, DeepL, LibreTranslate) это игнорируют."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Глоссарий"
+  },
+  "glossaryEmpty": {
+    "message": "Пока нет записей. Добавьте термины ниже."
+  },
+  "glossaryNone": {
+    "message": "Пока нет записей."
+  },
+  "placeholderGlossarySource": {
+    "message": "Исходный термин"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Перевод"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Язык (напр. zh-CN или пусто = все)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ терм(ов) добавлено",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Перевести выделенное"
+  },
+  "btnClose": {
+    "message": "Закрыть"
+  },
+  "labelError": {
+    "message": "Ошибка"
+  },
+  "tagCached": {
+    "message": "в кэше"
+  },
+  "notifBtnTranslate": {
+    "message": "Перевести"
+  },
+  "notifBtnNever": {
+    "message": "Никогда не переводить"
+  },
+  "notifBtnIgnore": {
+    "message": "Игнорировать"
+  },
+  "toastErrorTitle": {
+    "message": "Ошибка перевода"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Провайдеры не настроены. Откройте страницу настроек, чтобы добавить."
+  },
+  "progressTranslating": {
+    "message": "Перевод…"
+  },
+  "progressHide": {
+    "message": "Скрыть"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ в · $OUT$ из токенов",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Оригинал"
+  },
+  "pdfCycleReveal": {
+    "message": "Показано"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ слоёв",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

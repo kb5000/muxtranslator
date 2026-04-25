@@ -1099,6 +1099,7 @@
     opts = opts || {};
     engine.settings = await loadSettings();
     engine.providerId = opts.providerId || resolveProviderIdFromRules(engine.settings);
+    if (opts.targetLanguage) engine.settings.targetLanguage = opts.targetLanguage;
     engine.pdfMode = PdfModule.isPdfViewerPage();
 
     // Guard: verify a provider actually exists
@@ -1245,6 +1246,7 @@
   // page reloads and back/forward within the same tab, but doesn't leak across
   // unrelated pages. Read on popup open to pre-select the same provider.
   var MUXT_PROVIDER_KEY = 'muxt.lastProviderId';
+  var MUXT_LANG_KEY     = 'muxt.lastTargetLang';
 
   function rememberProviderChoice(providerId) {
     if (!providerId) return;
@@ -1253,6 +1255,15 @@
 
   function readRememberedProvider() {
     try { return sessionStorage.getItem(MUXT_PROVIDER_KEY) || null; } catch (e) { return null; }
+  }
+
+  function rememberTargetLang(lang) {
+    if (!lang) return;
+    try { sessionStorage.setItem(MUXT_LANG_KEY, lang); } catch (e) {}
+  }
+
+  function readRememberedTargetLang() {
+    try { return sessionStorage.getItem(MUXT_LANG_KEY) || null; } catch (e) { return null; }
   }
 
   // Per-URL translation-state flag. Lets us re-trigger translation when the
@@ -1292,13 +1303,16 @@
         sendResponse({ success: true });
         return false;
       case 'SET_PROVIDER':
-        // Remember the user's provider pick even before they hit Translate.
-        // If the engine is already running, switching would require stopping
-        // and re-running; for simplicity we just update the remembered value
-        // so the next translate / resume uses it.
         rememberProviderChoice(message.payload && message.payload.providerId);
         if (engine.started && message.payload && message.payload.providerId) {
           engine.providerId = message.payload.providerId;
+        }
+        sendResponse({ success: true });
+        return false;
+      case 'SET_TARGET_LANG':
+        rememberTargetLang(message.payload && message.payload.targetLang);
+        if (engine.started && message.payload && message.payload.targetLang) {
+          engine.settings.targetLanguage = message.payload.targetLang;
         }
         sendResponse({ success: true });
         return false;
@@ -1316,6 +1330,7 @@
             bilingualMode: (engine.settings && engine.settings.bilingualMode) || 'off',
             isPdf: PdfModule.isPdfViewerPage(),
             lastProviderId: readRememberedProvider(),
+            lastTargetLang: readRememberedTargetLang(),
             url: window.location.href,
             title: document.title
           }

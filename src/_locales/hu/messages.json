@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "OpenAI-kompatibilis oldalfordító — hozd be a saját API kulcsod és modell."
+  },
+  "settingsTitle": {
+    "message": "Beállítások"
+  },
+  "viewerOpen": {
+    "message": "PDF megnyitása"
+  },
+  "viewerEmptyTitle": {
+    "message": "Nyiss meg egy PDF-et fordításhoz"
+  },
+  "viewerEmptyHint": {
+    "message": "Kattints az „Open PDF” fölé vagy ejtsd be a fájlt erre az oldalra."
+  },
+  "labelPage": {
+    "message": "Oldal:"
+  },
+  "labelTarget": {
+    "message": "Cél:"
+  },
+  "labelSite": {
+    "message": "Webhely:"
+  },
+  "btnTranslate": {
+    "message": "Fordítás"
+  },
+  "btnPause": {
+    "message": "Szünet"
+  },
+  "btnResume": {
+    "message": "Folytatás"
+  },
+  "btnRestoreOriginal": {
+    "message": "Eredetire állítás"
+  },
+  "headingSiteRules": {
+    "message": "Ez a webhely"
+  },
+  "ruleAsk": {
+    "message": "Kérdez"
+  },
+  "ruleSkip": {
+    "message": "Mindig kihagy"
+  },
+  "ruleAlways": {
+    "message": "Mindig fordít ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Gyors fordítás"
+  },
+  "manualPlaceholder": {
+    "message": "Illessze be vagy gépelje be a fordítandó szöveget…"
+  },
+  "headingTokens": {
+    "message": "Tokenek (ez az oldal)"
+  },
+  "labelPrompt": {
+    "message": "Parancs:"
+  },
+  "labelCompletion": {
+    "message": "Befejezés:"
+  },
+  "statusNotAPage": {
+    "message": "(nem oldal)"
+  },
+  "statusUnknown": {
+    "message": "(ismeretlen)"
+  },
+  "statusUnavailable": {
+    "message": "(nem elérhető)"
+  },
+  "statusPaused": {
+    "message": "Szüneteltetve."
+  },
+  "statusResumed": {
+    "message": "Folytatva."
+  },
+  "statusStarted": {
+    "message": "Elindítva."
+  },
+  "statusSaved": {
+    "message": "Mentve."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Fordítás folyamatban…"
+  },
+  "statusCannotTranslate": {
+    "message": "Nem fordítható ez az oldal"
+  },
+  "statusRestoreFailed": {
+    "message": "Visszaállítás sikertelen"
+  },
+  "statusEmpty": {
+    "message": "(üres)"
+  },
+  "statusCached": {
+    "message": "Gyorsítótárazott"
+  },
+  "statusTranslating": {
+    "message": "Fordítás…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Jelenleg: kihagyva"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Jelenleg: minden alkalommal kérdez"
+  },
+  "statusNoHostname": {
+    "message": "Nincs állomásnév – szabály nem állítható be"
+  },
+  "statusTargetSet": {
+    "message": "Cél nyelv: $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Mentés sikertelen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Sikertelen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "$COUNT$ csomópont visszaállítva.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Jelenleg: automatikus fordítás $NAME$-nel",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Kész ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator Beállítások"
+  },
+  "optionsSubtitle": {
+    "message": "Saját API-s oldalfordító. Állítsa be az alábbi szolgáltatókat, oldalszabályokat és alapértékeket."
+  },
+  "headingProviders": {
+    "message": "Szolgáltatók"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-kompatibilis"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Hozzáadás"
+  },
+  "headingBindings": {
+    "message": "Funkciók hozzárendelései"
+  },
+  "labelDefaultProvider": {
+    "message": "Alapértelmezett szolgáltató (oldalfordításhoz)"
+  },
+  "labelSelectionProvider": {
+    "message": "Kijelölés fordításának szolgáltatója"
+  },
+  "labelUseDefault": {
+    "message": "(alapértelmezett használata)"
+  },
+  "labelManualProvider": {
+    "message": "Manuális beviteli fordítás szolgáltatója"
+  },
+  "labelPdfProvider": {
+    "message": "PDF-fordítás szolgáltatója"
+  },
+  "labelSelectionEnabled": {
+    "message": "\"译\" jel megjelenítése kijelöléskor (kattintás a fordításhoz)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Oldalszabályok"
+  },
+  "btnAddRule": {
+    "message": "+ Szabály hozzáadása"
+  },
+  "siteRulesHint": {
+    "message": "A szabályok pontos hosztnevet vagy bármely altartományt illesztenek. A listán nem szereplő oldalak az alapértelmezett „mindig kérdez” viselkedésre váltanak vissza."
+  },
+  "headingLanguages": {
+    "message": "Nyelvek"
+  },
+  "labelUiLanguage": {
+    "message": "Felület nyelve"
+  },
+  "uiLangAuto": {
+    "message": "Automatikus (követi a böngészőt)"
+  },
+  "labelTargetLanguage": {
+    "message": "Cél nyelv"
+  },
+  "labelSkipLanguages": {
+    "message": "Kihagyandó nyelvek (vesszővel elválasztva)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Alapértelmezett fordítási mód"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Meghatározza, mi történik idegen nyelvű oldal felismerésekor. A „Kérdez” felső sávot jelenít meg; az „Auto” csendben elindítja a fordítást; a „Soha” letiltja az automatikus viselkedést (manuálisan továbbra is lehet fordítani a felugró ablakon keresztül)."
+  },
+  "modeAsk": {
+    "message": "Mindig kérdez (alapértelmezett)"
+  },
+  "modeAutoTranslate": {
+    "message": "Automatikusan fordít idegen oldalakat"
+  },
+  "modeNeverAuto": {
+    "message": "Soha ne fordítson automatikusan"
+  },
+  "labelBilingualMode": {
+    "message": "Kétnyelvű megjelenítés"
+  },
+  "bilingualOff": {
+    "message": "Ki"
+  },
+  "bilingualEmbed": {
+    "message": "Beágyazás"
+  },
+  "bilingualTooltip": {
+    "message": "Súgó"
+  },
+  "headingBilingual": {
+    "message": "Kétnyelvű megjelenítés"
+  },
+  "hintBilingualMode": {
+    "message": "A kétnyelvű módot gyorsan átválthatja a bővítmény felugró ablakából is."
+  },
+  "headingPerformance": {
+    "message": "Teljesítmény"
+  },
+  "labelObserveMutations": {
+    "message": "Automatikus fordítás újonnan betöltött tartalomra (SPA, végtelen görgetés)"
+  },
+  "labelViewportPriority": {
+    "message": "Képernyőn lévő elemek elsőbbsége, képernyőn kívüliek előtöltése"
+  },
+  "labelShowProgressBar": {
+    "message": "Fordítási folyamatjelző mutatása (jobb alsó sarok)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Max karakterek kötegben"
+  },
+  "hintMaxChars": {
+    "message": "Nagyobb köteg = kevesebb API-hívás, de lassabb hívás. A 3000 jó egyensúly."
+  },
+  "labelConcurrentBatches": {
+    "message": "Párhuzamos kötegek"
+  },
+  "headingCacheStats": {
+    "message": "Gyorsítótár és statisztika"
+  },
+  "labelCacheEnabled": {
+    "message": "IndexedDB fordítási gyorsítótár engedélyezése"
+  },
+  "btnClearCache": {
+    "message": "Gyorsítótár törlése"
+  },
+  "btnResetTokenStats": {
+    "message": "Token-statisztika nullázása"
+  },
+  "autoSaveHint": {
+    "message": "A változtatások automatikusan mentve lesznek."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Webhelyszabály hozzáadása"
+  },
+  "labelHostname": {
+    "message": "Gépnév"
+  },
+  "labelMode": {
+    "message": "Mód"
+  },
+  "modeAlwaysSkip": {
+    "message": "Mindig kihagyás"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Mindig fordítás ezzel ↓"
+  },
+  "labelProviderField": {
+    "message": "Szolgáltató"
+  },
+  "btnCancel": {
+    "message": "Mégse"
+  },
+  "btnDialogAdd": {
+    "message": "Hozzáadás"
+  },
+  "labelName": {
+    "message": "Név"
+  },
+  "btnDelete": {
+    "message": "Törlés"
+  },
+  "btnEdit": {
+    "message": "Szerkesztés"
+  },
+  "btnCollapse": {
+    "message": "Összecsukás"
+  },
+  "btnFetch": {
+    "message": "Lekérés"
+  },
+  "badgeDefault": {
+    "message": "alapértelmezett"
+  },
+  "labelUnnamed": {
+    "message": "(névtelen)"
+  },
+  "labelNotSet": {
+    "message": "(nincs beállítva)"
+  },
+  "placeholderModelId": {
+    "message": "Vagy gépid megadása"
+  },
+  "labelOutputMode": {
+    "message": "Kimeneti mód"
+  },
+  "outputModeText": {
+    "message": "Szöveg <<<SEP>>> elválasztóval"
+  },
+  "outputModeTool": {
+    "message": "Eszközhívás (strukturált JSON tömb)"
+  },
+  "hintToolMode": {
+    "message": "Az eszköz mód kikényszeríti a JSON tömböt visszaadó modellt — nincs elválasztóelemzés, robusztusabb. Modell szükséges, amely támogatja az eszközhívást."
+  },
+  "labelStreamingEnabled": {
+    "message": "Streamelés engedélyezése ehhez a szolgáltatóhoz"
+  },
+  "labelSystemPrompt": {
+    "message": "Rendszerprompt"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Felhasználói prompt sablon ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Alap URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Alap URL (csak proxynál módosítsd)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API Kulcs (Google Cloud kulcs)"
+  },
+  "labelApiKey": {
+    "message": "API Kulcs"
+  },
+  "labelApiKeyOptional": {
+    "message": "API Kulcs (opcionális)"
+  },
+  "labelDeepLPlan": {
+    "message": "Csomag"
+  },
+  "deepLPlanFree": {
+    "message": "Ingyenes (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Fizetős (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Bejövő karakterek:"
+  },
+  "labelCharsOut": {
+    "message": "Kimenő karakterek:"
+  },
+  "labelModel": {
+    "message": "Modell"
+  },
+  "siteRuleNone": {
+    "message": "Még nincsenek oldalszabályok."
+  },
+  "statsTotalPrompt": {
+    "message": "Összes prompt:"
+  },
+  "statsTotalCompletion": {
+    "message": "Összes kiegészítés:"
+  },
+  "statusCacheCleared": {
+    "message": "Gyorsítótár törölve."
+  },
+  "errorClearFailed": {
+    "message": "Törlés sikertelen."
+  },
+  "statusTokensReset": {
+    "message": "Tokenstatisztika nullázva."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Nem törölhető az utolsó szolgáltató."
+  },
+  "confirmDeleteProvider": {
+    "message": "Törölni ezt a szolgáltatót?"
+  },
+  "confirmClearCache": {
+    "message": "Törölni minden gyorsítótárazott fordítást?"
+  },
+  "confirmResetTokens": {
+    "message": "Nullázni minden tokenstatisztikát?"
+  },
+  "suffixSaved": {
+    "message": " (mentve)"
+  },
+  "statusFetchingModels": {
+    "message": "Modellek lekérése $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Nincsenek modellek."
+  },
+  "statusLoadedModels": {
+    "message": "$COUNT$ modell betöltve.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Letöltés sikertelen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Törlés sikertelen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Nullázás sikertelen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ gyorsítótárazott bejegyzés",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ hívás",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Mindig $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Szószedet"
+  },
+  "btnEditGlossary": {
+    "message": "Szószedet szerkesztése"
+  },
+  "hintGlossary": {
+    "message": "Itt felsorolt kifejezések beinjektálódnak az LLM rendszerpromptba fordítási segédletként. Nem-LLM szolgáltatók (Google, DeepL, LibreTranslate) figyelmen kívül hagyják ezt."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Szószedet"
+  },
+  "glossaryEmpty": {
+    "message": "Még nincsenek bejegyzések. Adjon hozzá kifejezéseket alul."
+  },
+  "glossaryNone": {
+    "message": "Még nincsenek bejegyzések."
+  },
+  "placeholderGlossarySource": {
+    "message": "Forrás kifejezés"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Fordítás"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Nyelv (pl. zh-CN, vagy üres = mind)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ kifejezés megadva",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Kijelölés fordítása"
+  },
+  "btnClose": {
+    "message": "Bezárás"
+  },
+  "labelError": {
+    "message": "Hiba"
+  },
+  "tagCached": {
+    "message": "gyorsítótárazott"
+  },
+  "notifBtnTranslate": {
+    "message": "Fordítás"
+  },
+  "notifBtnNever": {
+    "message": "Soha ne fordítson"
+  },
+  "notifBtnIgnore": {
+    "message": "Figyelmen kívül hagyás"
+  },
+  "toastErrorTitle": {
+    "message": "Fordítási hiba"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Nincsenek konfigurált szolgáltatók. Nyissa meg a beállítások oldalt egy hozzáadásához."
+  },
+  "progressTranslating": {
+    "message": "Fordítás…"
+  },
+  "progressHide": {
+    "message": "Elrejtés"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ bejövő · $OUT$ kimenő token",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Eredeti"
+  },
+  "pdfCycleReveal": {
+    "message": "Megjelenített"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ réteg",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

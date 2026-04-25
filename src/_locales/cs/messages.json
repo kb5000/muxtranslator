@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Překladač stránek kompatibilní s OpenAI — použijte vlastní API klíč a model."
+  },
+  "settingsTitle": {
+    "message": "Nastavení"
+  },
+  "viewerOpen": {
+    "message": "Otevřít PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Otevřete PDF k překladu"
+  },
+  "viewerEmptyHint": {
+    "message": "Klikněte na „Otevřít PDF“ výše nebo sem přetáhněte soubor."
+  },
+  "labelPage": {
+    "message": "Stránka:"
+  },
+  "labelTarget": {
+    "message": "Cíl:"
+  },
+  "labelSite": {
+    "message": "Web:"
+  },
+  "btnTranslate": {
+    "message": "Přeložit"
+  },
+  "btnPause": {
+    "message": "Pozastavit"
+  },
+  "btnResume": {
+    "message": "Obnovit"
+  },
+  "btnRestoreOriginal": {
+    "message": "Obnovit originál"
+  },
+  "headingSiteRules": {
+    "message": "Tento web"
+  },
+  "ruleAsk": {
+    "message": "Zeptat se"
+  },
+  "ruleSkip": {
+    "message": "Vždy přeskočit"
+  },
+  "ruleAlways": {
+    "message": "Vždy přeložit pomocí ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Rychlý překlad"
+  },
+  "manualPlaceholder": {
+    "message": "Vložte nebo napište text k překladu…"
+  },
+  "headingTokens": {
+    "message": "Tokeny (tato stránka)"
+  },
+  "labelPrompt": {
+    "message": "Výzva:"
+  },
+  "labelCompletion": {
+    "message": "Doplněk:"
+  },
+  "statusNotAPage": {
+    "message": "(není stránka)"
+  },
+  "statusUnknown": {
+    "message": "(neznámé)"
+  },
+  "statusUnavailable": {
+    "message": "(nedostupné)"
+  },
+  "statusPaused": {
+    "message": "Pozastaveno."
+  },
+  "statusResumed": {
+    "message": "Obnoveno."
+  },
+  "statusStarted": {
+    "message": "Spuštěno."
+  },
+  "statusSaved": {
+    "message": "Uloženo."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Probíhá překlad…"
+  },
+  "statusCannotTranslate": {
+    "message": "Nelze přeložit tuto stránku"
+  },
+  "statusRestoreFailed": {
+    "message": "Obnovení selhalo"
+  },
+  "statusEmpty": {
+    "message": "(prázdné)"
+  },
+  "statusCached": {
+    "message": "V mezipaměti"
+  },
+  "statusTranslating": {
+    "message": "Překládám…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Nyní: přeskočeno"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Nyní: ptát se pokaždé"
+  },
+  "statusNoHostname": {
+    "message": "Chybí název hostitele – nelze nastavit pravidlo"
+  },
+  "statusTargetSet": {
+    "message": "Cíl nastaven na $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Uložení selhalo: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Selhalo: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Obnoveno $COUNT$ uzlů.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Nyní: automatický překlad pomocí $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Hotovo ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "Nastavení MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "Překladač stránek s vlastním API. Níže nakonfigurujte poskytovatele, pravidla pro weby a výchozí hodnoty."
+  },
+  "headingProviders": {
+    "message": "Poskytovatelé"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Přidat"
+  },
+  "headingBindings": {
+    "message": "Vazby funkcí"
+  },
+  "labelDefaultProvider": {
+    "message": "Výchozí poskytovatel (pro překlad stránky)"
+  },
+  "labelSelectionProvider": {
+    "message": "Poskytovatel překladu výběru"
+  },
+  "labelUseDefault": {
+    "message": "(použít výchozí)"
+  },
+  "labelManualProvider": {
+    "message": "Poskytovatel ručního vstupu"
+  },
+  "labelPdfProvider": {
+    "message": "Poskytovatel překladu PDF"
+  },
+  "labelSelectionEnabled": {
+    "message": "Zobrazit značku „译“ při výběru textu (kliknutím přeložíte)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Pravidla pro weby"
+  },
+  "btnAddRule": {
+    "message": "+ Přidat pravidlo"
+  },
+  "siteRulesHint": {
+    "message": "Pravidla odpovídají přesnému názvu hostitele nebo jakékoli subdoméně. Weby, které nejsou uvedeny, použijí výchozí chování „zeptat se pokaždé“."
+  },
+  "headingLanguages": {
+    "message": "Jazyky"
+  },
+  "labelUiLanguage": {
+    "message": "Jazyk rozhraní"
+  },
+  "uiLangAuto": {
+    "message": "Automaticky (dle prohlížeče)"
+  },
+  "labelTargetLanguage": {
+    "message": "Cílový jazyk"
+  },
+  "labelSkipLanguages": {
+    "message": "Vynechat jazyky (odděleno čárkami)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Výchozí režim překladu"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Určuje, co se stane při detekci cizojazyčné stránky. „Zeptat se“ zobrazí lištu nahoře; „Auto“ spustí překlad tiše; „Nikdy“ zakáže veškeré automatické chování (ručně můžete překládat přes vyskakovací okno)."
+  },
+  "modeAsk": {
+    "message": "Zeptat se pokaždé (výchozí)"
+  },
+  "modeAutoTranslate": {
+    "message": "Automaticky překládat cizojazyčné stránky"
+  },
+  "modeNeverAuto": {
+    "message": "Nikdy automaticky nepřekládat"
+  },
+  "labelBilingualMode": {
+    "message": "Dvojjazyčný zobrazení"
+  },
+  "bilingualOff": {
+    "message": "Vypnuto"
+  },
+  "bilingualEmbed": {
+    "message": "Vložit"
+  },
+  "bilingualTooltip": {
+    "message": "Tip"
+  },
+  "headingBilingual": {
+    "message": "Dvojjazyčné zobrazení"
+  },
+  "hintBilingualMode": {
+    "message": "Režim dvojjazyčného zobrazení lze rychle přepnout i z vyskakovací nabídky rozšíření."
+  },
+  "headingPerformance": {
+    "message": "Výkon"
+  },
+  "labelObserveMutations": {
+    "message": "Automaticky překládat nový obsah přidaný stránkou (SPA, nekonečný posun)"
+  },
+  "labelViewportPriority": {
+    "message": "Upřednostnit prvky na obrazovce, přednačíst mimo ni"
+  },
+  "labelShowProgressBar": {
+    "message": "Zobrazit widget s postupem překladu (vpravo dole)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Max. znaků na dávku"
+  },
+  "hintMaxChars": {
+    "message": "Větší dávka = méně volání API, ale pomalejší každé volání. 3000 je dobrá rovnováha."
+  },
+  "labelConcurrentBatches": {
+    "message": "Souběžné dávky"
+  },
+  "headingCacheStats": {
+    "message": "Mezipaměť a statistiky"
+  },
+  "labelCacheEnabled": {
+    "message": "Povolit mezipaměť překladu IndexedDB"
+  },
+  "btnClearCache": {
+    "message": "Vymazat mezipaměť"
+  },
+  "btnResetTokenStats": {
+    "message": "Resetovat statistiku tokenů"
+  },
+  "autoSaveHint": {
+    "message": "Změny se ukládají automaticky."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Přidat pravidlo pro web"
+  },
+  "labelHostname": {
+    "message": "Doménové jméno"
+  },
+  "labelMode": {
+    "message": "Režim"
+  },
+  "modeAlwaysSkip": {
+    "message": "Vždy přeskočit"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Vždy přeložit pomocí ↓"
+  },
+  "labelProviderField": {
+    "message": "Poskytovatel"
+  },
+  "btnCancel": {
+    "message": "Zrušit"
+  },
+  "btnDialogAdd": {
+    "message": "Přidat"
+  },
+  "labelName": {
+    "message": "Název"
+  },
+  "btnDelete": {
+    "message": "Smazat"
+  },
+  "btnEdit": {
+    "message": "Upravit"
+  },
+  "btnCollapse": {
+    "message": "Sbalit"
+  },
+  "btnFetch": {
+    "message": "Načíst"
+  },
+  "badgeDefault": {
+    "message": "výchozí"
+  },
+  "labelUnnamed": {
+    "message": "(beze jména)"
+  },
+  "labelNotSet": {
+    "message": "(nenastaveno)"
+  },
+  "placeholderModelId": {
+    "message": "Nebo zadejte ID modelu"
+  },
+  "labelOutputMode": {
+    "message": "Režim výstupu"
+  },
+  "outputModeText": {
+    "message": "Text s oddělovačem <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "Volání nástroje (strukturované pole JSON)"
+  },
+  "hintToolMode": {
+    "message": "Nástrojový režim donutí model vrátit pole JSON – žádné parsování oddělovačů, robustnější. Vyžaduje model podporující volání nástrojů."
+  },
+  "labelStreamingEnabled": {
+    "message": "Použít streamování pro tohoto poskytovatele"
+  },
+  "labelSystemPrompt": {
+    "message": "Systémový prompt"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Šablona uživatelského promptu ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Základní URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Základní URL (ponechte výchozí, pokud nepoužíváte proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API klíč (klíč Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "API klíč"
+  },
+  "labelApiKeyOptional": {
+    "message": "API klíč (volitelné)"
+  },
+  "labelDeepLPlan": {
+    "message": "Plán"
+  },
+  "deepLPlanFree": {
+    "message": "Free (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Placený (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Znaků v:"
+  },
+  "labelCharsOut": {
+    "message": "Znaků ven:"
+  },
+  "labelModel": {
+    "message": "Model"
+  },
+  "siteRuleNone": {
+    "message": "Zatím žádná pravidla pro stránky."
+  },
+  "statsTotalPrompt": {
+    "message": "Celkem promptů:"
+  },
+  "statsTotalCompletion": {
+    "message": "Celkem dokončení:"
+  },
+  "statusCacheCleared": {
+    "message": "Mezipaměť vymazána."
+  },
+  "errorClearFailed": {
+    "message": "Vymazání selhalo."
+  },
+  "statusTokensReset": {
+    "message": "Statistiky tokenů vynulovány."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Nelze smazat posledního poskytovatele."
+  },
+  "confirmDeleteProvider": {
+    "message": "Smazat tohoto poskytovatele?"
+  },
+  "confirmClearCache": {
+    "message": "Vymazat všechny uložené překlady?"
+  },
+  "confirmResetTokens": {
+    "message": "Vynulovat statistiky tokenů?"
+  },
+  "suffixSaved": {
+    "message": " (uloženo)"
+  },
+  "statusFetchingModels": {
+    "message": "Načítání modelů pro $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Nevráceny žádné modely."
+  },
+  "statusLoadedModels": {
+    "message": "Načteno $COUNT$ modelů.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Načtení selhalo: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Vymazání selhalo: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Vynulování selhalo: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ položek v mezipaměti",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ volání",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Vždy s $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Glosář"
+  },
+  "btnEditGlossary": {
+    "message": "Upravit glosář"
+  },
+  "hintGlossary": {
+    "message": "Uvedené pojmy jsou vkládány do systémového promptu LLM jako překladový odkaz. Poskytovatelé bez LLM (Google, DeepL, LibreTranslate) to ignorují."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Glosář"
+  },
+  "glossaryEmpty": {
+    "message": "Zatím žádné položky. Přidejte výrazy níže."
+  },
+  "glossaryNone": {
+    "message": "Zatím žádné položky."
+  },
+  "placeholderGlossarySource": {
+    "message": "Výraz ve zdroji"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Překlad"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Jazyk (např. zh-CN, nebo prázdné = vše)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ výraz(y) definován",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Přeložit výběr"
+  },
+  "btnClose": {
+    "message": "Zavřít"
+  },
+  "labelError": {
+    "message": "Chyba"
+  },
+  "tagCached": {
+    "message": "uloženo v mezipaměti"
+  },
+  "notifBtnTranslate": {
+    "message": "Přeložit"
+  },
+  "notifBtnNever": {
+    "message": "Nikdy nepřekládat"
+  },
+  "notifBtnIgnore": {
+    "message": "Ignorovat"
+  },
+  "toastErrorTitle": {
+    "message": "Chyba překladu"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Není nastaven žádný poskytovatel. Otevřete stránku nastavení a přidejte jednoho."
+  },
+  "progressTranslating": {
+    "message": "Překládám…"
+  },
+  "progressHide": {
+    "message": "Skrýt"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ vstupních · $OUT$ výstupních tokenů",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Originál"
+  },
+  "pdfCycleReveal": {
+    "message": "Odkrytý"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ vrstev",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

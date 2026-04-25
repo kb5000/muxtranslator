@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "مترجم صفحات متوافق مع OpenAI — أحضر مفتاح API ونموذجك الخاص."
+  },
+  "settingsTitle": {
+    "message": "الإعدادات"
+  },
+  "viewerOpen": {
+    "message": "افتح PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "افتح PDF للترجمة"
+  },
+  "viewerEmptyHint": {
+    "message": "انقر على \"افتح PDF\" أعلاه أو اسحب ملفًا في أي موضع بهذه الصفحة."
+  },
+  "labelPage": {
+    "message": "صفحة:"
+  },
+  "labelTarget": {
+    "message": "الوجهة:"
+  },
+  "labelSite": {
+    "message": "الموقع:"
+  },
+  "btnTranslate": {
+    "message": "ترجم"
+  },
+  "btnPause": {
+    "message": "إيقاف مؤقت"
+  },
+  "btnResume": {
+    "message": "استئناف"
+  },
+  "btnRestoreOriginal": {
+    "message": "استرجاع الأصل"
+  },
+  "headingSiteRules": {
+    "message": "هذا الموقع"
+  },
+  "ruleAsk": {
+    "message": "اسأل"
+  },
+  "ruleSkip": {
+    "message": "تجاوز دائمًا"
+  },
+  "ruleAlways": {
+    "message": "ترجم دائمًا بـ ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "ترجمة سريعة"
+  },
+  "manualPlaceholder": {
+    "message": "الصق أو اكتب نصًا للترجمة…"
+  },
+  "headingTokens": {
+    "message": "Token (هذه الصفحة)"
+  },
+  "labelPrompt": {
+    "message": "الطلب:"
+  },
+  "labelCompletion": {
+    "message": "الإكمال:"
+  },
+  "statusNotAPage": {
+    "message": "(ليس صفحة)"
+  },
+  "statusUnknown": {
+    "message": "(غير معروف)"
+  },
+  "statusUnavailable": {
+    "message": "(غير متاح)"
+  },
+  "statusPaused": {
+    "message": "متوقف مؤقتًا."
+  },
+  "statusResumed": {
+    "message": "استؤنف."
+  },
+  "statusStarted": {
+    "message": "بدأ."
+  },
+  "statusSaved": {
+    "message": "تم الحفظ."
+  },
+  "statusTranslatingInProgress": {
+    "message": "جارٍ الترجمة…"
+  },
+  "statusCannotTranslate": {
+    "message": "لا يمكن ترجمة هذه الصفحة"
+  },
+  "statusRestoreFailed": {
+    "message": "فشل الاستعادة"
+  },
+  "statusEmpty": {
+    "message": "(فارغ)"
+  },
+  "statusCached": {
+    "message": "مخزّن"
+  },
+  "statusTranslating": {
+    "message": "يترجم…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "حاليًا: متجاوز"
+  },
+  "statusCurrentlyAsk": {
+    "message": "حاليًا: اسأل في كل مرة"
+  },
+  "statusNoHostname": {
+    "message": "لا اسم مضيف — لا يمكن تعيين قاعدة"
+  },
+  "statusTargetSet": {
+    "message": "الهدف مضبوط إلى $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "فشل الحفظ: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "فشل: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "استُعيد $COUNT$ عقدة.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "حاليًا: ترجمة تلقائية بـ $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "تم ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "إعدادات MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "مترجم صفحات يعمل بواجهة برمجة التطبيقات الخاصة بك. راجع مزودي الخدمة، قواعد المواقع، والإعدادات الافتراضية أدناه."
+  },
+  "headingProviders": {
+    "message": "المزودون"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "تضمين"
+  },
+  "bilingualTooltip": {
+    "message": "تلميحة"
+  },
+  "headingBilingual": {
+    "message": "عرض ثنائي اللغة"
+  },
+  "hintBilingualMode": {
+    "message": "يمكن أيضًا تبديل وضع الثنائية من نافذة الإضافة بسرعة."
+  },
+  "headingPerformance": {
+    "message": "الأداء"
+  },
+  "labelObserveMutations": {
+    "message": "ترجمة المحتوى الجديد تلقائيًا (تطبيقات SPA، التمرير اللانهائي)"
+  },
+  "labelViewportPriority": {
+    "message": "إعطاء الأولوية للعناصر على الشاشة، وتحميل ما هو خارجها مسبقًا"
+  },
+  "labelShowProgressBar": {
+    "message": "إظهار أداة تقدم الترجمة (زاوية أسفل اليمين)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "عدد الأحرف الأقصى في الدفعة"
+  },
+  "hintMaxChars": {
+    "message": "دفعة أكبر = استدعاءات API أقل لكن أبطأ لكل مرة. 3000 توازن جيد."
+  },
+  "labelConcurrentBatches": {
+    "message": "دفعات متوازية"
+  },
+  "headingCacheStats": {
+    "message": "التخزين والإحصائيات"
+  },
+  "labelCacheEnabled": {
+    "message": "تمكين ذاكرة التخزين المؤقت IndexedDB للترجمة"
+  },
+  "btnClearCache": {
+    "message": "مسح الذاكرة"
+  },
+  "btnResetTokenStats": {
+    "message": "إعادة تعيين إحصائيات Token"
+  },
+  "autoSaveHint": {
+    "message": "يتم حفظ التغييرات تلقائيًا."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "إضافة قاعدة موقع"
+  },
+  "labelHostname": {
+    "message": "اسم المضيف"
+  },
+  "labelMode": {
+    "message": "الوضع"
+  },
+  "modeAlwaysSkip": {
+    "message": "تجاوز دائمًا"
+  },
+  "modeAlwaysTranslate": {
+    "message": "ترجم دائمًا باستخدام ↓"
+  },
+  "labelProviderField": {
+    "message": "المزود"
+  },
+  "btnCancel": {
+    "message": "إلغاء"
+  },
+  "btnDialogAdd": {
+    "message": "إضافة"
+  },
+  "labelName": {
+    "message": "الاسم"
+  },
+  "btnDelete": {
+    "message": "حذف"
+  },
+  "btnEdit": {
+    "message": "تعديل"
+  },
+  "btnCollapse": {
+    "message": "طي"
+  },
+  "btnFetch": {
+    "message": "جلب"
+  },
+  "badgeDefault": {
+    "message": "افتراضي"
+  },
+  "labelUnnamed": {
+    "message": "(غير مسمى)"
+  },
+  "labelNotSet": {
+    "message": "(لم يتم التعيين)"
+  },
+  "placeholderModelId": {
+    "message": "أو اكتب معرف النموذج"
+  },
+  "labelOutputMode": {
+    "message": "وضع الإخراج"
+  },
+  "outputModeText": {
+    "message": "نص بفاصل <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "استدعاء أداة (مصفوفة JSON منظمة)"
+  },
+  "hintToolMode": {
+    "message": "وضع الأداة يجبر النموذج على إرجاع مصفوفة JSON — لا تحليل فواصل، أكثر موثوقية. يتطلب نموذجًا يدعم استدعاء الأداة."
+  },
+  "labelStreamingEnabled": {
+    "message": "استخدم البث لهذا المزود"
+  },
+  "labelSystemPrompt": {
+    "message": "الإيعاز النظامي"
+  },
+  "labelUserPromptTemplate": {
+    "message": "قالب إيعاز المستخدم ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "عنوان URL الأساسي"
+  },
+  "labelBaseURLProxy": {
+    "message": "عنوان URL الأساسي (اتركه افتراضيًا ما لم تكن هناك وسيطة)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "مفتاح API (مفتاح Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "مفتاح API"
+  },
+  "labelApiKeyOptional": {
+    "message": "مفتاح API (اختياري)"
+  },
+  "labelDeepLPlan": {
+    "message": "الخطة"
+  },
+  "deepLPlanFree": {
+    "message": "مجاني (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "مدفوع (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "الحروف الداخلة:"
+  },
+  "labelCharsOut": {
+    "message": "الحروف الخارجة:"
+  },
+  "labelModel": {
+    "message": "النموذج"
+  },
+  "siteRuleNone": {
+    "message": "لا توجد قواعد موقع بعد."
+  },
+  "statsTotalPrompt": {
+    "message": "إجمالي الطلب:"
+  },
+  "statsTotalCompletion": {
+    "message": "إجمالي الإكمال:"
+  },
+  "statusCacheCleared": {
+    "message": "تم مسح الذاكرة المؤقتة."
+  },
+  "errorClearFailed": {
+    "message": "فشل المسح."
+  },
+  "statusTokensReset": {
+    "message": "أعيد تعيين إحصائيات الرموز."
+  },
+  "errorCannotDeleteLast": {
+    "message": "لا يمكن حذف آخر مزود."
+  },
+  "confirmDeleteProvider": {
+    "message": "حذف هذا المزود؟"
+  },
+  "confirmClearCache": {
+    "message": "مسح كل الترجمات المخزنة؟"
+  },
+  "confirmResetTokens": {
+    "message": "إعادة تعيين كل إحصائيات الرموز؟"
+  },
+  "suffixSaved": {
+    "message": " (محفوظ)"
+  },
+  "statusFetchingModels": {
+    "message": "جلب النماذج لـ $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "لم يتم إرجاع نماذج."
+  },
+  "statusLoadedModels": {
+    "message": "تم تحميل $COUNT$ نموذج.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "فشل الجلب: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "فشل المسح: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "فشل إعادة التعيين: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ مدخلات مخزنة",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ استدعاء",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "دائماً مع $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "قاموس المصطلحات"
+  },
+  "btnEditGlossary": {
+    "message": "تعديل القاموس"
+  },
+  "hintGlossary": {
+    "message": "العبارات المدرجة هنا تُضاف إلى طلب النظام للـ LLM كمرجع ترجمة. لا يراعي مزودو الخدمات غير الـ LLM (Google، DeepL، LibreTranslate) هذا."
+  },
+  "dialogHeadingGlossary": {
+    "message": "قاموس المصطلحات"
+  },
+  "glossaryEmpty": {
+    "message": "لا توجد إدخالات بعد. أضف مصطلحات أدناه."
+  },
+  "glossaryNone": {
+    "message": "لا توجد إدخالات بعد."
+  },
+  "placeholderGlossarySource": {
+    "message": "المصطلح الأصلي"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "الترجمة"
+  },
+  "placeholderGlossaryLang": {
+    "message": "اللغة (مثال: zh-CN، أو اتركه فارغًا = الكل)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ مصطلح/مصطلحات مُعرّفة",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "ترجم الاختيار"
+  },
+  "btnClose": {
+    "message": "إغلاق"
+  },
+  "labelError": {
+    "message": "خطأ"
+  },
+  "tagCached": {
+    "message": "مخزّن"
+  },
+  "notifBtnTranslate": {
+    "message": "ترجم"
+  },
+  "notifBtnNever": {
+    "message": "لا تترجم أبدًا"
+  },
+  "notifBtnIgnore": {
+    "message": "تجاهل"
+  },
+  "toastErrorTitle": {
+    "message": "خطأ في الترجمة"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: لم يتم ضبط أي مزودين. افتح صفحة الإعدادات لإضافة واحد."
+  },
+  "progressTranslating": {
+    "message": "جارٍ الترجمة…"
+  },
+  "progressHide": {
+    "message": "إخفاء"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ داخل · $OUT$ خارج رموز",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "الأصلي"
+  },
+  "pdfCycleReveal": {
+    "message": "مُعرض"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ طبقة",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

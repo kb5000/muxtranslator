@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "相容 OpenAI 的頁面翻譯工具 — 自備 API 金鑰與模型。"
+  },
+  "settingsTitle": {
+    "message": "設定"
+  },
+  "viewerOpen": {
+    "message": "開啟 PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "開啟 PDF 以進行翻譯"
+  },
+  "viewerEmptyHint": {
+    "message": "點擊上方「開啟 PDF」或將檔案拖曳到本頁任意位置。"
+  },
+  "labelPage": {
+    "message": "頁面："
+  },
+  "labelTarget": {
+    "message": "目標："
+  },
+  "labelSite": {
+    "message": "網站："
+  },
+  "btnTranslate": {
+    "message": "翻譯"
+  },
+  "btnPause": {
+    "message": "暫停"
+  },
+  "btnResume": {
+    "message": "繼續"
+  },
+  "btnRestoreOriginal": {
+    "message": "還原原文"
+  },
+  "headingSiteRules": {
+    "message": "此網站"
+  },
+  "ruleAsk": {
+    "message": "詢問"
+  },
+  "ruleSkip": {
+    "message": "一律跳過"
+  },
+  "ruleAlways": {
+    "message": "一律使用 ↑ 翻譯"
+  },
+  "headingQuickTranslate": {
+    "message": "快速翻譯"
+  },
+  "manualPlaceholder": {
+    "message": "貼上或輸入要翻譯的文字…"
+  },
+  "headingTokens": {
+    "message": "Tokens（本頁）"
+  },
+  "labelPrompt": {
+    "message": "提示："
+  },
+  "labelCompletion": {
+    "message": "完成："
+  },
+  "statusNotAPage": {
+    "message": "（非頁面）"
+  },
+  "statusUnknown": {
+    "message": "（未知）"
+  },
+  "statusUnavailable": {
+    "message": "（無法使用）"
+  },
+  "statusPaused": {
+    "message": "已暫停。"
+  },
+  "statusResumed": {
+    "message": "已恢復。"
+  },
+  "statusStarted": {
+    "message": "已開始。"
+  },
+  "statusSaved": {
+    "message": "已儲存。"
+  },
+  "statusTranslatingInProgress": {
+    "message": "翻譯進行中…"
+  },
+  "statusCannotTranslate": {
+    "message": "無法翻譯此頁面"
+  },
+  "statusRestoreFailed": {
+    "message": "還原失敗"
+  },
+  "statusEmpty": {
+    "message": "（空白）"
+  },
+  "statusCached": {
+    "message": "已快取"
+  },
+  "statusTranslating": {
+    "message": "翻譯中…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "目前：跳過"
+  },
+  "statusCurrentlyAsk": {
+    "message": "目前：每次詢問"
+  },
+  "statusNoHostname": {
+    "message": "無主機名稱 — 無法設定規則"
+  },
+  "statusTargetSet": {
+    "message": "目標語言設為 $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "儲存失敗：$ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "失敗：$ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "已還原 $COUNT$ 個節點。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "目前：使用 $NAME$ 自動翻譯",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "完成（$NAME$）",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator 設定"
+  },
+  "optionsSubtitle": {
+    "message": "自備 API 的網頁翻譯工具。請在下方設定供應商、網站規則與預設值。"
+  },
+  "headingProviders": {
+    "message": "供應商"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "內嵌"
+  },
+  "bilingualTooltip": {
+    "message": "工具提示"
+  },
+  "headingBilingual": {
+    "message": "雙語顯示"
+  },
+  "hintBilingualMode": {
+    "message": "也可從擴充功能彈出視窗快速切換雙語模式。"
+  },
+  "headingPerformance": {
+    "message": "效能"
+  },
+  "labelObserveMutations": {
+    "message": "自動翻譯頁面新增的內容（SPA、無限捲動）"
+  },
+  "labelViewportPriority": {
+    "message": "優先處理螢幕內元素，預載螢幕外"
+  },
+  "labelShowProgressBar": {
+    "message": "顯示翻譯進度小工具（右下角）"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "每批次最大字元數"
+  },
+  "hintMaxChars": {
+    "message": "批次越大 API 呼叫越少但單次較慢，3000 是平衡點。"
+  },
+  "labelConcurrentBatches": {
+    "message": "並行批次數"
+  },
+  "headingCacheStats": {
+    "message": "快取與統計"
+  },
+  "labelCacheEnabled": {
+    "message": "啟用 IndexedDB 翻譯快取"
+  },
+  "btnClearCache": {
+    "message": "清除快取"
+  },
+  "btnResetTokenStats": {
+    "message": "重設 Token 統計"
+  },
+  "autoSaveHint": {
+    "message": "變更會自動儲存。"
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "新增網站規則"
+  },
+  "labelHostname": {
+    "message": "主機名稱"
+  },
+  "labelMode": {
+    "message": "模式"
+  },
+  "modeAlwaysSkip": {
+    "message": "永遠跳過"
+  },
+  "modeAlwaysTranslate": {
+    "message": "永遠使用 ↓ 翻譯"
+  },
+  "labelProviderField": {
+    "message": "提供者"
+  },
+  "btnCancel": {
+    "message": "取消"
+  },
+  "btnDialogAdd": {
+    "message": "新增"
+  },
+  "labelName": {
+    "message": "名稱"
+  },
+  "btnDelete": {
+    "message": "刪除"
+  },
+  "btnEdit": {
+    "message": "編輯"
+  },
+  "btnCollapse": {
+    "message": "收合"
+  },
+  "btnFetch": {
+    "message": "取得"
+  },
+  "badgeDefault": {
+    "message": "預設"
+  },
+  "labelUnnamed": {
+    "message": "（未命名）"
+  },
+  "labelNotSet": {
+    "message": "（未設定）"
+  },
+  "placeholderModelId": {
+    "message": "或輸入模型 ID"
+  },
+  "labelOutputMode": {
+    "message": "輸出模式"
+  },
+  "outputModeText": {
+    "message": "文字與 <<<SEP>>> 分隔符"
+  },
+  "outputModeTool": {
+    "message": "工具呼叫（結構化 JSON 陣列）"
+  },
+  "hintToolMode": {
+    "message": "工具模式強制模型回傳 JSON 陣列 — 無分隔符解析，更穩定。需支援工具呼叫的模型。"
+  },
+  "labelStreamingEnabled": {
+    "message": "為此供應商啟用串流"
+  },
+  "labelSystemPrompt": {
+    "message": "系統提示"
+  },
+  "labelUserPromptTemplate": {
+    "message": "使用者提示範本 ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "基礎網址"
+  },
+  "labelBaseURLProxy": {
+    "message": "基礎網址（除非使用代理，否則保留預設）"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API Key（Google Cloud 金鑰）"
+  },
+  "labelApiKey": {
+    "message": "API Key"
+  },
+  "labelApiKeyOptional": {
+    "message": "API Key（選填）"
+  },
+  "labelDeepLPlan": {
+    "message": "方案"
+  },
+  "deepLPlanFree": {
+    "message": "免費 (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "付費 (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "輸入字元："
+  },
+  "labelCharsOut": {
+    "message": "輸出字元："
+  },
+  "labelModel": {
+    "message": "模型"
+  },
+  "siteRuleNone": {
+    "message": "尚無網站規則。"
+  },
+  "statsTotalPrompt": {
+    "message": "提示總數："
+  },
+  "statsTotalCompletion": {
+    "message": "完成總數："
+  },
+  "statusCacheCleared": {
+    "message": "快取已清除。"
+  },
+  "errorClearFailed": {
+    "message": "清除失敗。"
+  },
+  "statusTokensReset": {
+    "message": "Token 統計已重設。"
+  },
+  "errorCannotDeleteLast": {
+    "message": "無法刪除最後一個供應商。"
+  },
+  "confirmDeleteProvider": {
+    "message": "刪除此供應商？"
+  },
+  "confirmClearCache": {
+    "message": "清除所有快取翻譯？"
+  },
+  "confirmResetTokens": {
+    "message": "重設所有 Token 統計？"
+  },
+  "suffixSaved": {
+    "message": "（已儲存）"
+  },
+  "statusFetchingModels": {
+    "message": "正在取得 $NAME$ 的模型…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "未傳回任何模型。"
+  },
+  "statusLoadedModels": {
+    "message": "已載入 $COUNT$ 個模型。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "取得失敗：$ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "清除失敗：$ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "重設失敗：$ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ 筆快取項目",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ 次呼叫",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "永遠使用 $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "詞彙表"
+  },
+  "btnEditGlossary": {
+    "message": "編輯詞彙表"
+  },
+  "hintGlossary": {
+    "message": "此處列出的詞彙會作為翻譯參考注入 LLM 系統提示。非 LLM 供應商（Google、DeepL、LibreTranslate）會忽略此設定。"
+  },
+  "dialogHeadingGlossary": {
+    "message": "詞彙表"
+  },
+  "glossaryEmpty": {
+    "message": "尚無條目。請在下方新增。"
+  },
+  "glossaryNone": {
+    "message": "尚無條目。"
+  },
+  "placeholderGlossarySource": {
+    "message": "來源詞彙"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "翻譯"
+  },
+  "placeholderGlossaryLang": {
+    "message": "語言（如 zh-CN，或留空＝全部）"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ 個詞彙已定義",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "翻譯選取內容"
+  },
+  "btnClose": {
+    "message": "關閉"
+  },
+  "labelError": {
+    "message": "錯誤"
+  },
+  "tagCached": {
+    "message": "已快取"
+  },
+  "notifBtnTranslate": {
+    "message": "翻譯"
+  },
+  "notifBtnNever": {
+    "message": "永不翻譯"
+  },
+  "notifBtnIgnore": {
+    "message": "忽略"
+  },
+  "toastErrorTitle": {
+    "message": "翻譯錯誤"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator：未設定任何提供者。請開啟設定頁面新增一個。"
+  },
+  "progressTranslating": {
+    "message": "翻譯中…"
+  },
+  "progressHide": {
+    "message": "隱藏"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ 輸入 · $OUT$ 輸出 tokens",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "原文"
+  },
+  "pdfCycleReveal": {
+    "message": "顯示翻譯"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ 層",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

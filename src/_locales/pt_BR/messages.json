@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Tradutor de página compatível com OpenAI — use sua própria chave e modelo de API."
+  },
+  "settingsTitle": {
+    "message": "Configurações"
+  },
+  "viewerOpen": {
+    "message": "Abrir PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Abra um PDF para traduzir"
+  },
+  "viewerEmptyHint": {
+    "message": "Clique em \"Abrir PDF\" acima ou solte um arquivo em qualquer lugar nesta página."
+  },
+  "labelPage": {
+    "message": "Página:"
+  },
+  "labelTarget": {
+    "message": "Destino:"
+  },
+  "labelSite": {
+    "message": "Site:"
+  },
+  "btnTranslate": {
+    "message": "Traduzir"
+  },
+  "btnPause": {
+    "message": "Pausar"
+  },
+  "btnResume": {
+    "message": "Continuar"
+  },
+  "btnRestoreOriginal": {
+    "message": "Restaurar original"
+  },
+  "headingSiteRules": {
+    "message": "Este site"
+  },
+  "ruleAsk": {
+    "message": "Perguntar"
+  },
+  "ruleSkip": {
+    "message": "Sempre ignorar"
+  },
+  "ruleAlways": {
+    "message": "Traduzir sempre com ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Tradução rápida"
+  },
+  "manualPlaceholder": {
+    "message": "Cole ou digite o texto para traduzir…"
+  },
+  "headingTokens": {
+    "message": "Tokens (esta página)"
+  },
+  "labelPrompt": {
+    "message": "Prompt:"
+  },
+  "labelCompletion": {
+    "message": "Conclusão:"
+  },
+  "statusNotAPage": {
+    "message": "(não é uma página)"
+  },
+  "statusUnknown": {
+    "message": "(desconhecido)"
+  },
+  "statusUnavailable": {
+    "message": "(indisponível)"
+  },
+  "statusPaused": {
+    "message": "Pausado."
+  },
+  "statusResumed": {
+    "message": "Retomado."
+  },
+  "statusStarted": {
+    "message": "Iniciado."
+  },
+  "statusSaved": {
+    "message": "Salvo."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Tradução em andamento…"
+  },
+  "statusCannotTranslate": {
+    "message": "Não é possível traduzir esta página"
+  },
+  "statusRestoreFailed": {
+    "message": "Falha na restauração"
+  },
+  "statusEmpty": {
+    "message": "(vazio)"
+  },
+  "statusCached": {
+    "message": "Em cache"
+  },
+  "statusTranslating": {
+    "message": "Traduzindo…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Atualmente: ignorado"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Atualmente: perguntar sempre"
+  },
+  "statusNoHostname": {
+    "message": "Sem nome de host — não é possível definir regra"
+  },
+  "statusTargetSet": {
+    "message": "Destino definido como $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Falha ao salvar: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Falhou: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "$COUNT$ nós restaurados.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Atualmente: tradução automática com $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Concluído ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "Configurações do MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "Tradutor de páginas com sua própria API. Configure provedores, regras de site e padrões abaixo."
+  },
+  "headingProviders": {
+    "message": "Provedores"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "Incorporar"
+  },
+  "bilingualTooltip": {
+    "message": "Dica de ferramenta"
+  },
+  "headingBilingual": {
+    "message": "Exibição bilíngue"
+  },
+  "hintBilingualMode": {
+    "message": "O modo bilíngue também pode ser alternado rapidamente pelo popup da extensão."
+  },
+  "headingPerformance": {
+    "message": "Desempenho"
+  },
+  "labelObserveMutations": {
+    "message": "Traduzir automaticamente novo conteúdo adicionado pela página (SPAs, rolagem infinita)"
+  },
+  "labelViewportPriority": {
+    "message": "Priorizar elementos na tela, pré-carregar os fora dela"
+  },
+  "labelShowProgressBar": {
+    "message": "Mostrar widget de progresso da tradução (canto inferior direito)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Máx. de caracteres por lote"
+  },
+  "hintMaxChars": {
+    "message": "Lote maior = menos chamadas à API, mas mais lentas por chamada. 3000 é um bom equilíbrio."
+  },
+  "labelConcurrentBatches": {
+    "message": "Lotes simultâneos"
+  },
+  "headingCacheStats": {
+    "message": "Cache e estatísticas"
+  },
+  "labelCacheEnabled": {
+    "message": "Ativar cache de tradução IndexedDB"
+  },
+  "btnClearCache": {
+    "message": "Limpar cache"
+  },
+  "btnResetTokenStats": {
+    "message": "Zerar estatísticas de Token"
+  },
+  "autoSaveHint": {
+    "message": "Alterações são salvas automaticamente."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Adicionar regra de site"
+  },
+  "labelHostname": {
+    "message": "Nome do host"
+  },
+  "labelMode": {
+    "message": "Modo"
+  },
+  "modeAlwaysSkip": {
+    "message": "Sempre ignorar"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Sempre traduzir com ↓"
+  },
+  "labelProviderField": {
+    "message": "Provedor"
+  },
+  "btnCancel": {
+    "message": "Cancelar"
+  },
+  "btnDialogAdd": {
+    "message": "Adicionar"
+  },
+  "labelName": {
+    "message": "Nome"
+  },
+  "btnDelete": {
+    "message": "Excluir"
+  },
+  "btnEdit": {
+    "message": "Editar"
+  },
+  "btnCollapse": {
+    "message": "Recolher"
+  },
+  "btnFetch": {
+    "message": "Buscar"
+  },
+  "badgeDefault": {
+    "message": "padrão"
+  },
+  "labelUnnamed": {
+    "message": "(sem nome)"
+  },
+  "labelNotSet": {
+    "message": "(não definido)"
+  },
+  "placeholderModelId": {
+    "message": "Ou digite um ID de modelo"
+  },
+  "labelOutputMode": {
+    "message": "Modo de saída"
+  },
+  "outputModeText": {
+    "message": "Texto com separador <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "Chamada de ferramenta (array JSON estruturado)"
+  },
+  "hintToolMode": {
+    "message": "O modo ferramenta força o modelo a retornar um array JSON — sem análise de separadores, mais robusto. Requer um modelo compatível com chamadas de ferramenta."
+  },
+  "labelStreamingEnabled": {
+    "message": "Usar streaming para este provedor"
+  },
+  "labelSystemPrompt": {
+    "message": "Prompt do sistema"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Modelo de prompt do usuário ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "URL base"
+  },
+  "labelBaseURLProxy": {
+    "message": "URL base (deixe padrão exceto se usar proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "Chave de API (chave do Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "Chave de API"
+  },
+  "labelApiKeyOptional": {
+    "message": "Chave de API (opcional)"
+  },
+  "labelDeepLPlan": {
+    "message": "Plano"
+  },
+  "deepLPlanFree": {
+    "message": "Gratuito (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Pago (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Caracteres entrada:"
+  },
+  "labelCharsOut": {
+    "message": "Caracteres saída:"
+  },
+  "labelModel": {
+    "message": "Modelo"
+  },
+  "siteRuleNone": {
+    "message": "Ainda não há regras de site."
+  },
+  "statsTotalPrompt": {
+    "message": "Prompt total:"
+  },
+  "statsTotalCompletion": {
+    "message": "Conclusão total:"
+  },
+  "statusCacheCleared": {
+    "message": "Cache limpo."
+  },
+  "errorClearFailed": {
+    "message": "Falha ao limpar."
+  },
+  "statusTokensReset": {
+    "message": "Estatísticas de tokens zeradas."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Não é possível excluir o último provedor."
+  },
+  "confirmDeleteProvider": {
+    "message": "Excluir este provedor?"
+  },
+  "confirmClearCache": {
+    "message": "Limpar todas as traduções em cache?"
+  },
+  "confirmResetTokens": {
+    "message": "Zerar todas as estatísticas de tokens?"
+  },
+  "suffixSaved": {
+    "message": " (salvo)"
+  },
+  "statusFetchingModels": {
+    "message": "Buscando modelos para $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Nenhum modelo retornado."
+  },
+  "statusLoadedModels": {
+    "message": "Carregados $COUNT$ modelos.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Falha na busca: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Falha ao limpar: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Falha ao zerar: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ entradas em cache",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ chamadas",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Sempre com $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Glossário"
+  },
+  "btnEditGlossary": {
+    "message": "Editar Glossário"
+  },
+  "hintGlossary": {
+    "message": "Os termos listados aqui são injetados no prompt do sistema do LLM como referência de tradução. Provedores que não usam LLM (Google, DeepL, LibreTranslate) ignoram isso."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Glossário"
+  },
+  "glossaryEmpty": {
+    "message": "Ainda sem entradas. Adicione termos abaixo."
+  },
+  "glossaryNone": {
+    "message": "Ainda sem entradas."
+  },
+  "placeholderGlossarySource": {
+    "message": "Termo original"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Tradução"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Idioma (ex: zh-CN, ou em branco = todos)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ termo(s) definido(s)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Traduzir seleção"
+  },
+  "btnClose": {
+    "message": "Fechar"
+  },
+  "labelError": {
+    "message": "Erro"
+  },
+  "tagCached": {
+    "message": "em cache"
+  },
+  "notifBtnTranslate": {
+    "message": "Traduzir"
+  },
+  "notifBtnNever": {
+    "message": "Nunca traduzir"
+  },
+  "notifBtnIgnore": {
+    "message": "Ignorar"
+  },
+  "toastErrorTitle": {
+    "message": "Erro na tradução"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Nenhum provedor configurado. Abra a página de configurações para adicionar um."
+  },
+  "progressTranslating": {
+    "message": "Traduzindo…"
+  },
+  "progressHide": {
+    "message": "Ocultar"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ entrada · $OUT$ saída tokens",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Original"
+  },
+  "pdfCycleReveal": {
+    "message": "Revelado"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ camadas",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

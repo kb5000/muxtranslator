@@ -16,13 +16,26 @@
     ['es',    'Español'],
     ['fr',    'Français'],
     ['de',    'Deutsch'],
-    ['pt',    'Português'],
+    ['pt-BR', 'Português (Brasil)'],
+    ['pt-PT', 'Português (Portugal)'],
     ['ru',    'Русский'],
     ['it',    'Italiano'],
+    ['nl',    'Nederlands'],
+    ['pl',    'Polski'],
+    ['tr',    'Türkçe'],
     ['ar',    'العربية'],
     ['hi',    'हिन्दी'],
+    ['uk',    'Українська'],
+    ['sv',    'Svenska'],
+    ['da',    'Dansk'],
+    ['fi',    'Suomi'],
+    ['nb',    'Norsk bokmål'],
+    ['cs',    'Čeština'],
+    ['ro',    'Română'],
+    ['hu',    'Magyar'],
     ['vi',    'Tiếng Việt'],
-    ['th',    'ไทย']
+    ['th',    'ไทย'],
+    ['id',    'Indonesia']
   ];
 
   var els = {};
@@ -68,17 +81,18 @@
     // enough to remember the choice on this page — the popup pre-selects
     // this value on its next open, even if the user never started translating.
     els.providerSelect.addEventListener('change', function () {
-      if (!state.currentTabId) return;
-      try {
+      state.providerId = els.providerSelect.value;
+      if (state.currentTabId) {
         browser.tabs.sendMessage(state.currentTabId, {
           type: 'SET_PROVIDER',
-          payload: { providerId: els.providerSelect.value }
+          payload: { providerId: state.providerId }
         }).catch(function () {});
-      } catch (e) {}
+      }
     });
     els.pauseBtn.addEventListener('click', onTogglePause);
     els.restoreBtn.addEventListener('click', onRestore);
     els.targetLang.addEventListener('change', onTargetLangChange);
+    initCombo();
     els.manualBtn.addEventListener('click', onManualTranslate);
     els.manualInput.addEventListener('keydown', function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
@@ -97,6 +111,8 @@
 
     // Load settings & populate providers
     state.settings = await SettingsModule.getSettings();
+    state.targetLanguage = state.settings.targetLanguage;
+    state.providerId = null;
     populateProviders(state.settings);
     populateTargetLang(state.settings.targetLanguage);
     renderTokenStats({ prompt: 0, completion: 0 });
@@ -134,7 +150,14 @@
               var hasOpt = Array.from(els.providerSelect.options).some(function (o) {
                 return o.value === info.data.lastProviderId;
               });
-              if (hasOpt) els.providerSelect.value = info.data.lastProviderId;
+              if (hasOpt) {
+                els.providerSelect.value = info.data.lastProviderId;
+                state.providerId = info.data.lastProviderId;
+              }
+            }
+            if (info.data.lastTargetLang) {
+              state.targetLanguage = info.data.lastTargetLang;
+              els.targetLang.value = info.data.lastTargetLang;
             }
             if (info.data.isTranslating) {
               setStatus(els.translateStatus, state.translationPaused ? i18n('statusPaused') : i18n('statusTranslatingInProgress'));
@@ -175,32 +198,62 @@
   }
 
   function populateTargetLang(current) {
-    els.targetLang.innerHTML = '';
-    var seen = false;
+    var list = document.getElementById('targetLangList');
+    list.innerHTML = '';
     COMMON_TARGETS.forEach(function (pair) {
-      var opt = document.createElement('option');
-      opt.value = pair[0];
-      opt.textContent = pair[1] + ' (' + pair[0] + ')';
-      if (pair[0] === current) { opt.selected = true; seen = true; }
-      els.targetLang.appendChild(opt);
+      var li = document.createElement('li');
+      li.dataset.value = pair[0];
+      li.textContent = pair[1] + ' — ' + pair[0];
+      list.appendChild(li);
     });
-    if (current && !seen) {
-      var opt = document.createElement('option');
-      opt.value = current;
-      opt.textContent = current;
-      opt.selected = true;
-      els.targetLang.insertBefore(opt, els.targetLang.firstChild);
-    }
+    els.targetLang.value = current || '';
   }
 
-  async function onTargetLangChange() {
-    var newLang = els.targetLang.value;
+  function initCombo() {
+    var list = document.getElementById('targetLangList');
+    var btn  = document.querySelector('.combo-btn');
+
+    function showList(filter) {
+      var q = (filter || '').toLowerCase();
+      list.querySelectorAll('li').forEach(function (li) {
+        li.hidden = q ? !li.textContent.toLowerCase().includes(q) : false;
+      });
+      list.hidden = false;
+    }
+
+    function hideList() { list.hidden = true; }
+
+    function pick(value) {
+      els.targetLang.value = value;
+      hideList();
+      onTargetLangChange();
+    }
+
+    els.targetLang.addEventListener('focus', function () { showList(''); });
+    els.targetLang.addEventListener('input', function () { showList(els.targetLang.value); });
+    els.targetLang.addEventListener('blur',  function () { setTimeout(hideList, 150); });
+
+    btn.addEventListener('mousedown', function (e) {
+      e.preventDefault();
+      list.hidden ? (els.targetLang.focus(), showList('')) : hideList();
+    });
+
+    list.addEventListener('mousedown', function (e) {
+      var li = e.target.closest('li');
+      if (li) { e.preventDefault(); pick(li.dataset.value); }
+    });
+  }
+
+  function onTargetLangChange() {
+    var newLang = els.targetLang.value.trim();
     if (!newLang) return;
-    try {
-      state.settings = await SettingsModule.saveSettings({ targetLanguage: newLang });
-      setStatus(els.translateStatus, i18n('statusTargetSet', [newLang]), 'success');
-    } catch (e) {
-      setStatus(els.translateStatus, i18n('statusSaveFailed', [e.message || String(e)]), 'error');
+    state.targetLanguage = newLang;
+    setStatus(els.translateStatus, i18n('statusTargetSet', [newLang]), 'success');
+    if (state.currentTabId) {
+      browser.tabs.sendMessage(state.currentTabId, {
+        type: 'SET_TARGET_LANG',
+        payload: { targetLang: newLang }
+      }).catch(function () {});
     }
   }
 
@@ -298,7 +351,10 @@
     try {
       await browser.tabs.sendMessage(state.currentTabId, {
         type: 'TRANSLATE_PAGE',
-        payload: { providerId: els.providerSelect.value }
+        payload: {
+          providerId: state.providerId || els.providerSelect.value,
+          targetLanguage: state.targetLanguage
+        }
       });
       setStatus(els.translateStatus, i18n('statusStarted'), 'success');
       setTimeout(function () { window.close(); }, 400);
@@ -318,7 +374,8 @@
         type: 'TRANSLATE_TEXT',
         payload: {
           text: text,
-          purpose: 'manual'
+          purpose: 'manual',
+          targetLang: state.targetLanguage
         }
       });
       if (res && res.success) {

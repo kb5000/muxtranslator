@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Traducător de pagini compatibil cu OpenAI — adu-ți propria cheie și model de API."
+  },
+  "settingsTitle": {
+    "message": "Setări"
+  },
+  "viewerOpen": {
+    "message": "Deschide PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Deschide un PDF pentru a traduce"
+  },
+  "viewerEmptyHint": {
+    "message": "Apasă „Deschide PDF” de mai sus sau trage un fișier oriunde pe această pagină."
+  },
+  "labelPage": {
+    "message": "Pagina:"
+  },
+  "labelTarget": {
+    "message": "Destinație:"
+  },
+  "labelSite": {
+    "message": "Sit:"
+  },
+  "btnTranslate": {
+    "message": "Tradu"
+  },
+  "btnPause": {
+    "message": "Pauză"
+  },
+  "btnResume": {
+    "message": "Continuă"
+  },
+  "btnRestoreOriginal": {
+    "message": "Restabilește originalul"
+  },
+  "headingSiteRules": {
+    "message": "Acest sit"
+  },
+  "ruleAsk": {
+    "message": "Întreabă"
+  },
+  "ruleSkip": {
+    "message": "Ignoră mereu"
+  },
+  "ruleAlways": {
+    "message": "Tradu mereu cu ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Traducere rapidă"
+  },
+  "manualPlaceholder": {
+    "message": "Lipește sau tastează text de tradus…"
+  },
+  "headingTokens": {
+    "message": "Token-uri (această pagină)"
+  },
+  "labelPrompt": {
+    "message": "Prompt:"
+  },
+  "labelCompletion": {
+    "message": "Completare:"
+  },
+  "statusNotAPage": {
+    "message": "(nu e o pagină)"
+  },
+  "statusUnknown": {
+    "message": "(necunoscut)"
+  },
+  "statusUnavailable": {
+    "message": "(indisponibil)"
+  },
+  "statusPaused": {
+    "message": "Întrerupt."
+  },
+  "statusResumed": {
+    "message": "Reluat."
+  },
+  "statusStarted": {
+    "message": "Pornit."
+  },
+  "statusSaved": {
+    "message": "Salvat."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Se traduce…"
+  },
+  "statusCannotTranslate": {
+    "message": "Nu se poate traduce această pagină"
+  },
+  "statusRestoreFailed": {
+    "message": "Restaurarea a eșuat"
+  },
+  "statusEmpty": {
+    "message": "(gol)"
+  },
+  "statusCached": {
+    "message": "În cache"
+  },
+  "statusTranslating": {
+    "message": "Se traduce…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Acum: omis"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Acum: întreabă de fiecare dată"
+  },
+  "statusNoHostname": {
+    "message": "Fără nume gazdă — nu se poate seta regulă"
+  },
+  "statusTargetSet": {
+    "message": "Țintă setată la $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Salvarea a eșuat: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Eșec: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Restaurat $COUNT$ noduri.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Acum: autotraducere cu $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Gata ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "Setări MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "Traducător de pagini cu API propriu. Configurează furnizorii, regulile pentru site-uri și valorile implicite mai jos."
+  },
+  "headingProviders": {
+    "message": "Furnizori"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Adaugă"
+  },
+  "headingBindings": {
+    "message": "Legături de funcții"
+  },
+  "labelDefaultProvider": {
+    "message": "Furnizor implicit (pentru traducerea paginii)"
+  },
+  "labelSelectionProvider": {
+    "message": "Furnizor pentru traducerea selecției"
+  },
+  "labelUseDefault": {
+    "message": "(folosește implicit)"
+  },
+  "labelManualProvider": {
+    "message": "Furnizor pentru introducere manuală"
+  },
+  "labelPdfProvider": {
+    "message": "Furnizor pentru traducerea PDF"
+  },
+  "labelSelectionEnabled": {
+    "message": "Afișează insigna „译” la selectarea textului (apasă pentru a traduce)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Reguli de site"
+  },
+  "btnAddRule": {
+    "message": "+ Adaugă regulă"
+  },
+  "siteRulesHint": {
+    "message": "Regulile se potrivesc cu numele exact de gazdă sau cu orice subdomeniu. Site-urile nelistate revin la comportamentul implicit „întreabă de fiecare dată”."
+  },
+  "headingLanguages": {
+    "message": "Limbi"
+  },
+  "labelUiLanguage": {
+    "message": "Limba interfeței"
+  },
+  "uiLangAuto": {
+    "message": "Auto (după browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Limba țintă"
+  },
+  "labelSkipLanguages": {
+    "message": "Limbi de omis (separate prin virgulă)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Mod implicit de traducere"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controlează ce se întâmplă la detectarea unei pagini în altă limbă. „Întreabă” afișează o bară sus; „Auto” pornește traducerea în tăcere; „Niciodată” dezactivează toate acțiunile automate (poți traduce totuși manual din popup)."
+  },
+  "modeAsk": {
+    "message": "Întreabă de fiecare dată (implicit)"
+  },
+  "modeAutoTranslate": {
+    "message": "Traduce automat paginile străine"
+  },
+  "modeNeverAuto": {
+    "message": "Nu traduce niciodată automat"
+  },
+  "labelBilingualMode": {
+    "message": "Afișare bilingvă"
+  },
+  "bilingualOff": {
+    "message": "Oprit"
+  },
+  "bilingualEmbed": {
+    "message": "Încorporare"
+  },
+  "bilingualTooltip": {
+    "message": "Sugestie"
+  },
+  "headingBilingual": {
+    "message": "Afișaj bilingv"
+  },
+  "hintBilingualMode": {
+    "message": "Modul bilingv poate fi comutat rapid și din fereastra pop-up a extensiei."
+  },
+  "headingPerformance": {
+    "message": "Performanță"
+  },
+  "labelObserveMutations": {
+    "message": "Traduce automat conținut nou adăugat de pagină (SPA, derulare infinită)"
+  },
+  "labelViewportPriority": {
+    "message": "Prioritizează elementele pe ecran, preîncarcă cele din afara lui"
+  },
+  "labelShowProgressBar": {
+    "message": "Arată widget progres traducere (jos-dreapta)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Max caractere per lot"
+  },
+  "hintMaxChars": {
+    "message": "Lot mai mare = mai puține apeluri API dar mai lent per apel. 3000 e un bun echilibru."
+  },
+  "labelConcurrentBatches": {
+    "message": "Loturi concurente"
+  },
+  "headingCacheStats": {
+    "message": "Cache și statistici"
+  },
+  "labelCacheEnabled": {
+    "message": "Activează cache traducere IndexedDB"
+  },
+  "btnClearCache": {
+    "message": "Șterge cache"
+  },
+  "btnResetTokenStats": {
+    "message": "Resetează statistici Token"
+  },
+  "autoSaveHint": {
+    "message": "Modificările se salvează automat."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Adaugă regulă pentru site"
+  },
+  "labelHostname": {
+    "message": "Nume gazdă"
+  },
+  "labelMode": {
+    "message": "Mod"
+  },
+  "modeAlwaysSkip": {
+    "message": "Omite mereu"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Tradu mereu cu ↓"
+  },
+  "labelProviderField": {
+    "message": "Furnizor"
+  },
+  "btnCancel": {
+    "message": "Anulează"
+  },
+  "btnDialogAdd": {
+    "message": "Adaugă"
+  },
+  "labelName": {
+    "message": "Nume"
+  },
+  "btnDelete": {
+    "message": "Șterge"
+  },
+  "btnEdit": {
+    "message": "Editează"
+  },
+  "btnCollapse": {
+    "message": "Restrânge"
+  },
+  "btnFetch": {
+    "message": "Preia"
+  },
+  "badgeDefault": {
+    "message": "implicit"
+  },
+  "labelUnnamed": {
+    "message": "(fără nume)"
+  },
+  "labelNotSet": {
+    "message": "(nesetat)"
+  },
+  "placeholderModelId": {
+    "message": "Sau tastează un ID de model"
+  },
+  "labelOutputMode": {
+    "message": "Mod de ieșire"
+  },
+  "outputModeText": {
+    "message": "Text cu separatorul <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "Apel de instrument (array JSON structurat)"
+  },
+  "hintToolMode": {
+    "message": "Modul instrument forțează modelul să returneze un array JSON — fără analiză de separator, mai robust. Necesită un model care suportă apeluri de instrument."
+  },
+  "labelStreamingEnabled": {
+    "message": "Folosește streaming pentru acest furnizor"
+  },
+  "labelSystemPrompt": {
+    "message": "Prompt sistem"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Șablon prompt utilizator ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "URL de bază"
+  },
+  "labelBaseURLProxy": {
+    "message": "URL de bază (lăsați implicit dacă nu e proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API Key (cheie Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "API Key"
+  },
+  "labelApiKeyOptional": {
+    "message": "API Key (opțional)"
+  },
+  "labelDeepLPlan": {
+    "message": "Plan"
+  },
+  "deepLPlanFree": {
+    "message": "Gratuit (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Plătit (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Caractere în:"
+  },
+  "labelCharsOut": {
+    "message": "Caractere ieșire:"
+  },
+  "labelModel": {
+    "message": "Model"
+  },
+  "siteRuleNone": {
+    "message": "Nu există reguli de site încă."
+  },
+  "statsTotalPrompt": {
+    "message": "Prompt total:"
+  },
+  "statsTotalCompletion": {
+    "message": "Completare totală:"
+  },
+  "statusCacheCleared": {
+    "message": "Cache golit."
+  },
+  "errorClearFailed": {
+    "message": "Eșec la golire."
+  },
+  "statusTokensReset": {
+    "message": "Statistici token resetate."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Nu poți șterge ultimul furnizor."
+  },
+  "confirmDeleteProvider": {
+    "message": "Ștergi acest furnizor?"
+  },
+  "confirmClearCache": {
+    "message": "Golești toate traducerile în cache?"
+  },
+  "confirmResetTokens": {
+    "message": "Resetezi toate statisticile de token?"
+  },
+  "suffixSaved": {
+    "message": " (salvat)"
+  },
+  "statusFetchingModels": {
+    "message": "Se obțin modelele pentru $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Niciun model returnat."
+  },
+  "statusLoadedModels": {
+    "message": "S-au încărcat $COUNT$ modele.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Eșec la obținere: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Eșec la golire: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Eșec la resetare: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ intrări în cache",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ apeluri",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Întotdeauna cu $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Glosar"
+  },
+  "btnEditGlossary": {
+    "message": "Editează Glosarul"
+  },
+  "hintGlossary": {
+    "message": "Termenii enumerați aici sunt injectați în promptul de sistem al LLM ca referință de traducere. Furnizorii non-LLM (Google, DeepL, LibreTranslate) ignoră aceasta."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Glosar"
+  },
+  "glossaryEmpty": {
+    "message": "Nicio intrare încă. Adaugă termeni mai jos."
+  },
+  "glossaryNone": {
+    "message": "Nicio intrare încă."
+  },
+  "placeholderGlossarySource": {
+    "message": "Termen sursă"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Traducere"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Limbă (ex. zh-CN sau lăsat gol = toate)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ termen(i) definit(e)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Tradu selecția"
+  },
+  "btnClose": {
+    "message": "Închide"
+  },
+  "labelError": {
+    "message": "Eroare"
+  },
+  "tagCached": {
+    "message": "în cache"
+  },
+  "notifBtnTranslate": {
+    "message": "Tradu"
+  },
+  "notifBtnNever": {
+    "message": "Nu traduce niciodată"
+  },
+  "notifBtnIgnore": {
+    "message": "Ignoră"
+  },
+  "toastErrorTitle": {
+    "message": "Eroare la traducere"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Niciun furnizor configurat. Deschide pagina de setări pentru a adăuga unul."
+  },
+  "progressTranslating": {
+    "message": "Se traduce…"
+  },
+  "progressHide": {
+    "message": "Ascunde"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ în · $OUT$ tokeni ieșiți",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Original"
+  },
+  "pdfCycleReveal": {
+    "message": "Dezvăluit"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ straturi",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "ओपनएआई-संगत पेज अनुवादक — अपनी API कुंजी और मॉडल लाएँ।"
+  },
+  "settingsTitle": {
+    "message": "सेटिंग्स"
+  },
+  "viewerOpen": {
+    "message": "PDF खोलें"
+  },
+  "viewerEmptyTitle": {
+    "message": "अनुवाद के लिए एक PDF खोलें"
+  },
+  "viewerEmptyHint": {
+    "message": "\"PDF खोलें\" ऊपर क्लिक करें या इस पेज पर कहीं भी फ़ाइल डालें।"
+  },
+  "labelPage": {
+    "message": "पेज:"
+  },
+  "labelTarget": {
+    "message": "लक्ष्य:"
+  },
+  "labelSite": {
+    "message": "साइट:"
+  },
+  "btnTranslate": {
+    "message": "अनुवाद करें"
+  },
+  "btnPause": {
+    "message": "रोकें"
+  },
+  "btnResume": {
+    "message": "जारी रखें"
+  },
+  "btnRestoreOriginal": {
+    "message": "मूल वापस लाएँ"
+  },
+  "headingSiteRules": {
+    "message": "यह साइट"
+  },
+  "ruleAsk": {
+    "message": "पूछें"
+  },
+  "ruleSkip": {
+    "message": "हमेशा छोड़ें"
+  },
+  "ruleAlways": {
+    "message": "हमेशा ↑ से अनुवाद करें"
+  },
+  "headingQuickTranslate": {
+    "message": "त्वरित अनुवाद"
+  },
+  "manualPlaceholder": {
+    "message": "अनुवाद के लिए टेक्स्ट पेस्ट या टाइप करें…"
+  },
+  "headingTokens": {
+    "message": "टोकन (इस पेज का)"
+  },
+  "labelPrompt": {
+    "message": "प्रॉम्प्ट:"
+  },
+  "labelCompletion": {
+    "message": "पूर्णता:"
+  },
+  "statusNotAPage": {
+    "message": "(पेज नहीं)"
+  },
+  "statusUnknown": {
+    "message": "(अज्ञात)"
+  },
+  "statusUnavailable": {
+    "message": "(अनुपलब्ध)"
+  },
+  "statusPaused": {
+    "message": "रोक दिया गया।"
+  },
+  "statusResumed": {
+    "message": "जारी किया गया।"
+  },
+  "statusStarted": {
+    "message": "शुरू हो गया।"
+  },
+  "statusSaved": {
+    "message": "सहेज लिया गया।"
+  },
+  "statusTranslatingInProgress": {
+    "message": "अनुवाद चल रहा है…"
+  },
+  "statusCannotTranslate": {
+    "message": "इस पेज का अनुवाद नहीं किया जा सकता"
+  },
+  "statusRestoreFailed": {
+    "message": "पुनर्स्थापन विफल"
+  },
+  "statusEmpty": {
+    "message": "(खाली)"
+  },
+  "statusCached": {
+    "message": "कैश्ड"
+  },
+  "statusTranslating": {
+    "message": "अनुवाद हो रहा है…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "फिलहाल: छोड़ा गया"
+  },
+  "statusCurrentlyAsk": {
+    "message": "फिलहाल: हर बार पूछें"
+  },
+  "statusNoHostname": {
+    "message": "होस्टनेम नहीं — नियम नहीं बनाया जा सकता"
+  },
+  "statusTargetSet": {
+    "message": "लक्ष्य $LANG$ पर सेट किया गया",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "सहेजने में विफल: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "विफल: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "$COUNT$ नोड्स पुनर्स्थापित किए गए।",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "फिलहाल: $NAME$ से ऑटो-अनुवाद",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "पूरा ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator सेटिंग्स"
+  },
+  "optionsSubtitle": {
+    "message": "अपना-अपना API पेज अनुवादक लाओ। नीचे प्रदाताओं, साइट नियमों और डिफॉल्ट को कॉन्फ़िगर करें।"
+  },
+  "headingProviders": {
+    "message": "प्रदाता"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "एम्बेड करें"
+  },
+  "bilingualTooltip": {
+    "message": "टूलटिप"
+  },
+  "headingBilingual": {
+    "message": "द्विभाषी प्रदर्शन"
+  },
+  "hintBilingualMode": {
+    "message": "द्विभाषी मोड को एक्सटेंशन पॉपअप से भी तुरंत टॉगल किया जा सकता है।"
+  },
+  "headingPerformance": {
+    "message": "प्रदर्शन"
+  },
+  "labelObserveMutations": {
+    "message": "पेज द्वारा जोड़ी गई नई सामग्री का स्वचालित अनुवाद (SPAs, अनंत स्क्रॉल)"
+  },
+  "labelViewportPriority": {
+    "message": "स्क्रीन पर दिख रहे तत्वों को प्राथमिकता, बाहर के लिए प्रीलोड"
+  },
+  "labelShowProgressBar": {
+    "message": "अनुवाद प्रगति विजेट दिखाएँ (नीचे दाएँ)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "बैच प्रति अधिकतम अक्षर"
+  },
+  "hintMaxChars": {
+    "message": "बड़ा बैच = कम API कॉल लेकिन हर कॉल में धीमा। 3000 उचित संतुलन है।"
+  },
+  "labelConcurrentBatches": {
+    "message": "समवर्ती बैच"
+  },
+  "headingCacheStats": {
+    "message": "कैश और आँकड़े"
+  },
+  "labelCacheEnabled": {
+    "message": "IndexedDB अनुवाद कैश सक्षम करें"
+  },
+  "btnClearCache": {
+    "message": "कैश साफ़ करें"
+  },
+  "btnResetTokenStats": {
+    "message": "Token आँकड़े रीसेट करें"
+  },
+  "autoSaveHint": {
+    "message": "परिवर्तन स्वचालित सेव हो जाते हैं।"
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "साइट नियम जोड़ें"
+  },
+  "labelHostname": {
+    "message": "होस्टनेम"
+  },
+  "labelMode": {
+    "message": "मोड"
+  },
+  "modeAlwaysSkip": {
+    "message": "हमेशा छोड़ें"
+  },
+  "modeAlwaysTranslate": {
+    "message": "हमेशा इससे अनुवाद करें ↓"
+  },
+  "labelProviderField": {
+    "message": "प्रदाता"
+  },
+  "btnCancel": {
+    "message": "रद्द करें"
+  },
+  "btnDialogAdd": {
+    "message": "जोड़ें"
+  },
+  "labelName": {
+    "message": "नाम"
+  },
+  "btnDelete": {
+    "message": "हटाएँ"
+  },
+  "btnEdit": {
+    "message": "संपादित करें"
+  },
+  "btnCollapse": {
+    "message": "संक्षिप्त करें"
+  },
+  "btnFetch": {
+    "message": "प्राप्त करें"
+  },
+  "badgeDefault": {
+    "message": "पूर्वनिर्धारित"
+  },
+  "labelUnnamed": {
+    "message": "(बेनाम)"
+  },
+  "labelNotSet": {
+    "message": "(सेट नहीं)"
+  },
+  "placeholderModelId": {
+    "message": "या मॉडल आईडी टाइप करें"
+  },
+  "labelOutputMode": {
+    "message": "आउटपुट मोड"
+  },
+  "outputModeText": {
+    "message": "<<<SEP>>> विभाजक के साथ पाठ"
+  },
+  "outputModeTool": {
+    "message": "टूल कॉलिंग (संरचित JSON सरणी)"
+  },
+  "hintToolMode": {
+    "message": "टूल मोड मॉडल को JSON सरणी लौटाने के लिए मजबूर करता है — कोई विभाजक पार्सिंग नहीं, अधिक मज़बूत। टूल कॉलिंग समर्थित मॉडल की आवश्यकता होती है।"
+  },
+  "labelStreamingEnabled": {
+    "message": "इस प्रदाता के लिए स्ट्रीमिंग उपयोग करें"
+  },
+  "labelSystemPrompt": {
+    "message": "सिस्टम प्रॉम्प्ट"
+  },
+  "labelUserPromptTemplate": {
+    "message": "उपयोगकर्ता प्रॉम्प्ट टेम्पलेट ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "बेस URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "बेस URL (प्रॉक्सी के अलावा डिफ़ॉल्ट रखें)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API Key (Google Cloud key)"
+  },
+  "labelApiKey": {
+    "message": "API Key"
+  },
+  "labelApiKeyOptional": {
+    "message": "API Key (वैकल्पिक)"
+  },
+  "labelDeepLPlan": {
+    "message": "प्लान"
+  },
+  "deepLPlanFree": {
+    "message": "मुफ़्त (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "पेड (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "अक्षर दाखिल:"
+  },
+  "labelCharsOut": {
+    "message": "अक्षर बाहर:"
+  },
+  "labelModel": {
+    "message": "मॉडल"
+  },
+  "siteRuleNone": {
+    "message": "अभी तक कोई साइट नियम नहीं।"
+  },
+  "statsTotalPrompt": {
+    "message": "कुल प्रॉम्प्ट:"
+  },
+  "statsTotalCompletion": {
+    "message": "कुल पूर्णता:"
+  },
+  "statusCacheCleared": {
+    "message": "कैश साफ़ हो गया।"
+  },
+  "errorClearFailed": {
+    "message": "साफ़ करना असफल।"
+  },
+  "statusTokensReset": {
+    "message": "टोकन आँकड़े रीसेट।"
+  },
+  "errorCannotDeleteLast": {
+    "message": "आखिरी प्रदाता को नहीं डिलीट कर सकते।"
+  },
+  "confirmDeleteProvider": {
+    "message": "इस प्रदाता को डिलीट करें?"
+  },
+  "confirmClearCache": {
+    "message": "सभी कैश किए अनुवाद साफ़ करें?"
+  },
+  "confirmResetTokens": {
+    "message": "सभी टोकन आँकड़े रीसेट करें?"
+  },
+  "suffixSaved": {
+    "message": " (सेव हो गया)"
+  },
+  "statusFetchingModels": {
+    "message": "मॉडल ला रहे हैं $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "कोई मॉडल नहीं मिला।"
+  },
+  "statusLoadedModels": {
+    "message": "$COUNT$ मॉडल लोड हुए।",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "लाना असफल: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "साफ़ करना असफल: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "रीसेट असफल: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ कैश किए प्रविष्टियाँ",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ कॉल्स",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "$NAME$ के साथ हमेशा",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "शब्दकोश"
+  },
+  "btnEditGlossary": {
+    "message": "शब्दकोश संपादित करें"
+  },
+  "hintGlossary": {
+    "message": "यहाँ दिए शब्द LLM सिस्टम प्रॉम्प्ट में अनुवाद संदर्भ के तौर पर जोड़े जाते हैं। गैर-LLM प्रदाता (Google, DeepL, LibreTranslate) इसे नज़रअंदाज़ करते हैं।"
+  },
+  "dialogHeadingGlossary": {
+    "message": "शब्दकोश"
+  },
+  "glossaryEmpty": {
+    "message": "अभी तक कोई प्रविष्टि नहीं। नीचे पद जोड़ें।"
+  },
+  "glossaryNone": {
+    "message": "अभी तक कोई प्रविष्टि नहीं।"
+  },
+  "placeholderGlossarySource": {
+    "message": "स्रोत पद"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "अनुवाद"
+  },
+  "placeholderGlossaryLang": {
+    "message": "भाषा (जैसे zh-CN, या खाली = सभी)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ पद परिभाषित हैं",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "चयन अनुवाद करें"
+  },
+  "btnClose": {
+    "message": "बंद करें"
+  },
+  "labelError": {
+    "message": "त्रुटि"
+  },
+  "tagCached": {
+    "message": "कैश्ड"
+  },
+  "notifBtnTranslate": {
+    "message": "अनुवाद करें"
+  },
+  "notifBtnNever": {
+    "message": "कभी न अनुवाद करें"
+  },
+  "notifBtnIgnore": {
+    "message": "उपेक्षा करें"
+  },
+  "toastErrorTitle": {
+    "message": "अनुवाद त्रुटि"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: कोई प्रदाता कॉन्फ़िगर नहीं है। एक जोड़ने के लिए सेटिंग पेज खोलें।"
+  },
+  "progressTranslating": {
+    "message": "अनुवाद हो रहा है…"
+  },
+  "progressHide": {
+    "message": "छुपाएँ"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ इन · $OUT$ आउट टोकन",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "मूल"
+  },
+  "pdfCycleReveal": {
+    "message": "प्रकट किया गया"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ परतें",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

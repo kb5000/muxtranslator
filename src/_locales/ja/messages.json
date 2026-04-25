@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "OpenAI互換のページ翻訳機 — APIキーとモデルはご自身で用意ください。"
+  },
+  "settingsTitle": {
+    "message": "設定"
+  },
+  "viewerOpen": {
+    "message": "PDFを開く"
+  },
+  "viewerEmptyTitle": {
+    "message": "翻訳するPDFを開いてください"
+  },
+  "viewerEmptyHint": {
+    "message": "\"PDFを開く\"をクリックするか、ファイルをこのページのどこかにドロップしてください。"
+  },
+  "labelPage": {
+    "message": "ページ："
+  },
+  "labelTarget": {
+    "message": "対象："
+  },
+  "labelSite": {
+    "message": "サイト："
+  },
+  "btnTranslate": {
+    "message": "翻訳"
+  },
+  "btnPause": {
+    "message": "一時停止"
+  },
+  "btnResume": {
+    "message": "再開"
+  },
+  "btnRestoreOriginal": {
+    "message": "原文に戻す"
+  },
+  "headingSiteRules": {
+    "message": "このサイト"
+  },
+  "ruleAsk": {
+    "message": "確認する"
+  },
+  "ruleSkip": {
+    "message": "常にスキップ"
+  },
+  "ruleAlways": {
+    "message": "↑で常に翻訳"
+  },
+  "headingQuickTranslate": {
+    "message": "クイック翻訳"
+  },
+  "manualPlaceholder": {
+    "message": "翻訳するテキストを貼り付けまたは入力…"
+  },
+  "headingTokens": {
+    "message": "トークン（このページ）"
+  },
+  "labelPrompt": {
+    "message": "プロンプト："
+  },
+  "labelCompletion": {
+    "message": "完了："
+  },
+  "statusNotAPage": {
+    "message": "（ページではありません）"
+  },
+  "statusUnknown": {
+    "message": "（不明）"
+  },
+  "statusUnavailable": {
+    "message": "（利用不可）"
+  },
+  "statusPaused": {
+    "message": "一時停止"
+  },
+  "statusResumed": {
+    "message": "再開"
+  },
+  "statusStarted": {
+    "message": "開始"
+  },
+  "statusSaved": {
+    "message": "保存済み"
+  },
+  "statusTranslatingInProgress": {
+    "message": "翻訳中…"
+  },
+  "statusCannotTranslate": {
+    "message": "このページは翻訳できません"
+  },
+  "statusRestoreFailed": {
+    "message": "復元失敗"
+  },
+  "statusEmpty": {
+    "message": "(空)"
+  },
+  "statusCached": {
+    "message": "キャッシュ済み"
+  },
+  "statusTranslating": {
+    "message": "翻訳中…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "現在: スキップ"
+  },
+  "statusCurrentlyAsk": {
+    "message": "現在: 毎回確認"
+  },
+  "statusNoHostname": {
+    "message": "ホスト名なし — ルールを設定できません"
+  },
+  "statusTargetSet": {
+    "message": "対象を$LANG$に設定",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "保存失敗: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "失敗: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "$COUNT$ノードを復元",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "現在: $NAME$で自動翻訳",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "完了 ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator設定"
+  },
+  "optionsSubtitle": {
+    "message": "自分のAPIを使うページ翻訳機。下記でプロバイダー、サイトルール、デフォルトを設定します。"
+  },
+  "headingProviders": {
+    "message": "プロバイダー"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI互換"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "埋め込み"
+  },
+  "bilingualTooltip": {
+    "message": "ツールチップ"
+  },
+  "headingBilingual": {
+    "message": "バイリンガル表示"
+  },
+  "hintBilingualMode": {
+    "message": "バイリンガルモードは拡張機能ポップアップからもすばやく切り替え可能です。"
+  },
+  "headingPerformance": {
+    "message": "パフォーマンス"
+  },
+  "labelObserveMutations": {
+    "message": "ページが追加する新しいコンテンツを自動翻訳（SPA、無限スクロール）"
+  },
+  "labelViewportPriority": {
+    "message": "画面上の要素を優先し、画面外は事前読み込み"
+  },
+  "labelShowProgressBar": {
+    "message": "翻訳進捗ウィジェットを表示（右下）"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "バッチごとの最大文字数"
+  },
+  "hintMaxChars": {
+    "message": "バッチが大きいほどAPI呼び出しは少なくなりますが、1回あたり遅くなります。3000がバランス良い値です。"
+  },
+  "labelConcurrentBatches": {
+    "message": "同時バッチ数"
+  },
+  "headingCacheStats": {
+    "message": "キャッシュと統計"
+  },
+  "labelCacheEnabled": {
+    "message": "IndexedDB翻訳キャッシュを有効にする"
+  },
+  "btnClearCache": {
+    "message": "キャッシュを消去"
+  },
+  "btnResetTokenStats": {
+    "message": "トークン統計をリセット"
+  },
+  "autoSaveHint": {
+    "message": "変更は自動保存されます。"
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "サイトルールを追加"
+  },
+  "labelHostname": {
+    "message": "ホスト名"
+  },
+  "labelMode": {
+    "message": "モード"
+  },
+  "modeAlwaysSkip": {
+    "message": "常にスキップ"
+  },
+  "modeAlwaysTranslate": {
+    "message": "常に↓で翻訳"
+  },
+  "labelProviderField": {
+    "message": "プロバイダー"
+  },
+  "btnCancel": {
+    "message": "キャンセル"
+  },
+  "btnDialogAdd": {
+    "message": "追加"
+  },
+  "labelName": {
+    "message": "名前"
+  },
+  "btnDelete": {
+    "message": "削除"
+  },
+  "btnEdit": {
+    "message": "編集"
+  },
+  "btnCollapse": {
+    "message": "折りたたむ"
+  },
+  "btnFetch": {
+    "message": "取得"
+  },
+  "badgeDefault": {
+    "message": "デフォルト"
+  },
+  "labelUnnamed": {
+    "message": "（名前なし）"
+  },
+  "labelNotSet": {
+    "message": "（未設定）"
+  },
+  "placeholderModelId": {
+    "message": "またはモデルIDを入力"
+  },
+  "labelOutputMode": {
+    "message": "出力モード"
+  },
+  "outputModeText": {
+    "message": "<<<SEP>>> 区切りのテキスト"
+  },
+  "outputModeTool": {
+    "message": "ツール呼び出し（構造化JSON配列）"
+  },
+  "hintToolMode": {
+    "message": "ツールモードではモデルがJSON配列を返すように強制されます — 区切り解析なし、より堅牢。ツール呼び出しに対応したモデルが必要です。"
+  },
+  "labelStreamingEnabled": {
+    "message": "このプロバイダーでストリーミングを使用"
+  },
+  "labelSystemPrompt": {
+    "message": "システムプロンプト"
+  },
+  "labelUserPromptTemplate": {
+    "message": "ユーザープロンプトテンプレート（{text}、{target_lang}）"
+  },
+  "labelBaseURL": {
+    "message": "ベースURL"
+  },
+  "labelBaseURLProxy": {
+    "message": "ベースURL（プロキシ以外はデフォルトのまま）"
+  },
+  "labelApiKeyGoogle": {
+    "message": "APIキー（Google Cloudキー）"
+  },
+  "labelApiKey": {
+    "message": "APIキー"
+  },
+  "labelApiKeyOptional": {
+    "message": "APIキー（任意）"
+  },
+  "labelDeepLPlan": {
+    "message": "プラン"
+  },
+  "deepLPlanFree": {
+    "message": "無料（api-free.deepl.com）"
+  },
+  "deepLPlanPaid": {
+    "message": "有料（api.deepl.com）"
+  },
+  "labelCharsIn": {
+    "message": "入力文字数："
+  },
+  "labelCharsOut": {
+    "message": "出力文字数："
+  },
+  "labelModel": {
+    "message": "モデル"
+  },
+  "siteRuleNone": {
+    "message": "サイトルールはまだありません。"
+  },
+  "statsTotalPrompt": {
+    "message": "プロンプト合計:"
+  },
+  "statsTotalCompletion": {
+    "message": "生成合計:"
+  },
+  "statusCacheCleared": {
+    "message": "キャッシュを消去しました。"
+  },
+  "errorClearFailed": {
+    "message": "消去に失敗しました。"
+  },
+  "statusTokensReset": {
+    "message": "トークン統計をリセットしました。"
+  },
+  "errorCannotDeleteLast": {
+    "message": "最後のプロバイダーは削除できません。"
+  },
+  "confirmDeleteProvider": {
+    "message": "このプロバイダーを削除しますか？"
+  },
+  "confirmClearCache": {
+    "message": "すべての翻訳キャッシュを消去しますか？"
+  },
+  "confirmResetTokens": {
+    "message": "すべてのトークン統計をリセットしますか？"
+  },
+  "suffixSaved": {
+    "message": "（保存済み）"
+  },
+  "statusFetchingModels": {
+    "message": "モデルを取得中 ($NAME$)…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "モデルが返されませんでした。"
+  },
+  "statusLoadedModels": {
+    "message": "$COUNT$ 件のモデルを読み込みました。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "取得失敗: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "消去失敗: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "リセット失敗: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ 件のキャッシュエントリ",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ 回呼び出し",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "$NAME$ で常に適用",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "用語集"
+  },
+  "btnEditGlossary": {
+    "message": "用語集を編集"
+  },
+  "hintGlossary": {
+    "message": "ここに記載された用語は、LLM システムプロンプトに翻訳参照として挿入されます。非 LLM プロバイダー（Google、DeepL、LibreTranslate）では無視されます。"
+  },
+  "dialogHeadingGlossary": {
+    "message": "用語集"
+  },
+  "glossaryEmpty": {
+    "message": "まだエントリがありません。下に用語を追加してください。"
+  },
+  "glossaryNone": {
+    "message": "まだエントリがありません。"
+  },
+  "placeholderGlossarySource": {
+    "message": "原文の用語"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "訳文"
+  },
+  "placeholderGlossaryLang": {
+    "message": "言語（例: zh-CN、空欄=すべて）"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ 件の用語が定義されています",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "選択部分を翻訳"
+  },
+  "btnClose": {
+    "message": "閉じる"
+  },
+  "labelError": {
+    "message": "エラー"
+  },
+  "tagCached": {
+    "message": "キャッシュ済み"
+  },
+  "notifBtnTranslate": {
+    "message": "翻訳"
+  },
+  "notifBtnNever": {
+    "message": "翻訳しない"
+  },
+  "notifBtnIgnore": {
+    "message": "無視"
+  },
+  "toastErrorTitle": {
+    "message": "翻訳エラー"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: プロバイダが設定されていません。設定ページで追加してください。"
+  },
+  "progressTranslating": {
+    "message": "翻訳中…"
+  },
+  "progressHide": {
+    "message": "隠す"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ 入力トークン · $OUT$ 出力トークン",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "原文"
+  },
+  "pdfCycleReveal": {
+    "message": "表示済み"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ レイヤー",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

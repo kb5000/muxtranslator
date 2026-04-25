@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "OpenAI-kompatibel sideoversætter — medbring din egen API-nøgle og model."
+  },
+  "settingsTitle": {
+    "message": "Indstillinger"
+  },
+  "viewerOpen": {
+    "message": "Åbn PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Åbn en PDF for at oversætte"
+  },
+  "viewerEmptyHint": {
+    "message": "Klik på \"Åbn PDF\" ovenfor eller slip en fil et sted på siden."
+  },
+  "labelPage": {
+    "message": "Side:"
+  },
+  "labelTarget": {
+    "message": "Sprog:"
+  },
+  "labelSite": {
+    "message": "Websted:"
+  },
+  "btnTranslate": {
+    "message": "Oversæt"
+  },
+  "btnPause": {
+    "message": "Pause"
+  },
+  "btnResume": {
+    "message": "Fortsæt"
+  },
+  "btnRestoreOriginal": {
+    "message": "Gendan original"
+  },
+  "headingSiteRules": {
+    "message": "Dette websted"
+  },
+  "ruleAsk": {
+    "message": "Spørg"
+  },
+  "ruleSkip": {
+    "message": "Spring altid over"
+  },
+  "ruleAlways": {
+    "message": "Oversæt altid med ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Hurtig oversættelse"
+  },
+  "manualPlaceholder": {
+    "message": "Indsæt eller skriv tekst der skal oversættes…"
+  },
+  "headingTokens": {
+    "message": "Token (denne side)"
+  },
+  "labelPrompt": {
+    "message": "Prompt:"
+  },
+  "labelCompletion": {
+    "message": "Fuldførelse:"
+  },
+  "statusNotAPage": {
+    "message": "(ikke en side)"
+  },
+  "statusUnknown": {
+    "message": "(ukendt)"
+  },
+  "statusUnavailable": {
+    "message": "(ikke tilgængelig)"
+  },
+  "statusPaused": {
+    "message": "Pauset."
+  },
+  "statusResumed": {
+    "message": "Genoptaget."
+  },
+  "statusStarted": {
+    "message": "Startet."
+  },
+  "statusSaved": {
+    "message": "Gemt."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Oversætter…"
+  },
+  "statusCannotTranslate": {
+    "message": "Kan ikke oversætte denne side"
+  },
+  "statusRestoreFailed": {
+    "message": "Gendannelse mislykkedes"
+  },
+  "statusEmpty": {
+    "message": "(tom)"
+  },
+  "statusCached": {
+    "message": "Cachelagret"
+  },
+  "statusTranslating": {
+    "message": "Oversætter…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Aktuelt: sprunget over"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Aktuelt: spørg hver gang"
+  },
+  "statusNoHostname": {
+    "message": "Intet værtsnavn — kan ikke oprette regel"
+  },
+  "statusTargetSet": {
+    "message": "Mål sat til $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Gem mislykkedes: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Mislykkedes: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Gendannet $COUNT$ noder.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Aktuelt: auto-oversæt med $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Færdig ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator-indstillinger"
+  },
+  "optionsSubtitle": {
+    "message": "Dit-egen-API-sideoversætter. Konfigurér udbydere, sitesregler og standardindstillinger nedenfor."
+  },
+  "headingProviders": {
+    "message": "Udbydere"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "Indlejr"
+  },
+  "bilingualTooltip": {
+    "message": "Værktøjstip"
+  },
+  "headingBilingual": {
+    "message": "Tosproget visning"
+  },
+  "hintBilingualMode": {
+    "message": "Tosproget tilstand kan også aktiveres hurtigt fra udvidelsens popup."
+  },
+  "headingPerformance": {
+    "message": "Ydelse"
+  },
+  "labelObserveMutations": {
+    "message": "Automatisk oversæt ny indhold fra siden (SPA'er, uendelig scroll)"
+  },
+  "labelViewportPriority": {
+    "message": "Prioritér elementer på skærmen, forhåndsindlæs skjulte"
+  },
+  "labelShowProgressBar": {
+    "message": "Vis oversætningsfremgangsvidue (nederst til højre)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Maks tegn pr. batch"
+  },
+  "hintMaxChars": {
+    "message": "Større batch = færre API-kald men langsommere pr. kald. 3000 er en god balance."
+  },
+  "labelConcurrentBatches": {
+    "message": "Samtidige batches"
+  },
+  "headingCacheStats": {
+    "message": "Cache og statistik"
+  },
+  "labelCacheEnabled": {
+    "message": "Aktivér IndexedDB-oversættelsescache"
+  },
+  "btnClearCache": {
+    "message": "Ryd cache"
+  },
+  "btnResetTokenStats": {
+    "message": "Nulstil token-statistik"
+  },
+  "autoSaveHint": {
+    "message": "Ændringer gemmes automatisk."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Tilføj sidesregel"
+  },
+  "labelHostname": {
+    "message": "Værtsnavn"
+  },
+  "labelMode": {
+    "message": "Tilstand"
+  },
+  "modeAlwaysSkip": {
+    "message": "Spring altid over"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Oversæt altid med ↓"
+  },
+  "labelProviderField": {
+    "message": "Udbyder"
+  },
+  "btnCancel": {
+    "message": "Annullér"
+  },
+  "btnDialogAdd": {
+    "message": "Tilføj"
+  },
+  "labelName": {
+    "message": "Navn"
+  },
+  "btnDelete": {
+    "message": "Slet"
+  },
+  "btnEdit": {
+    "message": "Redigér"
+  },
+  "btnCollapse": {
+    "message": "Skjul"
+  },
+  "btnFetch": {
+    "message": "Hent"
+  },
+  "badgeDefault": {
+    "message": "standard"
+  },
+  "labelUnnamed": {
+    "message": "(unavngivet)"
+  },
+  "labelNotSet": {
+    "message": "(ikke sat)"
+  },
+  "placeholderModelId": {
+    "message": "Eller skriv et model-id"
+  },
+  "labelOutputMode": {
+    "message": "Udgangstilstand"
+  },
+  "outputModeText": {
+    "message": "Tekst med <<<SEP>>>-separator"
+  },
+  "outputModeTool": {
+    "message": "Værktøjsopkald (struktureret JSON-array)"
+  },
+  "hintToolMode": {
+    "message": "Værktøjsmodus tvinger modellen til at returnere et JSON-array — ingen separator-tolkning, mere robust. Kræver en model der understøtter værktøjsopkald."
+  },
+  "labelStreamingEnabled": {
+    "message": "Brug streaming for denne udbyder"
+  },
+  "labelSystemPrompt": {
+    "message": "Systemprompt"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Brugerprompt-skabelon ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Grund-URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Grund-URL (lad stå som standard medmindre du bruger proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API-nøgle (Google Cloud-nøgle)"
+  },
+  "labelApiKey": {
+    "message": "API-nøgle"
+  },
+  "labelApiKeyOptional": {
+    "message": "API-nøgle (valgfri)"
+  },
+  "labelDeepLPlan": {
+    "message": "Plan"
+  },
+  "deepLPlanFree": {
+    "message": "Gratis (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Betalt (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Tegn ind:"
+  },
+  "labelCharsOut": {
+    "message": "Tegn ud:"
+  },
+  "labelModel": {
+    "message": "Model"
+  },
+  "siteRuleNone": {
+    "message": "Ingen sideregler endnu."
+  },
+  "statsTotalPrompt": {
+    "message": "Samlet prompt:"
+  },
+  "statsTotalCompletion": {
+    "message": "Samlet fuldførelse:"
+  },
+  "statusCacheCleared": {
+    "message": "Cache ryddet."
+  },
+  "errorClearFailed": {
+    "message": "Rydning mislykkedes."
+  },
+  "statusTokensReset": {
+    "message": "Token-statistik nulstillet."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Kan ikke slette den sidste udbyder."
+  },
+  "confirmDeleteProvider": {
+    "message": "Slet denne udbyder?"
+  },
+  "confirmClearCache": {
+    "message": "Ryd alle oversatte mellemlagring?"
+  },
+  "confirmResetTokens": {
+    "message": "Nulstil al token-statistik?"
+  },
+  "suffixSaved": {
+    "message": " (gemt)"
+  },
+  "statusFetchingModels": {
+    "message": "Henter modeller for $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Ingen modeller returneret."
+  },
+  "statusLoadedModels": {
+    "message": "Indlæste $COUNT$ modeller.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Hentning mislykkedes: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Rydning mislykkedes: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Nulstilling mislykkedes: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ mellemlagrede poster",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ kald",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Altid med $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Ordliste"
+  },
+  "btnEditGlossary": {
+    "message": "Rediger ordliste"
+  },
+  "hintGlossary": {
+    "message": "Vilkår her er indføjet i LLM-systemprompten som en oversættelsesreference. Ikke-LLM-udbydere (Google, DeepL, LibreTranslate) ignorerer dette."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Ordliste"
+  },
+  "glossaryEmpty": {
+    "message": "Ingen indlæg endnu. Tilføj begreber nedenfor."
+  },
+  "glossaryNone": {
+    "message": "Ingen indlæg endnu."
+  },
+  "placeholderGlossarySource": {
+    "message": "Kildebegreb"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Oversættelse"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Sprog (fx zh-CN, eller blank = alle)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ begreb(er) defineret",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Oversæt markering"
+  },
+  "btnClose": {
+    "message": "Luk"
+  },
+  "labelError": {
+    "message": "Fejl"
+  },
+  "tagCached": {
+    "message": "cachelagt"
+  },
+  "notifBtnTranslate": {
+    "message": "Oversæt"
+  },
+  "notifBtnNever": {
+    "message": "Oversæt aldrig"
+  },
+  "notifBtnIgnore": {
+    "message": "Ignorér"
+  },
+  "toastErrorTitle": {
+    "message": "Oversætningsfejl"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Ingen udbydere konfigureret. Åbn indstillingssiden for at tilføje en."
+  },
+  "progressTranslating": {
+    "message": "Oversætter…"
+  },
+  "progressHide": {
+    "message": "Skjul"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ ind · $OUT$ ud tokens",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Original"
+  },
+  "pdfCycleReveal": {
+    "message": "Vist"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ lag",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

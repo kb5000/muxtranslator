@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "OpenAI-compatibele paginatranslator — breng je eigen API-sleutel & model mee."
+  },
+  "settingsTitle": {
+    "message": "Instellingen"
+  },
+  "viewerOpen": {
+    "message": "PDF openen"
+  },
+  "viewerEmptyTitle": {
+    "message": "Open een PDF om te vertalen"
+  },
+  "viewerEmptyHint": {
+    "message": "Klik op \"Open PDF\" hierboven of sleep een bestand ergens op deze pagina."
+  },
+  "labelPage": {
+    "message": "Pagina:"
+  },
+  "labelTarget": {
+    "message": "Doel:"
+  },
+  "labelSite": {
+    "message": "Site:"
+  },
+  "btnTranslate": {
+    "message": "Vertalen"
+  },
+  "btnPause": {
+    "message": "Pauzeren"
+  },
+  "btnResume": {
+    "message": "Hervatten"
+  },
+  "btnRestoreOriginal": {
+    "message": "Origineel herstellen"
+  },
+  "headingSiteRules": {
+    "message": "Deze site"
+  },
+  "ruleAsk": {
+    "message": "Vragen"
+  },
+  "ruleSkip": {
+    "message": "Altijd overslaan"
+  },
+  "ruleAlways": {
+    "message": "Altijd vertalen met ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Snel vertalen"
+  },
+  "manualPlaceholder": {
+    "message": "Plak of typ tekst om te vertalen…"
+  },
+  "headingTokens": {
+    "message": "Tokens (deze pagina)"
+  },
+  "labelPrompt": {
+    "message": "Prompt:"
+  },
+  "labelCompletion": {
+    "message": "Voltooiing:"
+  },
+  "statusNotAPage": {
+    "message": "(geen pagina)"
+  },
+  "statusUnknown": {
+    "message": "(onbekend)"
+  },
+  "statusUnavailable": {
+    "message": "(niet beschikbaar)"
+  },
+  "statusPaused": {
+    "message": "Gepauzeerd."
+  },
+  "statusResumed": {
+    "message": "Hervat."
+  },
+  "statusStarted": {
+    "message": "Gestart."
+  },
+  "statusSaved": {
+    "message": "Opgeslagen."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Vertalen bezig…"
+  },
+  "statusCannotTranslate": {
+    "message": "Kan deze pagina niet vertalen"
+  },
+  "statusRestoreFailed": {
+    "message": "Herstel mislukt"
+  },
+  "statusEmpty": {
+    "message": "(leeg)"
+  },
+  "statusCached": {
+    "message": "Gecachet"
+  },
+  "statusTranslating": {
+    "message": "Vertalen…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Momenteel: overgeslagen"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Momenteel: elke keer vragen"
+  },
+  "statusNoHostname": {
+    "message": "Geen hostnaam — regel kan niet worden ingesteld"
+  },
+  "statusTargetSet": {
+    "message": "Doeltaal ingesteld op $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Opslaan mislukt: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Mislukt: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "$COUNT$ knopen hersteld.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Momenteel: automatisch vertalen met $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Klaar ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator-instellingen"
+  },
+  "optionsSubtitle": {
+    "message": "Eigen-API-paginavertaler. Stel hieronder providers, siteregels en standaarden in."
+  },
+  "headingProviders": {
+    "message": "Providers"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Toevoegen"
+  },
+  "headingBindings": {
+    "message": "Functiebindingen"
+  },
+  "labelDefaultProvider": {
+    "message": "Standaardprovider (voor paginatranslatie)"
+  },
+  "labelSelectionProvider": {
+    "message": "Provider voor selectietranslatie"
+  },
+  "labelUseDefault": {
+    "message": "(standaard gebruiken)"
+  },
+  "labelManualProvider": {
+    "message": "Provider voor handmatige invoer"
+  },
+  "labelPdfProvider": {
+    "message": "PDF-translatieprovider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Toon \"译\"-badge bij geselecteerde tekst (klik om te vertalen)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Siterichtlijnen"
+  },
+  "btnAddRule": {
+    "message": "+ Regel toevoegen"
+  },
+  "siteRulesHint": {
+    "message": "Richtlijnen komen overeen met het exacte hostnaam of een subdomein. Niet vermelde sites vallen terug op de standaard \"vraag elke keer\"-gedraging."
+  },
+  "headingLanguages": {
+    "message": "Talen"
+  },
+  "labelUiLanguage": {
+    "message": "UI-taal"
+  },
+  "uiLangAuto": {
+    "message": "Auto (browser volgen)"
+  },
+  "labelTargetLanguage": {
+    "message": "Doeltaal"
+  },
+  "labelSkipLanguages": {
+    "message": "Overslaan talen (gescheiden door komma's)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Standaardvertaalmodus"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Bepaalt wat er gebeurt bij detectie van een buitenlandse pagina. \"Vragen\" toont een balk bovenaan; \"Auto\" start stilzwijgend met vertalen; \"Nooit\" schakelt alle automatisch gedrag uit (je kunt nog steeds handmatig vertalen via het pop-up)."
+  },
+  "modeAsk": {
+    "message": "Elke keer vragen (standaard)"
+  },
+  "modeAutoTranslate": {
+    "message": "Automatisch vertalen van buitenlandse pagina's"
+  },
+  "modeNeverAuto": {
+    "message": "Nooit automatisch vertalen"
+  },
+  "labelBilingualMode": {
+    "message": "Tweetalige weergave"
+  },
+  "bilingualOff": {
+    "message": "Uit"
+  },
+  "bilingualEmbed": {
+    "message": "Insluiten"
+  },
+  "bilingualTooltip": {
+    "message": "Tooltip"
+  },
+  "headingBilingual": {
+    "message": "Tweetalige weergave"
+  },
+  "hintBilingualMode": {
+    "message": "Tweetalige modus kan ook snel worden in-/uitgeschakeld via het extensiepopup."
+  },
+  "headingPerformance": {
+    "message": "Prestaties"
+  },
+  "labelObserveMutations": {
+    "message": "Vertaal automatisch nieuwe inhoud die door de pagina wordt toegevoegd (SPA's, oneindig scrollen)"
+  },
+  "labelViewportPriority": {
+    "message": "Richt prioriteit op schermvullende elementen, laad buitenbeeld voor"
+  },
+  "labelShowProgressBar": {
+    "message": "Toon voortgangswidget vertaling (rechtsonder)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Max tekens per batch"
+  },
+  "hintMaxChars": {
+    "message": "Grotere batch = minder API-aanroepen maar tragere per aanroep. 3000 is een goede balans."
+  },
+  "labelConcurrentBatches": {
+    "message": "Gelijktijdige batches"
+  },
+  "headingCacheStats": {
+    "message": "Cache en statistieken"
+  },
+  "labelCacheEnabled": {
+    "message": "Schakel IndexedDB-vertalingscache in"
+  },
+  "btnClearCache": {
+    "message": "Cache wissen"
+  },
+  "btnResetTokenStats": {
+    "message": "Tokenstatistieken resetten"
+  },
+  "autoSaveHint": {
+    "message": "Wijzigingen worden automatisch opgeslagen."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Siterule toevoegen"
+  },
+  "labelHostname": {
+    "message": "Hostnaam"
+  },
+  "labelMode": {
+    "message": "Modus"
+  },
+  "modeAlwaysSkip": {
+    "message": "Altijd overslaan"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Altijd vertalen met ↓"
+  },
+  "labelProviderField": {
+    "message": "Provider"
+  },
+  "btnCancel": {
+    "message": "Annuleren"
+  },
+  "btnDialogAdd": {
+    "message": "Toevoegen"
+  },
+  "labelName": {
+    "message": "Naam"
+  },
+  "btnDelete": {
+    "message": "Verwijderen"
+  },
+  "btnEdit": {
+    "message": "Bewerken"
+  },
+  "btnCollapse": {
+    "message": "Inklappen"
+  },
+  "btnFetch": {
+    "message": "Ophalen"
+  },
+  "badgeDefault": {
+    "message": "standaard"
+  },
+  "labelUnnamed": {
+    "message": "(naamloos)"
+  },
+  "labelNotSet": {
+    "message": "(niet ingesteld)"
+  },
+  "placeholderModelId": {
+    "message": "Of typ een model-id"
+  },
+  "labelOutputMode": {
+    "message": "Uitvoermodus"
+  },
+  "outputModeText": {
+    "message": "Tekst met <<<SEP>>> scheidingsteken"
+  },
+  "outputModeTool": {
+    "message": "Tool-aanroep (gestructureerde JSON-array)"
+  },
+  "hintToolMode": {
+    "message": "Tool-modus dwingt het model om een JSON-array terug te geven — geen scheidingsteken parsing, robuuster. Vereist een model dat tool-aanroep ondersteunt."
+  },
+  "labelStreamingEnabled": {
+    "message": "Streaming gebruiken voor deze provider"
+  },
+  "labelSystemPrompt": {
+    "message": "Systeemprompt"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Gebruikersprompt-sjabloon ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Basis-URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Basis-URL (laat standaard tenzij proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API-sleutel (Google Cloud-sleutel)"
+  },
+  "labelApiKey": {
+    "message": "API-sleutel"
+  },
+  "labelApiKeyOptional": {
+    "message": "API-sleutel (optioneel)"
+  },
+  "labelDeepLPlan": {
+    "message": "Abonnement"
+  },
+  "deepLPlanFree": {
+    "message": "Gratis (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Betaald (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Tekens in:"
+  },
+  "labelCharsOut": {
+    "message": "Tekens uit:"
+  },
+  "labelModel": {
+    "message": "Model"
+  },
+  "siteRuleNone": {
+    "message": "Nog geen siteregels."
+  },
+  "statsTotalPrompt": {
+    "message": "Totaal prompt:"
+  },
+  "statsTotalCompletion": {
+    "message": "Totaal aanvulling:"
+  },
+  "statusCacheCleared": {
+    "message": "Cache gewist."
+  },
+  "errorClearFailed": {
+    "message": "Wissen mislukt."
+  },
+  "statusTokensReset": {
+    "message": "Tokenstatistieken gereset."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Kan laatste provider niet verwijderen."
+  },
+  "confirmDeleteProvider": {
+    "message": "Deze provider verwijderen?"
+  },
+  "confirmClearCache": {
+    "message": "Alle vertalingencache wissen?"
+  },
+  "confirmResetTokens": {
+    "message": "Alle tokenstatistieken resetten?"
+  },
+  "suffixSaved": {
+    "message": " (opgeslagen)"
+  },
+  "statusFetchingModels": {
+    "message": "Modellen ophalen voor $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Geen modellen geretourneerd."
+  },
+  "statusLoadedModels": {
+    "message": "$COUNT$ modellen geladen.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Ophalen mislukt: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Wissen mislukt: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Resetten mislukt: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ gecachte items",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ aanroepen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Altijd met $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Woordenlijst"
+  },
+  "btnEditGlossary": {
+    "message": "Bewerk woordenlijst"
+  },
+  "hintGlossary": {
+    "message": "Hier vermelde termen worden in de LLM-systeemprompt geïnjecteerd als vertaalreferentie. Niet-LLM-providers (Google, DeepL, LibreTranslate) negeren dit."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Woordenlijst"
+  },
+  "glossaryEmpty": {
+    "message": "Nog geen items. Voeg termen toe hieronder."
+  },
+  "glossaryNone": {
+    "message": "Nog geen items."
+  },
+  "placeholderGlossarySource": {
+    "message": "Bronterm"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Vertaling"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Taal (bijv. zh-CN, of leeg = alle)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ term(en) gedefinieerd",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Selectie vertalen"
+  },
+  "btnClose": {
+    "message": "Sluiten"
+  },
+  "labelError": {
+    "message": "Fout"
+  },
+  "tagCached": {
+    "message": "opgeslagen"
+  },
+  "notifBtnTranslate": {
+    "message": "Vertalen"
+  },
+  "notifBtnNever": {
+    "message": "Nooit vertalen"
+  },
+  "notifBtnIgnore": {
+    "message": "Negeren"
+  },
+  "toastErrorTitle": {
+    "message": "Vertaal­fout"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Geen providers ingesteld. Open de instellingenpagina om er een toe te voegen."
+  },
+  "progressTranslating": {
+    "message": "Bezig met vertalen…"
+  },
+  "progressHide": {
+    "message": "Verbergen"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ in · $OUT$ uit tokens",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Origineel"
+  },
+  "pdfCycleReveal": {
+    "message": "Getoond"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ lagen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -139,9 +139,14 @@ textarea { resize: vertical; padding: 5px 8px; margin-bottom: 4px; max-height: 2
 .secondary-actions { margin-top: 4px; }
 .secondary-actions button { flex: 1; padding: 0 8px; font-size: 12px; }
 
-.target-select {
+.combo {
+  position: relative;
   width: 60%;
-  padding: 4px 6px;
+}
+.combo-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 20px 4px 6px;
   font-size: 12px;
   font-family: inherit;
   border: 1px solid var(--border);
@@ -149,6 +154,45 @@ textarea { resize: vertical; padding: 5px 8px; margin-bottom: 4px; max-height: 2
   background: #fff;
   color: var(--text);
 }
+.combo-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 10px;
+  color: #666;
+  padding: 0;
+  line-height: 1;
+}
+.combo-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 2px 0 0;
+  padding: 2px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  max-height: 160px;
+  overflow-y: auto;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+.combo-list li {
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.combo-list li:hover { background: #e8f0fe; }
 
 .rule-buttons {
   display: flex;

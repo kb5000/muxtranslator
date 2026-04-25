@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Penerjemah halaman kompatibel OpenAI — bawa kunci & model API Anda sendiri."
+  },
+  "settingsTitle": {
+    "message": "Pengaturan"
+  },
+  "viewerOpen": {
+    "message": "Buka PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Buka PDF untuk diterjemahkan"
+  },
+  "viewerEmptyHint": {
+    "message": "Klik \"Buka PDF\" di atas atau seret berkas ke mana saja di halaman ini."
+  },
+  "labelPage": {
+    "message": "Halaman:"
+  },
+  "labelTarget": {
+    "message": "Tujuan:"
+  },
+  "labelSite": {
+    "message": "Situs:"
+  },
+  "btnTranslate": {
+    "message": "Terjemahkan"
+  },
+  "btnPause": {
+    "message": "Jeda"
+  },
+  "btnResume": {
+    "message": "Lanjutkan"
+  },
+  "btnRestoreOriginal": {
+    "message": "Kembalikan asli"
+  },
+  "headingSiteRules": {
+    "message": "Situs ini"
+  },
+  "ruleAsk": {
+    "message": "Tanya"
+  },
+  "ruleSkip": {
+    "message": "Selalu lewati"
+  },
+  "ruleAlways": {
+    "message": "Selalu terjemahkan dengan ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Terjemahan cepat"
+  },
+  "manualPlaceholder": {
+    "message": "Tempel atau ketik teks untuk diterjemahkan…"
+  },
+  "headingTokens": {
+    "message": "Token (halaman ini)"
+  },
+  "labelPrompt": {
+    "message": "Prompt:"
+  },
+  "labelCompletion": {
+    "message": "Hasil:"
+  },
+  "statusNotAPage": {
+    "message": "(bukan halaman)"
+  },
+  "statusUnknown": {
+    "message": "(tidak diketahui)"
+  },
+  "statusUnavailable": {
+    "message": "(tidak tersedia)"
+  },
+  "statusPaused": {
+    "message": "Dijeda."
+  },
+  "statusResumed": {
+    "message": "Dilanjutkan."
+  },
+  "statusStarted": {
+    "message": "Dimulai."
+  },
+  "statusSaved": {
+    "message": "Disimpan."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Sedang menerjemahkan…"
+  },
+  "statusCannotTranslate": {
+    "message": "Tidak bisa menerjemahkan halaman ini"
+  },
+  "statusRestoreFailed": {
+    "message": "Pemulihan gagal"
+  },
+  "statusEmpty": {
+    "message": "(kosong)"
+  },
+  "statusCached": {
+    "message": "Tersimpan"
+  },
+  "statusTranslating": {
+    "message": "Menerjemahkan…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Saat ini: dilewati"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Saat ini: tanya setiap kali"
+  },
+  "statusNoHostname": {
+    "message": "Tanpa nama host — aturan tidak bisa disetel"
+  },
+  "statusTargetSet": {
+    "message": "Target disetel ke $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Penyimpanan gagal: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Gagal: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "$COUNT$ node dipulihkan.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Saat ini: terjemahan otomatis dengan $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Selesai ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "Pengaturan MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "Penerjemah halaman dengan API sendiri. Atur penyedia, aturan situs, dan default di bawah."
+  },
+  "headingProviders": {
+    "message": "Penyedia"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Tambah"
+  },
+  "headingBindings": {
+    "message": "Pengikatan fitur"
+  },
+  "labelDefaultProvider": {
+    "message": "Penyedia default (untuk terjemahan halaman)"
+  },
+  "labelSelectionProvider": {
+    "message": "Penyedia terjemahan seleksi"
+  },
+  "labelUseDefault": {
+    "message": "(gunakan default)"
+  },
+  "labelManualProvider": {
+    "message": "Penyedia terjemahan input manual"
+  },
+  "labelPdfProvider": {
+    "message": "Penyedia terjemahan PDF"
+  },
+  "labelSelectionEnabled": {
+    "message": "Tampilkan lencana \"译\" saat teks dipilih (klik untuk menerjemahkan)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Aturan situs"
+  },
+  "btnAddRule": {
+    "message": "+ Tambah aturan"
+  },
+  "siteRulesHint": {
+    "message": "Aturan cocok dengan nama host persis atau subdomain mana pun. Situs yang tidak tercantum kembali ke perilaku default \"tanyakan setiap kali\"."
+  },
+  "headingLanguages": {
+    "message": "Bahasa"
+  },
+  "labelUiLanguage": {
+    "message": "Bahasa UI"
+  },
+  "uiLangAuto": {
+    "message": "Otomatis (ikut browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Bahasa tujuan"
+  },
+  "labelSkipLanguages": {
+    "message": "Lewati bahasa (pisahkan dengan koma)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Mode terjemahan default"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Mengontrol apa yang terjadi saat halaman berbahasa asing terdeteksi. \"Tanya\" menampilkan bilah di atas; \"Otomatis\" mulai menerjemahkan tanpa suara; \"Jangan pernah\" menonaktifkan semua perilaku otomatis (Anda masih bisa menerjemahkan secara manual melalui popup)."
+  },
+  "modeAsk": {
+    "message": "Tanya setiap kali (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Terjemahkan otomatis halaman asing"
+  },
+  "modeNeverAuto": {
+    "message": "Jangan pernah terjemahkan otomatis"
+  },
+  "labelBilingualMode": {
+    "message": "Tampilan bilingual"
+  },
+  "bilingualOff": {
+    "message": "Mati"
+  },
+  "bilingualEmbed": {
+    "message": "Sisipkan"
+  },
+  "bilingualTooltip": {
+    "message": "Tooltip"
+  },
+  "headingBilingual": {
+    "message": "Tampilan dwibahasa"
+  },
+  "hintBilingualMode": {
+    "message": "Mode dwibahasa juga bisa diubah cepat lewat popup ekstensi."
+  },
+  "headingPerformance": {
+    "message": "Performa"
+  },
+  "labelObserveMutations": {
+    "message": "Terjemahkan otomatis konten baru dari halaman (SPA, gulir tak terbatas)"
+  },
+  "labelViewportPriority": {
+    "message": "Utamakan elemen di layar, pra-muat yang di luar layar"
+  },
+  "labelShowProgressBar": {
+    "message": "Tampilkan widget progres terjemahan (kanan bawah)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Maks karakter per batch"
+  },
+  "hintMaxChars": {
+    "message": "Batch lebih besar = panggilan API lebih sedikit tapi tiap panggilan lebih lambat. 3000 adalah keseimbangan baik."
+  },
+  "labelConcurrentBatches": {
+    "message": "Batch bersamaan"
+  },
+  "headingCacheStats": {
+    "message": "Cache & statistik"
+  },
+  "labelCacheEnabled": {
+    "message": "Aktifkan cache terjemahan IndexedDB"
+  },
+  "btnClearCache": {
+    "message": "Hapus cache"
+  },
+  "btnResetTokenStats": {
+    "message": "Reset statistik Token"
+  },
+  "autoSaveHint": {
+    "message": "Perubahan disimpan otomatis."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Tambah aturan situs"
+  },
+  "labelHostname": {
+    "message": "Nama host"
+  },
+  "labelMode": {
+    "message": "Mode"
+  },
+  "modeAlwaysSkip": {
+    "message": "Selalu lewati"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Selalu terjemahkan dengan ↓"
+  },
+  "labelProviderField": {
+    "message": "Penyedia"
+  },
+  "btnCancel": {
+    "message": "Batal"
+  },
+  "btnDialogAdd": {
+    "message": "Tambah"
+  },
+  "labelName": {
+    "message": "Nama"
+  },
+  "btnDelete": {
+    "message": "Hapus"
+  },
+  "btnEdit": {
+    "message": "Edit"
+  },
+  "btnCollapse": {
+    "message": "Ciutkan"
+  },
+  "btnFetch": {
+    "message": "Ambil"
+  },
+  "badgeDefault": {
+    "message": "default"
+  },
+  "labelUnnamed": {
+    "message": "(tanpa nama)"
+  },
+  "labelNotSet": {
+    "message": "(belum diatur)"
+  },
+  "placeholderModelId": {
+    "message": "Atau ketik ID model"
+  },
+  "labelOutputMode": {
+    "message": "Mode output"
+  },
+  "outputModeText": {
+    "message": "Teks dengan pemisah <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "Pemanggilan alat (array JSON terstruktur)"
+  },
+  "hintToolMode": {
+    "message": "Mode alat memaksa model mengembalikan array JSON — tanpa parsing pemisah, lebih stabil. Butuh model yang mendukung pemanggilan alat."
+  },
+  "labelStreamingEnabled": {
+    "message": "Gunakan streaming untuk penyedia ini"
+  },
+  "labelSystemPrompt": {
+    "message": "Prompt sistem"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Template prompt pengguna ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Base URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Base URL (biarkan default kecuali pakai proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API Key (kunci Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "API Key"
+  },
+  "labelApiKeyOptional": {
+    "message": "API Key (opsional)"
+  },
+  "labelDeepLPlan": {
+    "message": "Paket"
+  },
+  "deepLPlanFree": {
+    "message": "Gratis (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Berbayar (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Karakter masuk:"
+  },
+  "labelCharsOut": {
+    "message": "Karakter keluar:"
+  },
+  "labelModel": {
+    "message": "Model"
+  },
+  "siteRuleNone": {
+    "message": "Belum ada aturan situs."
+  },
+  "statsTotalPrompt": {
+    "message": "Total prompt:"
+  },
+  "statsTotalCompletion": {
+    "message": "Total penyelesaian:"
+  },
+  "statusCacheCleared": {
+    "message": "Cache dibersihkan."
+  },
+  "errorClearFailed": {
+    "message": "Pembersihan gagal."
+  },
+  "statusTokensReset": {
+    "message": "Statistik token direset."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Tidak bisa menghapus penyedia terakhir."
+  },
+  "confirmDeleteProvider": {
+    "message": "Hapus penyedia ini?"
+  },
+  "confirmClearCache": {
+    "message": "Bersihkan semua terjemahan tersimpan?"
+  },
+  "confirmResetTokens": {
+    "message": "Reset semua statistik token?"
+  },
+  "suffixSaved": {
+    "message": " (tersimpan)"
+  },
+  "statusFetchingModels": {
+    "message": "Mengambil model untuk $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Tidak ada model yang dikembalikan."
+  },
+  "statusLoadedModels": {
+    "message": "Memuat $COUNT$ model.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Pengambilan gagal: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Pembersihan gagal: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Reset gagal: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ entri tersimpan",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ panggilan",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Selalu dengan $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Glosarium"
+  },
+  "btnEditGlossary": {
+    "message": "Edit Glosarium"
+  },
+  "hintGlossary": {
+    "message": "Istilah yang tercantum di sini disisipkan ke dalam prompt sistem LLM sebagai referensi terjemahan. Penyedia non-LLM (Google, DeepL, LibreTranslate) mengabaikan ini."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Glosarium"
+  },
+  "glossaryEmpty": {
+    "message": "Belum ada entri. Tambahkan istilah di bawah."
+  },
+  "glossaryNone": {
+    "message": "Belum ada entri."
+  },
+  "placeholderGlossarySource": {
+    "message": "Istilah sumber"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Terjemahan"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Bahasa (mis. zh-CN, atau kosong = semua)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ istilah didefinisikan",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Terjemahkan pilihan"
+  },
+  "btnClose": {
+    "message": "Tutup"
+  },
+  "labelError": {
+    "message": "Kesalahan"
+  },
+  "tagCached": {
+    "message": "tersimpan"
+  },
+  "notifBtnTranslate": {
+    "message": "Terjemahkan"
+  },
+  "notifBtnNever": {
+    "message": "Jangan pernah terjemahkan"
+  },
+  "notifBtnIgnore": {
+    "message": "Abaikan"
+  },
+  "toastErrorTitle": {
+    "message": "Kesalahan terjemahan"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Belum ada penyedia dikonfigurasi. Buka halaman pengaturan untuk menambahkan satu."
+  },
+  "progressTranslating": {
+    "message": "Menerjemahkan…"
+  },
+  "progressHide": {
+    "message": "Sembunyikan"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ masuk · $OUT$ keluar token",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Asli"
+  },
+  "pdfCycleReveal": {
+    "message": "Ditampilkan"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ lapisan",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

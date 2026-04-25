@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Trình dịch trang tương thích OpenAI — dùng API key và mô hình của bạn."
+  },
+  "settingsTitle": {
+    "message": "Cài đặt"
+  },
+  "viewerOpen": {
+    "message": "Mở PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Mở một PDF để dịch"
+  },
+  "viewerEmptyHint": {
+    "message": "Bấm \"Mở PDF\" ở trên hoặc kéo thả tập tin vào bất kỳ đâu trên trang này."
+  },
+  "labelPage": {
+    "message": "Trang:"
+  },
+  "labelTarget": {
+    "message": "Đích:"
+  },
+  "labelSite": {
+    "message": "Trang web:"
+  },
+  "btnTranslate": {
+    "message": "Dịch"
+  },
+  "btnPause": {
+    "message": "Tạm dừng"
+  },
+  "btnResume": {
+    "message": "Tiếp tục"
+  },
+  "btnRestoreOriginal": {
+    "message": "Khôi phục bản gốc"
+  },
+  "headingSiteRules": {
+    "message": "Trang web này"
+  },
+  "ruleAsk": {
+    "message": "Hỏi"
+  },
+  "ruleSkip": {
+    "message": "Luôn bỏ qua"
+  },
+  "ruleAlways": {
+    "message": "Luôn dịch với ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Dịch nhanh"
+  },
+  "manualPlaceholder": {
+    "message": "Dán hoặc gõ văn bản cần dịch…"
+  },
+  "headingTokens": {
+    "message": "Token (trang này)"
+  },
+  "labelPrompt": {
+    "message": "Lời nhắc:"
+  },
+  "labelCompletion": {
+    "message": "Hoàn thành:"
+  },
+  "statusNotAPage": {
+    "message": "(không phải trang)"
+  },
+  "statusUnknown": {
+    "message": "(không rõ)"
+  },
+  "statusUnavailable": {
+    "message": "(không khả dụng)"
+  },
+  "statusPaused": {
+    "message": "Đã tạm dừng."
+  },
+  "statusResumed": {
+    "message": "Đã tiếp tục."
+  },
+  "statusStarted": {
+    "message": "Đã bắt đầu."
+  },
+  "statusSaved": {
+    "message": "Đã lưu."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Đang dịch…"
+  },
+  "statusCannotTranslate": {
+    "message": "Không thể dịch trang này"
+  },
+  "statusRestoreFailed": {
+    "message": "Khôi phục thất bại"
+  },
+  "statusEmpty": {
+    "message": "(trống)"
+  },
+  "statusCached": {
+    "message": "Đã lưu bộ nhớ đệm"
+  },
+  "statusTranslating": {
+    "message": "Đang dịch…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Hiện tại: bỏ qua"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Hiện tại: hỏi mỗi lần"
+  },
+  "statusNoHostname": {
+    "message": "Thiếu tên miền — không thể đặt quy tắc"
+  },
+  "statusTargetSet": {
+    "message": "Đã đặt ngôn ngữ đích là $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Lưu thất bại: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Thất bại: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Đã khôi phục $COUNT$ nút.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Hiện tại: tự động dịch với $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Xong ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "Cài đặt MuxTranslator"
+  },
+  "optionsSubtitle": {
+    "message": "Trình dịch trang hỗ trợ API bên ngoài. Cấu hình nhà cung cấp, quy tắc trang và mặc định bên dưới."
+  },
+  "headingProviders": {
+    "message": "Nhà cung cấp"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Add"
+  },
+  "headingBindings": {
+    "message": "Feature bindings"
+  },
+  "labelDefaultProvider": {
+    "message": "Default provider (for page translation)"
+  },
+  "labelSelectionProvider": {
+    "message": "Selection translation provider"
+  },
+  "labelUseDefault": {
+    "message": "(use default)"
+  },
+  "labelManualProvider": {
+    "message": "Manual input translation provider"
+  },
+  "labelPdfProvider": {
+    "message": "PDF translation provider"
+  },
+  "labelSelectionEnabled": {
+    "message": "Show \"译\" badge when text is selected (click to translate)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site rules"
+  },
+  "btnAddRule": {
+    "message": "+ Add rule"
+  },
+  "siteRulesHint": {
+    "message": "Rules match the exact hostname or any subdomain. Sites not listed fall back to the default \"ask each time\" behavior."
+  },
+  "headingLanguages": {
+    "message": "Languages"
+  },
+  "labelUiLanguage": {
+    "message": "UI language"
+  },
+  "uiLangAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "labelTargetLanguage": {
+    "message": "Target language"
+  },
+  "labelSkipLanguages": {
+    "message": "Skip languages (comma-separated)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Default translation mode"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Controls what happens when a foreign-language page is detected. \"Ask\" shows a bar at the top; \"Auto\" silently starts translation; \"Never\" disables all automatic behavior (you can still translate manually via the popup)."
+  },
+  "modeAsk": {
+    "message": "Ask each time (default)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-translate foreign pages"
+  },
+  "modeNeverAuto": {
+    "message": "Never auto-translate"
+  },
+  "labelBilingualMode": {
+    "message": "Bilingual display"
+  },
+  "bilingualOff": {
+    "message": "Off"
+  },
+  "bilingualEmbed": {
+    "message": "Nhúng"
+  },
+  "bilingualTooltip": {
+    "message": "Gợi ý công cụ"
+  },
+  "headingBilingual": {
+    "message": "Hiển thị song ngữ"
+  },
+  "hintBilingualMode": {
+    "message": "Chế độ song ngữ cũng có thể bật/tắt nhanh từ popup của extension."
+  },
+  "headingPerformance": {
+    "message": "Hiệu suất"
+  },
+  "labelObserveMutations": {
+    "message": "Tự động dịch nội dung mới do trang thêm vào (SPA, cuộn vô hạn)"
+  },
+  "labelViewportPriority": {
+    "message": "Ưu tiên phần tử trên màn hình, tiền tải phần ngoài màn hình"
+  },
+  "labelShowProgressBar": {
+    "message": "Hiện tiến trình dịch (góc dưới phải)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Số ký tự tối đa mỗi lô"
+  },
+  "hintMaxChars": {
+    "message": "Lô lớn hơn = ít lượt gọi API nhưng chậm hơn mỗi lần. 3000 là mức cân bằng tốt."
+  },
+  "labelConcurrentBatches": {
+    "message": "Số lô xử lý đồng thời"
+  },
+  "headingCacheStats": {
+    "message": "Bộ nhớ đệm & thống kê"
+  },
+  "labelCacheEnabled": {
+    "message": "Bật bộ nhớ đệm dịch IndexedDB"
+  },
+  "btnClearCache": {
+    "message": "Xóa bộ nhớ đệm"
+  },
+  "btnResetTokenStats": {
+    "message": "Đặt lại thống kê Token"
+  },
+  "autoSaveHint": {
+    "message": "Thay đổi sẽ được lưu tự động."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Thêm quy tắc trang"
+  },
+  "labelHostname": {
+    "message": "Tên miền"
+  },
+  "labelMode": {
+    "message": "Chế độ"
+  },
+  "modeAlwaysSkip": {
+    "message": "Luôn bỏ qua"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Luôn dịch với ↓"
+  },
+  "labelProviderField": {
+    "message": "Nhà cung cấp"
+  },
+  "btnCancel": {
+    "message": "Hủy"
+  },
+  "btnDialogAdd": {
+    "message": "Thêm"
+  },
+  "labelName": {
+    "message": "Tên"
+  },
+  "btnDelete": {
+    "message": "Xóa"
+  },
+  "btnEdit": {
+    "message": "Sửa"
+  },
+  "btnCollapse": {
+    "message": "Thu gọn"
+  },
+  "btnFetch": {
+    "message": "Tải"
+  },
+  "badgeDefault": {
+    "message": "mặc định"
+  },
+  "labelUnnamed": {
+    "message": "(chưa đặt tên)"
+  },
+  "labelNotSet": {
+    "message": "(chưa thiết lập)"
+  },
+  "placeholderModelId": {
+    "message": "Hoặc nhập mã mô hình"
+  },
+  "labelOutputMode": {
+    "message": "Chế độ xuất"
+  },
+  "outputModeText": {
+    "message": "Văn bản với phân cách <<<SEP>>>"
+  },
+  "outputModeTool": {
+    "message": "Gọi công cụ (mảng JSON có cấu trúc)"
+  },
+  "hintToolMode": {
+    "message": "Chế độ công cụ buộc mô hình trả về mảng JSON — không phân tích phân cách, ổn định hơn. Cần mô hình hỗ trợ gọi công cụ."
+  },
+  "labelStreamingEnabled": {
+    "message": "Dùng luồng dữ liệu cho nhà cung cấp này"
+  },
+  "labelSystemPrompt": {
+    "message": "Lời nhắc hệ thống"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Mẫu lời nhắc người dùng ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "URL cơ sở"
+  },
+  "labelBaseURLProxy": {
+    "message": "URL cơ sở (giữ mặc định trừ khi dùng proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API Key (khóa Google Cloud)"
+  },
+  "labelApiKey": {
+    "message": "API Key"
+  },
+  "labelApiKeyOptional": {
+    "message": "API Key (tùy chọn)"
+  },
+  "labelDeepLPlan": {
+    "message": "Gói dịch vụ"
+  },
+  "deepLPlanFree": {
+    "message": "Miễn phí (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Trả phí (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Ký tự vào:"
+  },
+  "labelCharsOut": {
+    "message": "Ký tự ra:"
+  },
+  "labelModel": {
+    "message": "Mô hình"
+  },
+  "siteRuleNone": {
+    "message": "Chưa có quy tắc trang."
+  },
+  "statsTotalPrompt": {
+    "message": "Tổng prompt:"
+  },
+  "statsTotalCompletion": {
+    "message": "Tổng hoàn thành:"
+  },
+  "statusCacheCleared": {
+    "message": "Đã xoá bộ nhớ đệm."
+  },
+  "errorClearFailed": {
+    "message": "Xoá thất bại."
+  },
+  "statusTokensReset": {
+    "message": "Đã đặt lại thống kê Token."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Không thể xoá nhà cung cấp cuối cùng."
+  },
+  "confirmDeleteProvider": {
+    "message": "Xoá nhà cung cấp này?"
+  },
+  "confirmClearCache": {
+    "message": "Xoá mọi bản dịch đã lưu trong bộ nhớ đệm?"
+  },
+  "confirmResetTokens": {
+    "message": "Đặt lại toàn bộ thống kê Token?"
+  },
+  "suffixSaved": {
+    "message": " (đã lưu)"
+  },
+  "statusFetchingModels": {
+    "message": "Đang lấy mô hình cho $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Không có mô hình nào được trả về."
+  },
+  "statusLoadedModels": {
+    "message": "Đã tải $COUNT$ mô hình.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Lấy thất bại: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Xoá thất bại: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Đặt lại thất bại: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ mục đã lưu trong bộ nhớ đệm",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ lần gọi",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Luôn dùng $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Danh từ thuật ngữ"
+  },
+  "btnEditGlossary": {
+    "message": "Sửa Danh từ thuật ngữ"
+  },
+  "hintGlossary": {
+    "message": "Các thuật ngữ ở đây được thêm vào prompt hệ thống của LLM như tài liệu tham khảo dịch. Các nhà cung cấp không dùng LLM (Google, DeepL, LibreTranslate) sẽ bỏ qua phần này."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Danh noun thuật ngữ"
+  },
+  "glossaryEmpty": {
+    "message": "Chưa có mục nào. Thêm từ bên dưới."
+  },
+  "glossaryNone": {
+    "message": "Chưa có mục nào."
+  },
+  "placeholderGlossarySource": {
+    "message": "Thuật ngữ gốc"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Bản dịch"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Ngôn ngữ (vd: zh-CN, hoặc để trống = tất cả)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ thuật ngữ đã định nghĩa",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Dịch đoạn được chọn"
+  },
+  "btnClose": {
+    "message": "Đóng"
+  },
+  "labelError": {
+    "message": "Lỗi"
+  },
+  "tagCached": {
+    "message": "đã lưu"
+  },
+  "notifBtnTranslate": {
+    "message": "Dịch"
+  },
+  "notifBtnNever": {
+    "message": "Không bao giờ dịch"
+  },
+  "notifBtnIgnore": {
+    "message": "Bỏ qua"
+  },
+  "toastErrorTitle": {
+    "message": "Lỗi khi dịch"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Chưa cấu hình nhà cung cấp nào. Mở trang cài đặt để thêm một cái."
+  },
+  "progressTranslating": {
+    "message": "Đang dịch…"
+  },
+  "progressHide": {
+    "message": "Ẩn"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ vào · $OUT$ ra token",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Gốc"
+  },
+  "pdfCycleReveal": {
+    "message": "Hiện"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ lớp",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

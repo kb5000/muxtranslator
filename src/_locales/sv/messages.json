@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "Översättare för sidor som är kompatibel med OpenAI – ta med din egen API-nyckel och modell."
+  },
+  "settingsTitle": {
+    "message": "Inställningar"
+  },
+  "viewerOpen": {
+    "message": "Öppna PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "Öppna en PDF att översätta"
+  },
+  "viewerEmptyHint": {
+    "message": "Klicka på ”Öppna PDF” ovan eller släpp en fil var som helst på den här sidan."
+  },
+  "labelPage": {
+    "message": "Sida:"
+  },
+  "labelTarget": {
+    "message": "Mål:"
+  },
+  "labelSite": {
+    "message": "Webbplats:"
+  },
+  "btnTranslate": {
+    "message": "Översätt"
+  },
+  "btnPause": {
+    "message": "Pausa"
+  },
+  "btnResume": {
+    "message": "Fortsätt"
+  },
+  "btnRestoreOriginal": {
+    "message": "Återställ original"
+  },
+  "headingSiteRules": {
+    "message": "Denna webbplats"
+  },
+  "ruleAsk": {
+    "message": "Fråga"
+  },
+  "ruleSkip": {
+    "message": "Hoppa alltid över"
+  },
+  "ruleAlways": {
+    "message": "Översätt alltid med ↑"
+  },
+  "headingQuickTranslate": {
+    "message": "Snabböversättning"
+  },
+  "manualPlaceholder": {
+    "message": "Klistra in eller skriv text att översätta…"
+  },
+  "headingTokens": {
+    "message": "Token (denna sida)"
+  },
+  "labelPrompt": {
+    "message": "Prompt:"
+  },
+  "labelCompletion": {
+    "message": "Färdighet:"
+  },
+  "statusNotAPage": {
+    "message": "(inte en sida)"
+  },
+  "statusUnknown": {
+    "message": "(okänd)"
+  },
+  "statusUnavailable": {
+    "message": "(ej tillgänglig)"
+  },
+  "statusPaused": {
+    "message": "Pausat."
+  },
+  "statusResumed": {
+    "message": "Återupptagen."
+  },
+  "statusStarted": {
+    "message": "Startad."
+  },
+  "statusSaved": {
+    "message": "Sparad."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Översättning pågår…"
+  },
+  "statusCannotTranslate": {
+    "message": "Kan inte översätta denna sida"
+  },
+  "statusRestoreFailed": {
+    "message": "Återställning misslyckades"
+  },
+  "statusEmpty": {
+    "message": "(tom)"
+  },
+  "statusCached": {
+    "message": "Cachelagrad"
+  },
+  "statusTranslating": {
+    "message": "Översätter…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Just nu: hoppad"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Just nu: fråga varje gång"
+  },
+  "statusNoHostname": {
+    "message": "Inget värdnamn — kan inte ange regel"
+  },
+  "statusTargetSet": {
+    "message": "Målspråk inställt till $LANG$",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Spara misslyckades: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Misslyckades: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "Återställde $COUNT$ noder.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Just nu: automatisk översättning med $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Klar ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator-inställningar"
+  },
+  "optionsSubtitle": {
+    "message": "BYOA-sidespråköversättare. Konfigurera leverantörer, sajträttigheter och standardvärden nedan."
+  },
+  "headingProviders": {
+    "message": "Leverantörer"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-kompatibel"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Lägg till"
+  },
+  "headingBindings": {
+    "message": "Funktionsbindningar"
+  },
+  "labelDefaultProvider": {
+    "message": "Standardleverantör (för sidöversättning)"
+  },
+  "labelSelectionProvider": {
+    "message": "Översättningsleverantör för markering"
+  },
+  "labelUseDefault": {
+    "message": "(använd standard)"
+  },
+  "labelManualProvider": {
+    "message": "Manuell översättningsleverantör"
+  },
+  "labelPdfProvider": {
+    "message": "PDF-översättningsleverantör"
+  },
+  "labelSelectionEnabled": {
+    "message": "Visa \"译\"-märke vid textmarkering (klicka för att översätta)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Siterregler"
+  },
+  "btnAddRule": {
+    "message": "+ Lägg till regel"
+  },
+  "siteRulesHint": {
+    "message": "Regler matchar exakt värdnamn eller underdomäner. O listade sajter använder standardbeteendet \"fråga varje gång\"."
+  },
+  "headingLanguages": {
+    "message": "Språk"
+  },
+  "labelUiLanguage": {
+    "message": "Gränssnittsspråk"
+  },
+  "uiLangAuto": {
+    "message": "Auto (följ webbläsare)"
+  },
+  "labelTargetLanguage": {
+    "message": "Målspråk"
+  },
+  "labelSkipLanguages": {
+    "message": "Hoppa över språk (kommaseparerade)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Standardöversättningsläge"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Styr vad som händer när en utländsk sida upptäcks. \"Fråga\" visar en rad längst upp; \"Auto\" startar översättning tyst; \"Aldrig\" inaktiverar all automatik (du kan fortfarande översätta manuellt via popupen)."
+  },
+  "modeAsk": {
+    "message": "Fråga varje gång (standard)"
+  },
+  "modeAutoTranslate": {
+    "message": "Auto-översätt utländska sidor"
+  },
+  "modeNeverAuto": {
+    "message": "Aldrig auto-översätt"
+  },
+  "labelBilingualMode": {
+    "message": "Tvåspråkigt läge"
+  },
+  "bilingualOff": {
+    "message": "Av"
+  },
+  "bilingualEmbed": {
+    "message": "Inkludera"
+  },
+  "bilingualTooltip": {
+    "message": "Förklaring"
+  },
+  "headingBilingual": {
+    "message": "Tvåspråkig visning"
+  },
+  "hintBilingualMode": {
+    "message": "Tvåspråkigt läge kan också snabbt växlas från tilläggspopupen."
+  },
+  "headingPerformance": {
+    "message": "Prestanda"
+  },
+  "labelObserveMutations": {
+    "message": "Automatisk översättning av nytt innehåll som sidan lägger till (SPA, oändlig scroll)"
+  },
+  "labelViewportPriority": {
+    "message": "Prioritera synliga element, förhandsladda dolda"
+  },
+  "labelShowProgressBar": {
+    "message": "Visa översättningsförloppswidget (nederst till höger)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Max tecken per batch"
+  },
+  "hintMaxChars": {
+    "message": "Större batch = färre API-anrop men långsammare per anrop. 3000 är en bra balans."
+  },
+  "labelConcurrentBatches": {
+    "message": "Samtidiga batchar"
+  },
+  "headingCacheStats": {
+    "message": "Cache och statistik"
+  },
+  "labelCacheEnabled": {
+    "message": "Aktivera IndexedDB-översättningscache"
+  },
+  "btnClearCache": {
+    "message": "Rensa cache"
+  },
+  "btnResetTokenStats": {
+    "message": "Återställ tokentatistik"
+  },
+  "autoSaveHint": {
+    "message": "Ändringar sparas automatiskt."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Lägg till sajträtt"
+  },
+  "labelHostname": {
+    "message": "Värdnamn"
+  },
+  "labelMode": {
+    "message": "Läge"
+  },
+  "modeAlwaysSkip": {
+    "message": "Hoppa alltid över"
+  },
+  "modeAlwaysTranslate": {
+    "message": "Översätt alltid med ↓"
+  },
+  "labelProviderField": {
+    "message": "Leverantör"
+  },
+  "btnCancel": {
+    "message": "Avbryt"
+  },
+  "btnDialogAdd": {
+    "message": "Lägg till"
+  },
+  "labelName": {
+    "message": "Namn"
+  },
+  "btnDelete": {
+    "message": "Ta bort"
+  },
+  "btnEdit": {
+    "message": "Redigera"
+  },
+  "btnCollapse": {
+    "message": "Fäll ihop"
+  },
+  "btnFetch": {
+    "message": "Hämta"
+  },
+  "badgeDefault": {
+    "message": "standard"
+  },
+  "labelUnnamed": {
+    "message": "(namnlös)"
+  },
+  "labelNotSet": {
+    "message": "(ej angiven)"
+  },
+  "placeholderModelId": {
+    "message": "Eller skriv ett modell-id"
+  },
+  "labelOutputMode": {
+    "message": "Utdata-läge"
+  },
+  "outputModeText": {
+    "message": "Text med <<<SEP>>>-avgränsare"
+  },
+  "outputModeTool": {
+    "message": "Verktygsanrop (strukturerad JSON-array)"
+  },
+  "hintToolMode": {
+    "message": "Verktygsläget tvingar modellen att returnera en JSON-array – ingen avgränsarparsning, mer robust. Kräver en modell som stöder verktygsanrop."
+  },
+  "labelStreamingEnabled": {
+    "message": "Använd strömning för denna leverantör"
+  },
+  "labelSystemPrompt": {
+    "message": "Systemprompt"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Mall för användarprompt ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Basadress"
+  },
+  "labelBaseURLProxy": {
+    "message": "Basadress (lämna standard om ej proxy)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API-nyckel (Google Cloud-nyckel)"
+  },
+  "labelApiKey": {
+    "message": "API-nyckel"
+  },
+  "labelApiKeyOptional": {
+    "message": "API-nyckel (valfri)"
+  },
+  "labelDeepLPlan": {
+    "message": "Plan"
+  },
+  "deepLPlanFree": {
+    "message": "Gratis (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Betal (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Tecken in:"
+  },
+  "labelCharsOut": {
+    "message": "Tecken ut:"
+  },
+  "labelModel": {
+    "message": "Modell"
+  },
+  "siteRuleNone": {
+    "message": "Inga webbplatsregler ännu."
+  },
+  "statsTotalPrompt": {
+    "message": "Total prompt:"
+  },
+  "statsTotalCompletion": {
+    "message": "Total komplettering:"
+  },
+  "statusCacheCleared": {
+    "message": "Cachen tömdes."
+  },
+  "errorClearFailed": {
+    "message": "Misslyckades tömma."
+  },
+  "statusTokensReset": {
+    "message": "Tokenningsstatistik återställd."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Kan inte ta bort sista leverantören."
+  },
+  "confirmDeleteProvider": {
+    "message": "Ta bort den här leverantören?"
+  },
+  "confirmClearCache": {
+    "message": "Töm all översatt cachning?"
+  },
+  "confirmResetTokens": {
+    "message": "Återställ all tokenningsstatistik?"
+  },
+  "suffixSaved": {
+    "message": " (sparad)"
+  },
+  "statusFetchingModels": {
+    "message": "Hämtar modeller för $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Inga modeller returnerade."
+  },
+  "statusLoadedModels": {
+    "message": "Laddade $COUNT$ modeller.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Hämtning misslyckades: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Misslyckades tömma: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Återställning misslyckades: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ cachade poster",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ anrop",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "Alltid med $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Ordlista"
+  },
+  "btnEditGlossary": {
+    "message": "Redigera ordlista"
+  },
+  "hintGlossary": {
+    "message": "Termer listade här injiceras i LLM-systemprompten som översättningsreferens. Icke-LLM-leverantörer (Google, DeepL, LibreTranslate) ignorerar detta."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Ordlista"
+  },
+  "glossaryEmpty": {
+    "message": "Inga poster ännu. Lägg till termer nedan."
+  },
+  "glossaryNone": {
+    "message": "Inga poster ännu."
+  },
+  "placeholderGlossarySource": {
+    "message": "Källterm"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Översättning"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Språk (t.ex. zh-CN, eller blankt = alla)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ term(er) definierad(e)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Översätt markering"
+  },
+  "btnClose": {
+    "message": "Stäng"
+  },
+  "labelError": {
+    "message": "Fel"
+  },
+  "tagCached": {
+    "message": "cachad"
+  },
+  "notifBtnTranslate": {
+    "message": "Översätt"
+  },
+  "notifBtnNever": {
+    "message": "Översätt aldrig"
+  },
+  "notifBtnIgnore": {
+    "message": "Ignorera"
+  },
+  "toastErrorTitle": {
+    "message": "Översättningsfel"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Inga leverantörer konfigurerade. Öppna inställningssidan för att lägga till en."
+  },
+  "progressTranslating": {
+    "message": "Översätter…"
+  },
+  "progressHide": {
+    "message": "Dölj"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ in · $OUT$ ut tokens",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Original"
+  },
+  "pdfCycleReveal": {
+    "message": "Visad"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ lager",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

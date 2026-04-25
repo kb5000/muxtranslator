@@ -1,0 +1,603 @@
+{
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "OpenAI uyumlu sayfa çevirmeni — kendi API anahtarınızı ve modelinizi kullanın."
+  },
+  "settingsTitle": {
+    "message": "Ayarlar"
+  },
+  "viewerOpen": {
+    "message": "PDF Aç"
+  },
+  "viewerEmptyTitle": {
+    "message": "Çevirmek için bir PDF açın"
+  },
+  "viewerEmptyHint": {
+    "message": "\"PDF Aç\" yukarıda tıklayın veya dosyayı bu sayfanın herhangi bir yerine sürükleyin."
+  },
+  "labelPage": {
+    "message": "Sayfa:"
+  },
+  "labelTarget": {
+    "message": "Hedef:"
+  },
+  "labelSite": {
+    "message": "Site:"
+  },
+  "btnTranslate": {
+    "message": "Çevir"
+  },
+  "btnPause": {
+    "message": "Duraklat"
+  },
+  "btnResume": {
+    "message": "Devam Et"
+  },
+  "btnRestoreOriginal": {
+    "message": "Orijinali geri yükle"
+  },
+  "headingSiteRules": {
+    "message": "Bu site"
+  },
+  "ruleAsk": {
+    "message": "Sor"
+  },
+  "ruleSkip": {
+    "message": "Her zaman atla"
+  },
+  "ruleAlways": {
+    "message": "↑ ile her zaman çevir"
+  },
+  "headingQuickTranslate": {
+    "message": "Hızlı çeviri"
+  },
+  "manualPlaceholder": {
+    "message": "Çevirmek için metin yapıştırın veya yazın…"
+  },
+  "headingTokens": {
+    "message": "Token'lar (bu sayfa)"
+  },
+  "labelPrompt": {
+    "message": "İstem:"
+  },
+  "labelCompletion": {
+    "message": "Tamamlama:"
+  },
+  "statusNotAPage": {
+    "message": "(sayfa değil)"
+  },
+  "statusUnknown": {
+    "message": "(bilinmiyor)"
+  },
+  "statusUnavailable": {
+    "message": "(kullanılamıyor)"
+  },
+  "statusPaused": {
+    "message": "Duraklatıldı."
+  },
+  "statusResumed": {
+    "message": "Devam ettirildi."
+  },
+  "statusStarted": {
+    "message": "Başladı."
+  },
+  "statusSaved": {
+    "message": "Kaydedildi."
+  },
+  "statusTranslatingInProgress": {
+    "message": "Çeviri sürüyor…"
+  },
+  "statusCannotTranslate": {
+    "message": "Bu sayfa çevrilemez"
+  },
+  "statusRestoreFailed": {
+    "message": "Geri yükleme başarısız"
+  },
+  "statusEmpty": {
+    "message": "(boş)"
+  },
+  "statusCached": {
+    "message": "Önbelleğe alındı"
+  },
+  "statusTranslating": {
+    "message": "Çevriliyor…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "Şu an: atlandı"
+  },
+  "statusCurrentlyAsk": {
+    "message": "Şu an: her seferinde sor"
+  },
+  "statusNoHostname": {
+    "message": "Ana bilgisayar yok — kural ayarlanamaz"
+  },
+  "statusTargetSet": {
+    "message": "Hedef $LANG$ olarak ayarlandı",
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaveFailed": {
+    "message": "Kaydetme başarısız: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusFailed": {
+    "message": "Başarısız: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusRestoredNodes": {
+    "message": "$COUNT$ düğüm geri yüklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCurrentlyAutoTranslate": {
+    "message": "Şu an: $NAME$ ile otomatik çeviri",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusDone": {
+    "message": "Tamam ($NAME$)",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "optionsPageTitle": {
+    "message": "MuxTranslator Ayarları"
+  },
+  "optionsSubtitle": {
+    "message": "Kendi API'nizi getirin sayfa çevirmeni. Sağlayıcıları, site kurallarını ve varsayılanları aşağıda yapılandırın."
+  },
+  "headingProviders": {
+    "message": "Sağlayıcılar"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI-compatible"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google Translate"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ Ekle"
+  },
+  "headingBindings": {
+    "message": "Özellik bağlamaları"
+  },
+  "labelDefaultProvider": {
+    "message": "Varsayılan sağlayıcı (sayfa çevirisi için)"
+  },
+  "labelSelectionProvider": {
+    "message": "Seçim çeviri sağlayıcısı"
+  },
+  "labelUseDefault": {
+    "message": "(varsayılanı kullan)"
+  },
+  "labelManualProvider": {
+    "message": "Elle giriş çeviri sağlayıcısı"
+  },
+  "labelPdfProvider": {
+    "message": "PDF çeviri sağlayıcısı"
+  },
+  "labelSelectionEnabled": {
+    "message": "Metin seçildiğinde \"译\" rozeti göster (tıklayınca çevir)"
+  },
+  "headingSiteRulesOptions": {
+    "message": "Site kuralları"
+  },
+  "btnAddRule": {
+    "message": "+ Kural ekle"
+  },
+  "siteRulesHint": {
+    "message": "Kurallar tam ana bilgisayar adına veya herhangi bir alt alan adına uyar. Listede olmayan siteler varsayılan \"her seferinde sor\" davranışına döner."
+  },
+  "headingLanguages": {
+    "message": "Diller"
+  },
+  "labelUiLanguage": {
+    "message": "Arayüz dili"
+  },
+  "uiLangAuto": {
+    "message": "Otomatik (tarayıcıyı izle)"
+  },
+  "labelTargetLanguage": {
+    "message": "Hedef dil"
+  },
+  "labelSkipLanguages": {
+    "message": "Atlanacak diller (virgülle ayrılmış)"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "Varsayılan çeviri kipi"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "Yabancı dilde bir sayfa algulandığında ne olacağını belirler. \"Sor\" üstte bir çubuk gösterir; \"Otomatik\" sessizce çevirmeye başlar; \"Asla\" tüm otomatik davranışları devre dışı bırakır (yine de açılır pencereden manuel çevirebilirsiniz)."
+  },
+  "modeAsk": {
+    "message": "Her seferinde sor (varsayılan)"
+  },
+  "modeAutoTranslate": {
+    "message": "Yabancı sayfaları otomatik çevir"
+  },
+  "modeNeverAuto": {
+    "message": "Asla otomatik çevirme"
+  },
+  "labelBilingualMode": {
+    "message": "İki dilli görüntüleme"
+  },
+  "bilingualOff": {
+    "message": "Kapalı"
+  },
+  "bilingualEmbed": {
+    "message": "Yerleştir"
+  },
+  "bilingualTooltip": {
+    "message": "İpucu"
+  },
+  "headingBilingual": {
+    "message": "Çift dilli görüntüleme"
+  },
+  "hintBilingualMode": {
+    "message": "Çift dilli mod, uzantı açılır penceresinden de hızla değiştirilebilir."
+  },
+  "headingPerformance": {
+    "message": "Performans"
+  },
+  "labelObserveMutations": {
+    "message": "Sayfa tarafından eklenen yeni içeriği otomatik çevir (SPA'lar, sonsuz kaydırma)"
+  },
+  "labelViewportPriority": {
+    "message": "Ekranda olan öğelere öncelik ver, ekranda olmayanları önceden yükle"
+  },
+  "labelShowProgressBar": {
+    "message": "Çeviri ilerleme penceresini göster (sağ alt)"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "Her grup için maks. karakter"
+  },
+  "hintMaxChars": {
+    "message": "Daha büyük grup = daha az API çağrısı ama her çağrı daha yavaş. 3000 iyi bir denge."
+  },
+  "labelConcurrentBatches": {
+    "message": "Eşzamanlı gruplar"
+  },
+  "headingCacheStats": {
+    "message": "Önbellek ve istatistikler"
+  },
+  "labelCacheEnabled": {
+    "message": "IndexedDB çeviri önbelleğini etkinleştir"
+  },
+  "btnClearCache": {
+    "message": "Önbelleği temizle"
+  },
+  "btnResetTokenStats": {
+    "message": "Token istatistiklerini sıfırla"
+  },
+  "autoSaveHint": {
+    "message": "Değişiklikler otomatik kaydedilir."
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "Site kuralı ekle"
+  },
+  "labelHostname": {
+    "message": "Ana bilgisayar adı"
+  },
+  "labelMode": {
+    "message": "Mod"
+  },
+  "modeAlwaysSkip": {
+    "message": "Her zaman atla"
+  },
+  "modeAlwaysTranslate": {
+    "message": "↓ ile her zaman çevir"
+  },
+  "labelProviderField": {
+    "message": "Sağlayıcı"
+  },
+  "btnCancel": {
+    "message": "İptal"
+  },
+  "btnDialogAdd": {
+    "message": "Ekle"
+  },
+  "labelName": {
+    "message": "Ad"
+  },
+  "btnDelete": {
+    "message": "Sil"
+  },
+  "btnEdit": {
+    "message": "Düzenle"
+  },
+  "btnCollapse": {
+    "message": "Daralt"
+  },
+  "btnFetch": {
+    "message": "Getir"
+  },
+  "badgeDefault": {
+    "message": "varsayılan"
+  },
+  "labelUnnamed": {
+    "message": "(adsız)"
+  },
+  "labelNotSet": {
+    "message": "(ayarlanmadı)"
+  },
+  "placeholderModelId": {
+    "message": "Veya bir model kimliği yazın"
+  },
+  "labelOutputMode": {
+    "message": "Çıkış kipi"
+  },
+  "outputModeText": {
+    "message": "<<<SEP>>> ayracıyla metin"
+  },
+  "outputModeTool": {
+    "message": "Araç çağrısı (yapılandırılmış JSON dizisi)"
+  },
+  "hintToolMode": {
+    "message": "Araç kipi, modelin JSON dizisi döndürmesini zorunlu kılar — ayraç ayrıştırması yoktur, daha sağlamdır. Araç çağrısını destekleyen bir model gerektirir."
+  },
+  "labelStreamingEnabled": {
+    "message": "Bu sağlayıcı için akış kullan"
+  },
+  "labelSystemPrompt": {
+    "message": "Sistem istemi"
+  },
+  "labelUserPromptTemplate": {
+    "message": "Kullanıcı istem şablonu ({text}, {target_lang})"
+  },
+  "labelBaseURL": {
+    "message": "Temel URL"
+  },
+  "labelBaseURLProxy": {
+    "message": "Temel URL (ara sunucu dışında varsayılan bırakın)"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API Anahtarı (Google Cloud anahtarı)"
+  },
+  "labelApiKey": {
+    "message": "API Anahtarı"
+  },
+  "labelApiKeyOptional": {
+    "message": "API Anahtarı (isteğe bağlı)"
+  },
+  "labelDeepLPlan": {
+    "message": "Plan"
+  },
+  "deepLPlanFree": {
+    "message": "Ücretsiz (api-free.deepl.com)"
+  },
+  "deepLPlanPaid": {
+    "message": "Ücretli (api.deepl.com)"
+  },
+  "labelCharsIn": {
+    "message": "Girilen karakter:"
+  },
+  "labelCharsOut": {
+    "message": "Çıkan karakter:"
+  },
+  "labelModel": {
+    "message": "Model"
+  },
+  "siteRuleNone": {
+    "message": "Henüz site kuralı yok."
+  },
+  "statsTotalPrompt": {
+    "message": "Toplam istem:"
+  },
+  "statsTotalCompletion": {
+    "message": "Toplam tamamlama:"
+  },
+  "statusCacheCleared": {
+    "message": "Önbellek temizlendi."
+  },
+  "errorClearFailed": {
+    "message": "Temizleme başarısız."
+  },
+  "statusTokensReset": {
+    "message": "Token istatistikleri sıfırlandı."
+  },
+  "errorCannotDeleteLast": {
+    "message": "Son sağlayıcı silinemez."
+  },
+  "confirmDeleteProvider": {
+    "message": "Bu sağlayıcıyı sil?"
+  },
+  "confirmClearCache": {
+    "message": "Tüm çevirileri önbellekten sil?"
+  },
+  "confirmResetTokens": {
+    "message": "Tüm token istatistiklerini sıfırla?"
+  },
+  "suffixSaved": {
+    "message": " (kaydedildi)"
+  },
+  "statusFetchingModels": {
+    "message": "Modeller alınıyor $NAME$…",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorNoModels": {
+    "message": "Dönen model yok."
+  },
+  "statusLoadedModels": {
+    "message": "$COUNT$ model yüklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorFetchFailed": {
+    "message": "Alma başarısız: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorClearFailedWith": {
+    "message": "Temizleme başarısız: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "errorResetFailed": {
+    "message": "Sıfırlama başarısız: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "cachedEntries": {
+    "message": "$COUNT$ önbelleğe alınmış girdi",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsCalls": {
+    "message": "$COUNT$ çağrı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "siteRuleModeAlwaysWith": {
+    "message": "$NAME$ ile her zaman",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "headingGlossary": {
+    "message": "Terimler"
+  },
+  "btnEditGlossary": {
+    "message": "Terimleri Düzenle"
+  },
+  "hintGlossary": {
+    "message": "Burada listelenen terimler, çeviri referansı olarak LLM sistem istemine eklenir. LLM olmayan sağlayıcılar (Google, DeepL, LibreTranslate) bunu görmezden gelir."
+  },
+  "dialogHeadingGlossary": {
+    "message": "Terimler"
+  },
+  "glossaryEmpty": {
+    "message": "Henüz girdi yok. Aşağıdan terim ekleyin."
+  },
+  "glossaryNone": {
+    "message": "Henüz girdi yok."
+  },
+  "placeholderGlossarySource": {
+    "message": "Kaynak terim"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "Çeviri"
+  },
+  "placeholderGlossaryLang": {
+    "message": "Dil (örn. zh-CN veya boş = hepsi)"
+  },
+  "glossaryCount": {
+    "message": "$COUNT$ terim tanımlandı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selBadgeTitle": {
+    "message": "Seçimi çevir"
+  },
+  "btnClose": {
+    "message": "Kapat"
+  },
+  "labelError": {
+    "message": "Hata"
+  },
+  "tagCached": {
+    "message": "önbelleğe alındı"
+  },
+  "notifBtnTranslate": {
+    "message": "Çevir"
+  },
+  "notifBtnNever": {
+    "message": "Asla çevirme"
+  },
+  "notifBtnIgnore": {
+    "message": "Yoksay"
+  },
+  "toastErrorTitle": {
+    "message": "Çeviri hatası"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator: Hiç sağlayıcı yapılandırılmamış. Bir tane eklemek için ayarlar sayfasını açın."
+  },
+  "progressTranslating": {
+    "message": "Çevriliyor…"
+  },
+  "progressHide": {
+    "message": "Gizle"
+  },
+  "progressTokensInOut": {
+    "message": "$IN$ giriş · $OUT$ çıkış tokeni",
+    "placeholders": {
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
+    }
+  },
+  "pdfCycleOriginal": {
+    "message": "Orijinal"
+  },
+  "pdfCycleReveal": {
+    "message": "Gösterildi"
+  },
+  "pdfCycleLayers": {
+    "message": "$COUNT$ katman",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}
