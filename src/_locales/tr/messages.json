@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Sayfa başlığını ve açıklamasını çeviri bağlamı olarak LLM'ye gönder"
+  },
+  "hintSendPageContext": {
+    "message": "Etkinleştirildiğinde, sayfa başlığı ve meta açıklaması sistem istemine eklenir; böylece model daha bağlama uygun çeviriler üretebilir. Yalnızca OpenAI-compatible ve Ollama sağlayıcılarını etkiler."
+  },
+  "labelCacheScope": {
+    "message": "Önbellek kapsamı"
+  },
+  "cacheScopePerSite": {
+    "message": "Her site için (varsayılan)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Genel (tüm sitelerde paylaşılır)"
+  },
+  "hintCacheScope": {
+    "message": "Her site, çevirileri alan adına göre ayırır. Genel tüm sitelerde önbelleği paylaşır."
+  },
+  "headingSiteCache": {
+    "message": "Siteye özel önbellek"
+  },
+  "btnRefresh": {
+    "message": "Yenile"
+  },
+  "siteCacheNone": {
+    "message": "Siteye özel önbellek girişi bulunamadı."
+  },
+  "btnClearSiteCache": {
+    "message": "Temizle"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ öğe",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Çeviri önbelleğini $HOST$ için temizle?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "$HOST$ için önbellek temizlendi.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Yükleniyor…"
   }
 }

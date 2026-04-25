@@ -7,6 +7,10 @@ zip_name := "dist/muxtranslator-v" + version + ".zip"
 # files and the viewer code (TextLayer API) stay in sync.
 pdfjs_version := "4.10.38"
 
+# Translate missing i18n keys in all locale files from en/messages.json
+i18n:
+    node scripts/translate-locales.js
+
 # Build extension zip for browser upload
 build:
     @echo "Building v{{version}}..."

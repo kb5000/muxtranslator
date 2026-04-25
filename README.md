@@ -32,13 +32,15 @@ A Firefox extension that translates web pages and PDFs using any OpenAI-compatib
 
 - **Viewport priority** — translates visible elements first, pre-loads off-screen content in the background
 - **Smart batching** — groups text nodes into configurable batches to minimize API calls
-- **IndexedDB cache** — caches translations locally so repeated visits reuse results without extra API calls
+- **IndexedDB cache** — caches translations locally so repeated visits reuse results without extra API calls; scope can be set to **per-site** (default, each domain has its own cache) or **global** (shared across all sites)
+- **Per-site cache management** — view all domains with cached entries and delete any domain's cache individually from the settings page
 - **SPA support** — observes DOM mutations to auto-translate content added by React, Vue, infinite scroll, etc.
 - **Token usage stats** — tracks prompt and completion tokens per provider and per page session
 
 ### Advanced
 
 - **Glossary** — define per-provider term → translation mappings that are injected into every LLM prompt
+- **Page context** — for LLM providers (OpenAI-compatible, Ollama), the page title and meta description can optionally be included in the system prompt so the model can produce more contextually accurate translations (enabled by default, toggleable in settings)
 - **Tool-call mode** — optionally use function calling instead of separator-based parsing for more reliable JSON output from LLM providers
 - **Site rules** — configure per-hostname behavior: always translate, always skip, or ask each time
 - **Mobile support** — responsive design works on phones and tablets with touch-friendly controls
@@ -99,7 +101,9 @@ All settings are on the **Options** page (right-click the toolbar icon → Manag
 | Max chars per batch | Controls batch granularity (larger = fewer calls, slower per call) |
 | Concurrent batches | How many batches run in parallel |
 | Glossary | Per-provider term → translation mappings injected into LLM prompts |
-| Cache | Enable/disable IndexedDB caching; view entry count; clear cache |
+| Cache scope | **Per-site** (default) keeps each domain's cache separate; **Global** shares one cache across all sites |
+| Cache | Enable/disable IndexedDB caching; view total entry count; clear all cache or individual site caches |
+| Send page context | Include page title and meta description in LLM prompts for better contextual accuracy (OpenAI-compatible and Ollama only) |
 
 ## Privacy
 

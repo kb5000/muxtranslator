@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Gửi tiêu đề & mô tả trang đến LLM làm ngữ cảnh dịch"
+  },
+  "hintSendPageContext": {
+    "message": "Bật để thêm tiêu đề và mô tả meta vào system prompt giúp mô hình dịch chính xác hơn về ngữ cảnh. Chỉ ảnh hưởng đến OpenAI-compatible và Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Phạm vi bộ nhớ đệm"
+  },
+  "cacheScopePerSite": {
+    "message": "Theo từng trang web (mặc định)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Toàn cục (chia sẻ mọi trang)"
+  },
+  "hintCacheScope": {
+    "message": "Theo trang giữ bản dịch riêng cho từng tên miền. Toàn cục chia sẻ bộ nhớ đệm giữa các trang."
+  },
+  "headingSiteCache": {
+    "message": "Bộ nhớ đệm theo trang"
+  },
+  "btnRefresh": {
+    "message": "Làm mới"
+  },
+  "siteCacheNone": {
+    "message": "Không tìm thấy mục bộ nhớ đệm theo trang."
+  },
+  "btnClearSiteCache": {
+    "message": "Xóa"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ mục",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Xóa bộ nhớ đệm bản dịch của $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Đã xóa bộ nhớ đệm của $HOST$.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Đang tải…"
   }
 }

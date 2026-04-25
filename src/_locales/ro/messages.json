@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Trimite titlul și descrierea paginii către LLM ca context de traducere"
+  },
+  "hintSendPageContext": {
+    "message": "Când e activat, titlul paginii și descrierea meta sunt incluse în promptul de sistem pentru ca modelul să ofere traduceri mai precise din punct de vedere contextual. Afectează doar furnizorii compatibili cu OpenAI și Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Domeniul cache-ului"
+  },
+  "cacheScopePerSite": {
+    "message": "Pe site (implicit)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Global (partajat între toate site-urile)"
+  },
+  "hintCacheScope": {
+    "message": "Pe site păstrează traducerile separate pe domeniu. Global le împărtășește între toate site-urile."
+  },
+  "headingSiteCache": {
+    "message": "Cache pe site"
+  },
+  "btnRefresh": {
+    "message": "Reîmprospătează"
+  },
+  "siteCacheNone": {
+    "message": "Nu s-au găsit intrări în cache pe site."
+  },
+  "btnClearSiteCache": {
+    "message": "Șterge"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ intrări",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Ștergi cache-ul de traduceri pentru $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Cache-ul pentru $HOST$ a fost șters.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Se încarcă…"
   }
 }

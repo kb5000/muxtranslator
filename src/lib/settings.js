@@ -78,6 +78,8 @@ var SettingsModule = SettingsModule || {};
     targetLanguage: 'zh-CN',
     skipLanguages: ['zh', 'zh-CN', 'zh-TW'],
     cacheEnabled: true,
+    cacheScope: 'per-site',         // 'global' | 'per-site' (default)
+    sendPageContext: true,           // send page title/description to LLM providers
     maxCharsPerBatch: 3000,       // raised from 1500 per user request
     concurrentBatches: 2,
 

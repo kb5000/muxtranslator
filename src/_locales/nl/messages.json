@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Stuur paginatitel & beschrijving naar LLM als vertaalcontext"
+  },
+  "hintSendPageContext": {
+    "message": "Indien ingeschakeld worden de paginatitel en meta-beschrijving meegegeven in de systeemprompt, zodat het model contextueel nauwkeurigere vertalingen kan maken. Werkt alleen met OpenAI-compatible en Ollama providers."
+  },
+  "labelCacheScope": {
+    "message": "Cachebereik"
+  },
+  "cacheScopePerSite": {
+    "message": "Per website (standaard)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Globaal (gedeeld over alle sites)"
+  },
+  "hintCacheScope": {
+    "message": "Per-website houdt vertalingen apart per domein. Globaal deelt de cache tussen alle sites."
+  },
+  "headingSiteCache": {
+    "message": "Cache per site"
+  },
+  "btnRefresh": {
+    "message": "Vernieuwen"
+  },
+  "siteCacheNone": {
+    "message": "Geen cache-items per site gevonden."
+  },
+  "btnClearSiteCache": {
+    "message": "Wissen"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ items",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Vertalingscache voor $HOST$ wissen?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Cache voor $HOST$ gewist.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Laden…"
   }
 }

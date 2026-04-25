@@ -1,236 +1,660 @@
 {
-  "extName":            { "message": "MuxTranslator" },
-  "extDescription":     { "message": "使用自己的 API 密钥翻译网页，支持 OpenAI 兼容接口。" },
-
-  "settingsTitle":      { "message": "设置" },
-  "viewerOpen":         { "message": "打开 PDF" },
-  "viewerEmptyTitle":   { "message": "打开一个 PDF 开始翻译" },
-  "viewerEmptyHint":    { "message": "点击上方「打开 PDF」按钮，或将文件拖拽到此页面。" },
-  "labelPage":          { "message": "页面语言：" },
-  "labelTarget":        { "message": "目标语言：" },
-  "labelSite":          { "message": "当前站点：" },
-  "btnTranslate":       { "message": "翻译" },
-  "btnPause":           { "message": "暂停" },
-  "btnResume":          { "message": "继续" },
-  "btnRestoreOriginal": { "message": "还原原文" },
-  "headingSiteRules":   { "message": "本站规则" },
-  "ruleAsk":            { "message": "每次询问" },
-  "ruleSkip":           { "message": "始终跳过" },
-  "ruleAlways":         { "message": "始终用↑翻译" },
-  "headingQuickTranslate": { "message": "快速翻译" },
-  "manualPlaceholder":  { "message": "粘贴或输入要翻译的文本…" },
-  "headingTokens":      { "message": "Token 用量（本页）" },
-  "labelPrompt":        { "message": "输入：" },
-  "labelCompletion":    { "message": "输出：" },
-
-  "statusNotAPage":     { "message": "（非页面）" },
-  "statusUnknown":      { "message": "（未知）" },
-  "statusUnavailable":  { "message": "（不可用）" },
-  "statusPaused":       { "message": "已暂停。" },
-  "statusResumed":      { "message": "已继续。" },
-  "statusStarted":      { "message": "已开始。" },
-  "statusSaved":        { "message": "已保存。" },
-  "statusTranslatingInProgress": { "message": "翻译中…" },
-  "statusCannotTranslate":       { "message": "无法翻译此页面" },
-  "statusRestoreFailed":         { "message": "还原失败" },
-  "statusEmpty":        { "message": "（空）" },
-  "statusCached":       { "message": "命中缓存" },
-  "statusTranslating":  { "message": "翻译中…" },
-  "statusCurrentlySkipped":  { "message": "当前：始终跳过" },
-  "statusCurrentlyAsk":      { "message": "当前：每次询问" },
-  "statusNoHostname":        { "message": "无法识别站点主机名" },
-
+  "extName": {
+    "message": "MuxTranslator"
+  },
+  "extDescription": {
+    "message": "使用自己的 API 密钥翻译网页，支持 OpenAI 兼容接口。"
+  },
+  "settingsTitle": {
+    "message": "设置"
+  },
+  "viewerOpen": {
+    "message": "打开 PDF"
+  },
+  "viewerEmptyTitle": {
+    "message": "打开一个 PDF 开始翻译"
+  },
+  "viewerEmptyHint": {
+    "message": "点击上方「打开 PDF」按钮，或将文件拖拽到此页面。"
+  },
+  "labelPage": {
+    "message": "页面语言："
+  },
+  "labelTarget": {
+    "message": "目标语言："
+  },
+  "labelSite": {
+    "message": "当前站点："
+  },
+  "btnTranslate": {
+    "message": "翻译"
+  },
+  "btnPause": {
+    "message": "暂停"
+  },
+  "btnResume": {
+    "message": "继续"
+  },
+  "btnRestoreOriginal": {
+    "message": "还原原文"
+  },
+  "headingSiteRules": {
+    "message": "本站规则"
+  },
+  "ruleAsk": {
+    "message": "每次询问"
+  },
+  "ruleSkip": {
+    "message": "始终跳过"
+  },
+  "ruleAlways": {
+    "message": "始终用↑翻译"
+  },
+  "headingQuickTranslate": {
+    "message": "快速翻译"
+  },
+  "manualPlaceholder": {
+    "message": "粘贴或输入要翻译的文本…"
+  },
+  "headingTokens": {
+    "message": "Token 用量（本页）"
+  },
+  "labelPrompt": {
+    "message": "输入："
+  },
+  "labelCompletion": {
+    "message": "输出："
+  },
+  "statusNotAPage": {
+    "message": "（非页面）"
+  },
+  "statusUnknown": {
+    "message": "（未知）"
+  },
+  "statusUnavailable": {
+    "message": "（不可用）"
+  },
+  "statusPaused": {
+    "message": "已暂停。"
+  },
+  "statusResumed": {
+    "message": "已继续。"
+  },
+  "statusStarted": {
+    "message": "已开始。"
+  },
+  "statusSaved": {
+    "message": "已保存。"
+  },
+  "statusTranslatingInProgress": {
+    "message": "翻译中…"
+  },
+  "statusCannotTranslate": {
+    "message": "无法翻译此页面"
+  },
+  "statusRestoreFailed": {
+    "message": "还原失败"
+  },
+  "statusEmpty": {
+    "message": "（空）"
+  },
+  "statusCached": {
+    "message": "命中缓存"
+  },
+  "statusTranslating": {
+    "message": "翻译中…"
+  },
+  "statusCurrentlySkipped": {
+    "message": "当前：始终跳过"
+  },
+  "statusCurrentlyAsk": {
+    "message": "当前：每次询问"
+  },
+  "statusNoHostname": {
+    "message": "无法识别站点主机名"
+  },
   "statusTargetSet": {
     "message": "目标语言已设为 $LANG$",
-    "placeholders": { "lang": { "content": "$1" } }
+    "placeholders": {
+      "lang": {
+        "content": "$1"
+      }
+    }
   },
   "statusSaveFailed": {
     "message": "保存失败：$ERROR$",
-    "placeholders": { "error": { "content": "$1" } }
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
   },
   "statusFailed": {
     "message": "失败：$ERROR$",
-    "placeholders": { "error": { "content": "$1" } }
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
   },
   "statusRestoredNodes": {
     "message": "已还原 $COUNT$ 个节点。",
-    "placeholders": { "count": { "content": "$1" } }
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
   },
   "statusCurrentlyAutoTranslate": {
     "message": "当前：用 $NAME$ 自动翻译",
-    "placeholders": { "name": { "content": "$1" } }
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
   },
   "statusDone": {
     "message": "完成（$NAME$）",
-    "placeholders": { "name": { "content": "$1" } }
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
   },
-
-  "optionsPageTitle":   { "message": "MuxTranslator 设置" },
-  "optionsSubtitle":    { "message": "使用自己的 API 密钥翻译网页。在此配置翻译提供商、站点规则和默认选项。" },
-  "headingProviders":   { "message": "翻译提供商" },
-  "typeOpenAI":         { "message": "OpenAI 兼容" },
-  "typeOllama":         { "message": "Ollama" },
-  "typeGoogle":         { "message": "Google 翻译" },
-  "typeDeepL":          { "message": "DeepL" },
-  "typeLibreTranslate": { "message": "LibreTranslate" },
-  "btnAdd":             { "message": "+ 添加" },
-  "headingBindings":    { "message": "功能绑定" },
-  "labelDefaultProvider":    { "message": "默认提供商（用于页面翻译）" },
-  "labelSelectionProvider":  { "message": "划词翻译提供商" },
-  "labelUseDefault":         { "message": "（使用默认）" },
-  "labelManualProvider":     { "message": "手动输入翻译提供商" },
-  "labelPdfProvider":        { "message": "PDF 翻译提供商" },
-  "labelSelectionEnabled":   { "message": "划词时显示「译」标记（点击翻译）" },
-  "headingSiteRulesOptions": { "message": "站点规则" },
-  "btnAddRule":         { "message": "+ 添加规则" },
-  "siteRulesHint":      { "message": "规则匹配精确主机名或任意子域名。未列出的站点默认每次询问。" },
-  "headingLanguages":   { "message": "语言设置" },
-  "labelUiLanguage":    { "message": "界面语言" },
-  "uiLangAuto":         { "message": "自动（跟随浏览器）" },
-  "labelTargetLanguage":{ "message": "目标语言" },
-  "labelSkipLanguages": { "message": "跳过语言（逗号分隔）" },
-  "labelDefaultTranslationMode": { "message": "默认翻译模式" },
-  "hintDefaultTranslationMode": { "message": "检测到外语页面时的处理方式。「每次询问」在顶部显示提示栏；「自动翻译」静默启动翻译；「从不自动翻译」关闭所有自动行为（仍可通过面板手动翻译）。" },
-  "modeAsk":            { "message": "每次询问（默认）" },
-  "modeAutoTranslate":  { "message": "自动翻译外语页面" },
-  "modeNeverAuto":      { "message": "从不自动翻译" },
-  "labelBilingualMode": { "message": "双语显示" },
-  "bilingualOff":       { "message": "关闭" },
-  "bilingualEmbed":     { "message": "嵌入" },
-  "bilingualTooltip":   { "message": "悬浮提示" },
-  "headingBilingual":   { "message": "双语显示" },
-  "hintBilingualMode":  { "message": "双语模式也可在插件面板中快速切换。" },
-  "headingPerformance": { "message": "性能" },
-  "labelObserveMutations":   { "message": "自动翻译页面新增内容（单页应用、无限滚动）" },
-  "labelViewportPriority":   { "message": "优先翻译可见区域，预加载屏外内容" },
-  "labelShowProgressBar":    { "message": "显示右下角翻译进度条" },
-  "labelMaxCharsPerBatch":   { "message": "每批最大字符数" },
-  "hintMaxChars":       { "message": "批次越大 API 调用越少，但单次耗时越长。3000 是个不错的平衡点。" },
-  "labelConcurrentBatches":  { "message": "并发批次数" },
-  "headingCacheStats":  { "message": "缓存与统计" },
-  "labelCacheEnabled":  { "message": "启用 IndexedDB 翻译缓存" },
-  "btnClearCache":      { "message": "清空缓存" },
-  "btnResetTokenStats": { "message": "重置 Token 统计" },
-  "autoSaveHint":       { "message": "更改将自动保存。" },
-  "dialogHeadingAddSiteRule": { "message": "添加站点规则" },
-  "labelHostname":      { "message": "主机名" },
-  "labelMode":          { "message": "模式" },
-  "modeAlwaysSkip":     { "message": "始终跳过" },
-  "modeAlwaysTranslate":{ "message": "始终用↓翻译" },
-  "labelProviderField": { "message": "提供商" },
-  "btnCancel":          { "message": "取消" },
-  "btnDialogAdd":       { "message": "添加" },
-
-  "labelName":          { "message": "名称" },
-  "btnDelete":          { "message": "删除" },
-  "btnEdit":            { "message": "编辑" },
-  "btnCollapse":        { "message": "收起" },
-  "btnFetch":           { "message": "获取模型" },
-  "badgeDefault":       { "message": "默认" },
-  "labelUnnamed":       { "message": "（未命名）" },
-  "labelNotSet":        { "message": "（未设置）" },
-  "placeholderModelId": { "message": "或手动输入模型 ID" },
-  "labelOutputMode":    { "message": "输出模式" },
-  "outputModeText":     { "message": "文本分隔符模式（<<<SEP>>>）" },
-  "outputModeTool":     { "message": "工具调用模式（结构化 JSON 数组）" },
-  "hintToolMode":       { "message": "工具调用模式强制模型返回 JSON 数组，无需分隔符解析，更稳健。需要模型支持工具调用。" },
-  "labelStreamingEnabled":   { "message": "为此提供商启用流式传输" },
-  "labelSystemPrompt":  { "message": "系统提示词" },
-  "labelUserPromptTemplate": { "message": "用户提示词模板（{text}、{target_lang}）" },
-  "labelBaseURL":       { "message": "接口地址（Base URL）" },
-  "labelBaseURLProxy":  { "message": "接口地址（代理时修改）" },
-  "labelApiKeyGoogle":  { "message": "API 密钥（Google Cloud）" },
-  "labelApiKey":        { "message": "API 密钥" },
-  "labelApiKeyOptional":{ "message": "API 密钥（可选）" },
-  "labelDeepLPlan":     { "message": "套餐类型" },
-  "deepLPlanFree":      { "message": "免费版（api-free.deepl.com）" },
-  "deepLPlanPaid":      { "message": "付费版（api.deepl.com）" },
-  "labelCharsIn":       { "message": "输入字符：" },
-  "labelCharsOut":      { "message": "输出字符：" },
-  "labelModel":         { "message": "模型" },
-  "siteRuleNone":       { "message": "暂无站点规则。" },
-  "statsTotalPrompt":   { "message": "总输入 Token：" },
-  "statsTotalCompletion":    { "message": "总输出 Token：" },
-  "statusCacheCleared": { "message": "缓存已清空。" },
-  "errorClearFailed":   { "message": "清空失败。" },
-  "statusTokensReset":  { "message": "Token 统计已重置。" },
-  "errorCannotDeleteLast":   { "message": "至少保留一个提供商，无法删除。" },
-  "confirmDeleteProvider":   { "message": "确定要删除此提供商？" },
-  "confirmClearCache":       { "message": "确定清空所有翻译缓存？" },
-  "confirmResetTokens":      { "message": "确定重置所有 Token 统计？" },
-  "suffixSaved":        { "message": "（已保存）" },
-
+  "optionsPageTitle": {
+    "message": "MuxTranslator 设置"
+  },
+  "optionsSubtitle": {
+    "message": "使用自己的 API 密钥翻译网页。在此配置翻译提供商、站点规则和默认选项。"
+  },
+  "headingProviders": {
+    "message": "翻译提供商"
+  },
+  "typeOpenAI": {
+    "message": "OpenAI 兼容"
+  },
+  "typeOllama": {
+    "message": "Ollama"
+  },
+  "typeGoogle": {
+    "message": "Google 翻译"
+  },
+  "typeDeepL": {
+    "message": "DeepL"
+  },
+  "typeLibreTranslate": {
+    "message": "LibreTranslate"
+  },
+  "btnAdd": {
+    "message": "+ 添加"
+  },
+  "headingBindings": {
+    "message": "功能绑定"
+  },
+  "labelDefaultProvider": {
+    "message": "默认提供商（用于页面翻译）"
+  },
+  "labelSelectionProvider": {
+    "message": "划词翻译提供商"
+  },
+  "labelUseDefault": {
+    "message": "（使用默认）"
+  },
+  "labelManualProvider": {
+    "message": "手动输入翻译提供商"
+  },
+  "labelPdfProvider": {
+    "message": "PDF 翻译提供商"
+  },
+  "labelSelectionEnabled": {
+    "message": "划词时显示「译」标记（点击翻译）"
+  },
+  "headingSiteRulesOptions": {
+    "message": "站点规则"
+  },
+  "btnAddRule": {
+    "message": "+ 添加规则"
+  },
+  "siteRulesHint": {
+    "message": "规则匹配精确主机名或任意子域名。未列出的站点默认每次询问。"
+  },
+  "headingLanguages": {
+    "message": "语言设置"
+  },
+  "labelUiLanguage": {
+    "message": "界面语言"
+  },
+  "uiLangAuto": {
+    "message": "自动（跟随浏览器）"
+  },
+  "labelTargetLanguage": {
+    "message": "目标语言"
+  },
+  "labelSkipLanguages": {
+    "message": "跳过语言（逗号分隔）"
+  },
+  "labelDefaultTranslationMode": {
+    "message": "默认翻译模式"
+  },
+  "hintDefaultTranslationMode": {
+    "message": "检测到外语页面时的处理方式。「每次询问」在顶部显示提示栏；「自动翻译」静默启动翻译；「从不自动翻译」关闭所有自动行为（仍可通过面板手动翻译）。"
+  },
+  "modeAsk": {
+    "message": "每次询问（默认）"
+  },
+  "modeAutoTranslate": {
+    "message": "自动翻译外语页面"
+  },
+  "modeNeverAuto": {
+    "message": "从不自动翻译"
+  },
+  "labelBilingualMode": {
+    "message": "双语显示"
+  },
+  "bilingualOff": {
+    "message": "关闭"
+  },
+  "bilingualEmbed": {
+    "message": "嵌入"
+  },
+  "bilingualTooltip": {
+    "message": "悬浮提示"
+  },
+  "headingBilingual": {
+    "message": "双语显示"
+  },
+  "hintBilingualMode": {
+    "message": "双语模式也可在插件面板中快速切换。"
+  },
+  "headingPerformance": {
+    "message": "性能"
+  },
+  "labelObserveMutations": {
+    "message": "自动翻译页面新增内容（单页应用、无限滚动）"
+  },
+  "labelViewportPriority": {
+    "message": "优先翻译可见区域，预加载屏外内容"
+  },
+  "labelShowProgressBar": {
+    "message": "显示右下角翻译进度条"
+  },
+  "labelMaxCharsPerBatch": {
+    "message": "每批最大字符数"
+  },
+  "hintMaxChars": {
+    "message": "批次越大 API 调用越少，但单次耗时越长。3000 是个不错的平衡点。"
+  },
+  "labelConcurrentBatches": {
+    "message": "并发批次数"
+  },
+  "headingCacheStats": {
+    "message": "缓存与统计"
+  },
+  "labelCacheEnabled": {
+    "message": "启用 IndexedDB 翻译缓存"
+  },
+  "btnClearCache": {
+    "message": "清空缓存"
+  },
+  "btnResetTokenStats": {
+    "message": "重置 Token 统计"
+  },
+  "autoSaveHint": {
+    "message": "更改将自动保存。"
+  },
+  "dialogHeadingAddSiteRule": {
+    "message": "添加站点规则"
+  },
+  "labelHostname": {
+    "message": "主机名"
+  },
+  "labelMode": {
+    "message": "模式"
+  },
+  "modeAlwaysSkip": {
+    "message": "始终跳过"
+  },
+  "modeAlwaysTranslate": {
+    "message": "始终用↓翻译"
+  },
+  "labelProviderField": {
+    "message": "提供商"
+  },
+  "btnCancel": {
+    "message": "取消"
+  },
+  "btnDialogAdd": {
+    "message": "添加"
+  },
+  "labelName": {
+    "message": "名称"
+  },
+  "btnDelete": {
+    "message": "删除"
+  },
+  "btnEdit": {
+    "message": "编辑"
+  },
+  "btnCollapse": {
+    "message": "收起"
+  },
+  "btnFetch": {
+    "message": "获取模型"
+  },
+  "badgeDefault": {
+    "message": "默认"
+  },
+  "labelUnnamed": {
+    "message": "（未命名）"
+  },
+  "labelNotSet": {
+    "message": "（未设置）"
+  },
+  "placeholderModelId": {
+    "message": "或手动输入模型 ID"
+  },
+  "labelOutputMode": {
+    "message": "输出模式"
+  },
+  "outputModeText": {
+    "message": "文本分隔符模式（<<<SEP>>>）"
+  },
+  "outputModeTool": {
+    "message": "工具调用模式（结构化 JSON 数组）"
+  },
+  "hintToolMode": {
+    "message": "工具调用模式强制模型返回 JSON 数组，无需分隔符解析，更稳健。需要模型支持工具调用。"
+  },
+  "labelStreamingEnabled": {
+    "message": "为此提供商启用流式传输"
+  },
+  "labelSystemPrompt": {
+    "message": "系统提示词"
+  },
+  "labelUserPromptTemplate": {
+    "message": "用户提示词模板（{text}、{target_lang}）"
+  },
+  "labelBaseURL": {
+    "message": "接口地址（Base URL）"
+  },
+  "labelBaseURLProxy": {
+    "message": "接口地址（代理时修改）"
+  },
+  "labelApiKeyGoogle": {
+    "message": "API 密钥（Google Cloud）"
+  },
+  "labelApiKey": {
+    "message": "API 密钥"
+  },
+  "labelApiKeyOptional": {
+    "message": "API 密钥（可选）"
+  },
+  "labelDeepLPlan": {
+    "message": "套餐类型"
+  },
+  "deepLPlanFree": {
+    "message": "免费版（api-free.deepl.com）"
+  },
+  "deepLPlanPaid": {
+    "message": "付费版（api.deepl.com）"
+  },
+  "labelCharsIn": {
+    "message": "输入字符："
+  },
+  "labelCharsOut": {
+    "message": "输出字符："
+  },
+  "labelModel": {
+    "message": "模型"
+  },
+  "siteRuleNone": {
+    "message": "暂无站点规则。"
+  },
+  "statsTotalPrompt": {
+    "message": "总输入 Token："
+  },
+  "statsTotalCompletion": {
+    "message": "总输出 Token："
+  },
+  "statusCacheCleared": {
+    "message": "缓存已清空。"
+  },
+  "errorClearFailed": {
+    "message": "清空失败。"
+  },
+  "statusTokensReset": {
+    "message": "Token 统计已重置。"
+  },
+  "errorCannotDeleteLast": {
+    "message": "至少保留一个提供商，无法删除。"
+  },
+  "confirmDeleteProvider": {
+    "message": "确定要删除此提供商？"
+  },
+  "confirmClearCache": {
+    "message": "确定清空所有翻译缓存？"
+  },
+  "confirmResetTokens": {
+    "message": "确定重置所有 Token 统计？"
+  },
+  "suffixSaved": {
+    "message": "（已保存）"
+  },
   "statusFetchingModels": {
     "message": "正在获取 $NAME$ 的模型列表…",
-    "placeholders": { "name": { "content": "$1" } }
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
   },
-  "errorNoModels":      { "message": "未返回任何模型。" },
+  "errorNoModels": {
+    "message": "未返回任何模型。"
+  },
   "statusLoadedModels": {
     "message": "已加载 $COUNT$ 个模型。",
-    "placeholders": { "count": { "content": "$1" } }
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
   },
   "errorFetchFailed": {
     "message": "获取失败：$ERROR$",
-    "placeholders": { "error": { "content": "$1" } }
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
   },
   "errorClearFailedWith": {
     "message": "清空失败：$ERROR$",
-    "placeholders": { "error": { "content": "$1" } }
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
   },
   "errorResetFailed": {
     "message": "重置失败：$ERROR$",
-    "placeholders": { "error": { "content": "$1" } }
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
   },
   "cachedEntries": {
     "message": "缓存条目：$COUNT$ 条",
-    "placeholders": { "count": { "content": "$1" } }
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
   },
   "statsCalls": {
     "message": "$COUNT$ 次调用",
-    "placeholders": { "count": { "content": "$1" } }
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
   },
   "siteRuleModeAlwaysWith": {
     "message": "始终用 $NAME$ 翻译",
-    "placeholders": { "name": { "content": "$1" } }
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
   },
-
-  "headingGlossary":    { "message": "术语表" },
-  "btnEditGlossary":    { "message": "编辑术语表" },
-  "hintGlossary":       { "message": "此处的术语将注入 LLM 系统提示词中作为翻译参考。非 LLM 提供商（Google、DeepL、LibreTranslate）不支持此功能。" },
-  "dialogHeadingGlossary": { "message": "术语表" },
-  "glossaryEmpty":      { "message": "暂无条目，请在下方添加术语。" },
-  "glossaryNone":      { "message": "暂无条目。" },
-  "placeholderGlossarySource": { "message": "原文术语" },
-  "placeholderGlossaryTarget": { "message": "对应译文" },
-  "placeholderGlossaryLang":   { "message": "语言（如 zh-CN，留空匹配所有语言）" },
+  "headingGlossary": {
+    "message": "术语表"
+  },
+  "btnEditGlossary": {
+    "message": "编辑术语表"
+  },
+  "hintGlossary": {
+    "message": "此处的术语将注入 LLM 系统提示词中作为翻译参考。非 LLM 提供商（Google、DeepL、LibreTranslate）不支持此功能。"
+  },
+  "dialogHeadingGlossary": {
+    "message": "术语表"
+  },
+  "glossaryEmpty": {
+    "message": "暂无条目，请在下方添加术语。"
+  },
+  "glossaryNone": {
+    "message": "暂无条目。"
+  },
+  "placeholderGlossarySource": {
+    "message": "原文术语"
+  },
+  "placeholderGlossaryTarget": {
+    "message": "对应译文"
+  },
+  "placeholderGlossaryLang": {
+    "message": "语言（如 zh-CN，留空匹配所有语言）"
+  },
   "glossaryCount": {
     "message": "已定义 $COUNT$ 条术语",
-    "placeholders": { "count": { "content": "$1" } }
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
   },
-
-  "selBadgeTitle":      { "message": "翻译所选文本" },
-  "btnClose":           { "message": "关闭" },
-  "labelError":         { "message": "错误" },
-  "tagCached":          { "message": "已缓存" },
-  "notifBtnTranslate":  { "message": "翻译" },
-  "notifBtnNever":      { "message": "永不翻译" },
-  "notifBtnIgnore":     { "message": "忽略" },
-  "toastErrorTitle":    { "message": "翻译出错" },
-  "alertNoProviders":   { "message": "MuxTranslator：尚未配置翻译提供商，请打开设置页面添加。" },
-  "progressTranslating":{ "message": "翻译中…" },
-  "progressHide":       { "message": "隐藏" },
+  "selBadgeTitle": {
+    "message": "翻译所选文本"
+  },
+  "btnClose": {
+    "message": "关闭"
+  },
+  "labelError": {
+    "message": "错误"
+  },
+  "tagCached": {
+    "message": "已缓存"
+  },
+  "notifBtnTranslate": {
+    "message": "翻译"
+  },
+  "notifBtnNever": {
+    "message": "永不翻译"
+  },
+  "notifBtnIgnore": {
+    "message": "忽略"
+  },
+  "toastErrorTitle": {
+    "message": "翻译出错"
+  },
+  "alertNoProviders": {
+    "message": "MuxTranslator：尚未配置翻译提供商，请打开设置页面添加。"
+  },
+  "progressTranslating": {
+    "message": "翻译中…"
+  },
+  "progressHide": {
+    "message": "隐藏"
+  },
   "progressTokensInOut": {
     "message": "输入 $IN$ · 输出 $OUT$ tokens",
     "placeholders": {
-      "in":  { "content": "$1" },
-      "out": { "content": "$2" }
+      "in": {
+        "content": "$1"
+      },
+      "out": {
+        "content": "$2"
+      }
     }
   },
-
-  "pdfCycleOriginal":   { "message": "原文" },
-  "pdfCycleReveal":     { "message": "唤出" },
+  "pdfCycleOriginal": {
+    "message": "原文"
+  },
+  "pdfCycleReveal": {
+    "message": "唤出"
+  },
   "pdfCycleLayers": {
     "message": "$COUNT$ 层",
-    "placeholders": { "count": { "content": "$1" } }
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "labelSendPageContext": {
+    "message": "将页面标题和描述作为翻译上下文发送给 LLM"
+  },
+  "hintSendPageContext": {
+    "message": "启用后，页面标题和 meta 描述会加入系统提示，让模型生成更贴合上下文的译文。仅影响 OpenAI-compatible 和 Ollama 提供商。"
+  },
+  "labelCacheScope": {
+    "message": "缓存范围"
+  },
+  "cacheScopePerSite": {
+    "message": "按网站（默认）"
+  },
+  "cacheScopeGlobal": {
+    "message": "全局（所有网站共享）"
+  },
+  "hintCacheScope": {
+    "message": "按网站可在不同域名间保持翻译独立，全局则在所有网站间共享缓存。"
+  },
+  "headingSiteCache": {
+    "message": "按站缓存"
+  },
+  "btnRefresh": {
+    "message": "刷新"
+  },
+  "siteCacheNone": {
+    "message": "未找到按站缓存条目。"
+  },
+  "btnClearSiteCache": {
+    "message": "清除"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ 条",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "清除 $HOST$ 的翻译缓存？",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "$HOST$ 的缓存已清除。",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "加载中…"
   }
 }

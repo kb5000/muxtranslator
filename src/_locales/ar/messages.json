@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "إرسال عنوان الصفحة والوصف إلى LLM كسياق للترجمة"
+  },
+  "hintSendPageContext": {
+    "message": "عند التمكين، يُضاف عنوان الصفحة ووصفها الوصفي إلى التنبيه النظامي ليقدم النموذج ترجمات أكثر دقة سياقيًا. ينطبق فقط على مزودي OpenAI-compatible وOllama."
+  },
+  "labelCacheScope": {
+    "message": "نطاق التخزين المؤقت"
+  },
+  "cacheScopePerSite": {
+    "message": "لكل موقع (افتراضي)"
+  },
+  "cacheScopeGlobal": {
+    "message": "عام (مشترك بين كل المواقع)"
+  },
+  "hintCacheScope": {
+    "message": "لكل موقع يحتفظ بالترجمات لكل نطاق على حدة. العام يشارك التخزين عبر كل المواقع."
+  },
+  "headingSiteCache": {
+    "message": "التخزين المؤقت حسب الموقع"
+  },
+  "btnRefresh": {
+    "message": "تحديث"
+  },
+  "siteCacheNone": {
+    "message": "لا توجد إدخالات تخزين مؤقت حسب الموقع."
+  },
+  "btnClearSiteCache": {
+    "message": "مسح"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ إدخال",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "مسح ذاكرة الترجمة الخاصة بـ $HOST$؟",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "تم مسح التخزين المؤقت لـ $HOST$.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "جارٍ التحميل…"
   }
 }

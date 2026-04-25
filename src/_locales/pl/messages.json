@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Wyślij tytuł i opis strony do LLM jako kontekst tłumaczenia"
+  },
+  "hintSendPageContext": {
+    "message": "Po włączeniu tytuł strony i opis meta są dodawane do zapytania systemowego, dzięki czemu model może tworzyć bardziej trafne tłumaczenia. Dotyczy tylko dostawców zgodnych z OpenAI i Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Zakres pamięci podręcznej"
+  },
+  "cacheScopePerSite": {
+    "message": "Na stronę (domyślnie)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Globalny (współdzielony dla wszystkich stron)"
+  },
+  "hintCacheScope": {
+    "message": "Na stronę utrzymuje tłumaczenia osobno dla domeny. Globalny dzieli pamięć między wszystkimi stronami."
+  },
+  "headingSiteCache": {
+    "message": "Pamięć podręczna na stronę"
+  },
+  "btnRefresh": {
+    "message": "Odśwież"
+  },
+  "siteCacheNone": {
+    "message": "Nie znaleziono wpisów w pamięci podręcznej na stronę."
+  },
+  "btnClearSiteCache": {
+    "message": "Wyczyść"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ wpisów",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Wyczyścić pamięć tłumaczeń dla $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Pamięć dla $HOST$ wyczyszczona.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Ładowanie…"
   }
 }

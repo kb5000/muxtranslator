@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Надсилати заголовок сторінки та опис до LLM як контекст перекладу"
+  },
+  "hintSendPageContext": {
+    "message": "Якщо увімкнено, заголовок сторінки й метаопис додаються до системного запиту, щоб модель створювала точніші переклади з контекстом. Стосується лише провайдерів OpenAI-compatible і Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Обсяг кешу"
+  },
+  "cacheScopePerSite": {
+    "message": "На сайт (типово)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Глобальний (спільний для всіх сайтів)"
+  },
+  "hintCacheScope": {
+    "message": "На сайт зберігає переклади окремо для домену. Глобальний ділиться кешем між усіма сайтами."
+  },
+  "headingSiteCache": {
+    "message": "Кеш за сайтом"
+  },
+  "btnRefresh": {
+    "message": "Оновити"
+  },
+  "siteCacheNone": {
+    "message": "Записів кешу за сайтом не знайдено."
+  },
+  "btnClearSiteCache": {
+    "message": "Очистити"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ записів",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Очистити кеш перекладів для $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Кеш для $HOST$ очищено.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Завантаження…"
   }
 }

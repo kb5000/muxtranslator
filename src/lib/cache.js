@@ -36,10 +36,12 @@ var CacheModule = CacheModule || {};
     });
   }
 
-  function makeKey(text, targetLang, model) {
+  function makeKey(text, targetLang, model, hostname) {
     var normalized = UtilsModule.normalizeText(text);
     var hash = UtilsModule.hashText(normalized);
-    return hash + '|' + (targetLang || '') + '|' + (model || '');
+    var key = hash + '|' + (targetLang || '') + '|' + (model || '');
+    if (hostname) key += '|' + hostname;
+    return key;
   }
 
   ns.init = async function () {
@@ -52,10 +54,10 @@ var CacheModule = CacheModule || {};
     }
   };
 
-  ns.get = async function (sourceText, targetLang, model) {
+  ns.get = async function (sourceText, targetLang, model, hostname) {
     try {
       var db = await openDB();
-      var id = makeKey(sourceText, targetLang, model);
+      var id = makeKey(sourceText, targetLang, model, hostname);
       return await new Promise(function (resolve) {
         var tx = db.transaction(STORE, 'readonly');
         var store = tx.objectStore(STORE);
@@ -72,16 +74,17 @@ var CacheModule = CacheModule || {};
     }
   };
 
-  ns.set = async function (sourceText, targetLang, model, translatedText) {
+  ns.set = async function (sourceText, targetLang, model, translatedText, hostname) {
     try {
       var db = await openDB();
-      var id = makeKey(sourceText, targetLang, model);
+      var id = makeKey(sourceText, targetLang, model, hostname);
       var normalized = UtilsModule.normalizeText(sourceText);
       var record = {
         id: id,
         sourceHash: UtilsModule.hashText(normalized),
         targetLang: targetLang,
         model: model,
+        hostname: hostname,
         sourceText: normalized.slice(0, 500),
         translated: translatedText,
         createdAt: Date.now()
@@ -138,6 +141,59 @@ var CacheModule = CacheModule || {};
       });
     } catch (e) {
       return { count: 0 };
+    }
+  };
+
+  // Returns [{ hostname, count }] sorted by hostname.
+  ns.getHostnames = async function () {
+    try {
+      var db = await openDB();
+      return await new Promise(function (resolve) {
+        var counts = {};
+        var tx = db.transaction(STORE, 'readonly');
+        var store = tx.objectStore(STORE);
+        var req = store.getAll();
+        req.onsuccess = function () {
+          var records = req.result || [];
+          records.forEach(function (r) {
+            if (r.hostname) counts[r.hostname] = (counts[r.hostname] || 0) + 1;
+          });
+          var result = Object.keys(counts).sort().map(function (h) {
+            return { hostname: h, count: counts[h] };
+          });
+          resolve(result);
+        };
+        req.onerror = function () {
+          resolve([]);
+        };
+      });
+    } catch (e) {
+      return [];
+    }
+  };
+
+  ns.clearByHostname = async function (hostname) {
+    try {
+      var db = await openDB();
+      await new Promise(function (resolve, reject) {
+        var tx = db.transaction(STORE, 'readwrite');
+        var store = tx.objectStore(STORE);
+        var req = store.getAll();
+        req.onsuccess = function () {
+          var records = req.result || [];
+          var toDelete = records.filter(function (r) { return r.hostname === hostname; });
+          toDelete.forEach(function (r) {
+            store.delete(r.id);
+          });
+          resolve();
+        };
+        req.onerror = function () {
+          resolve();
+        };
+      });
+      return true;
+    } catch (e) {
+      return false;
     }
   };
 })(CacheModule);

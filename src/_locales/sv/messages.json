@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Skicka sidtitel och beskrivning till LLM som översättningskontext"
+  },
+  "hintSendPageContext": {
+    "message": "När det är påslaget inkluderas sidans titel och metabeskrivning i systemprompten så att modellen kan ge mer kontextuellt korrekta översättningar. Påverkar endast OpenAI-kompatibla och Ollama-leverantörer."
+  },
+  "labelCacheScope": {
+    "message": "Cacheomfång"
+  },
+  "cacheScopePerSite": {
+    "message": "Per webbplats (standard)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Global (delas mellan alla webbplatser)"
+  },
+  "hintCacheScope": {
+    "message": "Per-webbplats håller översättningar separerade per domän. Global delar cachen mellan alla webbplatser."
+  },
+  "headingSiteCache": {
+    "message": "Cache per webbplats"
+  },
+  "btnRefresh": {
+    "message": "Uppdatera"
+  },
+  "siteCacheNone": {
+    "message": "Inga cacheposter per webbplats hittades."
+  },
+  "btnClearSiteCache": {
+    "message": "Rensa"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ poster",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Rensa översättningscache för $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Cache för $HOST$ har rensats.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Läser in…"
   }
 }

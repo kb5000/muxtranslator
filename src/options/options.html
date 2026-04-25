@@ -145,6 +145,11 @@
         </select>
         <span class="hint" data-i18n="hintBilingualMode">Bilingual mode can also be toggled quickly from the extension popup.</span>
       </label>
+      <label class="inline">
+        <input type="checkbox" id="sendPageContext">
+        <span data-i18n="labelSendPageContext">Send page title &amp; description to LLM providers as translation context</span>
+      </label>
+      <span class="hint" data-i18n="hintSendPageContext">When enabled, the page title and meta description are included in the system prompt so the model can produce more contextually accurate translations. Only affects OpenAI-compatible and Ollama providers.</span>
     </section>
 
     <!-- Performance -->
@@ -180,9 +185,24 @@
         <input type="checkbox" id="cacheEnabled">
         <span data-i18n="labelCacheEnabled">Enable IndexedDB translation cache</span>
       </label>
+      <label>
+        <span data-i18n="labelCacheScope">Cache scope</span>
+        <select id="cacheScope">
+          <option value="per-site" data-i18n="cacheScopePerSite">Per website (default)</option>
+          <option value="global" data-i18n="cacheScopeGlobal">Global (shared across all sites)</option>
+        </select>
+        <span class="hint" data-i18n="hintCacheScope">Per-website keeps translations separate per domain, so changes on one site don't affect others. Global shares the cache across all sites.</span>
+      </label>
       <div class="row">
         <button type="button" id="clearCacheBtn" data-i18n="btnClearCache">Clear cache</button>
         <span id="cacheStats" class="hint"></span>
+      </div>
+      <div id="siteCacheSection">
+        <div class="card-header" style="margin-top:12px">
+          <span data-i18n="headingSiteCache" style="font-weight:500">Per-site cache</span>
+          <button type="button" id="refreshSiteCacheBtn" data-i18n="btnRefresh">Refresh</button>
+        </div>
+        <div id="siteCacheList" class="rules-list"></div>
       </div>
       <div id="tokenStats" class="stats-box"></div>
       <div class="row">

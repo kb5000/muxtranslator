@@ -38,7 +38,8 @@
       'uiLanguage', 'targetLanguage', 'skipLanguages', 'autoDetect',
       'defaultTranslationMode', 'bilingualMode',
       'observeMutations', 'viewportPriority', 'showProgressBar', 'maxCharsPerBatch', 'concurrentBatches',
-      'cacheEnabled', 'clearCacheBtn', 'cacheStats',
+      'cacheEnabled', 'cacheScope', 'sendPageContext', 'clearCacheBtn', 'cacheStats',
+      'siteCacheSection', 'siteCacheList', 'refreshSiteCacheBtn',
       'pdfDevMode',
       'tokenStats', 'resetTokensBtn',
       'saveBtn', 'status',
@@ -51,6 +52,11 @@
     els.glossaryClose.addEventListener('click', function () { els.glossaryDialog.close(); });
     els.addGlossaryEntryBtn.addEventListener('click', addGlossaryEntry);
     els.clearCacheBtn.addEventListener('click', clearCache);
+    if (els.refreshSiteCacheBtn) els.refreshSiteCacheBtn.addEventListener('click', renderSiteCacheList);
+    if (els.cacheScope) els.cacheScope.addEventListener('change', function () {
+      if (state.settings) state.settings.cacheScope = els.cacheScope.value;
+      renderSiteCacheList();
+    });
     els.resetTokensBtn.addEventListener('click', resetTokens);
     els.addSiteRuleBtn.addEventListener('click', openSiteRuleDialog);
     els.srCancel.addEventListener('click', function () { els.siteRuleDialog.close(); });
@@ -73,7 +79,7 @@
       'targetLanguage', 'skipLanguages',
       'defaultTranslationMode', 'bilingualMode',
       'observeMutations', 'viewportPriority', 'showProgressBar',
-      'maxCharsPerBatch', 'concurrentBatches', 'cacheEnabled',
+      'maxCharsPerBatch', 'concurrentBatches', 'cacheEnabled', 'cacheScope', 'sendPageContext',
       'defaultProviderId', 'selectionProviderId', 'manualProviderId', 'pdfProviderId',
       'selectionEnabled'
     ].forEach(function (id) {
@@ -110,7 +116,9 @@
       parseInt(els.maxCharsPerBatch.value, 10) || 3000));
     state.settings.concurrentBatches = Math.max(1, Math.min(8,
       parseInt(els.concurrentBatches.value, 10) || 2));
-    state.settings.cacheEnabled  = els.cacheEnabled.checked;
+    state.settings.cacheEnabled     = els.cacheEnabled.checked;
+    state.settings.cacheScope       = els.cacheScope ? (els.cacheScope.value || 'per-site') : 'per-site';
+    state.settings.sendPageContext  = !!(els.sendPageContext && els.sendPageContext.checked);
     state.settings.pdfDevMode    = !!(els.pdfDevMode && els.pdfDevMode.checked);
 
     state.settings.defaultProviderId = els.defaultProviderId.value;
@@ -134,6 +142,7 @@
     renderSiteRules();
     renderScalars();
     renderCacheStats();
+    renderSiteCacheList();
     renderTokenStats();
   }
 
@@ -639,6 +648,11 @@
     els.maxCharsPerBatch.value = s.maxCharsPerBatch || 3000;
     els.concurrentBatches.value = s.concurrentBatches || 2;
     els.cacheEnabled.checked = s.cacheEnabled !== false;
+    if (els.cacheScope) els.cacheScope.value = s.cacheScope || 'per-site';
+    if (els.sendPageContext) els.sendPageContext.checked = s.sendPageContext !== false;
+    if (els.siteCacheSection) {
+      els.siteCacheSection.style.display = (s.cacheScope === 'global') ? 'none' : '';
+    }
     if (els.pdfDevMode) els.pdfDevMode.checked = !!s.pdfDevMode;
   }
 
@@ -649,6 +663,63 @@
       var res = await browser.runtime.sendMessage({ type: 'GET_CACHE_STATS', payload: {} });
       if (res && res.success) els.cacheStats.textContent = i18n('cachedEntries', [String(res.data.count)]);
     } catch (e) { els.cacheStats.textContent = ''; }
+  }
+
+  async function renderSiteCacheList() {
+    if (!els.siteCacheList) return;
+    var scope = state.settings && state.settings.cacheScope;
+    if (els.siteCacheSection) {
+      els.siteCacheSection.style.display = (scope === 'global') ? 'none' : '';
+    }
+    if (scope === 'global') return;
+
+    els.siteCacheList.innerHTML = '<div class="hint">' + escapeHtml(i18n('statusLoading') || '…') + '</div>';
+    try {
+      var res = await browser.runtime.sendMessage({ type: 'GET_CACHE_HOSTNAMES', payload: {} });
+      var hostnames = (res && res.success && res.data && res.data.hostnames) || [];
+      els.siteCacheList.innerHTML = '';
+      if (!hostnames.length) {
+        els.siteCacheList.innerHTML = '<div class="hint">' + escapeHtml(i18n('siteCacheNone') || 'No per-site cache entries.') + '</div>';
+        return;
+      }
+      hostnames.forEach(function (entry) {
+        var host = entry.hostname;
+        var count = entry.count;
+        var row = document.createElement('div');
+        row.className = 'rule-row';
+        var hostSpan = document.createElement('span');
+        hostSpan.className = 'host';
+        hostSpan.textContent = host;
+        var countSpan = document.createElement('span');
+        countSpan.className = 'mode';
+        countSpan.textContent = i18n('siteCacheEntryCount', [String(count)]);
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'danger';
+        delBtn.textContent = i18n('btnClearSiteCache') || 'Clear';
+        delBtn.addEventListener('click', async function () {
+          if (!confirm(i18n('confirmClearSiteCache', [host]))) return;
+          try {
+            var r = await browser.runtime.sendMessage({ type: 'CLEAR_CACHE_BY_HOSTNAME', payload: { hostname: host } });
+            if (r && r.success) {
+              setStatus(i18n('statusSiteCacheCleared', [host]), 'success');
+              renderSiteCacheList();
+              renderCacheStats();
+            } else {
+              setStatus(i18n('errorClearFailed'), 'error');
+            }
+          } catch (e) {
+            setStatus(i18n('errorClearFailedWith', [e.message]), 'error');
+          }
+        });
+        row.appendChild(hostSpan);
+        row.appendChild(countSpan);
+        row.appendChild(delBtn);
+        els.siteCacheList.appendChild(row);
+      });
+    } catch (e) {
+      els.siteCacheList.innerHTML = '<div class="hint">' + escapeHtml(String(e.message || e)) + '</div>';
+    }
   }
 
   function renderTokenStats() {

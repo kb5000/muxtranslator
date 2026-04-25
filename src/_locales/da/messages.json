@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Send sideoverskrift og -beskrivelse til LLM som oversættelseskontekst"
+  },
+  "hintSendPageContext": {
+    "message": "Når aktiveret medtages sideoverskriften og meta-beskrivelsen i systemprompten, så modellen kan give mere kontekstuelt korrekte oversættelser. Gælder kun for OpenAI-compatible og Ollama udbydere."
+  },
+  "labelCacheScope": {
+    "message": "Cacheområde"
+  },
+  "cacheScopePerSite": {
+    "message": "Pr. hjemmeside (standard)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Global (deles på tværs af alle sider)"
+  },
+  "hintCacheScope": {
+    "message": "Pr. hjemmeside holder oversættelser adskilt pr. domæne. Global deler cachen på tværs af alle sider."
+  },
+  "headingSiteCache": {
+    "message": "Cache pr. side"
+  },
+  "btnRefresh": {
+    "message": "Opdatér"
+  },
+  "siteCacheNone": {
+    "message": "Ingen cacheindgange pr. hjemmeside fundet."
+  },
+  "btnClearSiteCache": {
+    "message": "Ryd"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ elementer",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Ryd oversættelsescache for $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Cache for $HOST$ ryddet.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Indlæser…"
   }
 }

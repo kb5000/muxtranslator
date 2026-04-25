@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "ส่งชื่อหน้าและคำอธิบายไปยัง LLM เป็นบริบทการแปล"
+  },
+  "hintSendPageContext": {
+    "message": "เมื่อเปิดใช้งาน ชื่อหน้าและคำอธิบาย meta จะถูกเพิ่มใน system prompt เพื่อให้โมเดลแปลได้ตรงบริบทมากขึ้น มีผลเฉพาะกับผู้ให้บริการ OpenAI-compatible และ Ollama เท่านั้น"
+  },
+  "labelCacheScope": {
+    "message": "ขอบเขตแคช"
+  },
+  "cacheScopePerSite": {
+    "message": "ต่อเว็บไซต์ (ค่าเริ่มต้น)"
+  },
+  "cacheScopeGlobal": {
+    "message": "ทั่วโลก (ใช้ร่วมทุกเว็บไซต์)"
+  },
+  "hintCacheScope": {
+    "message": "แบบต่อเว็บไซต์จะแยกการแปลตามโดเมน แต่แบบทั่วโลกใช้แคชร่วมกันทั้งหมด"
+  },
+  "headingSiteCache": {
+    "message": "แคชเฉพาะเว็บไซต์"
+  },
+  "btnRefresh": {
+    "message": "รีเฟรช"
+  },
+  "siteCacheNone": {
+    "message": "ไม่พบรายการแคชเฉพาะเว็บไซต์"
+  },
+  "btnClearSiteCache": {
+    "message": "ล้าง"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ รายการ",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "ล้างแคชการแปลสำหรับ $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "ล้างแคชสำหรับ $HOST$ แล้ว",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "กำลังโหลด…"
   }
 }

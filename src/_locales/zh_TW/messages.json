@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "將網頁標題與描述傳送給 LLM 作為翻譯上下文"
+  },
+  "hintSendPageContext": {
+    "message": "啟用時，網頁標題與 meta 描述會加入系統提示，讓模型產生更貼近語境的翻譯。僅影響 OpenAI-compatible 與 Ollama 提供者。"
+  },
+  "labelCacheScope": {
+    "message": "快取範圍"
+  },
+  "cacheScopePerSite": {
+    "message": "依網站（預設）"
+  },
+  "cacheScopeGlobal": {
+    "message": "全域（所有網站共用）"
+  },
+  "hintCacheScope": {
+    "message": "依網站可讓不同網域的翻譯各自獨立，全域則會在所有網站間共用快取。"
+  },
+  "headingSiteCache": {
+    "message": "網站專屬快取"
+  },
+  "btnRefresh": {
+    "message": "重新整理"
+  },
+  "siteCacheNone": {
+    "message": "未找到網站專屬快取項目。"
+  },
+  "btnClearSiteCache": {
+    "message": "清除"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ 筆",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "清除 $HOST$ 的翻譯快取？",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "$HOST$ 的快取已清除。",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "載入中…"
   }
 }

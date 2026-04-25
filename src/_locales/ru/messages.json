@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Отправлять заголовок и описание страницы в LLM как контекст перевода"
+  },
+  "hintSendPageContext": {
+    "message": "При включении заголовок и метаописание страницы добавляются в системный запрос, чтобы модель давала более точные по смыслу переводы. Работает только с провайдерами OpenAI-compatible и Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Область кэша"
+  },
+  "cacheScopePerSite": {
+    "message": "По сайту (по умолчанию)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Глобально (общая для всех сайтов)"
+  },
+  "hintCacheScope": {
+    "message": "По сайту хранит переводы отдельно для каждого домена. Глобально — общий кэш для всех сайтов."
+  },
+  "headingSiteCache": {
+    "message": "Кэш по сайтам"
+  },
+  "btnRefresh": {
+    "message": "Обновить"
+  },
+  "siteCacheNone": {
+    "message": "Записи кэша по сайтам не найдены."
+  },
+  "btnClearSiteCache": {
+    "message": "Очистить"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ записей",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Очистить кэш перевода для $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Кэш для $HOST$ очищен.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Загрузка…"
   }
 }

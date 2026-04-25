@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Send sidenavn og beskrivelse til LLM som oversettelseskontekst"
+  },
+  "hintSendPageContext": {
+    "message": "Når dette er aktivert, tas sidens tittel og meta-beskrivelse med i systemprompten, slik modellen kan gi mer kontekstrikt nøyaktige oversettelser. Gjelder bare OpenAI-kompatible og Ollama-leverandører."
+  },
+  "labelCacheScope": {
+    "message": "Mellomlagersporing"
+  },
+  "cacheScopePerSite": {
+    "message": "Per nettsted (standard)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Global (deles på tvers av alle sider)"
+  },
+  "hintCacheScope": {
+    "message": "Per nettsted holder oversettelser atskilt per domene. Global deler mellomlageret på tvers av alle sider."
+  },
+  "headingSiteCache": {
+    "message": "Mellomlager per nettsted"
+  },
+  "btnRefresh": {
+    "message": "Oppdater"
+  },
+  "siteCacheNone": {
+    "message": "Ingen mellomlageroppføringer per nettsted funnet."
+  },
+  "btnClearSiteCache": {
+    "message": "Tøm"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ oppføringer",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Tøm oversettelsesmellomlager for $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Mellomlager for $HOST$ tømt.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Laster…"
   }
 }

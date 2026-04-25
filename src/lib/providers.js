@@ -84,6 +84,18 @@ var ProvidersModule = ProvidersModule || {};
     return '\n\nGlossary (translate these terms exactly as listed):\n' + lines.join('\n');
   }
 
+  // Build page context block to prepend to system prompts (LLM providers only).
+  // provider._pageContext is set by background.js withPageContext().
+  function buildPageContextBlock(provider) {
+    var ctx = provider._pageContext;
+    if (!ctx) return '';
+    var parts = [];
+    if (ctx.title) parts.push('Title: ' + ctx.title);
+    if (ctx.description) parts.push('Description: ' + ctx.description);
+    if (!parts.length) return '';
+    return 'Page context:\n' + parts.join('\n') + '\n\n';
+  }
+
   // Build user prompt from template + {text} + {target_lang}
   function buildUserPrompt(provider, texts, targetLang) {
     var combined = joinWithSep(texts);
@@ -107,7 +119,7 @@ var ProvidersModule = ProvidersModule || {};
 
   function buildToolMessages(provider, texts, targetLang) {
     return [
-      { role: 'system', content: TOOL_SYSTEM_PROMPT + buildGlossaryBlock(provider) },
+      { role: 'system', content: buildPageContextBlock(provider) + TOOL_SYSTEM_PROMPT + buildGlossaryBlock(provider) },
       { role: 'user', content:
           'Target language: ' + targetLang + '\n\n' +
           'Input (JSON array of ' + texts.length + ' strings):\n' +
@@ -235,7 +247,7 @@ var ProvidersModule = ProvidersModule || {};
     var messages = isTool
       ? buildToolMessages(provider, texts, targetLang)
       : [
-          { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
+          { role: 'system', content: buildPageContextBlock(provider) + (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
           { role: 'user', content: buildUserPrompt(provider, texts, targetLang) }
         ];
     var body = {
@@ -288,7 +300,7 @@ var ProvidersModule = ProvidersModule || {};
     var messages = isTool
       ? buildToolMessages(provider, texts, targetLang)
       : [
-          { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
+          { role: 'system', content: buildPageContextBlock(provider) + (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
           { role: 'user', content: buildUserPrompt(provider, texts, targetLang) }
         ];
     var body = {
@@ -503,7 +515,7 @@ var ProvidersModule = ProvidersModule || {};
     var body = {
       model: provider.model,
       messages: [
-        { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
+        { role: 'system', content: buildPageContextBlock(provider) + (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
         { role: 'user', content: userPrompt }
       ],
       stream: false,
@@ -534,7 +546,7 @@ var ProvidersModule = ProvidersModule || {};
     var body = {
       model: provider.model,
       messages: [
-        { role: 'system', content: (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
+        { role: 'system', content: buildPageContextBlock(provider) + (provider.systemPrompt || '') + buildGlossaryBlock(provider) },
         { role: 'user', content: userPrompt }
       ],
       stream: true,

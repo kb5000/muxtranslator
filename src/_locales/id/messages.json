@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Kirim judul & deskripsi halaman ke LLM sebagai konteks terjemahan"
+  },
+  "hintSendPageContext": {
+    "message": "Saat diaktifkan, judul dan deskripsi meta halaman disertakan dalam prompt sistem agar model menghasilkan terjemahan yang lebih sesuai konteks. Hanya berlaku untuk penyedia OpenAI-compatible dan Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Cakupan cache"
+  },
+  "cacheScopePerSite": {
+    "message": "Per situs (default)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Global (dibagikan ke semua situs)"
+  },
+  "hintCacheScope": {
+    "message": "Per-situs menyimpan terjemahan terpisah per domain. Global membagi cache di semua situs."
+  },
+  "headingSiteCache": {
+    "message": "Cache per situs"
+  },
+  "btnRefresh": {
+    "message": "Segarkan"
+  },
+  "siteCacheNone": {
+    "message": "Tidak ada entri cache per situs ditemukan."
+  },
+  "btnClearSiteCache": {
+    "message": "Bersihkan"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ entri",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Hapus cache terjemahan untuk $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Cache untuk $HOST$ telah dibersihkan.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Memuat…"
   }
 }

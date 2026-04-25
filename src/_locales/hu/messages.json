@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Oldal címe és leírása elküldése fordítási kontextusként az LLM-nek"
+  },
+  "hintSendPageContext": {
+    "message": "Ha engedélyezve van, a rendszer bekapcsolja az oldalcímet és meta leírást a rendszerpromptba, így a modell pontosabb, kontextusérzékeny fordításokat készíthet. Csak OpenAI-kompatibilis és Ollama szolgáltatókat érinti."
+  },
+  "labelCacheScope": {
+    "message": "Gyorsítótár hatóköre"
+  },
+  "cacheScopePerSite": {
+    "message": "Webhelyenként (alapértelmezett)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Globális (összes oldalon megosztva)"
+  },
+  "hintCacheScope": {
+    "message": "A webhelyenkénti mód külön tartja a fordításokat tartományonként. A globális megosztja az összes oldal között."
+  },
+  "headingSiteCache": {
+    "message": "Webhelyenkénti gyorsítótár"
+  },
+  "btnRefresh": {
+    "message": "Frissítés"
+  },
+  "siteCacheNone": {
+    "message": "Nincsenek webhelyenkénti gyorsítótárentrük."
+  },
+  "btnClearSiteCache": {
+    "message": "Törlés"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ bejegyzés",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Törli a fordítási gyorsítótárat ehhez: $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "A(z) $HOST$ gyorsítótára törölve.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Betöltés…"
   }
 }

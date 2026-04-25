@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Envoyer le titre et la description de la page au LLM comme contexte de traduction"
+  },
+  "hintSendPageContext": {
+    "message": "Si activé, le titre et la méta-description de la page sont inclus dans le prompt système pour que le modèle produise des traductions plus précises sur le plan contextuel. Ne concerne que les fournisseurs compatibles OpenAI et Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Portée du cache"
+  },
+  "cacheScopePerSite": {
+    "message": "Par site web (par défaut)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Global (partagé entre tous les sites)"
+  },
+  "hintCacheScope": {
+    "message": "Par site conserve les traductions séparées par domaine. Global partage le cache entre tous les sites."
+  },
+  "headingSiteCache": {
+    "message": "Cache par site"
+  },
+  "btnRefresh": {
+    "message": "Actualiser"
+  },
+  "siteCacheNone": {
+    "message": "Aucune entrée de cache par site trouvée."
+  },
+  "btnClearSiteCache": {
+    "message": "Vider"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ entrées",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Vider le cache de traduction pour $HOST$ ?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Cache pour $HOST$ vidé.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Chargement…"
   }
 }

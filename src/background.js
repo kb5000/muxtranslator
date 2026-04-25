@@ -17,6 +17,19 @@ async function resolveProviderForRequest(providerId) {
   return { settings: s, provider: provider };
 }
 
+// Attach page title/description to provider for LLM context (OpenAI/Ollama only).
+function withPageContext(provider, pageContext) {
+  if (!pageContext) return provider;
+  var isLLM = provider.type === 'openai-compatible' || provider.type === 'ollama';
+  if (!isLLM) return provider;
+  var title = (pageContext.title || '').trim().slice(0, 200);
+  var desc = (pageContext.description || '').trim().slice(0, 500);
+  if (!title && !desc) return provider;
+  var p = Object.assign({}, provider);
+  p._pageContext = { title: title, description: desc };
+  return p;
+}
+
 // Attach filtered glossary entries to provider (only for LLM types that support it).
 function withGlossary(provider, settings, targetLang) {
   var isLLM = provider.type === 'openai-compatible' || provider.type === 'ollama';
@@ -42,16 +55,21 @@ function cacheModelKey(provider) {
 
 // ----- Batch translation (non-streaming) ---------------------------------
 
-async function translateOne(provider, text, targetLang, cacheEnabled) {
+function resolveHostname(payload, settings) {
+  var scope = (payload && payload.cacheScope) || (settings && settings.cacheScope) || 'per-site';
+  return scope === 'per-site' ? (payload && payload.hostname) || '' : '';
+}
+
+async function translateOne(provider, text, targetLang, cacheEnabled, hostname) {
   var modelKey = cacheModelKey(provider);
   if (cacheEnabled) {
-    var hit = await CacheModule.get(text, targetLang, modelKey);
+    var hit = await CacheModule.get(text, targetLang, modelKey, hostname);
     if (hit != null) return { text: hit, fromCache: true, usage: null };
   }
   var out = await ProvidersModule.translateBatch(provider, [text], targetLang);
   var translated = (out.translations && out.translations[0]) || '';
   if (cacheEnabled && translated) {
-    CacheModule.set(text, targetLang, modelKey, translated).catch(function () {});
+    CacheModule.set(text, targetLang, modelKey, translated, hostname).catch(function () {});
   }
   if (out.usage) {
     SettingsModule.addTokenUsage(provider.id, out.usage).catch(function () {});
@@ -59,7 +77,7 @@ async function translateOne(provider, text, targetLang, cacheEnabled) {
   return { text: translated, fromCache: false, usage: out.usage };
 }
 
-async function translateBatch(provider, texts, targetLang, cacheEnabled) {
+async function translateBatch(provider, texts, targetLang, cacheEnabled, hostname) {
   if (!texts || !texts.length) return { translations: [], cacheHits: 0 };
   var modelKey = cacheModelKey(provider);
   var results = new Array(texts.length);
@@ -69,7 +87,7 @@ async function translateBatch(provider, texts, targetLang, cacheEnabled) {
 
   for (var i = 0; i < texts.length; i++) {
     if (cacheEnabled) {
-      var cached = await CacheModule.get(texts[i], targetLang, modelKey);
+      var cached = await CacheModule.get(texts[i], targetLang, modelKey, hostname);
       if (cached != null) { results[i] = cached; cacheHits++; continue; }
     }
     pending.push(texts[i]);
@@ -85,7 +103,7 @@ async function translateBatch(provider, texts, targetLang, cacheEnabled) {
       var translated = translations[j] || '';
       results[pendingIdx[j]] = translated;
       if (cacheEnabled && translated) {
-        CacheModule.set(pending[j], targetLang, modelKey, translated).catch(function () {});
+        CacheModule.set(pending[j], targetLang, modelKey, translated, hostname).catch(function () {});
       }
     }
     if (out.usage) SettingsModule.addTokenUsage(provider.id, out.usage).catch(function () {});
@@ -93,7 +111,7 @@ async function translateBatch(provider, texts, targetLang, cacheEnabled) {
     console.warn('[MuxTranslator] batch translate failed, per-item fallback:', err.message);
     for (var k = 0; k < pending.length; k++) {
       try {
-        var one = await translateOne(provider, pending[k], targetLang, cacheEnabled);
+        var one = await translateOne(provider, pending[k], targetLang, cacheEnabled, hostname);
         results[pendingIdx[k]] = one.text;
       } catch (e) {
         results[pendingIdx[k]] = '';
@@ -108,9 +126,11 @@ async function translateBatch(provider, texts, targetLang, cacheEnabled) {
 async function handleTranslateChunks(payload) {
   var resolved = await resolveProviderForRequest(payload.providerId);
   var targetLang = payload.targetLang || resolved.settings.targetLanguage;
-  var provider = withGlossary(resolved.provider, resolved.settings, targetLang);
+  var pageCtx = resolved.settings.sendPageContext !== false ? payload.pageContext : null;
+  var provider = withPageContext(withGlossary(resolved.provider, resolved.settings, targetLang), pageCtx);
   var cacheEnabled = payload.cacheEnabled !== false && resolved.settings.cacheEnabled !== false;
-  var result = await translateBatch(provider, payload.texts || [], targetLang, cacheEnabled);
+  var hostname = resolveHostname(payload, resolved.settings);
+  var result = await translateBatch(provider, payload.texts || [], targetLang, cacheEnabled, hostname);
   return { success: true, data: result };
 }
 
@@ -155,9 +175,11 @@ async function handleTranslateStream(payload, sender) {
 
   var resolved = await resolveProviderForRequest(payload.providerId);
   var targetLang = payload.targetLang || resolved.settings.targetLanguage;
-  var provider = withGlossary(resolved.provider, resolved.settings, targetLang);
+  var pageCtx = resolved.settings.sendPageContext !== false ? payload.pageContext : null;
+  var provider = withPageContext(withGlossary(resolved.provider, resolved.settings, targetLang), pageCtx);
   var cacheEnabled = payload.cacheEnabled !== false && resolved.settings.cacheEnabled !== false;
   var modelKey = cacheModelKey(provider);
+  var hostname = resolveHostname(payload, resolved.settings);
 
   var emitPromises = [];
   function emit(itemId, text, fromCache) {
@@ -180,7 +202,7 @@ async function handleTranslateStream(payload, sender) {
   var pendingIds = [];
   for (var i = 0; i < texts.length; i++) {
     var cached = null;
-    if (cacheEnabled) cached = await CacheModule.get(texts[i], targetLang, modelKey);
+    if (cacheEnabled) cached = await CacheModule.get(texts[i], targetLang, modelKey, hostname);
     if (cached != null) emit(itemIds[i], cached, true);
     else { pending.push(texts[i]); pendingIds.push(itemIds[i]); }
   }
@@ -199,7 +221,7 @@ async function handleTranslateStream(payload, sender) {
           if (index < 0 || index >= pending.length) return;
           emit(pendingIds[index], text, false);
           if (cacheEnabled && text) {
-            CacheModule.set(pending[index], targetLang, modelKey, text).catch(function () {});
+            CacheModule.set(pending[index], targetLang, modelKey, text, hostname).catch(function () {});
           }
         },
         onUsage: function (usage) {
@@ -221,7 +243,7 @@ async function handleTranslateStream(payload, sender) {
       for (var m = 0; m < pending.length; m++) {
         emit(pendingIds[m], trs[m] || '', false);
         if (cacheEnabled && trs[m]) {
-          CacheModule.set(pending[m], targetLang, modelKey, trs[m]).catch(function () {});
+          CacheModule.set(pending[m], targetLang, modelKey, trs[m], hostname).catch(function () {});
         }
       }
       if (out.usage) {
@@ -330,6 +352,18 @@ async function handleGetCacheStats() {
   return { success: true, data: stats };
 }
 
+async function handleGetCacheHostnames() {
+  var hostnames = await CacheModule.getHostnames();
+  return { success: true, data: { hostnames: hostnames } };
+}
+
+async function handleClearCacheByHostname(payload) {
+  var hostname = payload && payload.hostname;
+  if (!hostname) return { success: false, error: 'No hostname provided' };
+  var ok = await CacheModule.clearByHostname(hostname);
+  return { success: ok, data: { cleared: ok } };
+}
+
 async function handleResetTokenStats() {
   await SettingsModule.saveSettings({
     tokenStats: { prompt_tokens: 0, completion_tokens: 0, byProvider: {} }
@@ -347,8 +381,10 @@ async function routeMessage(message, sender) {
     case 'GET_MODELS':            return handleGetModels(message.payload || {});
     case 'GET_SETTINGS':          return handleGetSettings(sender);
     case 'SAVE_SETTINGS':         return handleSaveSettings(message.payload || {});
-    case 'CLEAR_CACHE':           return handleClearCache();
-    case 'GET_CACHE_STATS':       return handleGetCacheStats();
+    case 'CLEAR_CACHE':               return handleClearCache();
+    case 'GET_CACHE_STATS':           return handleGetCacheStats();
+    case 'GET_CACHE_HOSTNAMES':       return handleGetCacheHostnames();
+    case 'CLEAR_CACHE_BY_HOSTNAME':   return handleClearCacheByHostname(message.payload || {});
     case 'RESET_TOKEN_STATS':     return handleResetTokenStats();
     default: throw new Error('Unknown message type: ' + message.type);
   }

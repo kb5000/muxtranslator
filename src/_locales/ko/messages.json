@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "페이지 제목과 설명을 번역 컨텍스트로 LLM에 전송"
+  },
+  "hintSendPageContext": {
+    "message": "활성화하면 페이지 제목과 메타 설명이 시스템 프롬프트에 포함되어 모델이 더 정확한 맥락의 번역을 생성합니다. OpenAI 호환 및 Ollama 제공자에만 적용됩니다."
+  },
+  "labelCacheScope": {
+    "message": "캐시 범위"
+  },
+  "cacheScopePerSite": {
+    "message": "사이트별 (기본값)"
+  },
+  "cacheScopeGlobal": {
+    "message": "전역 (모든 사이트 공유)"
+  },
+  "hintCacheScope": {
+    "message": "사이트별은 도메인마다 번역을 분리합니다. 전역은 모든 사이트에서 캐시를 공유합니다."
+  },
+  "headingSiteCache": {
+    "message": "사이트별 캐시"
+  },
+  "btnRefresh": {
+    "message": "새로고침"
+  },
+  "siteCacheNone": {
+    "message": "사이트별 캐시 항목이 없습니다."
+  },
+  "btnClearSiteCache": {
+    "message": "지우기"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$개 항목",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "$HOST$의 번역 캐시를 지우시겠습니까?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "$HOST$ 캐시가 지워졌습니다.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "불러오는 중…"
   }
 }

@@ -647,13 +647,24 @@
     // resolved provider doesn't support streaming.
     var msgType = 'TRANSLATE_STREAM';
 
+    var pageTitle = '';
+    var pageDesc = '';
+    try {
+      pageTitle = document.title || '';
+      var metaDesc = document.querySelector('meta[name="description"]');
+      pageDesc = (metaDesc && metaDesc.getAttribute('content')) || '';
+    } catch (e) {}
+
     var payload = {
       batchId: batchId,
       texts: batch.map(function (it) { return it.text; }),
       itemIds: batch.map(function (it) { return it.id; }),
       targetLang: engine.settings.targetLanguage,
       providerId: engine.providerId,
-      cacheEnabled: engine.settings.cacheEnabled
+      cacheEnabled: engine.settings.cacheEnabled,
+      cacheScope: engine.settings.cacheScope,
+      hostname: window.location.hostname,
+      pageContext: { title: pageTitle, description: pageDesc }
     };
 
     var ok = false;

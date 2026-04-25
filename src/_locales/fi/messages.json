@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Lähetä sivun otsikko ja kuvaus LLM:lle käännöskontekstina"
+  },
+  "hintSendPageContext": {
+    "message": "Kun käytössä, sivun otsikko ja metakuvaus lisätään järjestelmäkehotteeseen, jotta malli tuottaa kontekstuaalisesti tarkempia käännöksiä. Vaikuttaa vain OpenAI-yhteensopiviin ja Ollama-palveluntarjoajiin."
+  },
+  "labelCacheScope": {
+    "message": "Välimuistin laajuus"
+  },
+  "cacheScopePerSite": {
+    "message": "Kullekin verkkosivustolle (oletus)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Yleinen (jaettu kaikille sivustoille)"
+  },
+  "hintCacheScope": {
+    "message": "Sivustokohtainen pitää käännökset erilläänan jokaiselle verkkotunnukselle. Yleinen jakaa välimuistin kaikkien sivustojen kesken."
+  },
+  "headingSiteCache": {
+    "message": "Sivustokohtainen välimuisti"
+  },
+  "btnRefresh": {
+    "message": "Päivitä"
+  },
+  "siteCacheNone": {
+    "message": "Ei löytynyt sivustokohtaisia välimuistimerkintöjä."
+  },
+  "btnClearSiteCache": {
+    "message": "Tyhjennä"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ kohdetta",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Tyhjennetäänkö käännösvälimuisti sivustolle $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Välimuisti sivustolle $HOST$ tyhjennetty.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Ladataan…"
   }
 }

@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "अनुवाद सन्दर्भ के तौर पर पेज शीर्षक और विवरण LLM को भेजें"
+  },
+  "hintSendPageContext": {
+    "message": "जब सक्षम हो, पेज शीर्षक और मेटा विवरण सिस्टम प्रॉम्प्ट में शामिल किए जाते हैं ताकि मॉडल अधिक सन्दर्भपूर्ण अनुवाद दे सके। केवल OpenAI-compatible और Ollama प्रदायकों पर प्रभावी।"
+  },
+  "labelCacheScope": {
+    "message": "कैश स्कोप"
+  },
+  "cacheScopePerSite": {
+    "message": "प्रति वेबसाइट (डिफ़ॉल्ट)"
+  },
+  "cacheScopeGlobal": {
+    "message": "ग्लोबल (सभी साइटों पर साझा)"
+  },
+  "hintCacheScope": {
+    "message": "प्रति-वेबसाइट प्रत्येक डोमेन के लिए अनुवाद अलग रखता है। ग्लोबल सभी साइटों में कैश साझा करता है।"
+  },
+  "headingSiteCache": {
+    "message": "प्रति-साइट कैश"
+  },
+  "btnRefresh": {
+    "message": "रीफ्रेश करें"
+  },
+  "siteCacheNone": {
+    "message": "कोई प्रति-साइट कैश प्रविष्टि नहीं मिली।"
+  },
+  "btnClearSiteCache": {
+    "message": "साफ़ करें"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ प्रविष्टियाँ",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "क्या $HOST$ के लिए अनुवाद कैश साफ़ करें?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "$HOST$ के लिए कैश साफ़ किया गया।",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "लोड हो रहा है…"
   }
 }

@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Posílat název stránky a popis do LLM jako kontext překladu"
+  },
+  "hintSendPageContext": {
+    "message": "Je-li zapnuto, název stránky a meta popis jsou zahrnuty do systémového promptu, aby model vytvářel přesnější překlady podle kontextu. Platí jen pro poskytovatele OpenAI-compatible a Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Rozsah mezipaměti"
+  },
+  "cacheScopePerSite": {
+    "message": "Podle webu (výchozí)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Globální (sdíleno ve všech webech)"
+  },
+  "hintCacheScope": {
+    "message": "Podle webu odděluje překlady podle domény. Globální sdílí mezipaměť napříč všemi weby."
+  },
+  "headingSiteCache": {
+    "message": "Mezipaměť podle webu"
+  },
+  "btnRefresh": {
+    "message": "Obnovit"
+  },
+  "siteCacheNone": {
+    "message": "Nenalezeny žádné položky mezipaměti podle webu."
+  },
+  "btnClearSiteCache": {
+    "message": "Vymazat"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ položek",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Vymazat překladovou mezipaměť pro $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Mezipaměť pro $HOST$ vymazána.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Načítání…"
   }
 }

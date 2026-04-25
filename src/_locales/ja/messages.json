@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "ページのタイトルと説明を翻訳コンテキストとしてLLMに送信"
+  },
+  "hintSendPageContext": {
+    "message": "有効にすると、ページのタイトルとメタディスクリプションがシステムプロンプトに含まれ、モデルが文脈に合った正確な翻訳を生成できるようになります。OpenAI互換およびOllamaプロバイダーのみに影響します"
+  },
+  "labelCacheScope": {
+    "message": "キャッシュ範囲"
+  },
+  "cacheScopePerSite": {
+    "message": "サイトごと（デフォルト）"
+  },
+  "cacheScopeGlobal": {
+    "message": "全体（すべてのサイトで共有）"
+  },
+  "hintCacheScope": {
+    "message": "サイトごとはドメインごとに翻訳を分離します。全体はすべてのサイトでキャッシュを共有します。"
+  },
+  "headingSiteCache": {
+    "message": "サイト単位のキャッシュ"
+  },
+  "btnRefresh": {
+    "message": "更新"
+  },
+  "siteCacheNone": {
+    "message": "サイト単位のキャッシュエントリが見つかりません。"
+  },
+  "btnClearSiteCache": {
+    "message": "クリア"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$件",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "$HOST$ の翻訳キャッシュをクリアしますか？",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "$HOST$ のキャッシュをクリアしました。",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "読み込み中…"
   }
 }

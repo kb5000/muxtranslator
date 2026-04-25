@@ -599,5 +599,62 @@
         "content": "$1"
       }
     }
+  },
+  "labelSendPageContext": {
+    "message": "Invia titolo e descrizione della pagina al LLM come contesto di traduzione"
+  },
+  "hintSendPageContext": {
+    "message": "Se attivo, il titolo della pagina e la meta descrizione sono inclusi nel prompt di sistema per ottenere traduzioni più precise dal contesto. Valido solo per provider compatibili con OpenAI e Ollama."
+  },
+  "labelCacheScope": {
+    "message": "Ambito cache"
+  },
+  "cacheScopePerSite": {
+    "message": "Per sito (predefinito)"
+  },
+  "cacheScopeGlobal": {
+    "message": "Globale (condiviso tra tutti i siti)"
+  },
+  "hintCacheScope": {
+    "message": "Per-sito mantiene le traduzioni separate per dominio. Globale condivide la cache tra tutti i siti."
+  },
+  "headingSiteCache": {
+    "message": "Cache per sito"
+  },
+  "btnRefresh": {
+    "message": "Aggiorna"
+  },
+  "siteCacheNone": {
+    "message": "Nessuna voce di cache per sito trovata."
+  },
+  "btnClearSiteCache": {
+    "message": "Svuota"
+  },
+  "siteCacheEntryCount": {
+    "message": "$COUNT$ voci",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "confirmClearSiteCache": {
+    "message": "Svuotare la cache delle traduzioni per $HOST$?",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSiteCacheCleared": {
+    "message": "Cache per $HOST$ svuotata.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusLoading": {
+    "message": "Caricamento…"
   }
 }
