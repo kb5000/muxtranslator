@@ -1,12 +1,14 @@
 # MuxTranslator
 
-A Firefox extension that translates web pages using any OpenAI-compatible API — bring your own key and model.
+A Firefox extension that translates web pages / PDF using any OpenAI-compatible API — bring your own key and model.
 
 ![Logo](img/wordmark-light.png)
 
 ## Features
 
 - **Page translation** — translates the entire visible page in-place, preserving layout
+- **PDF translation** — built-in PDF viewer with full translation support; no external tools needed
+- **Bilingual display** — toggle between showing translations only, or original + translation side-by-side
 - **Streaming output** — translations appear word-by-word as the model generates them
 - **Multiple providers** — supports any OpenAI-compatible endpoint, Ollama (local models), and Google Translate
 - **Selection translation** — highlight text and click the "译" badge to translate a snippet inline
@@ -17,6 +19,7 @@ A Firefox extension that translates web pages using any OpenAI-compatible API �
 - **SPA support** — observes DOM mutations to auto-translate content added by React, Vue, infinite scroll, etc.
 - **IndexedDB cache** — caches translations locally so repeated visits don't cost extra API calls
 - **Token usage stats** — tracks prompt and completion tokens per provider and per page session
+- **Mobile support** — responsive design works on phones and tablets, with touch-friendly controls
 - **Multilingual UI** — interface available in English and Chinese (Simplified)
 
 ## Installation
@@ -45,14 +48,16 @@ Install directly from [addons.mozilla.org](https://addons.mozilla.org/en-US/fire
 
 ## Usage
 
-| Action                    | How                                                            |
-| ------------------------- | -------------------------------------------------------------- |
-| Translate current page    | Click the toolbar icon →**Translate**                   |
-| Pause / resume            | Click**Pause** or **Resume** in the popup          |
-| Restore original text     | Click**Restore original** in the popup                   |
-| Translate selected text   | Select text on any page → click the**译** badge         |
-| Quick translate a snippet | Open popup → paste text into the**Quick translate** box |
-| Set a site rule           | Open popup →**This site** section → choose behavior    |
+| Action                    | How                                                                   |
+| ------------------------- | --------------------------------------------------------------------- |
+| Translate current page    | Click the toolbar icon →**Translate**                          |
+| Pause / resume            | Click**Pause** or **Resume** in the popup                 |
+| Restore original text     | Click**Restore original** in the popup                          |
+| Translate a PDF           | Click the**📄 Open PDF** button in the popup to open the viewer |
+| Toggle bilingual display  | In popup →**Bilingual display** section → choose display mode |
+| Translate selected text   | Select text on any page → click the**译** badge                |
+| Quick translate a snippet | Open popup → paste text into the**Quick translate** box        |
+| Set a site rule           | Open popup →**This site** section → choose behavior           |
 
 ## Configuration
 
