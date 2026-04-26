@@ -39,9 +39,10 @@ function setDevMode(on) {
   }
 }
 
-// Read pdfDevMode from persisted settings on startup.
+// Read pdfDevMode from persisted settings on startup, and apply i18n.
 (async () => {
   try {
+    await window.i18nInit();
     const res = await window.browser.runtime.sendMessage({ type: 'GET_SETTINGS', payload: {} });
     if (res && res.success) setDevMode(!!res.data.settings.pdfDevMode);
   } catch (e) {}

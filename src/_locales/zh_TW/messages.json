@@ -48,7 +48,7 @@
     "message": "一律跳過"
   },
   "ruleAlways": {
-    "message": "一律使用 ↑ 翻譯"
+    "message": "永遠翻譯"
   },
   "headingQuickTranslate": {
     "message": "快速翻譯"

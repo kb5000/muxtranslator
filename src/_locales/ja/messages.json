@@ -48,7 +48,7 @@
     "message": "常にスキップ"
   },
   "ruleAlways": {
-    "message": "↑で常に翻訳"
+    "message": "常に翻訳する"
   },
   "headingQuickTranslate": {
     "message": "クイック翻訳"

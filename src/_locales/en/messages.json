@@ -16,7 +16,7 @@
   "headingSiteRules":   { "message": "This site" },
   "ruleAsk":            { "message": "Ask" },
   "ruleSkip":           { "message": "Always skip" },
-  "ruleAlways":         { "message": "Always translate with ↑" },
+  "ruleAlways":         { "message": "Always translate" },
   "headingQuickTranslate": { "message": "Quick translate" },
   "manualPlaceholder":  { "message": "Paste or type text to translate…" },
   "headingTokens":      { "message": "Tokens (this page)" },

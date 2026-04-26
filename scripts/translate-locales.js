@@ -11,6 +11,7 @@
  *   node scripts/translate-locales.js --locale ja
  *   node scripts/translate-locales.js --locale xx_YY --lang "Language Name"
  *   node scripts/translate-locales.js --force          # retranslate all keys
+ *   node scripts/translate-locales.js --keys ruleAlways,ruleSkip  # retranslate specific keys in all locales
  *
  * Config — create scripts/.env (or project-root .env) with:
  *   OPENAI_BASE_URL=https://api.openai.com/v1
@@ -211,8 +212,10 @@ async function main() {
 
   const localeIdx = args.indexOf('--locale');
   const langIdx   = args.indexOf('--lang');
+  const keysIdx   = args.indexOf('--keys');
   const specifiedLocale = localeIdx !== -1 ? args[localeIdx + 1] : null;
   const specifiedLang   = langIdx   !== -1 ? args[langIdx   + 1] : null;
+  const specifiedKeys   = keysIdx   !== -1 ? new Set(args[keysIdx + 1].split(',').map(k => k.trim())) : null;
 
   // Source of truth
   const enPath = path.join(LOCALES_DIR, 'en', 'messages.json');
@@ -243,9 +246,9 @@ async function main() {
       existing = JSON.parse(fs.readFileSync(outPath, 'utf8'));
     }
 
-    // Keys to translate: missing ones (or all if --force)
+    // Keys to translate: specified keys, missing ones, or all if --force
     const toTranslate = Object.entries(enMessages).filter(([key]) =>
-      force ? true : !(key in existing)
+      specifiedKeys ? specifiedKeys.has(key) : (force ? true : !(key in existing))
     );
 
     if (toTranslate.length === 0) {
