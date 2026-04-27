@@ -197,6 +197,29 @@ async function handleTranslateStream(payload, sender) {
     } catch (e) {}
   }
 
+  // Retry a set of pending[] indices (those that got empty translations) as one
+  // batch call. Results are emitted and cached; on failure all slots emit ''.
+  async function retryEmptyBatch(indices) {
+    if (!indices.length) return;
+    var retryTexts = indices.map(function (ri) { return pending[ri]; });
+    console.warn('[MuxTranslator] retrying ' + indices.length + ' empty segment(s) as batch');
+    try {
+      var ro = await ProvidersModule.translateBatch(provider, retryTexts, targetLang);
+      var rtrs = ro.translations || [];
+      for (var ri = 0; ri < indices.length; ri++) {
+        var idx = indices[ri];
+        var t = rtrs[ri] || '';
+        emit(pendingIds[idx], t, false);
+        if (cacheEnabled && t) {
+          CacheModule.set(pending[idx], targetLang, modelKey, t, hostname).catch(function () {});
+        }
+      }
+      if (ro.usage) SettingsModule.addTokenUsage(provider.id, ro.usage).catch(function () {});
+    } catch (e) {
+      for (var rj = 0; rj < indices.length; rj++) emit(pendingIds[indices[rj]], '', false);
+    }
+  }
+
   // Cache phase
   var pending = [];
   var pendingIds = [];
@@ -216,13 +239,18 @@ async function handleTranslateStream(payload, sender) {
   var aborted = false;
   try {
     if (streamed) {
+      var streamEmitted = new Set();
       await ProvidersModule.translateStream(provider, pending, targetLang, {
         onSegment: function (index, text) {
           if (index < 0 || index >= pending.length) return;
-          emit(pendingIds[index], text, false);
-          if (cacheEnabled && text) {
-            CacheModule.set(pending[index], targetLang, modelKey, text, hostname).catch(function () {});
+          if (text) {
+            streamEmitted.add(index);
+            emit(pendingIds[index], text, false);
+            if (cacheEnabled) {
+              CacheModule.set(pending[index], targetLang, modelKey, text, hostname).catch(function () {});
+            }
           }
+          // Empty text: defer for per-item retry below
         },
         onUsage: function (usage) {
           if (usage) {
@@ -237,13 +265,24 @@ async function handleTranslateStream(payload, sender) {
           }
         }
       }, controller.signal);
+      // Retry any items the model left empty (separator mismatch, skipped items, etc.)
+      var streamRetryIdxs = [];
+      for (var si = 0; si < pending.length; si++) {
+        if (!streamEmitted.has(si)) streamRetryIdxs.push(si);
+      }
+      await retryEmptyBatch(streamRetryIdxs);
     } else {
       var out = await ProvidersModule.translateBatch(provider, pending, targetLang, controller.signal);
       var trs = out.translations || [];
+      var batchEmpties = [];
       for (var m = 0; m < pending.length; m++) {
-        emit(pendingIds[m], trs[m] || '', false);
-        if (cacheEnabled && trs[m]) {
-          CacheModule.set(pending[m], targetLang, modelKey, trs[m], hostname).catch(function () {});
+        if (trs[m]) {
+          emit(pendingIds[m], trs[m], false);
+          if (cacheEnabled) {
+            CacheModule.set(pending[m], targetLang, modelKey, trs[m], hostname).catch(function () {});
+          }
+        } else {
+          batchEmpties.push(m);
         }
       }
       if (out.usage) {
@@ -256,6 +295,7 @@ async function handleTranslateStream(payload, sender) {
           if (pu2 && typeof pu2.then === 'function') emitPromises.push(pu2.catch(function () {}));
         } catch (e) {}
       }
+      await retryEmptyBatch(batchEmpties);
     }
   } catch (err) {
     // AbortError: the user paused — drop the batch quietly. Content.js has
