@@ -357,7 +357,7 @@
     "message": "Tulostustila"
   },
   "outputModeText": {
-    "message": "Teksti erotettuna <<<SEP>>> -merkillä"
+    "message": "Teksti erottimilla <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Työkalukutsu (rakenteinen JSON-taulukko)"

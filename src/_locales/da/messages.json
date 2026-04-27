@@ -357,7 +357,7 @@
     "message": "Udgangstilstand"
   },
   "outputModeText": {
-    "message": "Tekst med <<<SEP>>>-separator"
+    "message": "Tekst med <<<SEPn>>> adskillere"
   },
   "outputModeTool": {
     "message": "Værktøjsopkald (struktureret JSON-array)"

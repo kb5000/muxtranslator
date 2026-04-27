@@ -199,9 +199,18 @@
     var body = document.createElement('div');
     body.className = 'provider-body';
 
-    // Name
-    body.appendChild(textField(i18n('labelName'), 'text', p.name || '',
-      function (v) { p.name = v; renderProviders(); }));
+    // Name — update data on every keystroke but defer re-render to blur so the
+    // input doesn't lose focus while the user is typing.
+    var nameLabel = document.createElement('label');
+    nameLabel.textContent = i18n('labelName');
+    var nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.value = p.name || '';
+    nameInput.spellcheck = false;
+    nameInput.addEventListener('input', function () { p.name = nameInput.value; autoSave(); });
+    nameInput.addEventListener('blur', function () { renderProviders(); });
+    nameLabel.appendChild(nameInput);
+    body.appendChild(nameLabel);
 
     // DeepL plan selector (free / paid)
     if (p.type === 'deepl') {

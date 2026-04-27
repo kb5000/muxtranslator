@@ -357,7 +357,7 @@
     "message": "출력 모드"
   },
   "outputModeText": {
-    "message": "<<<SEP>>> 구분자로 텍스트"
+    "message": "<<<SEPn>>> 구분 기호가 있는 텍스트"
   },
   "outputModeTool": {
     "message": "도구 호출 (구조화된 JSON 배열)"

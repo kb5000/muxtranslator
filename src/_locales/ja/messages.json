@@ -357,7 +357,7 @@
     "message": "出力モード"
   },
   "outputModeText": {
-    "message": "<<<SEP>>> 区切りのテキスト"
+    "message": "<<<SEPn>>> 区切りのテキスト"
   },
   "outputModeTool": {
     "message": "ツール呼び出し（構造化JSON配列）"

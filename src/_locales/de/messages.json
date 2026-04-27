@@ -357,7 +357,7 @@
     "message": "Ausgabemodus"
   },
   "outputModeText": {
-    "message": "Text mit <<<SEP>>> Trennzeichen"
+    "message": "Text mit <<<SEPn>>> Trennzeichen"
   },
   "outputModeTool": {
     "message": "Tool-Calling (strukturierte JSON-Array)"

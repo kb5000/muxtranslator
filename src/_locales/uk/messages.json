@@ -357,7 +357,7 @@
     "message": "Режим виводу"
   },
   "outputModeText": {
-    "message": "Текст з роздільником <<<SEP>>>"
+    "message": "Текст із роздільниками <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Виклик інструмента (структурований масив JSON)"

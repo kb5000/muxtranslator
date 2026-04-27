@@ -357,7 +357,7 @@
     "message": "Utdatamodus"
   },
   "outputModeText": {
-    "message": "Tekst med <<<SEP>>> skillelinje"
+    "message": "Tekst med <<<SEPn>>> skillelinjer"
   },
   "outputModeTool": {
     "message": "Verktøykall (strukturert JSON-array)"

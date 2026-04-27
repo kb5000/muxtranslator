@@ -357,7 +357,7 @@
     "message": "Çıkış kipi"
   },
   "outputModeText": {
-    "message": "<<<SEP>>> ayracıyla metin"
+    "message": "<<<SEPn>>> ayraçlarıyla metin"
   },
   "outputModeTool": {
     "message": "Araç çağrısı (yapılandırılmış JSON dizisi)"

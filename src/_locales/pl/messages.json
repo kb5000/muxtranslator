@@ -357,7 +357,7 @@
     "message": "Tryb wyjściowy"
   },
   "outputModeText": {
-    "message": "Tekst z separatorem <<<SEP>>>"
+    "message": "Tekst z separatorami <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Wywołanie narzędzia (strukturalna tablica JSON)"

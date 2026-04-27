@@ -131,7 +131,7 @@
   "labelNotSet":        { "message": "(not set)" },
   "placeholderModelId": { "message": "Or type a model id" },
   "labelOutputMode":    { "message": "Output mode" },
-  "outputModeText":     { "message": "Text with <<<SEP>>> separator" },
+  "outputModeText":     { "message": "Text with <<<SEPn>>> separators" },
   "outputModeTool":     { "message": "Tool calling (structured JSON array)" },
   "hintToolMode":       { "message": "Tool mode forces the model to return a JSON array — no separator parsing, more robust. Requires a model that supports tool calling." },
   "labelStreamingEnabled":   { "message": "Use streaming for this provider" },

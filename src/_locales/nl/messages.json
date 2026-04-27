@@ -357,7 +357,7 @@
     "message": "Uitvoermodus"
   },
   "outputModeText": {
-    "message": "Tekst met <<<SEP>>> scheidingsteken"
+    "message": "Tekst met <<<SEPn>>> scheidingstekens"
   },
   "outputModeTool": {
     "message": "Tool-aanroep (gestructureerde JSON-array)"

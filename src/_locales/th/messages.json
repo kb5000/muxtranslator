@@ -357,7 +357,7 @@
     "message": "โหมดผลลัพธ์"
   },
   "outputModeText": {
-    "message": "ข้อความแยกด้วย <<<SEP>>>"
+    "message": "ข้อความที่มี <<<SEPn>>> คั่น"
   },
   "outputModeTool": {
     "message": "การเรียกเครื่องมือ (JSON array โครงสร้าง)"

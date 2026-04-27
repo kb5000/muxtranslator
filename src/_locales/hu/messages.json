@@ -357,7 +357,7 @@
     "message": "Kimeneti mód"
   },
   "outputModeText": {
-    "message": "Szöveg <<<SEP>>> elválasztóval"
+    "message": "Szöveg <<<SEPn>>> elválasztókkal"
   },
   "outputModeTool": {
     "message": "Eszközhívás (strukturált JSON tömb)"

@@ -357,7 +357,7 @@
     "message": "输出模式"
   },
   "outputModeText": {
-    "message": "文本分隔符模式（<<<SEP>>>）"
+    "message": "带 <<<SEPn>>> 分隔符的文本"
   },
   "outputModeTool": {
     "message": "工具调用模式（结构化 JSON 数组）"

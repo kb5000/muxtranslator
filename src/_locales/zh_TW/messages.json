@@ -357,7 +357,7 @@
     "message": "輸出模式"
   },
   "outputModeText": {
-    "message": "文字與 <<<SEP>>> 分隔符"
+    "message": "以 <<<SEPn>>> 分隔的文字"
   },
   "outputModeTool": {
     "message": "工具呼叫（結構化 JSON 陣列）"

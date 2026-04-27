@@ -357,7 +357,7 @@
     "message": "Režim výstupu"
   },
   "outputModeText": {
-    "message": "Text s oddělovačem <<<SEP>>>"
+    "message": "Text s oddělovači <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Volání nástroje (strukturované pole JSON)"

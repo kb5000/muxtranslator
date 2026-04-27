@@ -357,7 +357,7 @@
     "message": "Chế độ xuất"
   },
   "outputModeText": {
-    "message": "Văn bản với phân cách <<<SEP>>>"
+    "message": "Văn bản có dấu phân cách <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Gọi công cụ (mảng JSON có cấu trúc)"

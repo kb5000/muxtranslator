@@ -357,7 +357,7 @@
     "message": "Mode de sortie"
   },
   "outputModeText": {
-    "message": "Texte avec séparateur <<<SEP>>>"
+    "message": "Texte avec séparateurs <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Appel d’outil (tableau JSON structuré)"

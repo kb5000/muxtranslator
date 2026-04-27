@@ -357,7 +357,7 @@
     "message": "Utdata-läge"
   },
   "outputModeText": {
-    "message": "Text med <<<SEP>>>-avgränsare"
+    "message": "Text med <<<SEPn>>>-avgränsare"
   },
   "outputModeTool": {
     "message": "Verktygsanrop (strukturerad JSON-array)"

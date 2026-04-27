@@ -357,7 +357,7 @@
     "message": "आउटपुट मोड"
   },
   "outputModeText": {
-    "message": "<<<SEP>>> विभाजक के साथ पाठ"
+    "message": "<<<SEPn>>> विभाजकों के साथ टेक्स्ट"
   },
   "outputModeTool": {
     "message": "टूल कॉलिंग (संरचित JSON सरणी)"

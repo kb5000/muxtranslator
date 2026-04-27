@@ -66,11 +66,11 @@ var ProvidersModule = ProvidersModule || {};
   }
 
   function joinWithSep(texts) {
-    return texts.join('\n' + UtilsModule.SEPARATOR + '\n');
+    return UtilsModule.joinForBatch(texts);
   }
 
   function splitBySep(response) {
-    return response.split(UtilsModule.SEPARATOR).map(function (s) {
+    return response.split(UtilsModule.SEP_PATTERN).map(function (s) {
       return s.replace(/^\s+|\s+$/g, '');
     });
   }
@@ -382,13 +382,13 @@ var ProvidersModule = ProvidersModule || {};
       return { usage: usage };
     }
 
-    // --- text/<<<SEP>>> branch --------------------------------------------
+    // --- text/<<<SEPn>>> branch -------------------------------------------
     var accum = '';
     var emitted = 0;
-    var SEP = UtilsModule.SEPARATOR;
+    var SEP_RE = UtilsModule.SEP_PATTERN;
 
     function emitReady(final) {
-      var parts = accum.split(SEP);
+      var parts = accum.split(SEP_RE);
       var completeCount = final ? parts.length : parts.length - 1;
       while (emitted < completeCount && emitted < texts.length) {
         var seg = parts[emitted].replace(/^\s+|\s+$/g, '');
@@ -419,11 +419,11 @@ var ProvidersModule = ProvidersModule || {};
     }
 
     // Stream done — emit any remaining segments
-    var finalParts = accum.split(SEP);
+    var finalParts = accum.split(SEP_RE);
     if (finalParts.length === texts.length) {
       emitReady(true);
     } else {
-      // Separator mismatch: the model didn't preserve <<<SEP>>> reliably.
+      // Separator mismatch: the model didn't preserve <<<SEPn>>> tokens reliably.
       // Emit whatever we streamed (padded/truncated to the expected count)
       // instead of fanning out per-item.
       var trimmed = finalParts.map(function (s) { return s.replace(/^\s+|\s+$/g, ''); });
@@ -573,10 +573,10 @@ var ProvidersModule = ProvidersModule || {};
     var accum = '';
     var emitted = 0;
     var usage = null;
-    var SEP = UtilsModule.SEPARATOR;
+    var SEP_RE = UtilsModule.SEP_PATTERN;
 
     function emitReady(final) {
-      var parts = accum.split(SEP);
+      var parts = accum.split(SEP_RE);
       var completeCount = final ? parts.length : parts.length - 1;
       while (emitted < completeCount && emitted < texts.length) {
         var seg = parts[emitted].replace(/^\s+|\s+$/g, '');
@@ -622,7 +622,7 @@ var ProvidersModule = ProvidersModule || {};
       } catch (e) {}
     }
 
-    var finalParts = accum.split(SEP);
+    var finalParts = accum.split(SEP_RE);
     if (finalParts.length === texts.length) {
       emitReady(true);
     } else {

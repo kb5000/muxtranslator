@@ -357,7 +357,7 @@
     "message": "Modalità output"
   },
   "outputModeText": {
-    "message": "Testo con separatore <<<SEP>>>"
+    "message": "Testo con separatori <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Chiamata strumento (array JSON strutturato)"

@@ -357,7 +357,7 @@
     "message": "وضع الإخراج"
   },
   "outputModeText": {
-    "message": "نص بفاصل <<<SEP>>>"
+    "message": "نص مع فواصل <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "استدعاء أداة (مصفوفة JSON منظمة)"

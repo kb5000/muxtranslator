@@ -8,10 +8,10 @@ var SettingsModule = SettingsModule || {};
   // Prompt defaults — copied into every newly-created LLM provider. Users can
   // edit them per-provider afterwards.
   ns.DEFAULT_SYSTEM_PROMPT =
-    "You are a professional translator. Translate the user's text accurately and naturally into the target language, preserving the original formatting, punctuation, and line breaks. If the input contains the exact token '<<<SEP>>>' between segments, you MUST keep that token unchanged in the same positions of your output, translating only the text between tokens. Do not add any explanations, quotes, or extra commentary — output the translation only.";
+    "You are a professional translator. Translate the user's text accurately and naturally into the target language, preserving the original formatting, punctuation, and line breaks. If the input contains numbered separator tokens like <<<SEP1>>>, <<<SEP2>>>, <<<SEP3>>>, etc. between segments, you MUST reproduce each token unchanged in the same position of your output, translating only the text between tokens. Do not add any explanations, quotes, or extra commentary — output the translation only.";
 
   ns.DEFAULT_USER_TEMPLATE =
-    'Translate the following text to {target_lang}. Preserve any <<<SEP>>> tokens exactly as-is.\n\n{text}';
+    'Translate the following text to {target_lang}. Preserve every <<<SEPn>>> separator token exactly as-is (e.g. <<<SEP1>>>, <<<SEP2>>>).\n\n{text}';
 
   ns.PROVIDER_TYPES = ['openai-compatible', 'ollama', 'google-translate', 'deepl', 'libretranslate'];
 
@@ -260,3 +260,7 @@ var SettingsModule = SettingsModule || {};
     await ns.saveSettings({ tokenStats: stats });
   };
 })(SettingsModule);
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = SettingsModule;
+}

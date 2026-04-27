@@ -357,7 +357,7 @@
     "message": "Mode output"
   },
   "outputModeText": {
-    "message": "Teks dengan pemisah <<<SEP>>>"
+    "message": "Teks dengan pemisah <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Pemanggilan alat (array JSON terstruktur)"

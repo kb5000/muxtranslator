@@ -104,15 +104,25 @@ var UtilsModule = UtilsModule || {};
     }
   };
 
-  ns.SEPARATOR = '<<<SEP>>>';
+  ns.SEPARATOR = '<<<SEP>>>';          // kept for reference / backward compat
+  ns.SEP_PATTERN = /<<<SEP\d*>>>/;    // matches <<<SEP>>>, <<<SEP1>>>, <<<SEP2>>>, …
+
+  ns.makeSeparator = function (n) {
+    return '<<<SEP' + n + '>>>';
+  };
 
   ns.joinForBatch = function (texts) {
-    return texts.join('\n' + ns.SEPARATOR + '\n');
+    var result = '';
+    for (var i = 0; i < texts.length; i++) {
+      if (i > 0) result += '\n' + ns.makeSeparator(i) + '\n';
+      result += texts[i];
+    }
+    return result;
   };
 
   ns.splitBatchResponse = function (response) {
     if (!response) return [];
-    return response.split(ns.SEPARATOR).map(function (s) {
+    return response.split(ns.SEP_PATTERN).map(function (s) {
       return s.replace(/^\s+|\s+$/g, '');
     });
   };

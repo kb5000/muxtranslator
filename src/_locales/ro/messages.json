@@ -357,7 +357,7 @@
     "message": "Mod de ieșire"
   },
   "outputModeText": {
-    "message": "Text cu separatorul <<<SEP>>>"
+    "message": "Text cu separatori <<<SEPn>>>"
   },
   "outputModeTool": {
     "message": "Apel de instrument (array JSON structurat)"
