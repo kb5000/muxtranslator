@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extName__",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
   "permissions": [
@@ -39,6 +39,10 @@
         "lib/utils.js",
         "lib/settings.js",
         "content/pdf.js",
+        "content/ui.js",
+        "content/scanner.js",
+        "content/pump.js",
+        "content/selection.js",
         "content/content.js"
       ],
       "css": [
