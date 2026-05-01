@@ -429,6 +429,7 @@
     if (pump.hasWork() || engine.inFlight > 0) ui.showProgress();
     pump.pump();
     markPageTranslated();
+    writeTabState('on');
     emitEngineChanged(true);
   }
 
@@ -510,6 +511,7 @@
     engine.paused         = false;
     engine.pdfMode        = false;
     engine.sessionTokens  = { prompt: 0, completion: 0 };
+    writeTabState('off');
 
     clearPageTranslatedFlag();
     emitEngineChanged(false);
@@ -534,8 +536,10 @@
   // Session storage persistence
   // ====================================================================
 
-  var MUXT_PROVIDER_KEY = 'muxt.lastProviderId';
-  var MUXT_LANG_KEY     = 'muxt.lastTargetLang';
+  var MUXT_PROVIDER_KEY  = 'muxt.lastProviderId';
+  var MUXT_LANG_KEY      = 'muxt.lastTargetLang';
+  var MUXT_TAB_STATE_KEY = 'muxt.tabState';
+  var MUXT_TAB_HOST_KEY  = 'muxt.tabHost';
 
   /** @param {string} providerId */
   function rememberProviderChoice(providerId) {
@@ -577,6 +581,26 @@
     var k = muxtTranslatedKey();
     if (!k) return false;
     try { return sessionStorage.getItem(k) === '1'; } catch (e) { return false; }
+  }
+
+  /** @returns {{ state: string|null, host: string|null }} */
+  function readTabState() {
+    try {
+      return {
+        state: sessionStorage.getItem(MUXT_TAB_STATE_KEY),
+        host:  sessionStorage.getItem(MUXT_TAB_HOST_KEY)
+      };
+    } catch (e) { return { state: null, host: null }; }
+  }
+
+  /** @param {'on'|'off'} state */
+  function writeTabState(state) {
+    var h = '';
+    try { h = window.location.hostname; } catch (e) {}
+    try {
+      sessionStorage.setItem(MUXT_TAB_STATE_KEY, state);
+      sessionStorage.setItem(MUXT_TAB_HOST_KEY,  h);
+    } catch (e) {}
   }
 
   // ====================================================================
@@ -694,6 +718,20 @@
       return;
     }
 
+    // Tab-level state: if the user translated (or stopped) on the same hostname
+    // earlier in this tab session, carry that choice forward without re-asking.
+    var tabData = readTabState();
+    if (tabData.host === host && tabData.state) {
+      if (tabData.state === 'on') {
+        var rememberedTab = readRememberedProvider();
+        var providerExistsTab = rememberedTab && Array.isArray(s.providers) &&
+          s.providers.some(function (p) { return p.id === rememberedTab; });
+        startEngine(providerExistsTab ? { providerId: rememberedTab } : {});
+        return;
+      }
+      if (tabData.state === 'off') return;  // user stopped — don't translate, don't ask
+    }
+
     if (wasPageTranslated()) {
       var remembered = readRememberedProvider();
       var providerExists = remembered && Array.isArray(s.providers) &&
@@ -703,8 +741,11 @@
     }
 
     var translationMode = s.defaultTranslationMode || 'ask';
-    var isForeignPage   = translationMode !== 'never' && engine.pageLanguage &&
-      !UtilsModule.shouldSkipLanguage(engine.pageLanguage, s.skipLanguages, s.targetLanguage);
+    // Unknown page language (no <html lang> or meta) → treat as possibly foreign rather than skip.
+    var isForeignPage   = translationMode !== 'never' && (
+      !engine.pageLanguage ||
+      !UtilsModule.shouldSkipLanguage(engine.pageLanguage, s.skipLanguages, s.targetLanguage)
+    );
     if (isPdf && translationMode !== 'never') isForeignPage = true;
 
     var onExtensionPage = false;
@@ -750,9 +791,103 @@
     });
   }
 
+  // ====================================================================
+  // Soft-navigation support (Turbo, Turbolinks, PJAX, React Router, …)
+  // ====================================================================
+
+  /**
+   * Reset all engine/tracking state without touching the DOM.
+   * Used when a soft navigation swaps the body — the old nodes are already
+   * gone so we only need to wipe the engine's bookkeeping.
+   */
+  function resetEngineForNavigation() {
+    pump.cancelScheduledPump();
+    pump.cancelInFlightBatches();
+
+    if (engine.mutationObserver) {
+      try { engine.mutationObserver.disconnect(); } catch (e) {}
+      engine.mutationObserver = null;
+    }
+    if (engine.intersectionObserver) {
+      try { engine.intersectionObserver.disconnect(); } catch (e) {}
+      engine.intersectionObserver = null;
+    }
+    if (engine.mutationTimer) { clearTimeout(engine.mutationTimer); engine.mutationTimer = null; }
+    engine.pendingMutationRoots = null;
+
+    engine.queues[0].clear();
+    engine.queues[1].clear();
+    engine.queues[2].clear();
+    engine.items.clear();
+    engine.itemsByElement = new WeakMap();
+    engine.batchItems.clear();
+
+    tracking.translatedNodes.clear();
+    tracking.translatedValueOf = new WeakMap();
+    tracking.originalValueOf   = new WeakMap();
+    tracking.bilingualElements.clear();
+    tracking.pdfOverlays.clear();
+
+    ui.hideProgressNow();
+    ui.progressState.completed = 0;
+    ui.progressState.totalSeen = 0;
+    engine.progressHidden = false;
+    engine.started        = false;
+    engine.paused         = false;
+    engine.pdfMode        = false;
+    engine.inFlight       = 0;
+
+    emitEngineChanged(false);
+  }
+
+  function installSpaNavigationHandler() {
+    // PDF viewer manages its own lifecycle via muxt-pdf-loaded; skip.
+    if (window.__muxtViewerManaged) return;
+
+    var lastHref = window.location.href;
+    var spaTimer = null;
+
+    function onUrlChange() {
+      var newHref = window.location.href;
+      if (newHref === lastHref) return;
+      var oldHref = lastHref;
+      lastHref = newHref;
+
+      // Hash-only change (e.g. anchor jump) — DOM is unchanged, nothing to do.
+      try {
+        var oldBase = new URL(oldHref);
+        var newBase = new URL(newHref);
+        if (oldBase.pathname + oldBase.search === newBase.pathname + newBase.search) return;
+      } catch (e) {}
+
+      ui.removeBar();
+
+      // Always reset: frameworks like Turbo/PJAX swap the body on every
+      // navigation, leaving the engine holding stale references.
+      // Tab state (sessionStorage) carries the on/off decision across pages.
+      resetEngineForNavigation();
+
+      clearTimeout(spaTimer);
+      spaTimer = setTimeout(function () {
+        var detected = UtilsModule.detectPageLanguage();
+        if (detected) engine.pageLanguage = detected;
+        init();
+      }, 500);
+    }
+
+    try {
+      var _push    = history.pushState.bind(history);
+      var _replace = history.replaceState.bind(history);
+      history.pushState    = function () { _push.apply(this, arguments);    onUrlChange(); };
+      history.replaceState = function () { _replace.apply(this, arguments); onUrlChange(); };
+    } catch (e) {}
+    window.addEventListener('popstate', onUrlChange);
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });
   } else {
     init();
   }
+  installSpaNavigationHandler();
 })();

@@ -62,7 +62,7 @@ var UtilsModule = UtilsModule || {};
       var metaLang = document.querySelector('meta[name="language" i]');
       if (metaLang && metaLang.content) return metaLang.content.trim().toLowerCase();
 
-      if (navigator && navigator.language) return navigator.language.trim().toLowerCase();
+      // navigator.language is the user's preferred language, not the page's — don't use it.
     } catch (e) {
       // ignore
     }
