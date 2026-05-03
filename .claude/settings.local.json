@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(npm install *)",
-      "Bash(npx jest *)",
-      "Bash(node scripts/translate-locales.js --keys outputModeText)"
-    ]
-  }
-}
