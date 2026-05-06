@@ -113,18 +113,19 @@ window.addEventListener('muxt-engine-changed', (ev) => {
 function setTranslateBtnState(state) {
   // state: 'disabled' | 'idle' | 'active'
   if (!translateBtn) return;
+  const i18n = window.i18n || ((k) => k);
   if (state === 'disabled') {
     translateBtn.disabled = true;
     translateBtn.classList.remove('active');
-    translateBtn.querySelector('span').textContent = '翻译';
+    translateBtn.querySelector('span').textContent = i18n('btnTranslate');
   } else if (state === 'active') {
     translateBtn.disabled = false;
     translateBtn.classList.add('active');
-    translateBtn.querySelector('span').textContent = '还原原文';
+    translateBtn.querySelector('span').textContent = i18n('btnRestoreOriginal');
   } else {
     translateBtn.disabled = false;
     translateBtn.classList.remove('active');
-    translateBtn.querySelector('span').textContent = '翻译';
+    translateBtn.querySelector('span').textContent = i18n('btnTranslate');
   }
 }
 
@@ -150,7 +151,7 @@ charsBtn.addEventListener('click', () => {
 
 async function openFile(file) {
   docTitleEl.textContent = file.name;
-  statusEl.textContent = 'Loading…';
+  statusEl.textContent = window.i18n ? window.i18n('statusLoading') : 'Loading…';
   emptyState.style.display = 'none';
 
   // If the previous PDF was translated, wipe overlays and engine state

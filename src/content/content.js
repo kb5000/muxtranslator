@@ -89,7 +89,11 @@
 
   /** @param {string} lang */
   async function loadI18nOverride(lang) {
-    if (!lang) { _i18nMsgs = null; return; }
+    if (!lang) {
+      _i18nMsgs = null;
+      if (window.i18nSetMsgs) window.i18nSetMsgs(null);
+      return;
+    }
     try {
       var url = browser.runtime.getURL('_locales/' + lang + '/messages.json');
       var r   = await fetch(url);
@@ -98,6 +102,8 @@
     } catch (e) {
       _i18nMsgs = null;
     }
+    // Keep window.i18n (i18n.js) in sync when running in the PDF viewer context.
+    if (window.i18nSetMsgs) window.i18nSetMsgs(_i18nMsgs);
   }
 
   // ====================================================================

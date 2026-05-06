@@ -79,4 +79,6 @@
   window.i18nInit = init;
   window.i18nApply = applyToDocument;
   window.i18nLoadLocale = loadLocale;
+  // Allows content.js to push a pre-loaded message map so both i18n instances stay in sync.
+  window.i18nSetMsgs = function (msgs) { _msgs = msgs || null; };
 })();
