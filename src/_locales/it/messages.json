@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API Key (chiave Google Cloud)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Lascia vuoto per usare l'endpoint non ufficiale gratuito (nessuna API key richiesta). Potrebbe essere soggetto a limiti di utilizzo o modifiche senza preavviso."
+  },
   "labelApiKey": {
     "message": "API Key"
   },

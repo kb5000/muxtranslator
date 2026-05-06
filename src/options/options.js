@@ -239,6 +239,12 @@
                     : p.type === 'libretranslate' ? i18n('labelApiKeyOptional')
                     : i18n('labelApiKey');
     body.appendChild(textField(apiKeyLabel, 'password', p.apiKey || '', function (v) { p.apiKey = v; }));
+    if (p.type === 'google-translate') {
+      var googleHint = document.createElement('span');
+      googleHint.className = 'hint';
+      googleHint.textContent = i18n('hintGoogleFreeMode');
+      body.appendChild(googleHint);
+    }
 
     // Model picker with Fetch button (not shown for non-LLM providers)
     if (p.type === 'deepl' || p.type === 'libretranslate') {

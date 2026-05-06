@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API 키 (Google Cloud 키)"
   },
+  "hintGoogleFreeMode": {
+    "message": "비워 두면 공식이 아닌 무료 엔드포인트를 사용합니다 (API 키 불필요). 속도 제한 또는 예고 없는 변경에 영향을 받을 수 있습니다."
+  },
   "labelApiKey": {
     "message": "API 키"
   },

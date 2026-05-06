@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "Ключ API (ключ Google Cloud)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Залиште порожнім для використання безкоштовної неофіційної точки доступу (ключ API не потрібен). Може бути обмеження швидкості або зміни без попередження."
+  },
   "labelApiKey": {
     "message": "Ключ API"
   },

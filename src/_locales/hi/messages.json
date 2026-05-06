@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API Key (Google Cloud key)"
   },
+  "hintGoogleFreeMode": {
+    "message": "खाली छोड़ें ताकि मुफ्त अनौपचारिक एंडपॉइंट का उपयोग हो (API की जरूरत नहीं)। दर सीमा या बिना सूचना के बदलाव लागू हो सकते हैं।"
+  },
   "labelApiKey": {
     "message": "API Key"
   },

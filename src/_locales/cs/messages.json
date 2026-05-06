@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API klíč (klíč Google Cloud)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Nechte prázdné pro použití neoficiálního bezplatného koncového bodu (není třeba klíč API). Může podléhat omezením rychlosti nebo změnám bez upozornění."
+  },
   "labelApiKey": {
     "message": "API klíč"
   },

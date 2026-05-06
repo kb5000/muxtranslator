@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API Key (Google Cloud key)"
   },
+  "hintGoogleFreeMode": {
+    "message": "เว้นว่างไว้เพื่อใช้ endpoint ฟรีไม่เป็นทางการ (ไม่ต้องใช้ API key) อาจมีข้อจำกัดอัตรา หรือเปลี่ยนแปลงโดยไม่แจ้งให้ทราบ"
+  },
   "labelApiKey": {
     "message": "API Key"
   },

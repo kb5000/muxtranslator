@@ -654,8 +654,37 @@ var ProvidersModule = ProvidersModule || {};
     return ['base'];
   };
 
+  Google.translateBatchFree = async function (texts, targetLang, signal) {
+    var target = targetLang || 'en';
+    var requests = texts.map(function (text) {
+      var url = 'https://translate.googleapis.com/translate_a/single' +
+        '?client=gtx&sl=auto&tl=' + encodeURIComponent(target) +
+        '&dt=t&q=' + encodeURIComponent(text);
+      return fetch(url, { signal: signal })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (json) {
+          if (!Array.isArray(json) || !Array.isArray(json[0])) return '';
+          return json[0].map(function (seg) { return (seg && seg[0]) || ''; }).join('');
+        })
+        .catch(function (e) {
+          if (e && e.name === 'AbortError') throw e;
+          return '';
+        });
+    });
+    var translated = await Promise.all(requests);
+    var inChars = 0; texts.forEach(function (t) { inChars += (t || '').length; });
+    var outChars = 0; translated.forEach(function (t) { outChars += (t || '').length; });
+    return {
+      translations: translated,
+      usage: { prompt_tokens: inChars, completion_tokens: outChars }
+    };
+  };
+
   Google.translateBatch = async function (provider, texts, targetLang, signal) {
-    if (!provider.apiKey) throw new Error('Google Translate requires an API key');
+    if (!provider.apiKey) return Google.translateBatchFree(texts, targetLang, signal);
     var url = Google.base(provider) + '/language/translate/v2?key=' + encodeURIComponent(provider.apiKey);
     var body = {
       q: texts,

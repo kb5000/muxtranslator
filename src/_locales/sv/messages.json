@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API-nyckel (Google Cloud-nyckel)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Lämna tomt för att använda den gratis inofficiella slutpunkten (ingen API-nyckel behövs). Kan vara föremål för hastighetsbegränsningar eller ändringar utan förvarning."
+  },
   "labelApiKey": {
     "message": "API-nyckel"
   },

@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API 密钥（Google Cloud）"
   },
+  "hintGoogleFreeMode": {
+    "message": "留空以使用免费非官方接口（无需API密钥）。可能受速率限制或未经通知更改。"
+  },
   "labelApiKey": {
     "message": "API 密钥"
   },

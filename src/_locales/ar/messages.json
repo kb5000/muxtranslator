@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "مفتاح API (مفتاح Google Cloud)"
   },
+  "hintGoogleFreeMode": {
+    "message": "اتركه فارغًا لاستخدام نقطة النهاية غير الرسمية المجانية (لا حاجة لمفتاح API). قد يخضع للقيود أو يتغير دون إشعار."
+  },
   "labelApiKey": {
     "message": "مفتاح API"
   },

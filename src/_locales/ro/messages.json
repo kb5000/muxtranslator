@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API Key (cheie Google Cloud)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Lasă gol pentru a folosi endpointul neoficial gratuit (nu e nevoie de cheie API). Poate avea limite de utilizare sau modificări fără anunț."
+  },
   "labelApiKey": {
     "message": "API Key"
   },

@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API-avain (Google Cloud -avain)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Jätä tyhjäksi käyttääksesi ilmaista epävirallista päätepistettä (ei tarvita API-avainta). Saatat kohdata rajoituksia tai muutoksia ilman ennakkoilmoitusta."
+  },
   "labelApiKey": {
     "message": "API-avain"
   },

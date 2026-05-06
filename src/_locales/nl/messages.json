@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API-sleutel (Google Cloud-sleutel)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Laat leeg om het gratis niet-officiële eindpunt te gebruiken (geen API-sleutel nodig). Kan onderhevig zijn aan limieten of wijzigingen zonder voorafgaande kennisgeving."
+  },
   "labelApiKey": {
     "message": "API-sleutel"
   },

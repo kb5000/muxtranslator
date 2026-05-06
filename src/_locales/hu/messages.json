@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API Kulcs (Google Cloud kulcs)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Hagyja üresen az ingyenes nem hivatalos végpont használatához (API kulcs nem szükséges). Lehet, hogy korlátozások vagy változások érvényesek."
+  },
   "labelApiKey": {
     "message": "API Kulcs"
   },

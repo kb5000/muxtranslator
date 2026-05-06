@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "Klucz API (klucz Google Cloud)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Zostaw puste, by użyć darmowego nieoficjalnego punktu końcowego (klucz API niepotrzebny). Może podlegać limitom lub zmianom bez uprzedzenia."
+  },
   "labelApiKey": {
     "message": "Klucz API"
   },

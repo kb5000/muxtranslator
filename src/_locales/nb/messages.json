@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API Key (Google Cloud-nøkkel)"
   },
+  "hintGoogleFreeMode": {
+    "message": "La stå tom for å bruke gratis uoffisiell endepunkt (ingen API-nøkkel nødvendig). Kan være underlagt hastighetsbegrensninger eller endres uten varsel."
+  },
   "labelApiKey": {
     "message": "API Key"
   },

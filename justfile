@@ -1,7 +1,6 @@
 set shell := ["wsl", "bash", "-c"]
 
-version := `node -p "require('./src/manifest.json').version"`
-zip_name := "dist/muxtranslator-v" + version + ".zip"
+version := `node -p "require('./src/manifest.firefox.json').version"`
 
 # pdfjs-dist version used by the bundled PDF viewer. Pinned so the vendored
 # files and the viewer code (TextLayer API) stay in sync.
@@ -11,13 +10,38 @@ pdfjs_version := "4.10.38"
 i18n:
     node scripts/translate-locales.js
 
-# Build extension zip for browser upload
-build:
-    @echo "Building v{{version}}..."
+# Switch active manifest to Firefox (for unpacked dev in Firefox)
+use-firefox:
+    ln -sf manifest.firefox.json src/manifest.json
+    @echo "Switched to Firefox manifest."
+
+# Switch active manifest to Chrome (for unpacked dev in Chrome)
+use-chrome:
+    ln -sf manifest.chrome.json src/manifest.json
+    @echo "Switched to Chrome manifest."
+
+# Build both Firefox and Chrome zips
+build: build-firefox build-chrome
+
+# Build Firefox extension zip
+build-firefox:
+    @echo "Building Firefox v{{version}}..."
     @mkdir -p dist
-    @rm -f "{{zip_name}}"
-    cd src && zip -r "../{{zip_name}}" .
-    @echo "Done: {{zip_name}}"
+    @rm -f "dist/muxtranslator-firefox-v{{version}}.zip"
+    rm -f src/manifest.json && cp src/manifest.firefox.json src/manifest.json
+    cd src && zip -r "../dist/muxtranslator-firefox-v{{version}}.zip" . -x "manifest.firefox.json" -x "manifest.chrome.json"
+    ln -sf manifest.firefox.json src/manifest.json
+    @echo "Done: dist/muxtranslator-firefox-v{{version}}.zip"
+
+# Build Chrome extension zip
+build-chrome:
+    @echo "Building Chrome v{{version}}..."
+    @mkdir -p dist
+    @rm -f "dist/muxtranslator-chrome-v{{version}}.zip"
+    rm -f src/manifest.json && cp src/manifest.chrome.json src/manifest.json
+    cd src && zip -r "../dist/muxtranslator-chrome-v{{version}}.zip" . -x "manifest.firefox.json" -x "manifest.chrome.json"
+    ln -sf manifest.firefox.json src/manifest.json
+    @echo "Done: dist/muxtranslator-chrome-v{{version}}.zip"
 
 # Download pdfjs-dist and vendor the ESM build + optional asset dirs into
 # src/viewer/pdfjs/. Run once after cloning; re-run to bump the pinned version.

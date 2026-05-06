@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API Anahtarı (Google Cloud anahtarı)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Boş bırakırsan ücretsiz gayriresmî uç noktayı kullanırsın (API anahtarı gerekmez). Hız sınırlamalarına veya haber verilmeden değişikliklere tabi olabilir."
+  },
   "labelApiKey": {
     "message": "API Anahtarı"
   },

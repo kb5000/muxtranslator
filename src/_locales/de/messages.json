@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "API-Schlüssel (Google Cloud-Schlüssel)"
   },
+  "hintGoogleFreeMode": {
+    "message": "Leer lassen für kostenlosen inoffiziellen Endpunkt (kein API-Schlüssel nötig). Kann ratenbegrenzt sein oder ohne Vorankündigung geändert werden."
+  },
   "labelApiKey": {
     "message": "API-Schlüssel"
   },

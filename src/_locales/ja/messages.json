@@ -383,6 +383,9 @@
   "labelApiKeyGoogle": {
     "message": "APIキー（Google Cloudキー）"
   },
+  "hintGoogleFreeMode": {
+    "message": "空欄のままにすると、無料の非公式エンドポイントを使用できます（APIキー不要）。レート制限や予告なく変更される場合があります。"
+  },
   "labelApiKey": {
     "message": "APIキー"
   },
